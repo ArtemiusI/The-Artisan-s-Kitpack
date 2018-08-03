@@ -1,0 +1,262 @@
+LOAD_TRA ~ArtisansKitpack/arcanearcher/tra/english/arcanearcher.tra~
+
+COPY ~ArtisansKitpack/arcanearcher/2das~ ~override~
+COPY ~ArtisansKitpack/arcanearcher/spells~ ~override~
+
+ADD_KIT ~c0aa~
+  ~c0aa                1           1           1           1           1           1           1           1~
+  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa                0       15      0       14      0       0~
+  ~c0aa                0       0       0       0       0       0~
+  ~c0aa                17      0       0       0       0       0~
+  ~c0aa                15      0       0       0       0       0~
+  ~c0aa                1       1       1       1       1       1       1       1       1~
+  ~c0aa                0       0       1       1       0       0~
+  ~ArtisansKitpack/arcanearcher/2das/c0aa.2da~
+  ~K_F_H K_F_E K_F_HE~
+  ~0x00008000     2~
+  ~fi0~
+  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY @1
+  SAY @2
+  SAY @3
+
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aain1.spl~ ~override~
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aain2.spl~ ~override~
+
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp1.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+      match_parameter1 = 26335
+ parameter1 = RESOLVE_STR_REF (~Protected from Normal Missiles~)
+  END
+SAY NAME1 @4
+ SAY NAME2 @4
+ SAY UNIDENTIFIED_DESC @5
+ 
+ADD_PROJECTILE ~ArtisansKitpack/arcanearcher/spells/c0aasp2.PRO~
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp2.spl~ ~override~
+SAY NAME1 @6
+ SAY NAME2 @6
+ SAY UNIDENTIFIED_DESC @7
+ 
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp2a.spl~ ~override~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0aasp2%~
+END
+
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp3.spl~ ~override~
+SAY NAME1 @8
+ SAY NAME2 @8
+ SAY UNIDENTIFIED_DESC @9
+
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp4.spl~ ~override~
+SAY NAME1 @10
+ SAY NAME2 @10
+ SAY UNIDENTIFIED_DESC @11
+
+COPY ~ArtisansKitpack/arcanearcher/spells/c0aasp5.spl~ ~override~
+SAY NAME1 @12
+ SAY NAME2 @12
+ SAY UNIDENTIFIED_DESC @13
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = c0aa
+	hpclass = ~HPPRS~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan06.itm~ BEGIN
+  COPY_EXISTING chan06.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan12.itm~ BEGIN
+  COPY_EXISTING chan12.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan13.itm~ BEGIN
+  COPY_EXISTING chan13.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan14.itm~ BEGIN
+  COPY_EXISTING chan14.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan16.itm~ BEGIN
+  COPY_EXISTING chan16.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan19.itm~ BEGIN
+  COPY_EXISTING chan19.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+PRINT ~OPTIONAL: Add Fighter/Mage multiclass kit?~
+
+PRINT ~Please choose one of the following:
+[1] Yes
+[2] No~
+
+OUTER_SPRINT ~kit~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~kit~) OR (~kit~ > 0x5) OR (~kit~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~kit~
+END
+      ACTION_IF ("kit" = 1) THEN BEGIN
+//ENABLE MORE MULTICLASSES___________________________________________________________
+//
+
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 34 1 8 ~1~
+		SET_2DA_ENTRY 35 1 8 ~1~
+		SET_2DA_ENTRY 36 1 8 ~1~
+		SET_2DA_ENTRY 37 1 8 ~1~
+		SET_2DA_ENTRY 46 1 8 ~1~
+		SET_2DA_ENTRY 47 1 8 ~1~
+		SET_2DA_ENTRY 48 1 8 ~1~
+		SET_2DA_ENTRY 49 1 8 ~1~
+		SET_2DA_ENTRY 50 1 8 ~1~
+		SET_2DA_ENTRY 51 1 8 ~1~
+//		SET_2DA_ENTRY 25 2 8 ~1~
+		SET_2DA_ENTRY 35 2 8 ~1~
+		SET_2DA_ENTRY 47 2 8 ~1~
+		SET_2DA_ENTRY 48 2 8 ~1~
+		SET_2DA_ENTRY 50 2 8 ~1~
+		SET_2DA_ENTRY 51 2 8 ~1~
+		SET_2DA_ENTRY 48 3 8 ~1~
+		SET_2DA_ENTRY 48 4 8 ~1~
+		SET_2DA_ENTRY 35 5 8 ~1~
+		SET_2DA_ENTRY 48 5 8 ~1~
+	BUT_ONLY
+END
+ACTION_IF ENGINE_IS ~tob~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 11 1 7 ~1~
+		SET_2DA_ENTRY 12 1 7 ~1~
+		SET_2DA_ENTRY 13 1 7 ~1~
+		SET_2DA_ENTRY 14 1 7 ~1~
+		SET_2DA_ENTRY 15 1 7 ~1~
+		SET_2DA_ENTRY 16 1 7 ~1~
+		SET_2DA_ENTRY 17 1 7 ~1~
+		SET_2DA_ENTRY 18 1 7 ~1~
+		SET_2DA_ENTRY 19 1 7 ~1~
+		SET_2DA_ENTRY 20 1 7 ~1~
+//		SET_2DA_ENTRY 5 2 7 ~1~
+		SET_2DA_ENTRY 12 2 7 ~1~
+		SET_2DA_ENTRY 15 2 7 ~1~
+		SET_2DA_ENTRY 16 2 7 ~1~
+		SET_2DA_ENTRY 18 2 7 ~1~
+		SET_2DA_ENTRY 20 2 7 ~1~
+		SET_2DA_ENTRY 16 3 7 ~1~
+		SET_2DA_ENTRY 16 4 7 ~1~
+		SET_2DA_ENTRY 12 5 7 ~1~
+		SET_2DA_ENTRY 16 5 7 ~1~
+	BUT_ONLY
+END
+
+ADD_KIT ~c0aa2~
+  ~c0aa2                1           1           1           1           1           1           1           1~
+  ~c0aa2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa2                0       15      0       14      0       0~
+  ~c0aa2                0       0       0       0       0       0~
+  ~c0aa2                17      0       0       0       0       0~
+  ~c0aa2                15      0       0       0       0       0~
+  ~c0aa2                1       1       1       1       1       1       1       1       1~
+  ~c0aa2                0       0       0       0       0       0~
+  ~ArtisansKitpack/arcanearcher/2das/blankclab.2da~
+  ~K_FM_E K_FM_HE~
+  ~0x00008000     7~
+  ~fm0~
+  ~CLCK13 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY @1
+  SAY @2
+  SAY ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army.
+
+Advantages:
+
+- May achieve grandmastery in longbows, shortbows or crossbows.
+- +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
+- Gains the Enhance Arrow ability.
+
+ENHANCE ARROW: The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
+
+- 3rd level: May use Entropic Shield once per day.
+
+ENTROPIC SHIELD: A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.
+
+- 5th level: May use Imbue Arrow ability three times per day.
+
+IMBUE ARROW: Using arcane magic, the arcane archer enchants <PRO_HISHER> next missile within one round to explode, dealing 1d6 additional fire damage for every five levels gained thereafter in an area of effect.
+
+- 9th level: May use Seeker Arrow ability once per day.
+
+SEEKER ARROW: A skilled arcane archer can enchant <PRO_HISHER> arrows to strike its target unerringly. <PRO_HISHER> next missile attack within one round is a guaranteed critical hit and deals two points of extra damage for every five levels gained thereafter.
+
+- 13th level: May use Phase Arrow ability once per day.
+
+PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow within one round to become an incorporeal missile that penetrates armor, reducing the target's missile resistance by 50% as well as their armor class vs. missiles by two points for every five levels gained thereafter.
+
+- 17th level: May use Arrow of Death ability once per day.
+
+ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe on a failed save vs. death. Target's saving throw penalty is increased by one for every 5 levels gained thereafter.
+
+Disadvantages:
+
+- THAC0 penalty of 2 when wielding a melee weapon.
+- Race restricted to elf or half-elf.
+- May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
+- May not exceed proficiency (one slot) in any weapon style.
+- May not wear armor heavier than elven chain mail.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = c0aa2
+    hpclass  = ~HPFM~
+END
+
+LAF qd_multiclass
+	STR_VAR
+		kit_name = c0aa2
+		kit_clab = c0aa
+		base_class = ~F~
+		mc_dir = ~ArtisansKitpack/arcanearcher/2das~
+END
+      END
+      ACTION_IF ("kit" = 2) THEN BEGIN
+      END

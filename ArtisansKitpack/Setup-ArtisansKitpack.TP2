@@ -1,0 +1,23 @@
+BACKUP ~ArtisansKitpack/backup~
+AUTHOR ~Artemius_I~
+VERSION ~1.0~
+ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
+END
+AUTO_TRA ~%MOD_FOLDER%/tra/%s~
+
+BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~
+INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
+
+BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~
+INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
+
+BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~
+INCLUDE ~%MOD_FOLDER%/lib/Hivemaster.tpa~
+
+BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
+INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
+
+BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
+INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~

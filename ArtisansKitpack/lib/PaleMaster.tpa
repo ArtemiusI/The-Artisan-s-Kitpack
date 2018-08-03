@@ -1,0 +1,211 @@
+LOAD_TRA ~ArtisansKitpack/PaleMaster/tra/english/setup.tra~
+
+// -----------------------------
+// PALE MASTER KIT (TOME NOT INSTALLED)
+// -----------------------------
+ACTION_IF NOT MOD_IS_INSTALLED ~setup-tomeandblood.tp2~ ~0~ THEN BEGIN
+ADD_KIT ~PaleMaster~
+	~PaleMaster 1 1 1 1 1 1 1 1~ //clasweap.2da
+	~PaleMaster 0 1 0 0 1 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~ //weapprof.2da
+	~PaleMaster 0 0 9 9 0 0~ //abclasrq.2da
+	~PaleMaster 0 0 0 0 0 -2~ //abclsmod.2da
+	~PaleMaster 0 0 0 0 0 17~ //abdcdsrq.2da
+	~PaleMaster 0 0 0 0 0 15~ //abdcscrq.2da
+	~PaleMaster 0 1 1 0 1 1 0 1 1~ //alignmnt.2da
+	~PaleMaster 0 0 0 0 0 0~ //dualclas.2da
+	~ArtisansKitpack/PaleMaster/PMaster.2da~ //CLAB
+	~K_S_H K_S_E K_S_HE~
+	~0x00004000     19~
+	~So1~
+	~* * * BAG29 RING06 RING40 * BOOT01 AMUL21 BRAC15 BELT10 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 SLNG05 DAGG05,20 STAF20~
+	SAY @0
+        SAY @1
+        SAY @2
+ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     biography = RESOLVE_STR_REF (@12)
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 0 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END       ELSE
+ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 0 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END       ELSE
+ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 0 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END
+
+COPY_EXISTING ~SPWI501.spl~ ~override/PMAbil1.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+COPY ~ArtisansKitpack/PaleMaster/abilities~ ~override~
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
+     SAY NAME1 @5
+     SAY UNIDENTIFIED_DESC @6
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
+     SAY NAME1 @7
+     SAY UNIDENTIFIED_DESC @8
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
+     SAY NAME1 @9
+     SAY UNIDENTIFIED_DESC @10
+COPY ~ArtisansKitpack/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
+     SAY NAME1 @11
+     SAY NAME2 @11
+END
+
+// -----------------------------
+// PALE MASTER KIT (TOME INSTALLED)
+// -----------------------------
+
+ACTION_IF MOD_IS_INSTALLED ~setup-tomeandblood.tp2~ ~0~ THEN BEGIN
+ADD_KIT ~PaleMaster~
+	~PaleMaster 1 0 0 1 1 0 0 0~ //clasweap.2da
+	~PaleMaster 0 1 0 0 1 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~ //weapprof.2da
+	~PaleMaster 0 0 9 9 0 0~ //abclasrq.2da
+	~PaleMaster 0 0 0 0 0 -2~ //abclsmod.2da
+	~PaleMaster 0 0 0 0 0 17~ //abdcdsrq.2da
+	~PaleMaster 0 0 0 0 0 15~ //abdcscrq.2da
+	~PaleMaster 0 1 1 0 1 1 0 1 1~ //alignmnt.2da
+	~PaleMaster 0 0 0 0 0 0~ //dualclas.2da
+	~ArtisansKitpack/PaleMaster/PMaster.2da~ //CLAB
+	~K_S_H K_S_E K_S_HE K_S_G~
+	~0x00004000     19~
+	~Ma0~
+	~* * * BAG29 RING06 RING40 * BOOT01 AMUL21 BRAC15 BELT10 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 SLNG05 DAGG05,20 STAF20~
+	SAY @0
+        SAY @1
+        SAY @2
+ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     biography = RESOLVE_STR_REF (@12)
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 1 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END       ELSE
+ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 1 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END       ELSE
+ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          LAF fl#add_kit_ee
+              INT_VAR
+                     briefdesc = RESOLVE_STR_REF (@2)
+              STR_VAR
+                     kit_name = ~PaleMaster~
+                     hpclass = ~HPDD~
+                     clsrcreq = ~1 1 1 0 0 1 0~
+					 clascolr = ~171 174 190 171 171~
+          END
+END
+
+COPY_EXISTING ~SPWI501.spl~ ~override/PMAbil1.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+COPY ~ArtisansKitpack/PaleMaster/abilities~ ~override~
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
+     SAY NAME1 @5
+     SAY UNIDENTIFIED_DESC @6
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
+     SAY NAME1 @7
+     SAY UNIDENTIFIED_DESC @8
+COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
+     SAY NAME1 @9
+     SAY UNIDENTIFIED_DESC @10
+COPY ~ArtisansKitpack/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
+     SAY NAME1 @11
+     SAY NAME2 @11
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb00.qd~) THEN BEGIN //core revisions check and update
+          COPY_EXISTING ~PMaster.2da~ ~override~
+                        INSERT_2DA_ROW 3 0 ~FAMILIAR   GA_QDFAMLR    ****          ****          ****       ****          ****          ****          ****          ****       ****        ****       ****          ****          ****       ****          ****          ****       ****       ****       ****          ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb01.qd~) THEN BEGIN //spell selection through dialog check and update
+          COPY_EXISTING ~PMaster.2da~ ~override~
+                        INSERT_2DA_ROW 3 0 ~MEMORIZE   GA_QDSORSM    ****          ****          ****       ****          ****          ****          ****          ****       ****        ****       ****          ****          ****       ****          ****          ****       ****       ****       ****          ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb03.qd~) THEN BEGIN //armored casting check and update
+          COPY_EXISTING ~PMaster.2da~ ~override~
+                        INSERT_2DA_ROW 3 0 ~AMRCAST    AP_QDACNO     ****          ****          ****       ****          ****          ****          ****          ****       ****        ****       ****          ****          ****       ****          ****          ****       ****       ****       ****          ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb05.qd~) THEN BEGIN //arcane crafting check and update
+          COPY_EXISTING ~PMaster.2da~ ~override~
+                        INSERT_2DA_ROW 3 0 ~ARCNCRFT   ****	     ****          ****          ****       GA_B_BREW1    ****          ****          ****          ****       GA_B_WAND1  ****       ****          ****          ****       GA_B_RECH1    ****          ****       ****       ****       ****          ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****~
+END
+END
+
+// -----------------------------
+// Evermemory Fix
+// -----------------------------
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
+PRINT ~OPTIONAL: Add Evermemory Fix?~
+
+PRINT ~Please choose one of the following:
+[1] Yes
+[2] No~
+
+OUTER_SPRINT ~evermemory~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~evermemory~) OR (~evermemory~ > 0x5) OR (~evermemory~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~evermemory~
+END
+      ACTION_IF ("evermemory" = 1) THEN BEGIN
+	  COPY ~ArtisansKitpack/PaleMaster/items/RING08.ITM~ ~override~ //Evermemory
+     SAY IDENTIFIED_DESC @15
+      END
+      ACTION_IF ("evermemory" = 2) THEN BEGIN
+      END
+END
