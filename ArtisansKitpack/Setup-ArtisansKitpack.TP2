@@ -21,3 +21,6 @@ INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
+
+BEGIN ~Artisan's Kitpack: Way of the Assassin (Kit Rework)~
+INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~

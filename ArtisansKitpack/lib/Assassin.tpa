@@ -1,0 +1,441 @@
+LOAD_TRA ~ArtisansKitpack/Assassin/languages/english/setup.tra~
+
+COPY ~%MOD_FOLDER%/Assassin/2da~ ~override~
+COPY ~%MOD_FOLDER%/Assassin/bams~ ~override~
+COPY ~%MOD_FOLDER%/Assassin/spells~ ~override~
+
+  COPY_EXISTING ~alignmnt.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols 0
+		SET_2DA_ENTRY (%patch_row%) 2 cols 1
+		SET_2DA_ENTRY (%patch_row%) 3 cols 1
+		SET_2DA_ENTRY (%patch_row%) 4 cols 0
+		SET_2DA_ENTRY (%patch_row%) 5 cols 1
+		SET_2DA_ENTRY (%patch_row%) 6 cols 1
+		SET_2DA_ENTRY (%patch_row%) 7 cols 0
+		SET_2DA_ENTRY (%patch_row%) 8 cols 1
+		SET_2DA_ENTRY (%patch_row%) 9 cols 1
+	  END
+	END
+
+  COPY_EXISTING ~abclasrq.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols 15
+	  END
+	END
+
+  COPY_EXISTING ~abclsmod.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 6 cols %-2%
+	  END
+	END
+
+  COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~c0as~
+	  END
+	END
+	
+COPY_EXISTING ~thiefscl.2da~ ~override~
+SET_2DA_ENTRY 9 36 1 ~0~
+	
+  COPY_EXISTING ~thiefskl.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 2 cols 10
+	  END
+	END
+
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASSIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (@1 /* ASSASSIN: The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
+
+Those who choose to walk the path of assassination do so for a variety of reasons. Many are opportunists, selling their services for personal gain. Some are vigilantes, hoping to make the world a better (or at least more peaceful) place by exterminating 'undesirables'. Yet others do so simply for the thrill of the kill. It is said that no two assassins are alike in either motive or technique.
+
+Because of the unsavory nature of their profession as well as their preferred mode of operation, assassins are dreaded and reviled by decent folk. Assassins do not seek fame and recognition, as such things are detrimental to their cause and thus they rarely take positions of leadership or band in groups at all. The best assassins are all but unknown.
+
+Advantages:
+- Begins with a x3 backstab multiplier. The assassin's backstab multiplier caps at x7 at 17th level.
+- Gains a +10% bonus to Hide in Shadows and Move Silently at 1st level and an extra +5% for every level thereafter.
+- Gains a +1 bonus to Saving Throws vs. Death at 1st level and every 10 levels thereafter.
+- May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+- Gains the Analysis and Enhanced Backstab passive effects.
+- From 5th level onwards, gains the Hidden Blade passive effect.
+- From 10th level onwards, may use the Cloak of Shadows ability once per turn.
+
+Disadvantages:
+- -2 penalty to Charisma.
+- -2 penalty to starting Reputation.
+- May not wear armor heavier than leather armor.
+- May not Set Traps.
+- May only be of any non-good alignment.
+- May only distribute 10 skill points per level among thieving skills.
+
+ABILITIES:
+
+POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+ANALYSIS: For every round that the assassin remains invisible, <PRO_HESHE> gains a +1 bonus to hit and damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Attacking depletes all stacked bonuses instantly while leaving stealth non-aggressively causes bonuses to gradually deplete over time.
+
+ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+  Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
+  Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
+  Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+  Cutthroat: Target must save vs. death or be silenced for 20 rounds.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly.
+
+HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns invisible and moves at double <PRO_HISHER> movement rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
+
+CLOAK OF SHADOWS: The assassin becomes completely invisible and undetectable for two rounds or until <PRO_HESHE> attacks, becoming immune to all revealing effects. Even creatures that can normally see through invisibility are unable to target the assassin during this time. */)
+	  END
+	END
+ACTION_IF (FILE_EXISTS_IN_GAME ~sodcltxt.2da~) BEGIN
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASSIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (@1 /* ASSASSIN: The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
+
+Those who choose to walk the path of assassination do so for a variety of reasons. Many are opportunists, selling their services for personal gain. Some are vigilantes, hoping to make the world a better (or at least more peaceful) place by exterminating 'undesirables'. Yet others do so simply for the thrill of the kill. It is said that no two assassins are alike in either motive or technique.
+
+Because of the unsavory nature of their profession as well as their preferred mode of operation, assassins are dreaded and reviled by decent folk. Assassins do not seek fame and recognition, as such things are detrimental to their cause and thus they rarely take positions of leadership or band in groups at all. The best assassins are all but unknown.
+
+Advantages:
+- Begins with a x3 backstab multiplier. The assassin's backstab multiplier caps at x7 at 17th level.
+- Gains a +10% bonus to Hide in Shadows and Move Silently at 1st level and an extra +5% for every level thereafter.
+- Gains a +1 bonus to Saving Throws vs. Death at 1st level and every 10 levels thereafter.
+- May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+- Gains the Analysis and Enhanced Backstab passive effects.
+- From 5th level onwards, gains the Hidden Blade passive effect.
+- From 10th level onwards, may use the Cloak of Shadows ability once per turn.
+
+Disadvantages:
+- -2 penalty to Charisma.
+- -2 penalty to starting Reputation.
+- May not wear armor heavier than leather armor.
+- May not Set Traps.
+- May only be of any non-good alignment.
+- May only distribute 10 skill points per level among thieving skills.
+
+ABILITIES:
+
+POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+ANALYSIS: For every round that the assassin remains invisible, <PRO_HESHE> gains a +1 bonus to hit and damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Attacking depletes all stacked bonuses instantly while leaving stealth non-aggressively causes bonuses to gradually deplete over time.
+
+ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+  Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
+  Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
+  Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+  Cutthroat: Target must save vs. death or be silenced for 20 rounds.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly.
+
+HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns invisible and moves at double <PRO_HISHER> movement rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
+
+CLOAK OF SHADOWS: The assassin becomes completely invisible and undetectable for two rounds or until <PRO_HESHE> attacks, becoming immune to all revealing effects. Even creatures that can normally see through invisibility are unable to target the assassin during this time. */)
+	  END
+	END
+	END
+ACTION_IF (FILE_EXISTS_IN_GAME ~kitlist.2da~) BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 1 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (@1 /* ASSASSIN: The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
+
+Those who choose to walk the path of assassination do so for a variety of reasons. Many are opportunists, selling their services for personal gain. Some are vigilantes, hoping to make the world a better (or at least more peaceful) place by exterminating 'undesirables'. Yet others do so simply for the thrill of the kill. It is said that no two assassins are alike in either motive or technique.
+
+Because of the unsavory nature of their profession as well as their preferred mode of operation, assassins are dreaded and reviled by decent folk. Assassins do not seek fame and recognition, as such things are detrimental to their cause and thus they rarely take positions of leadership or band in groups at all. The best assassins are all but unknown.
+
+Advantages:
+- Begins with a x3 backstab multiplier. The assassin's backstab multiplier caps at x7 at 17th level.
+- Gains a +10% bonus to Hide in Shadows and Move Silently at 1st level and an extra +5% for every level thereafter.
+- Gains a +1 bonus to Saving Throws vs. Death at 1st level and every 10 levels thereafter.
+- May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+- Gains the Analysis and Enhanced Backstab passive effects.
+- From 5th level onwards, gains the Hidden Blade passive effect.
+- From 10th level onwards, may use the Cloak of Shadows ability once per turn.
+
+Disadvantages:
+- -2 penalty to Charisma.
+- -2 penalty to starting Reputation.
+- May not wear armor heavier than leather armor.
+- May not Set Traps.
+- May only be of any non-good alignment.
+- May only distribute 10 skill points per level among thieving skills.
+
+ABILITIES:
+
+POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+ANALYSIS: For every round that the assassin remains invisible, <PRO_HESHE> gains a +1 bonus to hit and damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Attacking depletes all stacked bonuses instantly while leaving stealth non-aggressively causes bonuses to gradually deplete over time.
+
+ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+  Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
+  Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
+  Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+  Cutthroat: Target must save vs. death or be silenced for 20 rounds.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly.
+
+HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns invisible and moves at double <PRO_HISHER> movement rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
+
+CLOAK OF SHADOWS: The assassin becomes completely invisible and undetectable for two rounds or until <PRO_HESHE> attacks, becoming immune to all revealing effects. Even creatures that can normally see through invisibility are unable to target the assassin during this time. */)
+	  END
+	END
+	END
+	
+
+////// MAKE STUDDED LEATHER AND ELVEN CHAIN UNUSABLE BY ASSASSINS
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x29 avenger //reads the byte containing the mage usability flag
+    PATCH_IF ((avenger BAND 0b00100000) = 0b00100000) BEGIN // if it is usable by mages
+      READ_BYTE    0x2b assassin //reads the byte containing bard usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 2) BEGIN // if it is a robe or armor
+        WRITE_BYTE    0x2b (assassin BOR 0b00000100)  // makes usable by bards
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~leat08.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
+    PATCH_IF ((assassin BAND 0b00000100) = 0b00000100) BEGIN // if it is usable by mages
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 67) OR (type = 2) BEGIN // if it is a robe or armor
+        WRITE_BYTE    0x2b (assassin BAND 0b00000000)  // makes usable by bards
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+ACTION_IF FILE_EXISTS_IN_GAME ~clabth02.2da~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Assassin/2da/clabth02.2da~ ~override~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Assassin/scripts/reputation.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/Assassin/scripts/reputation.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/Assassin/scripts/reputation.baf~
+END
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0ashla1.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@2 /* Vulnerable */)
+  END
+SAY NAME1 @3 /* Expose Weakness */
+SAY NAME2 @3 /* Expose Weakness */
+SAY UNIDENTIFIED_DESC @4 /* Expose Weakness
+To an assassin, no enemy is without a weak point. Using this ability, the assassin may mark a target as vulnerable, reducing their Armor Class by 10 points and setting their physical resistance (if any) to zero for three rounds. Additionally, if the target is immune to backstabs, they lose their immunity permanently. This ability can be taken multiple times, but an assassin can only mark a single target at any given time. */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0ashla2.spl~ ~override~
+SAY NAME1 @5 /* Assassin's Blade */
+SAY NAME2 @5 /* Assassin's Blade */
+SAY UNIDENTIFIED_DESC @6 /* Assassin's Blade
+A master assassin's blade must be honed to the sharpest edge. This innate ability permanently increases the assassin's critical hit chance with melee weapons by 10% and <PRO_HISHER> backstab modifier by 1.
+
+Requires: Expose Weakness */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0ashla3.spl~ ~override~
+SAY NAME1 @7 /* Death Attack */
+SAY NAME2 @7 /* Death Attack */
+SAY UNIDENTIFIED_DESC @8 /* Death Attack
+A high-level assassin's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> to, once per day, strike a lethal blow against a target. With this ability, the assassin's next attack within five rounds becomes a guaranteed critical hit and kills the target instantly on a failed save vs. death at -4.
+
+Requires: Assassin's Blade */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin1.spl~ ~override~
+SAY NAME1 @9 /* Enhanced Backstab */
+SAY NAME2 @9 /* Enhanced Backstab */
+SAY UNIDENTIFIED_DESC @10 /* Enhanced Backstab
+The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels of the assassin.
+
+Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
+Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
+Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+Cutthroat: Target must save vs. death or be silenced for 20 rounds.
+Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly. */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0as#02.spl~ ~override~
+SAY NAME1 @11 /* Cloak of Shadows */
+SAY NAME2 @11 /* Cloak of Shadows */
+SAY UNIDENTIFIED_DESC @12 /* Cloak of Shadows
+The assassin becomes completely invisible and undetectable for two rounds or until the assassin attacks, becoming immune to all revealing effects. Even creatures that can see through invisibility are unable to target the assassin during this time. */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0as#p01.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@13 /* Poison */)
+  END
+COPY ~%MOD_FOLDER%/Assassin/spells/c0as#po1.spl~ ~override~
+SAY NAME1 @14 /* Poison Weapon */
+SAY NAME2 @14 /* Poison Weapon */
+SAY UNIDENTIFIED_DESC @15 /* Poison Weapon
+The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution every round. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution every round. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4. */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin2.spl~ ~override~
+SAY NAME1 @16 /* Backstab: Paralysis */
+SAY NAME2 @16 /* Backstab: Paralysis */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin3.spl~ ~override~
+SAY NAME1 @17 /* Backstab: Hamstring */
+SAY NAME2 @17 /* Backstab: Hamstring */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin4.spl~ ~override~
+SAY NAME1 @18 /* Backstab: Bleeding */
+SAY NAME2 @18 /* Backstab: Bleeding */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin5.spl~ ~override~
+SAY NAME1 @19 /* Backstab: Cutthroat */
+SAY NAME2 @19 /* Backstab: Cutthroat */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asin6.spl~ ~override~
+SAY NAME1 @20 /* Backstab: Lethality */
+SAY NAME2 @20 /* Backstab: Lethality */
+
+COPY ~%MOD_FOLDER%/Assassin/spells/c0assp2.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@21 /* Hamstrung */)
+  END
+COPY ~%MOD_FOLDER%/Assassin/spells/c0assp3.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@22 /* Bleeding */)
+  END
+COPY ~%MOD_FOLDER%/Assassin/spells/c0assp4.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@23 /* Silenced */)
+  END
+  
+COPY ~%MOD_FOLDER%/Assassin/spells/c0asinv2.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (@24 /* Hidden Blade Ready */)
+  END
+  
+ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
+PRINT ~OPTIONAL: Make Imoen an Assassin?~
+
+PRINT ~Please choose one of the following:
+[1] Yes
+[2] No~
+
+OUTER_SPRINT ~imoen~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~imoen~) OR (~imoen~ > 0x5) OR (~imoen~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~imoen~
+END
+      ACTION_IF ("imoen" = 1) THEN BEGIN
+	  COPY_EXISTING_REGEXP ~bdimoen.cre~ ~override~
+	  WRITE_SHORT 0x246 0x400A
+	  COPY_EXISTING ~imoen.*.cre~ ~override~
+	  WRITE_SHORT 0x246 0x400A
+      END
+      ACTION_IF ("imoen" = 2) THEN BEGIN
+      END
+END
+  
+ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN
+PRINT ~OPTIONAL: Make Hexxat an Assassin?~
+
+PRINT ~Please choose one of the following:
+[1] Yes
+[2] No~
+
+OUTER_SPRINT ~hexxat~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~hexxat~) OR (~hexxat~ > 0x5) OR (~hexxat~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~hexxat~
+END
+      ACTION_IF ("hexxat" = 1) THEN BEGIN
+	  COPY_EXISTING_REGEXP ~ohhex.*.cre~ ~override~
+	  WRITE_SHORT 0x246 0x400A
+      END
+      ACTION_IF ("hexxat" = 2) THEN BEGIN
+      END
+END

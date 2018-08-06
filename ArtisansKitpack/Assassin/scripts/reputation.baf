@@ -1,0 +1,8 @@
+IF
+	Kit(Player1,ASSASIN)
+	Global("C0AssassinRep","GLOBAL",0)
+THEN
+RESPONSE #100
+	ReputationInc(-2)
+	SetGlobal("C0AssassinRep","GLOBAL",1)
+END
