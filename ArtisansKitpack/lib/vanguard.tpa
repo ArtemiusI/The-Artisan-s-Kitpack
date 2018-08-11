@@ -1,0 +1,116 @@
+COPY_EXISTING ~clabfi06.2da~ ~override~
+ADD_KIT ~C0VNGD~
+
+ // appended to CLASWEAP.2da
+ ~C0VNGD		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                    T   S           F   Q             S S
+//10                                    W   C           L   U             W I
+//9                             B L S   O   I   W       A   A             O N
+//8                             A O H   H   M   A       I   R C   S       R G
+//7         	L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         	_ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         	S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         	W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         	O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2        		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1      	    D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0VNGD		4 4 2 2 4 4 4 2 4 4 4 4 2 4 4 4 4 4 2 2 4 4 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0VNGD				12      9	16	0	0	0~
+
+ // appended to ABCLSMOD.2da
+ ~C0VNGD				0	0	0	0	1	1~
+
+ // appended to ABDCDSRQ.2da
+ ~C0VNGD                	17       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0VNGD                 	15       0       0       0       0		 0~
+
+ // appended to ALIGNMNT.2da
+ ~C0VNGD                  	1       1       1       1       1	1       1       1       1~
+
+ // appended to DUALCLAS.2da
+ ~C0VNGD                  	0       1       1       1       1       0~
+
+ // path to your CLAB-style 2da file 
+ ~override/CLABFI06.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~K_F_H K_F_E K_F_HE K_F_G K_F_HL K_F_HO~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00004000     2~
+
+ // HLA table to use; see LUABBR.2da
+ ~Fi4~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~vanguard~
+  SAY ~Vanguard~
+  SAY ~VANGUARD: The vanguard is a frontline warrior trained to fight in the middle of enemy lines. Tough and durable, a vanguard is a reliable defender capable of holding the line and enduring blows that would fell a lesser man.
+
+Advantages:
+– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
+
+DEFENSIVE STANCE: For 1 turn, the Vanguard gains +50% resistance to all forms of physical damage, a +2 bonus to Saving Throws, and a 50% movement rate penalty.
+
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– Hit Die: d12
+
+Disadvantages:
+– May not exceed High Mastery (four slots) in single-handed melee weapons.
+– May not exceed Specialization (two slots) in any other weapon.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = c0vngd
+    clswpbon = ~1 0 3~
+	hpclass = ~HPBARB~
+    numwslot = 4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~khalid.bcs~ AND FILE_EXISTS_IN_GAME ~khalid.cre~
+THEN BEGIN
+PRINT ~OPTIONAL: Give Khalid the Vanguard Kit?~
+
+PRINT ~Please choose one of the following:
+[1] Yes
+[2] No~
+
+OUTER_SPRINT ~kit~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~kit~) OR (~kit~ > 0x5) OR (~kit~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~kit~
+END
+      ACTION_IF ("kit" = 1) THEN BEGIN
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid2.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid4.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid6.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid7.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+      END
+      ACTION_IF ("kit" = 2) THEN BEGIN
+      END
+      END

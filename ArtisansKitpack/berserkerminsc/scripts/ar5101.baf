@@ -1,0 +1,7 @@
+IF
+Global("C0MinscRedBear","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("C0MinscRedBear","GLOBAL",1)
+CreateCreature("c0mbear",[408.259],SW)
+END

@@ -1,0 +1,330 @@
+COPY ~%MOD_FOLDER%/berserkerminsc/2da~ ~override~
+COPY ~%MOD_FOLDER%/berserkerminsc/spells~ ~override~
+
+INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
+
+// Minsc
+
+ADD_KIT ~c0tbm~
+
+ // appended to CLASWEAP.2da
+ ~c0tbm		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                T   S           F   Q             S S
+//10                                W   C           L   U             W I
+//9                         B L S   O   I   W       A   A             O N
+//8                         A O H   H   M   A       I   R C   S       R G
+//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~c0tbm		3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~c0tbm           13  13  14  0   0   0~
+
+ // appended to ABCLSMOD.2da
+ ~c0tbm				0	0	0	0	0	0~
+
+ // appended to ABDCDSRQ.2da
+ ~c0tbm                		0       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~c0tbm                 	0       0       0       0       0	0~
+
+ // appended to ALIGNMNT.2da
+ ~c0tbm                  	0       0       0       1       0	0       1       0       0~
+
+ // appended to DUALCLAS.2da
+ ~c0tbm                  	0       0       0       0       0       0~
+
+ // path to your CLAB-style 2da file 
+ ~%MOD_FOLDER%/berserkerminsc/2da/c0tbm.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x40000000     12~
+
+ // HLA table to use; see LUABBR.2da
+ ~RA0~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~rashemi berserker~
+  SAY ~Rashemi Berserker~
+  SAY ~RASHEMI BERSERKER: The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.
+  
+ADVANTAGES:
+– Hit Die: d12
+– May achieve mastery in any melee weapon.
+– May use the Berserker Rage ability once per day. Gains one additional use every 5 levels.
+
+BERSERKER RAGE: The Rashemi berserker becomes enraged for 2 turns. While enraged, he gains a +2 bonus to his Strength, one bonus attack per round, and becomes immune to charm, confusion, fear, feeblemind, hold, level drain, maze, stun, and sleep. The Rashemi berserker also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree, possibly knocking him unconscious. However, his armor class is penalized by 4 points while enraged. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to Strength increase to +4 at 12th level and +6 at 20th level.
+
+Once the duration has ended, the Rashemi berserker becomes winded, reducing his THAC0, armor class and damage by four points, and he is unable to go berserk again for one turn.
+
+– 5th level: May use Mighty Blow.
+
+MIGHTY BLOW: The Rashemi berserker may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of damage per hit (melee only). THAC0 and damage modifiers increase to 8 from level 20 onwards. This ability may be toggled at will.
+
+– 8th level: Gains Unbreakable Will.
+
+UNBREAKABLE WILL: Rashemi berserkers have tremendous willpower. The berserker permanently gains +3 to saves vs. spell, which is doubled while berserk. The Rashemi berserker also gains immunity to psionics while berserk.
+
+– 12th level: Gains Unstoppable Rage.
+
+UNSTOPPABLE RAGE: The Rashemi berserker has become a juggernaut while enraged, truly a being to be feared. The berserker is immune to all movement-hindering effects and Imprisonment while berserk.
+
+– 16th level: Gains Tireless Rage.
+
+TIRELESS RAGE: The Rashemi berserker is no longer winded and will not suffer damage after his rage has ended.
+
+– 18th level: Gains Deathless Frenzy.
+
+DEATHLESS FRENZY: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of entering rage.
+
+DISADVANTAGES:
+– Alignment restricted to any non-lawful.
+– May not wear heavier armor than splint mail.
+– May cast one less priest spell per level.
+– May not Specialize in ranged weapons.~
+
+LAF fl#add_kit_ee
+  STR_VAR
+    kit_name = c0tbm
+	hpclass = ~HPBARB~
+END
+
+// Spells
+
+COPY ~%MOD_FOLDER%/berserkerminsc/spells/spin117.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139 // display string
+      match_parameter1 = 30788
+ parameter1 = RESOLVE_STR_REF (~Despair not! I will inspire you by charging blindly on!~)
+END
+SAY NAME1 ~Berserker Rage~
+SAY NAME2 ~Berserker Rage~
+SAY UNIDENTIFIED_DESC ~Berserker Rage
+The Rashemi berserker becomes enraged for 2 turns. While enraged, he gains a +2 bonus to his Strength and becomes immune to charm, confusion, fear, feeblemind, hold, level drain, maze, stun, and sleep. The Rashemi berserker also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree, possibly knocking him unconscious. However, his armor class is penalized by 4 points while enraged. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to Strength increase to +4 at 12th level and +6 at 20th level.
+
+Once the duration has ended, the Rashemi berserker becomes winded, reducing his THAC0, armor class and damage by four points, and he is unable to go berserk again for one turn.
+
+8th level: Rashemi berserkers have tremendous willpower. The berserker permanently gains +3 to saves vs. spell, which is doubled while berserk. The Rashemi berserker also gains immunity to psionics while berserk.
+
+12th level: The Rashemi berserker has become a juggernaut while enraged, truly a being to be feared. The berserker is immune to all movement-hindering effects and Imprisonment while berserk.
+
+16th level: The Rashemi berserker is no longer winded and will not suffer damage after his rage has ended.
+
+18th level: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of entering rage.~
+
+COPY ~%MOD_FOLDER%/berserkerminsc/spells/c0tbm1.spl~ ~override~
+SAY NAME1 ~Mighty Blow: Active~
+SAY NAME2 ~Mighty Blow: Active~
+SAY UNIDENTIFIED_DESC ~Mighty Blow
+
+The Rashemi berserker may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of damage per hit (melee only). THAC0 and damage modifiers increase to 8 from level 20 onwards.~
+
+COPY ~%MOD_FOLDER%/berserkerminsc/spells/c0tbm2.spl~ ~override~
+SAY NAME1 ~Mighty Blow: Inactive~
+SAY NAME2 ~Mighty Blow: Inactive~
+SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Mighty Blow at will.~
+
+COPY ~%MOD_FOLDER%/berserkerminsc/spells/c0tbm3.spl~ ~override~
+SAY NAME1 ~Fatigue~
+SAY NAME2 ~Fatigue~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 206
+      match_parameter1 = 0
+ parameter1 = RESOLVE_STR_REF (~The berserker is too fatigued to enter a rage.~)
+END
+
+COPY ~%MOD_FOLDER%/berserkerminsc/spells/c0tbm4.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 206
+      match_parameter1 = 0
+ parameter1 = RESOLVE_STR_REF (~The berserker is already in a rage.~)
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc2.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc2.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc4.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc4.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc6.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc6.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc7.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc7.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc10.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc10.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc12.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc12.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc14.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc14.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc8.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc8.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc9.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc9.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~ttminsc.cre~ THEN BEGIN
+    COPY_EXISTING ~ttminsc.cre~ ~override~
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
+
+// CREATURES
+
+COPY ~%MOD_FOLDER%/berserkerminsc/creatures/c0mbear.cre~ ~override~
+SAY NAME1 ~Great Red Bear~
+SAY NAME2 ~Great Red Bear~
+
+// DIALOGUES
+
+COMPILE ~%MOD_FOLDER%/berserkerminsc/dialogue/minscj.d~
+COMPILE ~%MOD_FOLDER%/berserkerminsc/dialogue/taerom.d~
+
+// SCRIPTS
+
+ACTION_IF GAME_IS ~bgee~
+THEN BEGIN
+EXTEND_TOP ~minsc.bcs~ ~%MOD_FOLDER%/berserkerminsc/scripts/minsc.baf~
+END
+
+ACTION_IF GAME_IS ~eet~
+THEN BEGIN
+EXTEND_TOP ~minsc_.bcs~ ~%MOD_FOLDER%/berserkerminsc/scripts/minsc.baf~
+END
+
+ACTION_IF GAME_IS ~bgee~
+THEN BEGIN
+EXTEND_BOTTOM ~ar5101.bcs~ ~%MOD_FOLDER%/berserkerminsc/scripts/ar5101.baf~
+END
+
+ACTION_IF GAME_IS ~eet~
+THEN BEGIN
+EXTEND_BOTTOM ~bg5101.bcs~ ~%MOD_FOLDER%/berserkerminsc/scripts/ar5101.baf~
+END
+
+// ITEMS
+
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0min01.bam~ ~override~ 
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0min02.bam~ ~override~ 
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0mskin.itm~ ~override~ 
+SAY NAME1 ~Red Bearskin~
+SAY NAME2 ~Red Bearskin~
+SAY DESC ~The thick hide is from an enormous bear, with an unusual reddish tint. It may make a serviceable suit of armor.
+
+STATISTICS:
+
+Weight: 10~
+
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0mleat1.eff~ ~override~ 
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0mleat1.spl~ ~override~ 
+COPY ~%MOD_FOLDER%/berserkerminsc/items/c0mleat.itm~ ~override~ 
+SAY NAME1 ~Hide Armor~
+SAY NAME2 ~Red Bearskin Mail~
+SAY DESC ~This thick suit of armor is made from the skin of a giant bear. The reddish color of the bear's hide has somewhat faded from the process of tanning and shaping it into armor, but its toughness is close to the beast itself. The design of the armor resembles those worm by berserkers of the land of Rashemen.
+
+STATISTICS:
+
+Equipped abilities:
+– Open Locks: -10%
+– Find Traps: -10%
+– Pick Pockets: -10%
+– Move Silently: -20%
+– Melee Damage Resistance: +10% (tripled while enraged)
+– Missile Damage Resistance: +40%
+– Regenerate one hit point per two rounds
+– While enraged, wearer moves at double their normal movement rate
+
+Armor Class: 4 (6 vs. piercing and missile)
+Requires:
+ 6 Strength
+
+Weight: 40~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~shop03.sto~ THEN BEGIN
+COPY_EXISTING ~shop03.sto~ ~override~
+ADD_STORE_ITEM ~c0mleat~ LAST #0 #0 #0 ~IDENTIFIED~ #1
+END

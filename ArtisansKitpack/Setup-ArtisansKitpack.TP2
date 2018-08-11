@@ -22,5 +22,17 @@ INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
 
+BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
+INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
+
+BEGIN ~Artisan's Kitpack: Adventurer Thief Kit~
+INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
+
+BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
+INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
+
+BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~
+INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
+
 BEGIN ~Artisan's Kitpack: Way of the Assassin (Kit Rework)~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
