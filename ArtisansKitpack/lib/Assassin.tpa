@@ -411,9 +411,9 @@ OUTER_WHILE (!(IS_AN_INT ~imoen~) OR (~imoen~ > 0x5) OR (~imoen~ < 0x1)) BEGIN
   ACTION_READLN ~imoen~
 END
       ACTION_IF ("imoen" = 1) THEN BEGIN
-	  COPY_EXISTING_REGEXP ~bdimoen.cre~ ~override~
+	  COPY_EXISTING ~bdimoen.cre~ ~override~
 	  WRITE_SHORT 0x246 0x400A
-	  COPY_EXISTING ~imoen.*.cre~ ~override~
+	  COPY_EXISTING_REGEXP ~imoen.*.cre~ ~override~
 	  WRITE_SHORT 0x246 0x400A
       END
       ACTION_IF ("imoen" = 2) THEN BEGIN
