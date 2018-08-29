@@ -25,7 +25,7 @@ INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
 
-BEGIN ~Artisan's Kitpack: Adventurer Thief Kit~
+BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 
 BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
@@ -36,3 +36,13 @@ INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
 
 BEGIN ~Artisan's Kitpack: Way of the Assassin (Kit Rework)~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
+
+BEGIN ~Original Stat Bonuses~
+SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+OUTER_SET dd = 1
+INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
+
+BEGIN ~Nerfed stat bonuses (net +2 to STR)~
+SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+OUTER_SET dd = 2
+INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~

@@ -51,16 +51,17 @@ ADD_KIT ~C0ADVENT~
  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~adventurer~
-  SAY ~Adventurer~
-  SAY ~ADVENTURER: A cunning rogue who practices thieving skills for the sake of adventuring rather than duplicity, adventurer rogues are skilled at scouting and wilderness survival, usually choosing to specialize in ranged weapons both to hunt and fight from a safe distance.
+  SAY ~rogue archer~
+  SAY ~Rogue Archer~
+  SAY ~ROGUE ARCHER: Many rogues choose the use of ranged weapons out of pragmatism, choosing to approach combat from a safe distance. Rogue Archers are experienced enough with such weapons to become a match for any warrior from a distance, taking down their foes with deadly missiles without ever needing to put themselves within threat range.
 
 Advantages:
 – +1 to hit and damage rolls with any missile weapon at level 1 and every 3 levels thereafter.
+– Gains bonus attacks from specialization.
 – May achieve Mastery (3 slots) in any missile weapon.
 – May use the Called Shot ability once per day. Gains one use at level 4 and an additional use every 4 levels thereafter.
 
-CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Adventurer:
+CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Rogue Archer:
  4th level: -1 penalty to target's THAC0.
  8th level: -1 penalty to target's Saving Throws vs. Spell.
  12th level: -1 penalty to the target's Strength score.
@@ -72,7 +73,7 @@ Disadvantages:
 LAF fl#add_kit_ee
 STR_VAR
 	kit_name = C0ADVENT
-    clswpbon = ~0 0 3~
+    clswpbon = ~1 0 3~
 	backstab = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
 	sneakatt = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
 	hpclass = ~hprog~
@@ -81,7 +82,7 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~imoen.bcs~
 THEN BEGIN
-PRINT ~OPTIONAL: Give Imoen the Adventurer Kit?~
+PRINT ~OPTIONAL: Give Imoen the Rogue Archer Kit?~
 
 PRINT ~Please choose one of the following:
 [1] Yes
@@ -93,6 +94,7 @@ OUTER_WHILE (!(IS_AN_INT ~kit~) OR (~kit~ > 0x5) OR (~kit~ < 0x1)) BEGIN
   ACTION_READLN ~kit~
 END
       ACTION_IF ("kit" = 1) THEN BEGIN
+	  OUTER_SET imoenkit = 1
 ACTION_IF FILE_EXISTS_IN_GAME ~imoen1.cre~ THEN BEGIN
     COPY_EXISTING ~imoen1.cre~ ~override~
 		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))

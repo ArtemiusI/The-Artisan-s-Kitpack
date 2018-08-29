@@ -22,7 +22,7 @@ ADD_KIT ~C0VNGD~
  ~C0VNGD				12      9	16	0	0	0~
 
  // appended to ABCLSMOD.2da
- ~C0VNGD				0	0	0	0	1	1~
+ ~C0VNGD				0	0	0	0	0	0~
 
  // appended to ABDCDSRQ.2da
  ~C0VNGD                	17       0       0       0       0       0~
