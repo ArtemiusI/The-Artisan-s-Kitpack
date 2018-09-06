@@ -398,8 +398,7 @@ COPY ~%MOD_FOLDER%/Assassin/spells/c0asinv2.spl~ ~override~
 	  parameter1 = RESOLVE_STR_REF (@24 /* Hidden Blade Ready */)
   END
   
-ACTION_IF imoenkit = 0 THEN BEGIN
-ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~ THEN BEGIN
 PRINT ~OPTIONAL: Make Imoen an Assassin?~
 
 PRINT ~Please choose one of the following:
@@ -412,9 +411,11 @@ OUTER_WHILE (!(IS_AN_INT ~imoen~) OR (~imoen~ > 0x5) OR (~imoen~ < 0x1)) BEGIN
   ACTION_READLN ~imoen~
 END
       ACTION_IF ("imoen" = 1) THEN BEGIN
-	  OUTER_SET imoenkit = 1
+	  COPY_EXISTING ~sw1h01.itm~ ~imoenkit.xx~
+	  ACTION_IF FILE_EXISTS_IN_GAME ~bdimoen.cre~ THEN BEGIN
 	  COPY_EXISTING ~bdimoen.cre~ ~override~
 	  WRITE_SHORT 0x246 0x400A
+	  END
 	  COPY_EXISTING_REGEXP ~imoen.*.cre~ ~override~
 	  WRITE_SHORT 0x246 0x400A
       END
@@ -440,5 +441,4 @@ END
       END
       ACTION_IF ("hexxat" = 2) THEN BEGIN
       END
-END
 END
