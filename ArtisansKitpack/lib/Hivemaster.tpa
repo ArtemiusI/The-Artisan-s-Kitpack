@@ -152,3 +152,15 @@ Upon casting this spell, the hivemaster must throw several spider eggs into the 
  9th: phase spider.
  12th+: sword spider.
 When the spell is cast, there is a 20% chance that two spiders of the proper type will appear instead of just one. These spiders will remain under the hivemaster's control until they are slain, or until the spell duration expires.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
+
+	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE2~ clabfile = ~C0HIVECL~ END
+	
+PRINT ~Deities of Faerun installed: adding spheres to kit!~
+COPY_EXISTING ~C0HIVECL.2da~ ~override/C0HIVECL.2da~
+SET_2DA_ENTRY 3 1 50 ~****      ~
+SET_2DA_ENTRY 1 5 50 ~****      ~
+PRETTY_PRINT_2DA
+	
+END

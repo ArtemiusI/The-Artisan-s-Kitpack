@@ -1,0 +1,18 @@
+
+DEFINE_ACTION_FUNCTION	RA_SPHERE_COMPAT STR_VAR sphere_path = ~~ kitname = ~~ clabfile = ~~ BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
+		ACTION_IF ! (~%sphere_path%~ STRING_EQUAL ~~) BEGIN
+			COPY_EXISTING ~RASPHERE.tpa~	override APPEND_FILE  ~%sphere_path%.tpa~
+		END		INCLUDE ~override\RASPHERE.tpa~
+		LAF BUILD_SPHERE_ACCESS STR_VAR kitname  clabfile END
+	END ELSE BEGIN // Sphere mod not yet installed, setup for when it is
+		ACTION_IF ! FILE_EXISTS_IN_GAME ~RASPHERE.tpa~ BEGIN
+			COPY_EXISTING ~KITLIST.2DA~ ~override/RASPHERE.tpa~ DELETE_BYTES 0 SOURCE_SIZE
+		END
+		ACTION_IF ! (~%sphere_path%~ STRING_EQUAL ~~) BEGIN
+			COPY_EXISTING	~RASPHERE.tpa~	override APPEND_FILE  ~%sphere_path%.tpa~
+		END
+	END
+END
+	
+//EoF	
