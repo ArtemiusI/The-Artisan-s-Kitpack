@@ -4,45 +4,72 @@ VERSION ~1.0~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/RA_SPHERE_COMPAT.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
+  INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 
 BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~
+GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 
+BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
+
+BEGIN ~Artisan's Kitpack: Art of the Sword Saint (Kensai Rework)~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
+
+BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~
+GROUP ~Ranger Kits~
+INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
+
+BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~
+GROUP ~Ranger Kits~
+INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
+
+BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
+GROUP ~Paladin Kits~
+INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
+
 BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~
+GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
 
 BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~
+GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Hivemaster.tpa~
 
-BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
-INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
-
-BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
-INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
-
-BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
-INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
-
 BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~
+GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 
-BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
-INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
+BEGIN ~Artisan's Kitpack: Magekiller Thief Kit~
+GROUP ~Thief Kits~
+INCLUDE ~%MOD_FOLDER%/lib/magekiller.tpa~
 
-BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~
-INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
-
-BEGIN ~Artisan's Kitpack: Way of the Assassin (Kit Rework)~
+BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
+GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
+
+BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
+GROUP ~Sorcerer Kits~
+INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 
 BEGIN ~Original Stat Bonuses~
 SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+GROUP ~Sorcerer Kits~
 OUTER_SET dd = 1
 INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
 
 BEGIN ~Nerfed stat bonuses (net +2 to STR)~
 SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+GROUP ~Sorcerer Kits~
 OUTER_SET dd = 2
 INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
+
+BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
+GROUP ~Shaman Kits~
+INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~

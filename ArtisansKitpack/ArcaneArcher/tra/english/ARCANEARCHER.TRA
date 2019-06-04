@@ -4,40 +4,38 @@
 @3    = ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
 
 Advantages:
-
-– +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
-– Gains the Enhance Arrow ability.
+â€“ +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
+â€“ Gains the Enhance Arrow ability.
 
 ENHANCE ARROW: The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
 
-– 3rd level: May use Entropic Shield once per day.
+â€“ 3rd level: May use Entropic Shield once per day.
 
 ENTROPIC SHIELD: A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.
 
-– 5th level: May use Imbue Arrow ability three times per day.
+â€“ 5th level: May use Imbue Arrow ability three times per day.
 
 IMBUE ARROW: Using arcane magic, the arcane archer enchants <PRO_HISHER> next missile within one round to explode, dealing 1d6 additional fire damage for every five levels gained thereafter in an area of effect.
 
-– 9th level: May use Seeker Arrow ability once per day.
+â€“ 9th level: May use Seeker Arrow ability once per day.
 
 SEEKER ARROW: A skilled arcane archer can enchant <PRO_HISHER> arrows to strike its target unerringly. <PRO_HISHER> next missile attack within one round is a guaranteed critical hit and deals two points of extra damage for every five levels gained thereafter.
 
-– 13th level: May use Phase Arrow ability once per day.
+â€“ 13th level: May use Phase Arrow ability once per day.
 
 PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow within one round to become an incorporeal missile that penetrates armor, dealing 4d6 bonus magical damage and reducing the target's missile resistance by 50% as well as their armor class vs. missiles by two points every five levels gained thereafter for 1 turn.
 
-– 17th level: May use Arrow of Death ability once per day.
+â€“ 17th level: May use Arrow of Death ability once per day.
 
 ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe. Targets with more than 60 hit points may make a save vs. death to avoid the effect. Saving throw penalty increases by one for every five levels gained thereafter.
 
 Disadvantages:
-
-– Hit Die: d8
-– THAC0 penalty of 2 when wielding a melee weapon.
-– Race restricted to human, elf or half-elf.
-– May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
-– May not exceed proficiency (one slot) in any weapon style.
-– May not wear armor heavier than chain mail.~
+â€“ Hit Die: d8
+â€“ THAC0 penalty of 2 when wielding a melee weapon.
+â€“ Race restricted to human, elf or half-elf.
+â€“ May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
+â€“ May not exceed proficiency (one slot) in any weapon style.
+â€“ May not wear armor heavier than chain mail.~
 @4    = ~Entropic Shield~
 @5    = ~Entropic Shield
 A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.~

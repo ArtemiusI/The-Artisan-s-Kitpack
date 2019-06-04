@@ -87,6 +87,17 @@ LAF fl#add_kit_ee
 	hpclass = ~HPPRS~
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
+
+	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE2~ clabfile = ~C0HIVECL~ END
+
+COPY_EXISTING ~C0HIVECL.2da~ ~override/C0HIVECL.2da~
+SET_2DA_ENTRY 3 1 50 ~****      ~
+SET_2DA_ENTRY 1 5 50 ~****      ~
+PRETTY_PRINT_2DA
+	
+END
+
 COPY ~%MOD_FOLDER%/Hivemaster/spells/C0HIVE1.spl~ ~override~
 SAY NAME1 ~Shapeshift: Huge Spider~
 SAY NAME2 ~Shapeshift: Huge Spider~
