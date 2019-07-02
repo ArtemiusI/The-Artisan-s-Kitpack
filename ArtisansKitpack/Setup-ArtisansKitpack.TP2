@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~1.0~
+VERSION ~1.2~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
@@ -17,6 +17,9 @@ INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
+
+BEGIN ~Artisan's Kitpack: The Art of Slaughter (Berserker Rework)~
+INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
 
 BEGIN ~Artisan's Kitpack: Art of the Sword Saint (Kensai Rework)~
 GROUP ~Fighter Kits~
