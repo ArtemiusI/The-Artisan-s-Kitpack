@@ -199,7 +199,7 @@ ADD_KIT ~c0aa2~
   ~c0aa2                15      0       0       0       0       0~
   ~c0aa2                1       1       1       1       1       1       1       1       1~
   ~c0aa2                0       0       0       0       0       0~
-  ~ArtisansKitpack/arcanearcher/2das/blankclab.2da~
+  ~ArtisansKitpack/2das/blankclab.2da~
   ~K_FM_E K_FM_HE~
   ~0x00008000     7~
   ~fm0~
@@ -255,8 +255,13 @@ LAF qd_multiclass
 		kit_name = c0aa2
 		kit_clab = c0aa
 		base_class = ~F~
-		mc_dir = ~ArtisansKitpack/arcanearcher/2das~
+		mc_dir = ~%MOD_FOLDER%/2das~
 END
+
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0AANAME.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Arcane Archer~)
+WRITE_LONG 0x48 2
+
       END
       ACTION_IF ("kit" = 2) THEN BEGIN
       END

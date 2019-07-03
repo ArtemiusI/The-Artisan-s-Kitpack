@@ -1,0 +1,23 @@
+2DA V1.0
+*
+           ABILITY     ICON       STRREF     MIN_LEV    MAX_LEVEL  NUM_ALLOWED PREREQUISITE EXCLUDED_BY ALIGNMENT_RESTRICT 
+1       GA_SPCL900     *          *         1         99         20           *            *             *
+2       GA_SPCL901     *          *         1         99         20           GA_SPCL900   *             *
+3       GA_SPCL902     *          *         1         99         20           *            *             *
+4       GA_SPCL903     *          *         1         99         20           GA_SPCL902   *             *
+5       GA_SPCL904     *          *         1         99         20           *            *             *
+6       GA_SPCL906     *          *         1         99         20           *            *             *
+7       GA_SPCL905     *          *         1         99         20           GA_SPCL906   *             *
+8       GA_SPCL909     *          *         1         99         1            GA_SPCL905   *             *
+9       GA_SPCL908     *          *         1         99         20           *            *             *
+10      GA_SPCL907     *          *         1         99         20           *            *             *
+11      GA_C0ASHLA1    *          *         1         99         16           *            *             *          
+12      AP_C0ASHLA2    *          *         1         99         1            GA_C0ASHLA1  *             *          
+13      GA_C0ASHLA3    *          *         1         99         1            AP_C0ASHLA2  *             *          
+14      GA_SPCL913     *          *         1         99         16           *            *             *          
+15      GA_SPCL914     *          *         1         99         16           GA_SPCL913   *             *          
+16      AP_SPCL915     *          *         1         99         1            *            *             *          
+17      GA_SPCL916     *          *         1         99         3            *            GA_SPCL916    *          
+18      GA_SPCL917     *          *         1         99         16           *            *             *          
+19      GA_SPCL918     *          *         1         99         16           *            *             *          
+20      GA_SPCL919     *          *         1         99         16           AP_SPCL915   *             *          

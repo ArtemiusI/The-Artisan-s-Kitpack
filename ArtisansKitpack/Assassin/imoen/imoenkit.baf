@@ -1,8 +1,0 @@
-IF
-	!Kit(Myself,ASSASIN)
-	Global("C0ImoenAssassin","GLOBAL",0)
-THEN
-RESPONSE #100
-	AddKit(ASSASIN)
-	SetGlobal("C0AssassinRep","GLOBAL",1)
-END

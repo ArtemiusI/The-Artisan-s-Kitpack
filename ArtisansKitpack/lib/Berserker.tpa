@@ -136,6 +136,8 @@ SAY NAME1 ~Enrage~
 SAY UNIDENTIFIED_DESC ~Enrage
 The berserker taps into <HISHER> frenzy though sheer force of will, instantly gaining the maximum benefits of In Extremis regardless of current hit points for one turn. However, tapping into the berserker's desperate power causes <HIMHER> to suffer 5% of <HISHER> maximum hit points in damage each round. This damage is non-lethal and will only knock the berserker unconscious.~
 
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0BER#00.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Battlerager~)
 COPY ~%MOD_FOLDER%/BERSERKER/SPELLS/C0BER#01.EFF~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/BERSERKER/SPELLS/C0BER#01.SPL~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/BERSERKER/SPELLS/C0BER#02.EFF~ ~OVERRIDE~
