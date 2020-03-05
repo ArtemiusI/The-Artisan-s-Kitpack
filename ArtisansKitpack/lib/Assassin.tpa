@@ -264,6 +264,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   END
 BUT_ONLY_IF_IT_CHANGES
 
+ACTION_IF FILE_EXISTS_IN_GAME ~LEAT08.ITM~ THEN BEGIN
 COPY_EXISTING ~leat08.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
@@ -275,6 +276,7 @@ COPY_EXISTING ~leat08.itm~ ~override~ //copies all item files
     END
   END
 BUT_ONLY_IF_IT_CHANGES
+  END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~clabth02.2da~ THEN BEGIN
 COPY ~%MOD_FOLDER%/Assassin/2da/clabth02.2da~ ~override~

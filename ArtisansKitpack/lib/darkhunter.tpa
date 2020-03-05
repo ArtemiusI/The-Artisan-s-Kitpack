@@ -1,4 +1,5 @@
 COPY ~%MOD_FOLDER%/DarkHunter/2da~ ~override~
+COPY ~%MOD_FOLDER%/DarkHunter/bams~ ~override~
 COPY ~%MOD_FOLDER%/DarkHunter/spells~ ~override~
 
 INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~

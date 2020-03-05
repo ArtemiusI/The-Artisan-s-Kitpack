@@ -126,6 +126,15 @@ ACTION_IF FILE_EXISTS_IN_GAME ~chan19.itm~ BEGIN
     END
     END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~elfchan.itm~ BEGIN
+  COPY_EXISTING elfchan.itm override
+    WRITE_BYTE 0x2d (THIS & 80)
+    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
+      SPRINT text_update archer
+      LPM update_item_descriptions
+    END
+    END
+
 ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 PRINT ~OPTIONAL: Add Fighter/Mage multiclass kit?~
 
@@ -204,9 +213,11 @@ ADD_KIT ~c0aa2~
   ~0x00008000     7~
   ~fm0~
   ~CLCK13 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-  SAY @1
-  SAY @2
-  SAY ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army.
+  SAY ~arcane archer / mage~
+  SAY ~Arcane Archer / Mage~
+  SAY ~ARCANE ARCHER/MAGE: This character can use the abilities of an Arcane Archer and a Mage, though they cannot cast spells while wearing armor.
+
+ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army.
 
 Advantages:
 
