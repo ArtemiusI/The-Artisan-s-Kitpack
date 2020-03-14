@@ -1,0 +1,319 @@
+COPY ~%MOD_FOLDER%/Blackguard/2da~ ~override~
+COPY ~%MOD_FOLDER%/Blackguard/bams~ ~override~
+COPY ~%MOD_FOLDER%/Blackguard/spells~ ~override~
+
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Despair~) STR_VAR bam_file = c0bgic01 RET c0bgic01 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fiendish Reckoning~) STR_VAR bam_file = c0bgic02 RET c0bgic02 = icon END
+
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BLACKGUARD~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~BLACKGUARD: The Blackguard epitomizes evil and is nothing short of a mortal fiend. The quintessential black knight, this villain carries a reputation of the foulest sort that is very well deserved. Consorting with demons and devils and serving dark deities, the Blackguard is hated and feared by all. Some people call these villains "anti-paladins" due to their completely evil nature.
+
+Advantages
+– Immune to level drain and fear.
+– May turn undead as a Paladin of the same level.
+– May use Backstab ability, although for a lower damage multiplier than Thieves:
+Level 1-8: x2
+Level 9-16: x3
+Level 17+: x4
+
+– May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
+
+LIFE DRAIN: The blackguard saps the vitality of an unfortunate victim within touch range, draining 1 point of THAC0 and Damage (an additional point is drained per 5 levels up to a maximum of 5 points at 20th level), as well as 1 hit point per level, and adding it to <PRO_HISHER> maximum. The drained attributes last for 3 rounds + 1 round per level. Non-living beings, such as undead and constructs, are immune to the effects.
+
+– May use the Poison Weapon ability once per day. Gains one use at level 1, one use at level 5, and an additional use every 5 levels thereafter.
+
+POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+
+1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 3rd level: Gains the Aura of Despair passive ability.
+
+AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.
+  3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
+  9th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
+  15th - All enemies suffer a -3 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  21st - All enemies suffer a -4 penalty to Saving Throws and Morale and a -25% penalty to all damage dealt.
+
+– 9th level: May memorize a small selection of Mage spells:
+Level 1: Blindness, Larloch's Minor Drain
+Level 2: Horror, Invisibility
+Level 3: Vampiric Touch, Hold Undead
+Level 4: Improved Invisibility, Contagion
+
+– 12th level: May use the Fiendish Reckoning ability once per day.
+
+FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
+
+Disadvantages:
+– Incurs a -2 penalty to Reputation.
+– Alignment restricted to evil.
+– May not cast Detect Evil.
+– May not cast Protection From Evil as an innate ability.
+– May not use the Lay on Hands ability.~)
+	  END
+	END
+ACTION_IF (FILE_EXISTS_IN_GAME ~sodcltxt.2da~) BEGIN
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BLACKGUARD~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~BLACKGUARD: The Blackguard epitomizes evil and is nothing short of a mortal fiend. The quintessential black knight, this villain carries a reputation of the foulest sort that is very well deserved. Consorting with demons and devils and serving dark deities, the Blackguard is hated and feared by all. Some people call these villains "anti-paladins" due to their completely evil nature.
+
+Advantages
+– Immune to level drain and fear.
+– May turn undead as a Paladin of the same level.
+– May use Backstab ability, although for a lower damage multiplier than Thieves:
+Level 1-8: x2
+Level 9-16: x3
+Level 17+: x4
+
+– May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
+
+LIFE DRAIN: The blackguard saps the vitality of an unfortunate victim within touch range, draining 1 point of THAC0 and Damage (an additional point is drained per 5 levels up to a maximum of 5 points at 20th level), as well as 1 hit point per level, and adding it to <PRO_HISHER> maximum. The drained attributes last for 3 rounds + 1 round per level. Non-living beings, such as undead and constructs, are immune to the effects.
+
+– May use the Poison Weapon ability once per day. Gains one use at level 1, one use at level 5, and an additional use every 5 levels thereafter.
+
+POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+
+1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 3rd level: Gains the Aura of Despair passive ability.
+
+AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.
+  3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
+  9th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
+  15th - All enemies suffer a -3 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  21st - All enemies suffer a -4 penalty to Saving Throws and Morale and a -25% penalty to all damage dealt.
+
+– 9th level: May memorize a small selection of Mage spells:
+Level 1: Blindness, Larloch's Minor Drain
+Level 2: Horror, Invisibility
+Level 3: Vampiric Touch, Hold Undead
+Level 4: Improved Invisibility, Contagion
+
+– 12th level: May use the Fiendish Reckoning ability once per day.
+
+FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
+
+Disadvantages:
+– Incurs a -2 penalty to Reputation.
+– Alignment restricted to evil.
+– May not cast Detect Evil.
+– May not cast Protection From Evil as an innate ability.
+– May not use the Lay on Hands ability.~)
+	  END
+	END
+	END
+ACTION_IF (FILE_EXISTS_IN_GAME ~kitlist.2da~) BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 1 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BLACKGUARD~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~BLACKGUARD: The Blackguard epitomizes evil and is nothing short of a mortal fiend. The quintessential black knight, this villain carries a reputation of the foulest sort that is very well deserved. Consorting with demons and devils and serving dark deities, the Blackguard is hated and feared by all. Some people call these villains "anti-paladins" due to their completely evil nature.
+
+Advantages
+– Immune to level drain and fear.
+– May turn undead as a Paladin of the same level.
+– May use Backstab ability, although for a lower damage multiplier than Thieves:
+Level 1-8: x2
+Level 9-16: x3
+Level 17+: x4
+
+– May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
+
+LIFE DRAIN: The blackguard saps the vitality of an unfortunate victim within touch range, draining 1 point of THAC0 and Damage (an additional point is drained per 5 levels up to a maximum of 5 points at 20th level), as well as 1 hit point per level, and adding it to <PRO_HISHER> maximum. The drained attributes last for 3 rounds + 1 round per level. Non-living beings, such as undead and constructs, are immune to the effects.
+
+– May use the Poison Weapon ability once per day. Gains one use at level 1, one use at level 5, and an additional use every 5 levels thereafter.
+
+POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+
+1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 3rd level: Gains the Aura of Despair passive ability.
+
+AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.
+  3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
+  9th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
+  15th - All enemies suffer a -3 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  21st - All enemies suffer a -4 penalty to Saving Throws and Morale and a -25% penalty to all damage dealt.
+
+– 9th level: May memorize a small selection of Mage spells:
+Level 1: Blindness, Larloch's Minor Drain
+Level 2: Horror, Invisibility
+Level 3: Vampiric Touch, Hold Undead
+Level 4: Improved Invisibility, Contagion
+
+– 12th level: May use the Fiendish Reckoning ability once per day.
+
+FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
+
+Disadvantages:
+– Incurs a -2 penalty to Reputation.
+– Alignment restricted to evil.
+– May not cast Detect Evil.
+– May not cast Protection From Evil as an innate ability.
+– May not use the Lay on Hands ability.~)
+	  END
+	END
+	END
+
+// backstab
+APPEND ~backstab.2da~ ~BLACKGUARD 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+APPEND ~sneakatt.2da~ ~BLACKGUARD 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
+APPEND ~crippstr.2da~ ~BLACKGUARD 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+
+// REPUTATION
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABPA06.2da~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Blackguard/2da/CLABPA06.2da~ ~override~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+END
+
+COPY_EXISTING ~C0BG#00.spl~ ~override~
+      LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0bgic01
+      END
+
+COPY_EXISTING ~SPCL102.spl~ ~override~
+SAY NAME1 ~Life Drain~
+SAY UNIDENTIFIED_DESC ~Life Drain
+The blackguard saps the vitality of an unfortunate victim within touch range, draining 1 point of THAC0 and Damage (an additional point is drained per 5 levels up to a maximum of 5 points at 20th level), as well as 1 hit point per level, and adding it to <PRO_HISHER> maximum. The drained attributes last for 3 rounds + 1 round per level. Non-living beings, such as undead and constructs, are immune to the effects.~
+
+COPY_EXISTING ~c0as#p01.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Poison~)
+  END
+COPY_EXISTING ~c0as#p1.spl~ ~override~
+SAY NAME1 ~Poison Weapon~
+SAY UNIDENTIFIED_DESC ~Poison Weapon
+The user is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution every round. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution every round. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4.~
+
+COPY_EXISTING ~C0BG#03.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 142 // display string
+      parameter2 = c0bgic02
+  END
+SAY NAME1 ~Fiendish Reckoning~
+SAY UNIDENTIFIED_DESC ~Fiendish Reckoning
+The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.~
+
+COPY_EXISTING ~C0BG#03a.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 142 // display string
+      parameter2 = c0bgic02
+  END
+  
+COPY_EXISTING ~C0BG#03c.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 142 // display string
+      parameter2 = c0bgic02
+  END
+  
+COPY_EXISTING ~C0BG#03b.spl~ ~override~
+SAY NAME1 ~Punishment~
+
+//BLINDNESS
+COPY_EXISTING ~SPWI106.SPL~ ~OVERRIDE/C0BG106.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+//LARLOCH'S MINOR DRAIN
+COPY_EXISTING ~SPWI119.SPL~ ~OVERRIDE/C0BG119.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+//HORROR
+COPY_EXISTING ~SPWI205.SPL~ ~OVERRIDE/C0BG205.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+//INVISIBILITY
+COPY_EXISTING ~SPWI206.SPL~ ~OVERRIDE/C0BG206.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+//VAMPIRIC TOUCH
+COPY_EXISTING ~SPWI314.SPL~ ~OVERRIDE/C0BG314.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+//HOLD UNDEAD
+COPY_EXISTING ~SPWI324.SPL~ ~OVERRIDE/C0BG324.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+//IMPROVED INVISIBILITY
+COPY_EXISTING ~SPWI405.SPL~ ~OVERRIDE/C0BG405.SPL~
+WRITE_SHORT 0X34 4
+WRITE_SHORT 0X1C 2
+//CONTAGION
+COPY_EXISTING ~SPWI409.SPL~ ~OVERRIDE/C0BG409.SPL~
+WRITE_SHORT 0X34 4
+WRITE_SHORT 0X1C 2

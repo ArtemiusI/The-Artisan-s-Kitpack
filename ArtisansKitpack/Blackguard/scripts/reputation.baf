@@ -1,0 +1,8 @@
+IF
+	Kit(Player1,BLACKGUARD)
+	Global("C0BlackguardRep","GLOBAL",0)
+THEN
+RESPONSE #100
+	ReputationInc(-2)
+	SetGlobal("C0BlackguardRep","GLOBAL",1)
+END

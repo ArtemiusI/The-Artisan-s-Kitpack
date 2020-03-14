@@ -72,7 +72,7 @@ The assassin becomes completely invisible and undetectable for two rounds or unt
 @13   = ~Poison~
 @14   = ~Poison Weapon~
 @15   = ~Poison Weapon
-The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+This ability's user is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
 1st level: Target suffers two poison damage and loses one point of Constitution every round. No save modifier.
 6th level: Target suffers four poison damage and loses one point of Constitution every round. Save modifier of -1.
 11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.

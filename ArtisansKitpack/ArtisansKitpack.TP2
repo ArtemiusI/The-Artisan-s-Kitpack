@@ -27,6 +27,7 @@ GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
 
 BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~
+REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
 
@@ -41,6 +42,10 @@ INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
 BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
+
+BEGIN ~Artisan's Kitpack: Way of the Anti-Paladin (Blackguard Rework)~
+GROUP ~Paladin Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Blackguard.tpa~
 
 BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~
 GROUP ~Druid Kits~

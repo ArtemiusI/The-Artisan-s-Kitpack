@@ -4,6 +4,29 @@ COPY ~%MOD_FOLDER%/Assassin/2da~ ~override~
 COPY ~%MOD_FOLDER%/Assassin/bams~ ~override~
 COPY ~%MOD_FOLDER%/Assassin/spells~ ~override~
 
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Paralysis~) STR_VAR bam_file = c0asic01 RET c0asic01 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Hamstring~) STR_VAR bam_file = c0asic01 RET c0asic02 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Bleeding~) STR_VAR bam_file = c0asic01 RET c0asic03 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Cutthroat~) STR_VAR bam_file = c0asic01 RET c0asic04 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Lethal~) STR_VAR bam_file = c0asic01 RET c0asic05 = icon END
+
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
@@ -361,22 +384,57 @@ The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours 
 21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4. */
 
 COPY ~%MOD_FOLDER%/Assassin/spells/c0asin2.spl~ ~override~
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0asic01
+      END
 SAY NAME1 @16 /* Backstab: Paralysis */
 SAY NAME2 @16 /* Backstab: Paralysis */
 
 COPY ~%MOD_FOLDER%/Assassin/spells/c0asin3.spl~ ~override~
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0asic02
+      END
 SAY NAME1 @17 /* Backstab: Hamstring */
 SAY NAME2 @17 /* Backstab: Hamstring */
 
 COPY ~%MOD_FOLDER%/Assassin/spells/c0asin4.spl~ ~override~
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0asic03
+      END
 SAY NAME1 @18 /* Backstab: Bleeding */
 SAY NAME2 @18 /* Backstab: Bleeding */
 
 COPY ~%MOD_FOLDER%/Assassin/spells/c0asin5.spl~ ~override~
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0asic04
+      END
 SAY NAME1 @19 /* Backstab: Cutthroat */
 SAY NAME2 @19 /* Backstab: Cutthroat */
 
 COPY ~%MOD_FOLDER%/Assassin/spells/c0asin6.spl~ ~override~
+    LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0asic05
+      END
 SAY NAME1 @20 /* Backstab: Lethality */
 SAY NAME2 @20 /* Backstab: Lethality */
 
