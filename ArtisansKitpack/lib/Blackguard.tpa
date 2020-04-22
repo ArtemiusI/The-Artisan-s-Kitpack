@@ -35,9 +35,8 @@ Advantages
 – Immune to level drain and fear.
 – May turn undead as a Paladin of the same level.
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
-Level 1-8: x2
-Level 9-16: x3
-Level 17+: x4
+Level 1-10: x2
+Level 11-20: x3
 
 – May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
 
@@ -93,9 +92,8 @@ Advantages
 – Immune to level drain and fear.
 – May turn undead as a Paladin of the same level.
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
-Level 1-8: x2
-Level 9-16: x3
-Level 17+: x4
+Level 1-10: x2
+Level 11-20: x3
 
 – May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
 
@@ -152,9 +150,8 @@ Advantages
 – Immune to level drain and fear.
 – May turn undead as a Paladin of the same level.
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
-Level 1-8: x2
-Level 9-16: x3
-Level 17+: x4
+Level 1-10: x2
+Level 11-20: x3
 
 – May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
 
@@ -174,9 +171,9 @@ POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the 
 
 AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.
   3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
-  9th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
-  15th - All enemies suffer a -3 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
-  21st - All enemies suffer a -4 penalty to Saving Throws and Morale and a -25% penalty to all damage dealt.
+  10th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
+  17th - All enemies suffer a -3 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  24th - All enemies suffer a -4 penalty to Saving Throws and Morale and a -25% penalty to all damage dealt.
 
 – 9th level: May memorize a small selection of Mage spells:
 Level 1: Blindness, Larloch's Minor Drain
@@ -199,7 +196,7 @@ Disadvantages:
 	END
 
 // backstab
-APPEND ~backstab.2da~ ~BLACKGUARD 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+APPEND ~backstab.2da~ ~BLACKGUARD 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
 APPEND ~sneakatt.2da~ ~BLACKGUARD 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
 APPEND ~crippstr.2da~ ~BLACKGUARD 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
 

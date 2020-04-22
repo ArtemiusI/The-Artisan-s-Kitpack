@@ -30,7 +30,7 @@ ADD_KIT ~C0DC~
  ~C0DC                 	0       0       0       0       0		 0~
 
  // appended to ALIGNMNT.2da
- ~C0DC                  	1       1       0       1       1		0       1       1       0~
+ ~C0DC                  	1       1       1       1       1		1       1       1       1~
 
  // appended to DUALCLAS.2da
  ~C0DC                  	0       0       0       0       0       0~
@@ -54,14 +54,15 @@ ADD_KIT ~C0DC~
   SAY ~divine champion~
   SAY ~Divine Champion~
   SAY ~DIVINE CHAMPION: The divine champion is the strong right arm of their deity. They serve as a guardian of holy sites, a protector of pilgrims and a leader of crusades. Though paladins fill these roles in many good-aligned churchs, a divine champion can take up the banner of any deity, regardless of alignment or ethos. These holy warriors are loved by their patron's worshipers and hated by the church's enemies in equal measure.
+  
+Divine Champions may be of any alignment and will never fall, regardless of alignment or reputation.
 
 Advantages:
-– May be of any non-evil alignment.
 – May achieve High Mastery (4 slots) in any weapon.
 – Gains +1 to all Saving Throws at level 5 and every 5 levels gained thereafter.
-– From level 2 onwards, may use the Smite Evil ability once per day. Gains an additional use at level 4 and an additional use every 4 levels thereafter.
+– From level 2 onwards, may use the Smite Infidel ability once per day, gaining an additional use every 2 levels gained.
 
-SMITE EVIL: The divine champion's next attack within two rounds gains a +1 bonus to hit and damage per 2 levels gained versus any evil creature struck.
+SMITE INFIDEL: The divine champion's next attack within two rounds deals 1d4 points of magic damage per 2 levels to any creature of a different moral (good, neutral, evil) alignment to the caster.
 
 – From level 5 onwards, may use the Divine Wrath ability once per day.
 
@@ -72,31 +73,20 @@ Disadvantages:
 – May not cast priest spells.~
 
 LAF fl#add_kit_ee
-  INT_VAR
-	fallen = 0
-	fallen_notice = RESOLVE_STR_REF (~Lost Class: Divine Champion~)
   STR_VAR
     kit_name = C0DC
 	hpclass = ~HPWAR~
 END
+APPEND ~fallen.2da~ ~C0DC 0~
 
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc01.spl~ ~override~
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc02a.eff~ ~override~
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc02b.eff~ ~override~
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc02c.eff~ ~override~
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc02a.spl~ ~override~
+SAY NAME1 ~Smite Infidel~
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc02.spl~ ~override~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 177 // display string
- parameter1 = 0
- parameter2 = 2
- END
-SAY NAME1 ~Smite Evil~
-SAY UNIDENTIFIED_DESC ~Smite Evil
-The divine champion's next attack within two rounds gains a +1 bonus to hit and damage per 2 levels gained versus any evil creature struck.~
+SAY NAME1 ~Smite Infidel~
+SAY UNIDENTIFIED_DESC ~Smite Infidel
+The divine champion's next attack within two rounds deals two points of magic damage per level to any creature of a different alignment to the caster.~
 
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc03.spl~ ~override~
 SAY NAME1 ~Divine Wrath~

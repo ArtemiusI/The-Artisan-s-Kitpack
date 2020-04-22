@@ -22,10 +22,10 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
 END
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Paralysis~) STR_VAR bam_file = c0asic01 RET c0asic01 = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Hamstring~) STR_VAR bam_file = c0asic01 RET c0asic02 = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Bleeding~) STR_VAR bam_file = c0asic01 RET c0asic03 = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Cutthroat~) STR_VAR bam_file = c0asic01 RET c0asic04 = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Lethal~) STR_VAR bam_file = c0asic01 RET c0asic05 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Hamstring~) STR_VAR bam_file = c0asic02 RET c0asic02 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Bleeding~) STR_VAR bam_file = c0asic03 RET c0asic03 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Cutthroat~) STR_VAR bam_file = c0asic04 RET c0asic04 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Lethal~) STR_VAR bam_file = c0asic05 RET c0asic05 = icon END
 
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
@@ -265,6 +265,8 @@ CLOAK OF SHADOWS: The assassin becomes completely invisible and undetectable for
 COPY_EXISTING ~backstab.2da~ ~override~
   REPLACE_TEXTUALLY ~ASSASIN 1  2  2  2  2  3  3  3  3  4  4  4  4  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5~
 					~ASSASIN 2  3  3  3  3  4  4  4  4  5  5  5  5  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7~
+  REPLACE_TEXTUALLY ~ASSASIN       1             2             2             2             2             3             3             3             3             4             4             4             4             5             5             5             5             6             6             6             6             7             7             7             7             7             7             7             7             7             7             7             7             8             8             8             8             8             8             8             8             8             8             8             8             8             8             8             8             8             8~
+					~ASSASIN 2  3  3  3  3  4  4  4  4  5  5  5  5  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7~
 COPY_EXISTING ~crippstr.2da~ ~override~
   REPLACE_TEXTUALLY ~ASSASIN 0  0  0  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9  9  9  10  10  10  11  11  11  12  12  12  13  13  13  13  13  13  13  13  13  13  13  13~
 					~ASSASIN 0  1  1  2  2  3  3  4  4  5  5  6  6  7  7  8  8  9  9  10 10 11 11 12 12 13 13 14 14 15 15  16  16  17  17  18  18  19  19  20  20  21  21  22  22  23  23  24  24  25  25~
@@ -289,6 +291,20 @@ BUT_ONLY_IF_IT_CHANGES
 
 ACTION_IF FILE_EXISTS_IN_GAME ~LEAT08.ITM~ THEN BEGIN
 COPY_EXISTING ~leat08.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
+    PATCH_IF ((assassin BAND 0b00000100) = 0b00000100) BEGIN // if it is usable by mages
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 67) OR (type = 2) BEGIN // if it is a robe or armor
+        WRITE_BYTE    0x2b (assassin BAND 0b00000000)  // makes usable by bards
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+  END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~dragarm.ITM~ THEN BEGIN
+COPY_EXISTING ~dragarm.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
     PATCH_IF ((assassin BAND 0b00000100) = 0b00000100) BEGIN // if it is usable by mages
