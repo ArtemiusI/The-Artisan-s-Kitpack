@@ -1,9 +1,10 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~1.7~
+VERSION ~2~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/kit_strref.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/RA_SPHERE_COMPAT.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -46,6 +47,10 @@ INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
 BEGIN ~Artisan's Kitpack: Way of the Anti-Paladin (Blackguard Rework)~
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Blackguard.tpa~
+
+BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~
+GROUP ~Druid Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Elementalist.tpa~
 
 BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~
 GROUP ~Druid Kits~

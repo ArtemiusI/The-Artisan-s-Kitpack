@@ -1,0 +1,57 @@
+DEFINE_ACTION_FUNCTION ~GET_KIT_STRREF~
+  STR_VAR kit_name = ~~
+  RET kit_strref
+BEGIN
+  OUTER_SET kit_strref = 0 - 1
+  ACTION_IF (STRING_LENGTH ~%kit_name%~ > 0) BEGIN
+    COPY_EXISTING ~kitlist.2da~ ~override~
+      TO_LOWER kit_name
+      COUNT_2DA_ROWS 5 num_rows
+      FOR (row = 0; row < num_rows; row += 1) BEGIN
+        READ_2DA_ENTRY row 1 5 kit
+        TO_LOWER kit
+        PATCH_IF (~%kit%~ STRING_EQUAL ~%kit_name%~) BEGIN
+          READ_2DA_ENTRY row 4 5 kit_strref
+          SET row = num_rows
+        END
+      END
+      BUT_ONLY
+COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~%kit_name%~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
+	  END
+	END
+      BUT_ONLY
+ACTION_IF FILE_EXISTS ~SODCLTXT.2DA~ THEN BEGIN
+COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~%kit_name%~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
+	  END
+	END
+      BUT_ONLY
+	END
+ACTION_IF FILE_EXISTS ~bgclatxt.2DA~ THEN BEGIN
+COPY_EXISTING ~bgclatxt.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~%kit_name%~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
+	  END
+	END
+      BUT_ONLY
+	END
+  END
+END

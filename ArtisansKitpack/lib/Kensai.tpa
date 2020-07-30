@@ -37,14 +37,9 @@ COPY_EXISTING ~splprot.2da~ ~override~
 		SET_2DA_ENTRY (%patch_row%) 1 cols ~C0KN~
 	  END
 	END
-	  COPY_EXISTING ~clastext.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~KENSAI~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
+	
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~KENSAI~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
 
 Advantages:
 – Base Armor Class of 8.
@@ -78,101 +73,8 @@ Disadvantages:
 – May not use any armor, helmets, gauntlets, bracers or shields.
 – May not use missile weapons.
 – Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
-– Alignment restricted to any non-chaotic.~)
-	  END
-	END
-ACTION_IF (FILE_EXISTS_IN_GAME ~sodcltxt.2da~) BEGIN
-  COPY_EXISTING ~sodcltxt.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~KENSAI~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
+– Alignment restricted to any non-chaotic.~
 
-Advantages:
-– Base Armor Class of 8.
-– -1 bonus to Speed Factor every 4 levels.
-– Gains a +10% bonus to all physical damage dealt.
-– Gains the Ki Critical innate.
-
-KI CRITICAL: +2 bonus to critical hit rate. Gains an additional +2 at 10th level and +1 every 5 levels thereafter.
-
-– May use the Ki Focus ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
-
-KI FOCUS: All successful attacks within the next 12 seconds will never miss and deal 20% increased physical damage.
-
-– From 3rd level onwards, may use the Defensive Fighting ability at will.
-
-DEFENSIVE FIGHTING: The Kensai sets their base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus.
-
-– From 5th level onwards, may use the Ki Strike ability once per round.
-
-KI STRIKE: The Kensai's next attack within one round of casting the ability has a doubled Ki Critical modifier and deals maximum damage. The Kensai incurs a cumulative fatigue penalty upon landing the attack, the amount of which decreases as the Kensai gains levels. Ki Strike will fail if the Kensai is overly fatigued.
-
-– From 10th level onwards, gains the Perfect Defense innate.
-
-PERFECT DEFENSE: When Defensive Fighting is active, the Kensai becomes immune to backstabs. Additionally, the Kensai gains a cumulative +1 bonus to Armor Class for each enemy within a 15-ft. range.
-
-– From 15th level onwards, gains the Perfect Offense innate.
-
-PERFECT OFFENSE: The Kensai will no longer critically miss on an attack roll of 1.
-
-Disadvantages:
-– May not use any armor, helmets, gauntlets, bracers or shields.
-– May not use missile weapons.
-– Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
-– Alignment restricted to any non-chaotic.~)
-	  END
-	END
-	END
-ACTION_IF (FILE_EXISTS_IN_GAME ~kitlist.2da~) BEGIN
-  COPY_EXISTING ~kitlist.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 1 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~KENSAI~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
-
-Advantages:
-– Base Armor Class of 8.
-– -1 bonus to Speed Factor every 4 levels.
-– Gains a +10% bonus to all physical damage dealt.
-– Gains the Ki Critical innate.
-
-KI CRITICAL: +2 bonus to critical hit rate. Gains an additional +2 at 10th level and +1 every 5 levels thereafter.
-
-– May use the Ki Focus ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
-
-KI FOCUS: All successful attacks within the next 12 seconds will never miss and deal 20% increased physical damage.
-
-– From 3rd level onwards, may use the Defensive Fighting ability at will.
-
-DEFENSIVE FIGHTING: The Kensai sets their base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus.
-
-– From 5th level onwards, may use the Ki Strike ability once per round.
-
-KI STRIKE: The Kensai's next attack within one round of casting the ability has a doubled Ki Critical modifier and deals maximum damage. The Kensai incurs a cumulative fatigue penalty upon landing the attack, the amount of which decreases as the Kensai gains levels. Ki Strike will fail if the Kensai is overly fatigued.
-
-– From 10th level onwards, gains the Perfect Defense innate.
-
-PERFECT DEFENSE: When Defensive Fighting is active, the Kensai becomes immune to backstabs. Additionally, the Kensai gains a cumulative +1 bonus to Armor Class for each enemy within a 15-ft. range.
-
-– From 15th level onwards, gains the Perfect Offense innate.
-
-PERFECT OFFENSE: The Kensai will no longer critically miss on an attack roll of 1.
-
-Disadvantages:
-– May not use any armor, helmets, gauntlets, bracers or shields.
-– May not use missile weapons.
-– Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
-– Alignment restricted to any non-chaotic.~)
-	  END
-	END
-	END
 COPY ~%MOD_FOLDER%/Kensai/2da/clabfi04.2da~ ~override~
 COPY ~%MOD_FOLDER%/Kensai/2da/luc0kn.2da~ ~override~
 
@@ -230,7 +132,9 @@ SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Defensive Fighting.~
 
 COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#07.SPL~ ~OVERRIDE~
 SAY NAME1 ~Improved Ki Critical~
-SAY UNIDENTIFIED_DESC ~The Kensai gains a permanent +2 bonus to their critical hit modifier.~
+SAY UNIDENTIFIED_DESC ~The Kensai gains a permanent +2 bonus to their critical hit modifier.
+
+Requires: Power Attack~
 
 COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#08.SPL~ ~OVERRIDE~
 SAY NAME1 ~Overwhelming Critical~
@@ -238,8 +142,12 @@ SAY UNIDENTIFIED_DESC ~The Kensai's critical hits reduce the target's physical r
 
 COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#09.SPL~ ~OVERRIDE~
 SAY NAME1 ~Second Wind~
-SAY UNIDENTIFIED_DESC ~The Kensai heals for 5% of <PRO_HISHER> maximum hit points and reduces a small amount of <PRO_HISHER> fatigue modifier upon landing a critical hit.~
+SAY UNIDENTIFIED_DESC ~The Kensai heals for 5% of <PRO_HISHER> maximum hit points and reduces a small amount of <PRO_HISHER> fatigue modifier upon landing a critical hit.
+
+Requires: Overwhelming Critical~
 
 COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#10.SPL~ ~OVERRIDE~
 SAY NAME1 ~Devastating Critical~
-SAY UNIDENTIFIED_DESC ~The Kensai's critical hits kill the target instantly on a failed Saving Throw vs. Death. Creatures with 8 or lower HD die with no save.~
+SAY UNIDENTIFIED_DESC ~The Kensai's critical hits kill the target instantly on a failed Saving Throw vs. Death. Creatures with 8 or lower HD die with no save.
+
+Requires: Devastating Critical~

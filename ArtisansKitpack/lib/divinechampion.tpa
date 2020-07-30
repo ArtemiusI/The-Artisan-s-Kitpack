@@ -86,7 +86,7 @@ SAY NAME1 ~Smite Infidel~
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc02.spl~ ~override~
 SAY NAME1 ~Smite Infidel~
 SAY UNIDENTIFIED_DESC ~Smite Infidel
-The divine champion's next attack within two rounds deals two points of magic damage per level to any creature of a different alignment to the caster.~
+The divine champion's next attack within two rounds deals 1d4 points of magic damage per 2 levels to any creature of a different moral (good, neutral, evil) alignment to the caster.~
 
 COPY ~%MOD_FOLDER%/DivineChampion/c0dc03.spl~ ~override~
 SAY NAME1 ~Divine Wrath~

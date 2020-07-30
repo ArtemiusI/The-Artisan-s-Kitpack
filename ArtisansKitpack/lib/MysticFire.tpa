@@ -178,19 +178,25 @@ COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl2.spl~ ~override~
 SAY NAME1 ~Extra Level 2 Spell~
 SAY NAME2 ~Extra Level 2 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 2 Spell
-Choosing this ability allows the Mystic Fire Knight to cast one additional Level 2 spell.~
+Choosing this ability allows the Mystic Fire Knight to cast one additional Level 2 spell.
+
+Requires: Extra Level 1 Spell~
  
 COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl3.spl~ ~override~
 SAY NAME1 ~Extra Level 3 Spell~
 SAY NAME2 ~Extra Level 3 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 3 Spell
-Choosing this ability allows the Mystic Fire Knight to cast one additional Level 3 spell.~
+Choosing this ability allows the Mystic Fire Knight to cast one additional Level 3 spell.
+
+Requires: Extra Level 2 Spell~
  
 COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl4.spl~ ~override~
 SAY NAME1 ~Extra Level 4 Spell~
 SAY NAME2 ~Extra Level 4 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 4 Spell
-Choosing this ability allows the Mystic Fire Knight to cast one additional Level 4 spell.~
+Choosing this ability allows the Mystic Fire Knight to cast one additional Level 4 spell.
+
+Requires: Extra Level 3 Spell~
 
 COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl5.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge I~
@@ -202,10 +208,14 @@ COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl6.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge II~
 SAY NAME2 ~Arcane Knowledge II~
 SAY UNIDENTIFIED_DESC ~Arcane Knowledge II
-An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining -1 to casting time and the ability to cast Globe of Invulnerability, Improved Haste, Protection from Magical Weapons and Spell Turning once per day.~
+An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining -1 to casting time and the ability to cast Globe of Invulnerability, Improved Haste, Protection from Magical Weapons and Spell Turning once per day.
+
+Requires: Arcane Knowledge I~
 
 COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl7.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge III~
 SAY NAME2 ~Arcane Knowledge III~
 SAY UNIDENTIFIED_DESC ~Arcane Knowledge III
-An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +20% to spell duration and the ability to cast Limited Wish, Mordenkainen's Sword, Khelben's Warding Whip and Spell Turning once per day.~
+An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +20% to spell duration and the ability to cast Limited Wish, Mordenkainen's Sword, Khelben's Warding Whip and Spell Turning once per day.
+
+Requires: Arcane Knowledge II~

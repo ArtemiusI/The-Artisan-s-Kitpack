@@ -38,7 +38,7 @@ ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with
   Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
   Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
   Cutthroat: Target must save vs. death or be silenced for 20 rounds.
-  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly. If target is immune to death effects, deal 20% maximum hit points in damage instead.
 
 HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns invisible and moves at double <PRO_HISHER> movement rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
 
@@ -65,7 +65,7 @@ Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
 Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
 Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
 Cutthroat: Target must save vs. death or be silenced for 20 rounds.
-Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly.~
+Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly. If target is immune to death effects, deal 20% maximum hit points in damage instead.~
 @11   = ~Cloak of Shadows~
 @12   = ~Cloak of Shadows
 The assassin becomes completely invisible and undetectable for two rounds or until the assassin attacks, becoming immune to all revealing effects. Even creatures that can see through invisibility are unable to target the assassin during this time.~

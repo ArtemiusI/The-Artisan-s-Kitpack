@@ -21,7 +21,7 @@ ADD_KIT ~PaleMaster~
 	SAY @0
         SAY @1
         SAY @2
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
           LAF fl#add_kit_ee
               INT_VAR
                      biography = RESOLVE_STR_REF (@12)
@@ -105,7 +105,7 @@ ADD_KIT ~PaleMaster~
 	SAY @0
         SAY @1
         SAY @2
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
           LAF fl#add_kit_ee
               INT_VAR
                      biography = RESOLVE_STR_REF (@12)

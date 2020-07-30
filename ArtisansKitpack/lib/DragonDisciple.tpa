@@ -16,8 +16,8 @@ COPY ~%MOD_FOLDER%/DragonDisciple/spells/c0dd06.spl~ ~override~
 
 COPY ~%MOD_FOLDER%/DragonDisciple/2das/c0dd.2DA~ ~override/clabso01.2da~
 
-ACTION_IF ENGINE_IS ~bgee~ BEGIN
-STRING_SET 31978 ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DRAGON_DISCIPLE~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
 
 Advantages:
 – 1st level: +1 bonus to AC.
@@ -43,37 +43,6 @@ DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming ef
 
 Disadvantages:
 – May cast one fewer spell per level per day.~
-END
-
-ACTION_IF ENGINE_IS ~bg2ee eet~ BEGIN
-STRING_SET 74304 ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
-
-Advantages:
-– 1st level: +1 bonus to AC.
-– 3rd level: May use Breath Weapon once per day.
-
-BREATH WEAPON: The Dragon Disciple breathes a gout of flame up to 30 ft. long, inflicting 3d8 points of fire damage on all creatures caught within the 140-degree cone.
-
-– 4th level: Gains 25% innate Fire Resistance.
-– 5th level: +1 bonus to AC and Strength.
-– 6th level: Breath Weapon damage increases to 4d8.
-– 8th level: Innate Fire Resistance rises to 50%.
-– 9th level: Breath Weapon damage increases to 5d8.
-– 10th level: +1 bonus to AC and Intelligence.
-– 12th level: Breath Weapon damage increases to 6d8. Innate Fire Resistance rises to 75%.
-– 15th level: +1 bonus to AC and Constitution.
-– 17th level: +1 bonus to Strength.
-– 18th level: Movement rate increased by 2.
-– 20th level: Gains Dragon Apotheosis.
-
-DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +2 to Strength, +1 to Charisma, +2 to AC as well as immunity to blindness, unconsciousness, hold and fire damage.
-
-– Hit Die: d6
-
-Disadvantages:
-– May cast one fewer spell per level per day.~
-END
-END
 
 ACTION_IF dd = 2 THEN BEGIN
 // Strength bonus
@@ -89,8 +58,8 @@ COPY ~%MOD_FOLDER%/DragonDisciple/spells/c0dd06.spl~ ~override~
 
 COPY ~%MOD_FOLDER%/DragonDisciple/2das/c0dd2.2DA~ ~override/clabso01.2da~
 
-ACTION_IF ENGINE_IS ~bgee~ BEGIN
-STRING_SET 31978 ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DRAGON_DISCIPLE~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
 
 Advantages:
 – 1st level: +1 bonus to AC.
@@ -115,38 +84,10 @@ DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming ef
 
 Disadvantages:
 – May cast one fewer spell per level per day.~
-END
-
-ACTION_IF ENGINE_IS ~bg2ee eet~ BEGIN
-STRING_SET 74304 ~DRAGON DISCIPLE: Dragon Disciples are powerful Sorcerers with dragons' blood somewhere in their lineage. Their natural magical talents bring out their draconic heritage, allowing them to cast powerful magical spells and exhibit dragon-like abilities.
-
-Advantages:
-– 1st level: +1 bonus to AC.
-– 3rd level: May use Breath Weapon once per day.
-
-BREATH WEAPON: The Dragon Disciple breathes a gout of flame up to 30 ft. long, inflicting 3d8 points of fire damage on all creatures caught within the 140-degree cone.
-
-– 4th level: Gains 25% innate Fire Resistance.
-– 5th level: +1 bonus to AC and Strength.
-– 6th level: Breath Weapon damage increases to 4d8.
-– 8th level: Innate Fire Resistance rises to 50%.
-– 9th level: Breath Weapon damage increases to 5d8.
-– 10th level: +1 bonus to AC and Intelligence.
-– 12th level: Breath Weapon damage increases to 6d8. Innate Fire Resistance rises to 75%.
-– 15th level: +1 bonus to AC and Constitution.
-– 18th level: Movement rate increased by 2.
-– 20th level: Gains Dragon Apotheosis.
-
-DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +1 to Strength, +1 to Charisma, +2 to AC as well as immunity to blindness, unconsciousness, hold and fire damage.
-
-– Hit Die: d8
-
-Disadvantages:
-– May cast one fewer spell per level per day.~
-END
 
 COPY ~%MOD_FOLDER%/DragonDisciple/spells/spdd03.spl~ ~override~
 SAY UNIDENTIFIED_DESC ~Breath Weapon
 The character breathes a gout of flame up to 30 ft. long, inflicting 3d8 points of fire damage on all creatures caught within the 140-degree cone. The ability deals an additional 1d8 points of fire damage for every three levels beyond 3rd level the character has attained (4d8 at 6th level, 5d8 at 9th level, and so on, up to a maximum of 6d8 at 12th level.~
 COPY ~%MOD_FOLDER%/DragonDisciple/spells/spdd04.spl~ ~override~
+END
 END
