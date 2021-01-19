@@ -270,6 +270,7 @@ SAY NAME2 ~Great Red Bear~
 
 COMPILE ~%MOD_FOLDER%/berserkerminsc/dialogue/minscj.d~
 COMPILE ~%MOD_FOLDER%/berserkerminsc/dialogue/taerom.d~
+END
 
 // SCRIPTS
 
@@ -330,7 +331,6 @@ Requires:
  6 Strength
 
 Weight: 40~
-END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~shop03.sto~ THEN BEGIN
 COPY_EXISTING ~shop03.sto~ ~override~

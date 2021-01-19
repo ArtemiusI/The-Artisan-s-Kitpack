@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2~
+VERSION ~2.1~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
@@ -63,6 +63,10 @@ INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 BEGIN ~Artisan's Kitpack: Magekiller Thief Kit~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/magekiller.tpa~
+
+BEGIN ~Artisan's Kitpack: Trickster Thief Kit~
+GROUP ~Thief Kits~
+INCLUDE ~%MOD_FOLDER%/lib/trickster.tpa~
 
 BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
 GROUP ~Thief Kits~
