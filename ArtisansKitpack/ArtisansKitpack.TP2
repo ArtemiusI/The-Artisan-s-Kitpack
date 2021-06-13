@@ -151,3 +151,7 @@ INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
 GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
+
+BEGIN ~Artisan's Kitpack: Make M'khiin a Warhorn Shaman~ (GAME_IS ~bgee eet~)
+GROUP ~Shaman Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Warhorn Shaman Kit~
