@@ -24,6 +24,11 @@ BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
 
+BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit for Khalid~ (FILE_EXISTS_IN_GAME ~khalid.bcs~ AND FILE_EXISTS_IN_GAME ~khalid.cre~)
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Vanguard Fighter Kit~
+INCLUDE ~%MOD_FOLDER%/lib/vanguard_for_khalid.tpa~
+
 BEGIN ~Artisan's Kitpack: The Art of Slaughter (Berserker Rework)~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
