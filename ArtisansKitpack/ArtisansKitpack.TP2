@@ -92,6 +92,22 @@ BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 
+
+BEGIN ~Artisan's Kitpack: Montaron (Assassin Rework)~ (GAME_IS ~bgee eet~)
+GROUP ~Thief Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
+SUBCOMPONENT ~Montaron is an Assassin (reworked)~
+  COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON~ ~OVERRIDE~
+SUBCOMPONENT ~Montaron is an Fighter/Assassin (reworked)~
+  INCLUDE ~%MOD_FOLDER%/lib/fighter_assassin_for_montaron.tpa~
+
+BEGIN ~Artisan's Kitpack: Hexxat (Assassin Rework)~ (GAME_IS ~bg2ee eet~)
+GROUP ~Thief Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
+COPY_EXISTING_REGEXP ~ohhex.*.cre~ ~override~
+WRITE_SHORT 0x246 0x400A
+
+
 BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
