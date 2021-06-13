@@ -129,6 +129,13 @@ BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 
+BEGIN ~Artisan's Kitpack: Fix Evermemory for the Pale Master~ (GAME_IS ~bgee eet~)
+GROUP ~Sorcerer Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Pale Master Sorcerer Kit~
+LOAD_TRA ~ArtisansKitpack/PaleMaster/tra/english/setup.tra~
+COPY ~ArtisansKitpack/PaleMaster/items/RING08.ITM~ ~override~ //Evermemory
+SAY IDENTIFIED_DESC @15
+
 BEGIN ~Original Stat Bonuses~
 SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
 GROUP ~Sorcerer Kits~
