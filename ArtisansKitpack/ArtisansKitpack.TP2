@@ -46,9 +46,26 @@ BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
 
+
 BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~ (FILE_EXISTS_IN_GAME ~ajanti.cre~)
+GROUP ~Paladin Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Divine Champion Paladin Kit~
+INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_ajantis.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Keldorn the Divine Champion Kit~ (FILE_EXISTS_IN_GAME ~keldorn.bcs~)
+GROUP ~Paladin Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Divine Champion Paladin Kit~
+INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_keldorn.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Sirene the Divine Champion Kit~ (FILE_EXISTS_IN_GAME ~c0sirene.bcs~ OR FILE_EXISTS_IN_GAME ~c0sire2.bcs~)
+GROUP ~Paladin Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Divine Champion Paladin Kit~
+INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_sirene.tpa~
+
 
 BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~
 GROUP ~Paladin Kits~
