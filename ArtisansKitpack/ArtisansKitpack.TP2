@@ -15,6 +15,11 @@ BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 
+BEGIN ~With Arcane Archer/Mage multiclass kit~ (GAME_IS ~bgee bg2ee eet iwdee~)
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Arcane Archer Fighter Kit~
+INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcherMage.tpa~
+
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
