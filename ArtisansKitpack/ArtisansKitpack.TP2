@@ -83,6 +83,11 @@ BEGIN ~Artisan's Kitpack: Trickster Thief Kit~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/trickster.tpa~
 
+BEGIN ~Artisan's Kitpack: Give the Trickster Thief Kit to Imoen~ (FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~)
+GROUP ~Thief Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Trickster Thief Kit~
+INCLUDE ~%MOD_FOLDER%/lib/trickster_for_imoen.tpa~
+
 BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
