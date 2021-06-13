@@ -70,6 +70,11 @@ BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 
+BEGIN ~Artisan's Kitpack: Give the Rogue Archer Thief Kit to Imoen~ (FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~)
+GROUP ~Thief Kits~
+REQUIRE_COMPONENT ~Artisan's Kitpack: Rogue Archer Thief Kit~
+INCLUDE ~%MOD_FOLDER%/lib/adventurer_for_imoen.tpa~
+
 BEGIN ~Artisan's Kitpack: Magekiller Thief Kit~
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/magekiller.tpa~

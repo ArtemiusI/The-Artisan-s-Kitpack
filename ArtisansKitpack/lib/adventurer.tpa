@@ -79,32 +79,3 @@ STR_VAR
 	hpclass = ~hprog~
     numwslot = 2
 END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~ THEN BEGIN
-PRINT ~OPTIONAL: Give Imoen the Rogue Archer Kit?~
-
-PRINT ~Please choose one of the following:
-[1] Yes
-[2] No~
-
-OUTER_SPRINT ~kit~ ~placeholder_value~
-OUTER_WHILE (!(IS_AN_INT ~kit~) OR (~kit~ > 0x5) OR (~kit~ < 0x1)) BEGIN
-  PRINT ~Please select 1 or 2 and press Enter.~
-  ACTION_READLN ~kit~
-END
-      ACTION_IF ("kit" = 1) THEN BEGIN
-	COPY_EXISTING ~sw1h01.itm~ ~override/imoenkit.xx~
- ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
-    COPY_EXISTING ~%imoen%.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
-		SET_BG2_PROFICIENCY 102 0
-		SET_BG2_PROFICIENCY 105 2
-		BUT_ONLY
-END
-      END
-      ACTION_IF ("kit" = 2) THEN BEGIN
-      END
-      END
-      END
-	  
