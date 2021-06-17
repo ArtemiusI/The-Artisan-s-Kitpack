@@ -19,7 +19,7 @@ INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 BEGIN ~Install Arcane Archer/Mage multiclass kit~
 DESIGNATED 11
 GROUP ~Fighter Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 10 ~Requires Archane Archer Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 10 ~Requires Arcane Archer Kit~
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) ~Only installable on EE games~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcherMage.tpa~
 
@@ -31,7 +31,7 @@ INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit for Khalid~
 DESIGNATED 21
 GROUP ~Fighter Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 20 ~Requires Vanguard Fighter Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 20 ~Requires Vanguard Fighter Kit~
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~khalid.bcs~ AND FILE_EXISTS_IN_GAME ~khalid.cre~) ~Needs Khalid~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard_for_khalid.tpa~
 
@@ -65,21 +65,21 @@ INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
 BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~
 DESIGNATED 71
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~ajanti.cre~) ~Needs Ajantis~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_ajantis.tpa~
 
 BEGIN ~Artisan's Kitpack: Give Keldorn the Divine Champion Kit~
 DESIGNATED 72
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~keldorn.bcs~) ~Needs Keldorn~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_keldorn.tpa~
 
 BEGIN ~Artisan's Kitpack: Give Sirene the Divine Champion Kit~
 DESIGNATED 73
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 70 ~Requires Divine Champion Paladin Kit~
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~c0sirene.bcs~ OR FILE_EXISTS_IN_GAME ~c0sire2.bcs~) ~Needs Sirene~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion_for_sirene.tpa~
 
@@ -112,7 +112,7 @@ INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 BEGIN ~Artisan's Kitpack: Give the Rogue Archer Thief Kit to Imoen~
 DESIGNATED 121
 GROUP ~Thief Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 120 ~Requires Rogue Archer Thief Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 120 ~Requires Rogue Archer Thief Kit~
 REQUIRE_PREDICATE  (FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~) ~Needs unmodified Imoen NPC~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer_for_imoen.tpa~
 
@@ -129,7 +129,7 @@ INCLUDE ~%MOD_FOLDER%/lib/trickster.tpa~
 BEGIN ~Artisan's Kitpack: Give the Trickster Thief Kit to Imoen~
 GROUP ~Thief Kits~
 DESIGNATED 141
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 140 ~Requires Trickster Thief Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 140 ~Requires Trickster Thief Kit~
 REQUIRE_PREDICATE  (FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~) ~Needs unmodified Imoen NPC~
 INCLUDE ~%MOD_FOLDER%/lib/trickster_for_imoen.tpa~
 
@@ -143,7 +143,7 @@ INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 BEGIN ~Montaron is an Assassin (reworked)~
 SUBCOMPONENT ~Artisan's Kitpack: Montaron (Assassin Rework)~
 GROUP ~Thief Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 150 ~Requires Assassin Rework~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 150 ~Requires Assassin Rework~
 REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~Only installable on BG:EE and EET~
 DESIGNATED 151
 COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON~ ~OVERRIDE~
@@ -151,7 +151,7 @@ COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON~ ~OVERRIDE~
 BEGIN ~Montaron is an Fighter/Assassin (reworked)~
 SUBCOMPONENT ~Artisan's Kitpack: Montaron (Assassin Rework)~
 GROUP ~Thief Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 150 ~Requires Assassin Rework~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 150 ~Requires Assassin Rework~
 REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~Only installable on BG:EE and EET~
 DESIGNATED 152 
 INCLUDE ~%MOD_FOLDER%/lib/fighter_assassin_for_montaron.tpa~
@@ -159,7 +159,7 @@ INCLUDE ~%MOD_FOLDER%/lib/fighter_assassin_for_montaron.tpa~
 BEGIN ~Artisan's Kitpack: Hexxat (Assassin Rework)~
 DESIGNATED 155
 GROUP ~Thief Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 150 ~Requires Assassin Rework~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 150 ~Requires Assassin Rework~
 REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~Only installable on BG2:EE and EET~
 COPY_EXISTING_REGEXP ~ohhex.*.cre~ ~override~
 WRITE_SHORT 0x246 0x400A
@@ -173,7 +173,7 @@ INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 BEGIN ~Artisan's Kitpack: Fix Evermemory for the Pale Master~
 DESIGNATED 161
 GROUP ~Sorcerer Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 160 ~Requires Pale Master Sorcerer Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 160 ~Requires Pale Master Sorcerer Kit~
 REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~Only installable on BG:EE and EET~
 LOAD_TRA ~ArtisansKitpack/PaleMaster/tra/english/setup.tra~
 COPY ~ArtisansKitpack/PaleMaster/items/RING08.ITM~ ~override~ //Evermemory
@@ -201,5 +201,5 @@ INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
 BEGIN ~Artisan's Kitpack: Make M'khiin a Warhorn Shaman~
 DESIGNATED 181
 GROUP ~Shaman Kits~
-REQUIRE_COMPONENT ~ArtisanKitpack.TP2~ 180 ~Requires Warhorn Shaman Kit~
+REQUIRE_COMPONENT ~ArtisansKitpack.TP2~ 180 ~Requires Warhorn Shaman Kit~
 REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~Only installable on BG:EE and EET~
