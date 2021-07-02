@@ -1,0 +1,12 @@
+
+COPY_EXISTING ~sw1h01.itm~ ~override/imoenkit.xx~
+ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
+    	COPY_EXISTING ~%imoen%.cre~ ~override~
+			WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRICKS~))
+			ADD_KNOWN_SPELL ~C0TR#29Z~ #0 ~innate~
+			ADD_MEMORIZED_SPELL ~C0TR#29Z~ #0 ~innate~
+			LPF ADD_CRE_EFFECT INT_VAR opcode = 206 timing = 9 target = 2 STR_VAR resource = C0TR#04 END
+			BUT_ONLY
+	END
+END

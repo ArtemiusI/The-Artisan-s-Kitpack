@@ -1,0 +1,11 @@
+
+COPY_EXISTING ~sw1h01.itm~ ~override/imoenkit.xx~
+ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
+    COPY_EXISTING ~%imoen%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
+		SET_BG2_PROFICIENCY 102 0
+		SET_BG2_PROFICIENCY 105 2
+		BUT_ONLY
+  END
+END

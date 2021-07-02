@@ -186,26 +186,3 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb05.qd~) THEN BEGIN //arcane crafting check 
                         INSERT_2DA_ROW 3 0 ~ARCNCRFT   ****	     ****          ****          ****       GA_B_BREW1    ****          ****          ****          ****       GA_B_WAND1  ****       ****          ****          ****       GA_B_RECH1    ****          ****       ****       ****       ****          ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****       ****~
 END
 END
-
-// -----------------------------
-// Evermemory Fix
-// -----------------------------
-ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
-PRINT ~OPTIONAL: Add Evermemory Fix?~
-
-PRINT ~Please choose one of the following:
-[1] Yes
-[2] No~
-
-OUTER_SPRINT ~evermemory~ ~placeholder_value~
-OUTER_WHILE (!(IS_AN_INT ~evermemory~) OR (~evermemory~ > 0x5) OR (~evermemory~ < 0x1)) BEGIN
-  PRINT ~Please select 1 or 2 and press Enter.~
-  ACTION_READLN ~evermemory~
-END
-      ACTION_IF ("evermemory" = 1) THEN BEGIN
-	  COPY ~ArtisansKitpack/PaleMaster/items/RING08.ITM~ ~override~ //Evermemory
-     SAY IDENTIFIED_DESC @15
-      END
-      ACTION_IF ("evermemory" = 2) THEN BEGIN
-      END
-END
