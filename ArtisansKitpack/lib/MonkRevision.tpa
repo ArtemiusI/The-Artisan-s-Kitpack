@@ -87,7 +87,7 @@ CLASS FEATURES:
 – May make 2 unarmed attacks per round.
 – -1 to Speed Factor per 3 levels.
 
-– Flurry of Blows: The monk, while unarmed or wielding daggers, short swords or ninja-to, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
+– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
 
 – The monk's fists deal crushing damage and deal increase damage with level as follows:
   Level 1-2: 1d4
@@ -99,7 +99,7 @@ CLASS FEATURES:
   Level 20-24: 2d10
   Level 25+: 2d12
   
-– Ki: The monk's unarmed attacks are empowered with ki, which allows them to be treated as magical weapons of +1 enchantment at 5th level, +2 at 10th level, +3 at 15th level, +4 at 20th level and +5 at 25th level. From 7th level, they are treated as silver weapons.
+– Ki: The monk's unarmed attacks are empowered with ki, which allows them to be treated as magical weapons of +1 enchantment at 4th level, +2 at 8th level, +3 at 12th level, +4 at 16th level and +5 at 20th level. From 7th level, they are treated as silver weapons.
 – Receives a +1 bonus to all Saving Throws. An additional +1 is gained at 5th level and every 5 levels thereafter.
 – The monk gains a +1 bonus to base Armor Class per point of Wisdom above 12. They gain an additional +1 to AC at 5th level and every 5 levels thereafter.
 – Deflect Missiles: The monk receives a +1 bonus to AC vs. missile attacks every 3 levels.
@@ -217,6 +217,43 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
     SET_2DA_ENTRY row 2 numCols ~0~
   END
 	
+COPY_EXISTING ~MFIST1.ITM~ OVERRIDE
+SAY NAME1 ~Fist~
+SAY NAME2 ~Fist~
+COPY_EXISTING ~MFIST2.ITM~ OVERRIDE
+SAY NAME1 ~Fist~
+SAY NAME2 ~Fist~
+COPY_EXISTING ~MFIST3.ITM~ OVERRIDE
+SAY NAME1 ~Fist +1~
+SAY NAME2 ~Fist +1~
+COPY_EXISTING ~MFIST4.ITM~ OVERRIDE
+SAY NAME1 ~Fist +1~
+SAY NAME2 ~Fist +1~
+COPY_EXISTING ~MFIST5.ITM~ OVERRIDE
+SAY NAME1 ~Fist +1~
+SAY NAME2 ~Fist +1~
+COPY_EXISTING ~MFIST6.ITM~ OVERRIDE
+SAY NAME1 ~Fist +2~
+SAY NAME2 ~Fist +2~
+COPY_EXISTING ~MFIST7.ITM~ OVERRIDE
+SAY NAME1 ~Fist +2~
+SAY NAME2 ~Fist +2~
+COPY_EXISTING ~MFIST8.ITM~ OVERRIDE
+SAY NAME1 ~Fist +3~
+SAY NAME2 ~Fist +3~
+COPY_EXISTING ~MFIST9.ITM~ OVERRIDE
+SAY NAME1 ~Fist +3~
+SAY NAME2 ~Fist +3~
+COPY_EXISTING ~MFIST10.ITM~ OVERRIDE
+SAY NAME1 ~Fist +4~
+SAY NAME2 ~Fist +4~
+COPY_EXISTING ~MFIST11.ITM~ OVERRIDE
+SAY NAME1 ~Fist +5~
+SAY NAME2 ~Fist +5~
+COPY_EXISTING ~MFIST12.ITM~ OVERRIDE
+SAY NAME1 ~Fist +5~
+SAY NAME2 ~Fist +5~
+
 COPY_EXISTING ~C0MN#04.SPL~ OVERRIDE
 SAY NAME1 ~Flurry of Blows~
 SAY UNIDENTIFIED_DESC ~Flurry of Blows
@@ -233,10 +270,20 @@ SAY NAME1 ~Empty Body~
 SAY UNIDENTIFIED_DESC ~Empty Body
 The monk gains the ability to fade from sight, granting them partial invisibility for one round per level. Attacks against the monk suffer a -4 penalty to attack rolls, and the monk's Saving Throws are made with a +4 bonus. The monk also cannot be targeted by spells from creatures unless they can see through invisibility.~
 
+COPY_EXISTING ~SPCL811.SPL~ OVERRIDE
+SAY NAME1 ~Stunning Blow~
+SAY UNIDENTIFIED_DESC ~Stunning Blow
+The monk sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.~
+
 COPY_EXISTING ~SPCL815.SPL~ OVERRIDE
 SAY NAME1 ~Wholeness of Body~
 SAY UNIDENTIFIED_DESC ~Wholeness of Body
-The monk instantly heals themselves for two hit points per monk level.~
+The monk instantly heals themselves for three hit points per monk level.~
+
+COPY_EXISTING ~SPCL820.SPL~ OVERRIDE
+SAY NAME1 ~Quivering Palm~
+SAY UNIDENTIFIED_DESC ~Quivering Palm
+The most advanced of the monk's techniques. When used, the monk's next successful attack within 10 seconds sets up fatal vibrations within the target's body, instantly killing them unless a successful Save vs. Death (-1 modifier per point of Wisdom above 16) is made.~
 
 COPY_EXISTING ~SPCL821.SPL~ OVERRIDE
 SAY NAME1 ~Perfect Self~
