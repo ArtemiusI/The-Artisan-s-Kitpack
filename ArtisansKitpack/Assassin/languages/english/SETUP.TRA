@@ -1,47 +1,47 @@
 @0    = ~Way of the Assassin: Assassin Kit Rework~
-@1    = ~^0xFF12B4E6ASSASSIN:^- The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
+@1    = ~ASSASSIN: The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
 
 Those who choose to walk the path of assassination do so for a variety of reasons. Many are opportunists, selling their services for personal gain. Some are vigilantes, hoping to make the world a better (or at least more peaceful) place by exterminating 'undesirables'. Yet others do so simply for the thrill of the kill. It is said that no two assassins are alike in either motive or technique.
 
 Because of the unsavory nature of their profession as well as their preferred mode of operation, assassins are dreaded and reviled by decent folk. Assassins do not seek fame and recognition, as such things are detrimental to their cause and thus they rarely take positions of leadership or band in groups at all. The best assassins are all but unknown.
 
-^0xFF12B4E6Advantages:^-
-– Begins with a x3 ^0xFFDBD8B8Backstab^- multiplier. The assassin's ^0xFFDBD8B8Backstab^- multiplier caps at x7 at 17th level.
-– Gains a +10% bonus to ^0xFFDBD8B8Hide in Shadows^- and ^0xFFDBD8B8Move Silently^- at 1st level and an extra +5% for every level thereafter.
-– Gains a +1 bonus to ^0xFFDBD8B8Saving Throws vs. Death^- at 1st level and every 10 levels thereafter.
-– May use the ^0xFF12B4E6Poison Weapon^- ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+Advantages:
+– Begins with a x3 Backstab multiplier. The assassin's Backstab multiplier caps at x7 at 17th level.
+– Gains a +10% bonus to Hide in Shadows and Move Silently at 1st level and an extra +5% for every level thereafter.
+– Gains a +1 bonus to Saving Throws vs. Death at 1st level and every 10 levels thereafter.
+– May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
 
-^0xFF12B4E6POISON WEAPON:^- The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's ^0xFFDBD8B8Constitution^- immediately and every following round for at least four rounds. After four rounds have passed, the target must make a ^0xFFDBD8B8Saving Throw vs. Death^- or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful ^0xFFDBD8B8Saving Throw^-. The target may not die of ^0xFFDBD8B8Constitution^- loss caused by the poison.
-  1st level: Target suffers two poison damage and loses one point of ^0xFFDBD8B8Constitution^-. No save modifier.
-  6th level: Target suffers four poison damage and loses one point of ^0xFFDBD8B8Constitution^-. Save modifier of -1.
-  11th level: Target suffers six poison damage and loses two points of ^0xFFDBD8B8Constitution^-. Save modifier of -2.
-  16th level: Target suffers eight poison damage and loses two points of ^0xFFDBD8B8Constitution^-. Save modifier of -3.
-  21st level: Target suffers ten poison damage and loses three points of ^0xFFDBD8B8Constitution^-. Save modifier of -4.
+POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
 
-– Gains the ^0xFF12B4E6Analysis^- and ^0xFF12B4E6Enhanced Backstab^- passive effects.
+– Gains the Analysis and Enhanced Backstab passive effects.
 
-^0xFF12B4E6ANALYSIS:^- For every round that the assassin remains ^0xFFDBD8B8Invisible^-, <PRO_HESHE> gains a +1 bonus to ^0xFFDBD8B8Hit^- and ^0xFFDBD8B8Damage^- up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Additionally, if the assassin remains ^0xFFDBD8B8Invisible^- for a full ten rounds, <PRO_HISHER> next attack becomes an automatic ^0xFFDBD8B8Critical Hit^-. Upon exiting stealth, all stacked bonuses are depleted immediately.
+ANALYSIS: For every round that the assassin remains Invisible, <PRO_HESHE> gains a +1 bonus to Hit and Damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Additionally, if the assassin remains Invisible for a full ten rounds, <PRO_HISHER> next attack becomes an automatic Critical Hit. Upon exiting stealth, all stacked bonuses are depleted immediately.
 
-^0xFF12B4E6ENHANCED BACKSTAB:^- The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
-  ^0xFF12B4E6Paralysis:^- Target must save vs. death at +2 or become ^0xFFDBD8B8Paralyzed^- for 2 rounds.
-  ^0xFF12B4E6Hamstring:^- Target must save vs. death or have their ^0xFFDBD8B8Movement Rate^- and ^0xFFDBD8B8Dexterity^- halved for 8 rounds.
-  ^0xFF12B4E6Bleeding:^- Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
-  ^0xFF12B4E6Cutthroat:^- Target must save vs. death or be ^0xFFDBD8B8Silenced^- for 20 rounds.
-  ^0xFF12B4E6Lethality (Level 17+):^- Target must save vs. death at +4 or be slain instantly. If target is immune to death effects, deal 20% maximum ^0xFFDBD8B8Hit Points^- in damage instead.
+ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+  Paralysis: Target must save vs. death at +2 or become Paralyzed for 2 rounds.
+  Hamstring: Target must save vs. death or have their Movement Rate and Dexterity halved for 8 rounds.
+  Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+  Cutthroat: Target must save vs. death or be Silenced for 20 rounds.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly. If target is immune to death effects, deal 20% maximum Hit Points in damage instead.
 
-– From 5th level onwards, gains the ^0xFF12B4E6Hidden Blade^- passive effect.
+– From 5th level onwards, gains the Hidden Blade passive effect.
 
-^0xFF12B4E6HIDDEN BLADE:^- When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns ^0xFFDBD8B8Invisible^- and moves at double <PRO_HISHER> ^0xFFDBD8B8Movement Rate^- for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
+HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns Invisible and moves at double <PRO_HISHER> Movement Rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
 
-– From 10th level onwards, gains the ^0xFF12B4E6Cloak of Shadows^- passive effect.
+– From 10th level onwards, gains the Cloak of Shadows passive effect.
 
-^0xFF12B4E6CLOAK OF SHADOWS:^- The assassin's mastery of stealth renders <PRO_HIMHER> completely undetectable and untargetable by all means, whether magical or mundane, while hiding or ^0xFFDBD8B8Invisible^-. Even creatures that normally see through invisibility cannot perceive the assassin.
+CLOAK OF SHADOWS: The assassin's mastery of stealth renders <PRO_HIMHER> completely undetectable and untargetable by all means, whether magical or mundane, while hiding or Invisible. Even creatures that normally see through invisibility cannot perceive the assassin.
 
-^0xFF12B4E6Disadvantages:^-
-– -2 penalty to ^0xFFDBD8B8Charisma.^-
-– -2 penalty to starting ^0xFFDBD8B8Reputation.^-
+Disadvantages:
+– -2 penalty to Charisma.
+– -2 penalty to starting Reputation.
 – May not wear armor heavier than leather armor.
-– May not ^0xFF12B4E6Set Traps.^-
+– May not Set Traps.
 – May only be of any non-good alignment.
 – May only distribute 10 skill points per level among thieving skills.~
 @2    = ~Vulnerable~
