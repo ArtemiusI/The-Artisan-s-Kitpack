@@ -62,38 +62,38 @@ ADD_KIT ~c0tbm~
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
   SAY ~rashemi berserker~
   SAY ~Rashemi Berserker~
-  SAY ~^0xFF12B4E6RASHEMI BERSERKER:^- The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.
+  SAY ~RASHEMI BERSERKER: The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.
   
-^0xFF12B4E6Advantages:^-
+Advantages:
 – Hit Die: d12
 – May achieve mastery in any melee weapon.
-– May use the ^0xFF12B4E6Berserker Rage^- ability once per day. Gains one additional use every 5 levels.
+– May use the Berserker Rage ability once per day. Gains one additional use every 5 levels.
 
-^0xFF12B4E6BERSERKER RAGE:^- The Rashemi berserker becomes ^0xFFDBD8B8Enraged^- for 2 turns. While ^0xFFDBD8B8Enraged^-, he gains a +2 bonus to his ^0xFFDBD8B8Strength^-, one bonus attack per round, and becomes immune to ^0xFFDBD8B8Charm^-, ^0xFFDBD8B8Confusion^-, ^0xFFDBD8B8Fear^-, ^0xFFDBD8B8Feeblemind^-, ^0xFFDBD8B8Hold^-, ^0xFFDBD8B8Level Drain^-, ^0xFFDBD8B8Maze^-, ^0xFFDBD8B8Stun^-, and ^0xFFDBD8B8Sleep^-. However, his ^0xFFDBD8B8Armor Class^- is penalized by 4 points while ^0xFFDBD8B8Enraged^-. The Rashemi berserker also gains 15 temporary ^0xFFDBD8B8Hit Points^-, which are taken away at the end of the berserk spree, possibly knocking him ^0xFFDBD8B8Unconscious^-. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to ^0xFFDBD8B8Strength^- increase to +4 at 12th level and +6 at 20th level.
+BERSERKER RAGE: The Rashemi berserker becomes Enraged for 2 turns. While Enraged, he gains a +2 bonus to his Strength, one bonus attack per round, and becomes immune to Charm, Confusion, Fear, Feeblemind, Hold, Level Drain, Maze, Stun, and Sleep. However, his Armor Class is penalized by 4 points while Enraged. The Rashemi berserker also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree, possibly knocking him Unconscious. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to Strength increase to +4 at 12th level and +6 at 20th level.
 
-Once the duration has ended, the Rashemi berserker becomes ^0xFFDBD8B8Winded^-, reducing his ^0xFFDBD8B8THAC0^-, ^0xFFDBD8B8Armor Class^- and ^0xFFDBD8B8Damage^- by four points, and he is unable to become ^0xFFDBD8B8Enraged^- again for one turn.
+Once the duration has ended, the Rashemi berserker becomes Winded, reducing his THAC0, Armor Class and Damage by four points, and he is unable to become Enraged again for one turn.
 
-– ^0xFF12B4E65th level:^- May use ^0xFF12B4E6Mighty Blow.^-
+– 5th level: May use Mighty Blow.
 
-^0xFF12B4E6MIGHTY BLOW:^- The Rashemi berserker may choose to forsake accuracy for more power, reducing his ^0xFFDBD8B8THAC0^- by 4 but dealing 4 extra points of ^0xFFDBD8B8Melee Damage^- per hit. ^0xFFDBD8B8THAC0^- and ^0xFFDBD8B8Melee Damage^- modifiers increase to 8 from level 20 onwards. This ability may be toggled at will.
+MIGHTY BLOW: The Rashemi berserker may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of Melee Damage per hit. THAC0 and Melee Damage modifiers increase to 8 from level 20 onwards. This ability may be toggled at will.
 
-– ^0xFF12B4E68th level:^- Gains ^0xFF12B4E6Unbreakable Will.^-
+– 8th level: Gains Unbreakable Will.
 
-^0xFF12B4E6UNBREAKABLE WILL:^- Rashemi berserkers have tremendous willpower. The berserker permanently gains +3 to ^0xFFDBD8B8Saves vs. Spells^-, which is doubled while ^0xFFDBD8B8Enraged^-. The Rashemi berserker also gains immunity to ^0xFFDBD8B8Psionics^- while ^0xFFDBD8B8Enraged^-.
+UNBREAKABLE WILL: Rashemi berserkers have tremendous willpower. The berserker permanently gains +3 to Saves vs. Spells, which is doubled while Enraged. The Rashemi berserker also gains immunity to Psionics while Enraged.
 
-– ^0xFF12B4E612th level:^- Gains ^0xFF12B4E6Unstoppable Rage.^-
+– 12th level: Gains Unstoppable Rage.
 
-^0xFF12B4E6UNSTOPPABLE RAGE:^- The Rashemi berserker has become a juggernaut while ^0xFFDBD8B8Enraged^-, truly a being to be feared. The berserker is immune to all movement-hindering effects and ^0xFFDBD8B8Imprisonment^- while ^0xFFDBD8B8Enraged^-.
+UNSTOPPABLE RAGE: The Rashemi berserker has become a juggernaut while Enraged, truly a being to be feared. The berserker is immune to all movement-hindering effects and Imprisonment while Enraged.
 
-– ^0xFF12B4E616th level:^- Gains ^0xFF12B4E6Tireless Rage.^-
+– 16th level: Gains Tireless Rage.
 
-^0xFF12B4E6TIRELESS RAGE:^- The Rashemi berserker is no longer ^0xFFDBD8B8Winded^- and will not suffer damage after his rage has ended.
+TIRELESS RAGE: The Rashemi berserker is no longer Winded and will not suffer damage after his rage has ended.
 
-– ^0xFF12B4E618th level:^- Gains ^0xFF12B4E6Deathless Frenzy.^-
+– 18th level: Gains Deathless Frenzy.
 
-^0xFF12B4E6DEATHLESS FRENZY:^- The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of being ^0xFFDBD8B8Enraged^-.
+DEATHLESS FRENZY: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of being Enraged.
 
-^0xFF12B4E6Disadvantages:^-
+Disadvantages:
 – Alignment restricted to any non-lawful.
 – May not wear heavier armor than splint mail.
 – May cast one less priest spell per level.
