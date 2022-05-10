@@ -56,9 +56,9 @@ ADD_KIT ~C0ELEM~
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
   SAY ~elementalist~
   SAY ~Elementalist~
-  SAY ~^0xFF12B4E6ELEMENTALIST:^- Elementalist druids specialize in the natural energies of Nature, allowing them to command the elements with exceptional skill.
+  SAY ~ELEMENTALIST: Elementalist druids specialize in the natural energies of Nature, allowing them to command the elements with exceptional skill.
 
-^0xFF12B4E6Advantages:^-
+Advantages:
 – +20% resistance to acid, cold, electrical and fire damage.
 – +20% to acid, cold, electrical and fire damage dealt.
 – Two arcane spells per spell level are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
@@ -70,7 +70,7 @@ ADD_KIT ~C0ELEM~
   6th level: Chain Lightning, Death Fog
   7th level: Protection from the Elements, Acid Storm
 
-^0xFF12B4E6Disadvantages:^-
+Disadvantages:
 – May not wear any armor.
 – May not cast any spells of the Animal and non-Elemental Summoning Spheres.
 – May not shapeshift into any animal forms.~
