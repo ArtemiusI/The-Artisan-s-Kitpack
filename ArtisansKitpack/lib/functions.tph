@@ -85,7 +85,7 @@ BEGIN
     // checking for sign
     ACTION_IF (~%hexNumber%~ STRING_MATCHES_REGEXP ~-.+~ = 0) BEGIN
       OUTER_SET signed = 1
-      OUTER_PATCH_SAVE hexNumber ~%hexNumber%~ BEGIN REPLACE_TEXTUALLY ~^-~ ~~ END
+      OUTER_PATCH_SAVE hexNumber ~%hexNumber%~ BEGIN REPLACE_TEXTUALLY ~~ ~~ END
     END ELSE BEGIN
       OUTER_SET signed = 0
     END
