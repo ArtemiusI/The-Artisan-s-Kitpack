@@ -87,7 +87,7 @@ CLASS FEATURES:
 – May make 2 unarmed attacks per round.
 – -1 to Speed Factor per 3 levels.
 
-– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
+– Flurry of Blows: The monk, while unarmed or wielding daggers, short swords or ninja-to, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
 
 – The monk's fists deal crushing damage and deal increase damage with level as follows:
   Level 1-2: 1d4
@@ -220,7 +220,7 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
 COPY_EXISTING ~C0MN#04.SPL~ OVERRIDE
 SAY NAME1 ~Flurry of Blows~
 SAY UNIDENTIFIED_DESC ~Flurry of Blows
-The monk, while unarmed or wielding daggers, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will.
+The monk, while unarmed or wielding daggers, short swords or ninja-to, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will.
 
 Upon reaching 8th level, the bonus increases to one full attack per round. At 10th level, THAC0 penalty decreases to -1.~
 
