@@ -1,0 +1,124 @@
+COPY ~%MOD_FOLDER%/Inquisitor/2da~ ~override~
+COPY ~%MOD_FOLDER%/Inquisitor/bams~ ~override~
+COPY ~%MOD_FOLDER%/Inquisitor/spells~ ~override~
+
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Negation~) STR_VAR bam_file = c0inqi01 RET c0inqi01 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Negation~) STR_VAR bam_file = c0inqi02 RET c0inqi02 = icon END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~INQUISITOR~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~INQUISITOR: The Inquisitor has dedicated <PRO_HISHER> life to finding and eliminating practitioners of evil magic and defeating the forces of darkness, and <PRO_HISHER> god has provided <PRO_HIMHER> with special abilities toward that end.
+
+Advantages:
+– Gains the Aura of Negation passive ability. 
+
+AURA OF NEGATION: The Inquisitor has innate Magic Resistance and grants half the amount to all allies within a 20-ft. radius, while reducing the casting speed of all enemies within the same radius. The magnitude of effects are as follows:
+
+1st-6th level: 10% magic resistance, -1 casting speed
+7th-12th level: 14% magic resistance, -1 casting speed
+13th-18th level: 18% magic resistance, -2 casting speed
+19th level onwards: 22% magic resistance, -2 casting speed
+
+– Gains the Eyes of Truth passive ability.
+
+EYES OF TRUTH: The inquisitor has a 20% + 2% per level chance of dispelling hostile illusions within a 20-ft. radius each round. Each individual target rolls separately.
+
+– May cast Dispel Magic once per day at the Inquisitor's level. Gains one use at level 1 and an additional use every 4 levels thereafter.
+– May cast Spell Turning once per day. Gains one use at level 1 and an additional use every 7 levels thereafter.
+– Immune to hold and charm.
+
+Disadvantages:
+– May not turn undead.
+– May not use the Lay On Hands ability. 
+– May not cast priest spells.~
+
+COPY_EXISTING ~C0INQ01.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0inqi02 END
+COPY_EXISTING ~C0INQ01a.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0inqi01 END
+
+COPY_EXISTING ~SPCL231.SPL~ OVERRIDE
+  SAY NAME1 ~Dispel Magic~
+  SAY UNIDENTIFIED_DESC ~Dispel Magic
+(Abjuration)
+
+Level: 1
+Range: 40 ft.
+Duration: Instant
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+A Dispel Magic spell removes magical effects upon anyone within the area. This includes effects given from spells, potions and certain magical items such as wands. It does not, however, affect enchanted magical items or spell protections such as Spell Turning and Spell Deflection. The chance of the dispel succeeding is determined by the level of the caster and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of the Dispel Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Dispel Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 5% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 5% chance of failure. Similarly if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the caster.
+
+Note: While this spell dispels the individual effects of Grease, Web, Stinking Cloud, and other such spells, it does not dispel the area of effect.~
+
+COPY_EXISTING ~C0INQ02a.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR header = 1  probability1 = 24 END
+  LPF ALTER_EFFECT INT_VAR header = 2  probability1 = 26 END
+  LPF ALTER_EFFECT INT_VAR header = 3  probability1 = 28 END
+  LPF ALTER_EFFECT INT_VAR header = 4  probability1 = 30 END
+  LPF ALTER_EFFECT INT_VAR header = 5  probability1 = 32 END
+  LPF ALTER_EFFECT INT_VAR header = 6  probability1 = 34 END
+  LPF ALTER_EFFECT INT_VAR header = 7  probability1 = 36 END
+  LPF ALTER_EFFECT INT_VAR header = 8  probability1 = 38 END
+  LPF ALTER_EFFECT INT_VAR header = 9  probability1 = 40 END
+  LPF ALTER_EFFECT INT_VAR header = 10  probability1 = 42 END
+  LPF ALTER_EFFECT INT_VAR header = 11  probability1 = 44 END
+  LPF ALTER_EFFECT INT_VAR header = 12  probability1 = 46 END
+  LPF ALTER_EFFECT INT_VAR header = 13  probability1 = 48 END
+  LPF ALTER_EFFECT INT_VAR header = 14  probability1 = 50 END
+  LPF ALTER_EFFECT INT_VAR header = 15  probability1 = 52 END
+  LPF ALTER_EFFECT INT_VAR header = 16  probability1 = 54 END
+  LPF ALTER_EFFECT INT_VAR header = 17  probability1 = 56 END
+  LPF ALTER_EFFECT INT_VAR header = 18  probability1 = 58 END
+  LPF ALTER_EFFECT INT_VAR header = 19  probability1 = 60 END
+  LPF ALTER_EFFECT INT_VAR header = 20  probability1 = 62 END
+  LPF ALTER_EFFECT INT_VAR header = 21  probability1 = 64 END
+  LPF ALTER_EFFECT INT_VAR header = 22  probability1 = 66 END
+  LPF ALTER_EFFECT INT_VAR header = 23  probability1 = 68 END
+  LPF ALTER_EFFECT INT_VAR header = 24  probability1 = 70 END
+  LPF ALTER_EFFECT INT_VAR header = 25  probability1 = 72 END
+  LPF ALTER_EFFECT INT_VAR header = 26  probability1 = 74 END
+  LPF ALTER_EFFECT INT_VAR header = 27  probability1 = 76 END
+  LPF ALTER_EFFECT INT_VAR header = 28  probability1 = 78 END
+  LPF ALTER_EFFECT INT_VAR header = 29  probability1 = 80 END
+  LPF ALTER_EFFECT INT_VAR header = 30  probability1 = 82 END
+  LPF ALTER_EFFECT INT_VAR header = 31  probability1 = 84 END
+  LPF ALTER_EFFECT INT_VAR header = 32  probability1 = 86 END
+  LPF ALTER_EFFECT INT_VAR header = 33  probability1 = 88 END
+  LPF ALTER_EFFECT INT_VAR header = 34  probability1 = 90 END
+  LPF ALTER_EFFECT INT_VAR header = 35  probability1 = 92 END
+  LPF ALTER_EFFECT INT_VAR header = 36  probability1 = 94 END
+  LPF ALTER_EFFECT INT_VAR header = 37  probability1 = 96 END
+  LPF ALTER_EFFECT INT_VAR header = 38  probability1 = 98 END
+  LPF ALTER_EFFECT INT_VAR header = 39  probability1 = 100 END
+
+COPY_EXISTING ~SPWI701.spl~ ~override/C0INQ03.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END

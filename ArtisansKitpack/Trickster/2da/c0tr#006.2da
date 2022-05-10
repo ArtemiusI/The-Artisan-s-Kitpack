@@ -1,16 +1,33 @@
 2DA V1.0
 ****
 				  ResRef     Type       
-POWERATTACK	  	  C0TR#43A   3
-CRITICALSTRIKE	  C0TR#44A   3
-DEATHBLOW		  C0TR#45A   3
-WHIRLWIND		  C0TR#46A   3
-WARCRY			  C0TR#47A   3
-HARDINESS		  C0TR#48A   3
-RESISTMAGIC		  C0TR#49A   3
-TRACKING		  C0TR#50A   3
-SHADOWFORM		  C0TR#51A   3
-SHADOWMAZE		  C0TR#52A   3
-SHADOWTWIN		  C0TR#53A   3
-ASSASSINATION	  C0TR#54A   3
-MAGICFLUTE		  C0TR#55A   3
+BERSERKER		  C0TR#10F	 3               
+WIZARDSLAYER	  C0TR#11F	 3               
+KENSAI			  C0TR#12F	 3               
+DWARFDEFENDER	  C0TR#13F	 3               
+ARCHER			  C0TR#14F	 3               
+STALKER			  C0TR#15F	 3               
+BEASTMASTER		  C0TR#16F	 3               
+CAVALIER		  C0TR#17F	 3               
+INQUISITOR		  C0TR#18F	 3               
+UNDEADHUNTER	  C0TR#19F	 3               
+BLACKGUARD		  C0TR#20F	 3               
+LATHANDER		  C0TR#21F	 3               
+HELM			  C0TR#22F	 3               
+TALOS			  C0TR#23F	 3               
+TYR				  C0TR#24F	 3               
+TEMPUS			  C0TR#25F	 3               
+TOTEMICDRUID	  C0TR#26F	 3               
+SHAPESHIFTER	  C0TR#27F	 3               
+AVENGER			  C0TR#28F	 3               
+MAGE			  C0TR#29F	 3               
+ASSASSIN		  C0TR#30F	 3               
+BOUNTYHUNTER	  C0TR#31F	 3               
+SWASHBUCKLER	  C0TR#32F	 3               
+SHADOWDANCER	  C0TR#33F	 3               
+BLADE			  C0TR#34F	 3               
+JESTER			  C0TR#35F	 3               
+SKALD			  C0TR#36F	 3               
+DARKMOON		  C0TR#37F	 3               
+SUNSOUL			  C0TR#38F	 3               
+DRAGONDISCIPLE	  C0TR#39F	 3               

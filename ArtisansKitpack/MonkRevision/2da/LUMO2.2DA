@@ -1,0 +1,22 @@
+2DA V1.0
+*
+        ABILITY       ICON        STRREF    MIN_LEV   MAX_LEVEL  NUM_ALLOWED  PREREQUISITE EXCLUDED_BY   ALIGNMENT_RESTRICT
+1       GA_C0MN#H01    *          *         1         99         1            *            *             *
+2       GA_C0MN#H04    *          *         1         99         1            *            *             *
+5       GA_C0MN#H07    *          *         1         99         20           *            *             *
+3       GA_C0MN#H05    *          *         1         99         20           *            *             *
+4       GA_C0MN#H06    *          *         1         99         1            GA_C0MN#H05  *             *
+6       GA_C0MN#H08    *          *         1         99         1            *            *             *
+9       AP_C0MN#H15    *          *         1         99         1            *            *             *
+10      AP_C0MN#H12    *          *         1         99         2            *            *             *
+11      AP_C0MN#H13    *          *         1         99         1            *            *             *
+12      AP_C0MN#H14    *          *         1         99         3            *            *             *
+13         *           *          *         *         *          *            *            *             *
+14         *           *          *         *         *          *            *            *             *
+15         *           *          *         *         *          *            *            *             *
+16         *           *          *         *         *          *            *            *             *
+17         *           *          *         *         *          *            *            *             *
+18         *           *          *         *         *          *            *            *             *
+19         *           *          *         *         *          *            *            *             *
+20         *           *          *         *         *          *            *            *             *
+21         *           *          *         *         *          *            *            *             *

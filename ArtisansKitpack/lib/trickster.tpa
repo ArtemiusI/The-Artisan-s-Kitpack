@@ -71,6 +71,10 @@ MIMICRY: Whether through careful examination, learning through use, or natural t
 – 10th level: Passive Luck bonus is doubled. Gains one use of Mimicry.
 – 15th level: Opportunist penalties increased to 3. Gains one use of Mimicry.
 – 20th level: Passive Luck bonus is tripled. Gains one use of Mimicry.
+– 25th level: Gains one use of Mimicry.
+– 30th level: Opportunist penalties increased to 4. Gains one use of Mimicry.
+– 35th level: Gains one use of Mimicry.
+– 40th level: Passive Luck bonus is quadrupled. Gains one use of Mimicry.
 
 Disadvantages:
 – Backstab progression is significantly weaker than a normal Thief's:
@@ -78,51 +82,8 @@ Disadvantages:
   Level 9+: x3
 – May not be of Lawful alignment.
 – Overconfidence: -1 penalty to Armor Class.
-– Only receives 90% of all experience earned.
-  
-MIMICRY
-
-The Trickster may choose among the following:
-
-Berserker: Enrage
-Wizard Slayer: +4% Magic Resistance
-Kensai: Kai
-Dwarven Defender: Defensive Stance
-
-Archer: Called Shot
-Stalker: +15% Hide In Shadows/Move Silently
-Beast Master: Animal Summoning
-
-Cavalier: Remove Fear
-Inquisitor: Dispel Magic
-Undead Hunter: +1 to hit/damage vs. undead
-Blackguard: Absorb Health
-
-Priest of Lathander: Boon of Lathander
-Priest of Helm: Seeking Sword
-Priest of Talos: Storm Shield
-Priest of Tyr: Exaltation
-Priest of Tempus: Chaos of Battle
-
-Totemic Druid: Summon Spirit Animal
-Shapeshifter: Shapeshift Werewolf
-Avenger: Shapeshift Fire Salamander
-
-Mage: One mage spell cast per day from level 1 to 4 depending on level
-
-Assassin: Poison Weapon
-Bounty Hunter: Set Special Snare
-Swashbuckler: +1 proficiency in Two-Weapon Fighting
-Shadowdancer: Shadowstep
-
-Blade: Offensive Spin
-Jester: Fool's Gambit (Jester battlesong effects for 3 rounds, single use)
-Skald: War Chant (Skald battlesong effects for 3 rounds, single use)
-
-Dark Moon Monk: Frozen Fist (gain monk fists as magic weapon for the duration)
-Sun Soul Monk: Flaming Fists (gain monk fists as magic weapon for the duration)
-
-Dragon Disciple: Breath Weapon~
+– May only distribute 20 skill points per level among thieving skills.
+– Only receives 90% of all experience earned as a trickster.~
 
 LAF fl#add_kit_ee
 STR_VAR
@@ -132,6 +93,7 @@ STR_VAR
 	sneakatt = ~1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
 	hpclass = ~hprog~
     numwslot = 2
+	thiefskl = ~40 20~
 END
 
 COPY ~%MOD_FOLDER%/Trickster/2da~ OVERRIDE
@@ -143,25 +105,81 @@ COPY_EXISTING ~C0TR#02.SPL~ OVERRIDE
 SAY NAME1 ~Trickery~
 SAY UNIDENTIFIED_DESC ~The Trickster uses masterful sleight of hand and quick movement to instantly replace themselves with an immobile life-sized replica of themselves for one round, becoming invisible in the process. The replica has one hit point. The trickster's next attack will remove the decoy, but is an automatic critical hit. The deception is so great that illusion-dispelling magicks and even creatures that see through invisibility are fooled and will not attack the trickster while the replica is standing.~
 
-COPY_EXISTING ~C0TR#04B.SPL~ OVERRIDE
+COPY_EXISTING ~C0TR#04Y.SPL~ OVERRIDE
 SAY NAME1 ~Mimicry I~
 SAY UNIDENTIFIED_DESC ~Whether through careful examination, learning through use, or natural talent, tricksters are able to adapt the skills of almost any profession and imitate them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit.~
 
-COPY_EXISTING ~C0TR#04B.SPL~ ~OVERRIDE/C0TR#05B.SPL~
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#05.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#05Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#05Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#05Y.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#002 END
 SAY NAME1 ~Mimicry II~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#05Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#05 END
 
-COPY_EXISTING ~C0TR#04B.SPL~ ~OVERRIDE/C0TR#06B.SPL~
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#06.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#06Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#06Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#06Y.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#003 END
 SAY NAME1 ~Mimicry III~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#06Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#06 END
 
-COPY_EXISTING ~C0TR#04B.SPL~ ~OVERRIDE/C0TR#07B.SPL~
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#07.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#07Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#07Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#07Y.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#004 END
 SAY NAME1 ~Mimicry IV~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#07Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#07 END
 
-COPY_EXISTING ~C0TR#04B.SPL~ ~OVERRIDE/C0TR#08B.SPL~
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#08.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#08Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#08Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#08Y.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#005 END
 SAY NAME1 ~Mimicry V~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#08Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#08 END
+
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#09.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#09Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#09Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#09Y.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#006 END
+SAY NAME1 ~Mimicry VI~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#09Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#09 END
+
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#10.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#10Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#10Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#10Y.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#007 END
+SAY NAME1 ~Mimicry VII~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#10Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#10 END
+
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#11.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#11Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#11Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#11Y.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#008 END
+SAY NAME1 ~Mimicry VIII~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#11Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#11 END
+
+COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#12.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#12Y END
+LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Z resource = C0TR#12Z END
+COPY_EXISTING ~C0TR#04Y.SPL~ ~OVERRIDE/C0TR#12Y.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#009 END
+SAY NAME1 ~Mimicry IX~
+COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#12Z.SPL~
+LPF ALTER_EFFECT STR_VAR resource = C0TR#12 END
 
 COPY_EXISTING ~C0TR#10A.SPL~ OVERRIDE
 SAY NAME1 ~Mimic: Enrage~
@@ -206,6 +224,13 @@ COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#20A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPWI119B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL102 END
 SAY NAME1 ~Mimic: Absorb Health~
+
+ACTION_IF FILE_EXISTS ~C0BG#00.spl~ THEN BEGIN
+COPY_EXISTING ~C0TR#20A.SPL~ OVERRIDE
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0BG#02 END
+SAY NAME1 ~Mimic: Life Drain~
+END
+
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#21A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL741B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL741 END
@@ -249,6 +274,14 @@ COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#30A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL423B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL423 END
 SAY NAME1 ~Mimic: Poison Weapon~
+
+ACTION_IF FILE_EXISTS ~c0as#p1.spl~ THEN BEGIN
+COPY_EXISTING ~C0TR#30A.SPL~ OVERRIDE
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0ASIN8B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0as#p1 END
+SAY NAME1 ~Mimic: Poison Weapon~
+END
+
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#31A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL414B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL414 END
@@ -309,11 +342,11 @@ SAY UNIDENTIFIED_DESC ~The trickster may permanently exchange this ability for o
 – Magic Flute~
 
 COPY_EXISTING ~C0TR#40.SPL~ ~OVERRIDE/C0TR#41.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#007 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#H02 END
 SAY NAME1 ~Greater Mimicry II~
 
 COPY_EXISTING ~C0TR#40.SPL~ ~OVERRIDE/C0TR#42.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#008 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 214 STR_VAR resource = C0TR#H03 END
 SAY NAME1 ~Greater Mimicry III~
 
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#43A.SPL~
@@ -384,13 +417,21 @@ SAY NAME1 ~Mimic: Magic Flute~
 
  ACTION_FOR_EACH mimics IN 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 BEGIN
 	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%B.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#05B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#05Y END
 	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%C.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#06B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#06Y END
 	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%D.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#07B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#07Y END
 	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%E.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#08B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#08Y END
+	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%F.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#09Y END
+	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%G.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#10Y END
+	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%H.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#11Y END
+	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%I.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#12Y END
 END
 
  ACTION_FOR_EACH hlamimics IN 43 44 45 46 47 48 49 50 51 52 53 54 55 BEGIN
@@ -400,32 +441,11 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#41 END
 LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#42 END
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~imoen.bcs~ AND GAME_IS ~bgee bg2ee eet~ AND NOT FILE_EXISTS_IN_GAME ~imoenkit.xx~ THEN BEGIN
-PRINT ~OPTIONAL: Give Imoen the Trickster Kit?~
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0TR#NM1.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Trickster~)
+WRITE_LONG 0x48 4
 
-PRINT ~Please choose one of the following:
-[1] Yes
-[2] No~
-
-OUTER_SPRINT ~kit~ ~placeholder_value~
-OUTER_WHILE (!(IS_AN_INT ~kit~) OR (~kit~ > 0x5) OR (~kit~ < 0x1)) BEGIN
-  PRINT ~Please select 1 or 2 and press Enter.~
-  ACTION_READLN ~kit~
-END
-      ACTION_IF ("kit" = 1) THEN BEGIN
-	COPY_EXISTING ~sw1h01.itm~ ~override/imoenkit.xx~
- ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
-    COPY_EXISTING ~%imoen%.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRICKS~))
-		ADD_KNOWN_SPELL ~C0TR#29Z~ #0 ~innate~
-		ADD_MEMORIZED_SPELL ~C0TR#29Z~ #0 ~innate~
-		LPF ADD_CRE_EFFECT INT_VAR opcode = 206 timing = 9 target = 2 STR_VAR resource = C0TR#04 END
-		BUT_ONLY
-END
-      END
-      ACTION_IF ("kit" = 2) THEN BEGIN
-      END
-      END
-      END
-	  
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0TR#NM2.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Mage / Trickster~)
+WRITE_LONG 0x20 1
+WRITE_LONG 0x48 13

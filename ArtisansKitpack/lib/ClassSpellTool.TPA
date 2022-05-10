@@ -1,0 +1,1010 @@
+//Here's an example of the ADD_CLASS_SPELL function in use:
+
+//LAF ADD_CLASS_SPELL STR_VAR resref=~SPWI299~ scroll=~SCRLZZ~ class_include=~{'MAGE_ALL', 'SORCERER'}~ kit_include=~{'JESTER'}~ kit_exclude=~{'DRAGON_DISCIPLE'}~ END
+
+//This makes the spell Summon Cow available to all mages and sorcerers, except the Dragon Disciple kit. It also makes the spell available to the Jester kit, but not to all bards. This means:
+
+//- A mage or a Jester can learn the spell from a scroll, but other bards can't.
+//- A sorcerer will be able to choose the spell on level up, unless they're a Dragon Disciple.
+
+//Don't worry about the parameters that have no comments next to them.
+DEFINE_ACTION_FUNCTION ADD_CLASS_SPELL
+	INT_VAR
+		level=~-1~
+		type=~-1~
+		name=~-1~
+		description=~-1~
+	STR_VAR
+		resref=~~ //Resref of the spell.
+		scroll=~~ //Resref of the scroll for the spell (optional, if you want to restrict who can learn the spell from the scroll).
+		icon=~~
+		groundicon=~~
+		class_include=~{}~ //A character with one of these classes (from CLASS.IDS) can learn the spell. Use the class wildcards (like 202 for all mages).
+		kit_include=~{}~ //A character with one of these kits can learn the spell, even if their class is not in the "class_include" list.
+		kit_exclude=~{}~ //A character with one of these kits cannot learn the spell, even if their class is in the "class_include" list. NOTE: YOU DO NOT HAVE TO SPECIFY THE SPECIALIST KITS THAT CANNOT LEARN THE SPELL; THE FUNCTION WILL HANDLE THOSE AUTOMATICALLY.
+		excludeAllNormalPriestSpellsFromThisKit=~~ //This kit can only learn priest spells that have the kit under "kit_include", regardless of what "class_include" says.
+		excludeAllNormalWizardSpellsFromThisKit=~~ //This kit can only learn wizard spells that have the kit under "kit_include", regardless of what "class_include" says.
+BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~MECS0.spl~) BEGIN
+	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.spl~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.eff~ ~override~
+END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~M_MEEXSP.lua~) BEGIN
+	COPY ~%MOD_FOLDER%/no_overwrite/M_MEEXSP.lua~ ~override~
+	COPY ~%MOD_FOLDER%/ClassSpellTool_overwrite~ ~override~
+
+	COPY_EXISTING ~hidespl.2da~ ~override~
+		REPLACE_TEXTUALLY ~\(IS_HIDDEN[ %TAB%]+IS_FINAL\)~ ~\1   IS_REMOVED~
+		REPLACE_TEXTUALLY ~\([^ %TAB%%WNL%%MNL%%LNL%]+[ %TAB%]+[01][ %TAB%]+[01]\)~ ~\1          0~
+		UNLESS ~IS_REMOVED~
+
+	COPY_EXISTING ~hidespl.2da~ ~override~
+		COUNT_2DA_COLS numcolumns
+		COUNT_2DA_ROWS numcolumns numrows
+		INSERT_2DA_ROW numrows numcolumns ~SPPR149    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR249    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR349    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR449    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR549    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR649    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR749    0          0          1~
+		UNLESS ~SPPR749    0          0          1~
+
+ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
+
+OUTER_TEXT_SPRINT get_class_from_inventory ~~~~~local me_realClass = -1
+	local me_realKit = -1
+	local me_realAlignment = 0
+	if me_classTextID[characters[id].class] ~= nil then
+		me_realClass = me_classTextID[characters[id].class][1]
+		me_realKit = me_classTextID[characters[id].class][2]
+	end
+	if me_alignmentTextID[Infinity_FetchString(characters[id].alignment)] ~= nil then
+		me_realAlignment = me_alignmentTextID[Infinity_FetchString(characters[id].alignment)]
+	end~~~~~
+
+OUTER_TEXT_SPRINT get_class_from_record ~~~~~local me_realClass = -1
+	local me_realKit = -1
+	local me_realAlignment = 0
+	if me_classTextID[characters[currentID].class] ~= nil then
+		me_realClass = me_classTextID[characters[currentID].class][1]
+		me_realKit = me_classTextID[characters[currentID].class][2]
+	end
+	if me_alignmentTextID[Infinity_FetchString(characters[currentID].alignment)] ~= nil then
+		me_realAlignment = me_alignmentTextID[Infinity_FetchString(characters[currentID].alignment)]
+	end~~~~~
+
+END ELSE BEGIN
+
+OUTER_TEXT_SPRINT get_class_from_inventory ~local me_realClass = EEex_GetActorClass(id)
+	local me_realKit = EEex_GetActorKit(id)
+	local me_realAlignment = EEex_GetActorAlignment(id)~
+
+OUTER_TEXT_SPRINT get_class_from_record ~local me_realClass = EEex_GetActorClass(currentID)
+	local me_realKit = EEex_GetActorKit(currentID)
+	local me_realAlignment = EEex_GetActorAlignment(currentID)~
+
+END
+
+COPY_EXISTING ~ui.menu~ ~override~
+	REPLACE_TEXTUALLY CASE_INSENSITIVE ~--reload language~ ~~~~~--reload language
+function me_canLearnSpell()
+	if id <= 0 then return end
+	%get_class_from_inventory%
+	local foundSpell = false
+	local canLearnSpell = false
+	if me_excludeAllNormalWizardSpellsFromTheseKits[me_realKit] then
+		foundSpell = true
+		canLearnSpell = false
+	end
+	for k, v in ipairs(me_addSpellChoice) do
+		if v.scroll == itemDesc.item.res then
+			foundSpell = true
+			for k2, v2 in ipairs(v.class_include) do
+				if v2 == me_realClass then
+					canLearnSpell = true
+				end
+			end
+			if me_excludeAllNormalWizardSpellsFromTheseKits[me_realKit] then
+				canLearnSpell = false
+			end
+			for k2, v2 in ipairs(v.kit_include) do
+				if v2 == me_realKit then
+					canLearnSpell = true
+				end
+			end
+			for k2, v2 in ipairs(v.kit_exclude) do
+				if v2 == me_realKit and v2 > 0x4000 and v2 ~= 0x80000000 then
+					canLearnSpell = false
+				end
+			end
+			if v.alignment_exclude ~= nil then
+				for k2, v2 in ipairs(v.alignment_exclude) do
+					if v2 == me_realAlignment then
+						canLearnSpell = false
+					end
+				end
+			end
+		end
+	end
+	if foundSpell then
+		return canLearnSpell
+	else
+		return itemDescRightButtonEnabled()
+	end
+end
+
+~~~~~
+
+COPY_EXISTING ~splautop.2da~ ~override~ ~splautos.2da~ ~override~
+	COUNT_2DA_COLS numcolumns
+	COUNT_2DA_ROWS numcolumns numrows
+	FOR (i = 0; i < numrows; ++i) BEGIN
+		FOR (j = 1; j < numcolumns; ++j) BEGIN
+			SET_2DA_ENTRY i j numcolumns ~*******~
+		END
+	END
+	IF_EXISTS
+
+ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
+
+ACTION_GET_STRREF 1102 stringlawfulgood
+ACTION_GET_STRREF 1103 stringlawfulevil
+ACTION_GET_STRREF 1104 stringlawfulneutral
+ACTION_GET_STRREF 1105 stringneutralgood
+ACTION_GET_STRREF 1106 stringtrueneutral
+ACTION_GET_STRREF 1107 stringneutralevil
+ACTION_GET_STRREF 1108 stringchaoticgood
+ACTION_GET_STRREF 1109 stringchaoticneutral
+ACTION_GET_STRREF 1110 stringchaoticevil
+//OUTER_SPRINT stringfighter #10174
+//OUTER_SPRINT stringmage #3139
+
+COPY_EXISTING ~ui.menu~ ~override~
+	PATCH_IF NOT FILE_CONTAINS_EVALUATED (~ui.menu~ ~me_classTextID = ~) BEGIN
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~--reload language~ ~--reload language
+
+me_classTextID = {}
+me_alignmentTextID = {["%stringlawfulgood%"] = 0x11, ["%stringlawfulneutral%"] = 0x12, ["%stringlawfulevil%"] = 0x13, ["%stringneutralgood%"] = 0x21, ["%stringtrueneutral%"] = 0x22, ["%stringneutralevil%"] = 0x23, ["%stringchaoticgood%"] = 0x31, ["%stringchaoticneutral%"] = 0x32, ["%stringchaoticevil%"] = 0x33, }
+
+~
+	END
+
+END
+
+COPY_EXISTING ~ui.menu~ ~override~
+	REPLACE_TEXTUALLY CASE_INSENSITIVE ~enabled[ %TAB%]*\"\([^\"]*\)itemDescRightButtonEnabled()\([\"]*\)\"~ ~enabled "\1me_canLearnSpell()\2"~
+	REPLACE_TEXTUALLY CASE_INSENSITIVE ~table.sort(chargen.choose_spell, sortBySpellName)~ ~~~~~		local me_spellChoiceType = 1
+		if string.sub(chargen.choose_spell[1]['key'], 3, 4) == 'PR' then
+			me_spellChoiceType = 2
+		end
+		%get_class_from_record%
+		local excludeNormalSpells = false
+		if (me_spellChoiceType == 1 and me_excludeAllNormalWizardSpellsFromTheseKits[me_realKit]) or (me_spellChoiceType == 2 and me_excludeAllNormalPriestSpellsFromTheseKits[me_realKit]) then
+			excludeNormalSpells = true
+		end
+		if me_spellChoiceType == 1 then
+			if me_realClass == 2 then
+				me_realClass = 7
+			elseif me_realClass == 3 then
+				me_realClass = 14
+			elseif me_realClass == 4 then
+				me_realClass = 13
+			end
+		end
+		local doAddSpell = false
+		local me_isAlreadyAvailable = false
+		local me_isKnown = false
+		local kit_include_resrefs = {}
+		for k, v in ipairs(me_addSpellChoice) do
+			doAddSpell = false
+			me_isAlreadyAvailable = false
+			if v.level == chargen.currentSpellLevelChoice and v.type == me_spellChoiceType and v.resref ~= '' then
+				for k2, v2 in ipairs(v.class_include) do
+					if v2 == me_realClass then
+						doAddSpell = true
+					end
+				end
+				if excludeNormalSpells then
+					doAddSpell = false
+				end
+				for k2, v2 in ipairs(v.kit_include) do
+					if v2 == me_realKit then
+						doAddSpell = true
+						kit_include_resrefs[v.resref] = true
+					end
+				end
+				for k2, v2 in ipairs(v.kit_exclude) do
+					if v2 == me_realKit then
+						doAddSpell = false
+					end
+				end
+				if v.alignment_exclude ~= nil then
+					for k2, v2 in ipairs(v.alignment_exclude) do
+						if v2 == me_realAlignment then
+							doAddSpell = false
+						end
+					end
+				end
+				if not doAddSpell then
+					for k2, v2 in ipairs(chargen.choose_spell) do
+						if v2.key == v.resref then
+							table.remove(chargen.choose_spell, k2)
+						end
+					end
+				end
+			end
+			if doAddSpell then
+				me_isKnown = false
+				if me_spellChoiceType == 1 then
+					for k2, v2 in ipairs(characters[currentID]['mageSpells'][v.level]) do
+						if v2.resref == v.resref then
+							me_isKnown = true
+						end
+					end
+				elseif me_spellChoiceType == 2 then
+					for k2, v2 in ipairs(characters[currentID]['priestSpells'][v.level]) do
+						if v2.resref == v.resref then
+							me_isKnown = true
+						end
+					end
+				end
+				if spellBook[v.level][v.resref] == nil then
+					spellBook[v.level][v.resref] = {['name'] = v.name, ['desc'] = v.description, ['hidden'] = false, ['autopick'] = false, ['known'] = me_isKnown, ['specialist'] = false, ['resref'] = v.resref, ['icon'] = v.icon, ['groundicon'] = v.groundicon}
+				elseif me_isKnown then
+					spellBook[v.level][v.resref].known = true
+				end
+				for k2, v2 in ipairs(chargen.choose_spell) do
+					if v2.key == v.resref then
+						me_isAlreadyAvailable = true
+					end
+				end
+				if not me_isAlreadyAvailable then
+					table.insert(chargen.choose_spell, {['known'] = me_isKnown, ['enabled'] = false, ['key'] = v.resref})
+				end
+			end
+		end
+		if excludeNormalSpells then
+			local i = 1
+			while i <= #chargen.choose_spell do
+				if chargen.choose_spell[i]['enabled'] then
+					createCharScreen:OnLearnMageSpellButtonClick(i)
+				end
+				if not kit_include_resrefs[chargen.choose_spell[i]['key']] then
+					table.remove(chargen.choose_spell, i)
+					i = i - 1
+				end
+				i = i + 1
+			end
+		end
+
+table.sort(chargen.choose_spell, sortBySpellName)~~~~~
+
+	REPLACE_TEXTUALLY CASE_INSENSITIVE ~table.sort(chargen.choose_spell, sortByPriestSpellName)~ ~~~~~
+		%get_class_from_record%
+		if me_realClass == 1 then
+			me_realClass = 14
+		elseif me_realClass == 2 then
+			me_realClass = 8
+			for k, v in ipairs(chargen.choose_spell) do
+				if v.key == 'SPPR105' then
+					me_realClass = 16
+				end
+			end
+		elseif me_realClass == 4 then
+			me_realClass = 15
+		elseif me_realClass == 12 then
+			me_realClass = 18
+			for k, v in ipairs(chargen.choose_spell) do
+				if v.key == 'SPPR105' then
+					me_realClass = 12
+				end
+			end
+		end
+		local excludeNormalSpells = (me_excludeAllNormalPriestSpellsFromTheseKits[me_realKit] == true)
+		local doAddSpell = false
+		local me_isAlreadyAvailable = false
+		local me_isKnown = false
+		local specialResref = 'SPPR' .. chargen.currentSpellLevelChoice .. '49'
+		if excludeNormalSpells then
+			local i = 1
+			while i <= #chargen.choose_spell do
+				if chargen.choose_spell[i]['key'] ~= specialResref then
+					table.remove(chargen.choose_spell, i)
+					i = i - 1
+				end
+				i = i + 1
+			end
+		end
+		for k, v in ipairs(me_addSpellChoice) do
+			doAddSpell = false
+			me_isAlreadyAvailable = false
+			if v.level == chargen.currentSpellLevelChoice and v.type == 2 and v.resref ~= '' then
+				for k2, v2 in ipairs(v.class_include) do
+					if v2 == me_realClass then
+						doAddSpell = true
+					end
+				end
+				if excludeNormalSpells then
+					doAddSpell = false
+				end
+				for k2, v2 in ipairs(v.kit_include) do
+					if v2 == me_realKit then
+						doAddSpell = true
+					end
+				end
+				for k2, v2 in ipairs(v.kit_exclude) do
+					if v2 == me_realKit then
+						doAddSpell = false
+					end
+				end
+				if not doAddSpell and v.resref ~= specialResref then
+					for k2, v2 in ipairs(chargen.choose_spell) do
+						if v2.key == v.resref then
+							table.remove(chargen.choose_spell, k2)
+						end
+					end
+				end
+			end
+		end
+		if #chargen.choose_spell == 1 then
+			local me_fakeMemorizeCount = chargen.extraSpells
+			for i = 1, me_fakeMemorizeCount, 1 do
+				createCharScreen:OnMemorizePriestSpellButtonClick(1, 1)
+			end
+			table.remove(chargen.choose_spell, 1)
+			for k, v in ipairs(me_addSpellChoice) do
+				doAddSpell = false
+				me_isAlreadyAvailable = false
+				if v.level == chargen.currentSpellLevelChoice and v.type == 2 and v.resref ~= '' then
+					for k2, v2 in ipairs(v.class_include) do
+						if v2 == me_realClass then
+							doAddSpell = true
+						end
+					end
+					if excludeNormalSpells then
+						doAddSpell = false
+					end
+					for k2, v2 in ipairs(v.kit_include) do
+						if v2 == me_realKit then
+							doAddSpell = true
+						end
+					end
+					for k2, v2 in ipairs(v.kit_exclude) do
+						if v2 == me_realKit then
+							doAddSpell = false
+						end
+					end
+					if doAddSpell then
+						priestSpells[v.level][v.resref] = {['name'] = v.name, ['desc'] = v.description, ['hidden'] = false, ['autopick'] = false, ['known'] = false, ['specialist'] = false, ['resref'] = v.resref, ['icon'] = v.icon, ['groundicon'] = v.groundicon}
+						for k2, v2 in ipairs(chargen.choose_spell) do
+							if v2.key == v.resref then
+								me_isAlreadyAvailable = true
+							end
+						end
+						if not me_isAlreadyAvailable then
+							table.insert(characters[currentID]['priestSpells'][v.level], {['name'] = v.name, ['description'] = v.description, ['resref'] = v.resref, ['masterResref'] = '', ['icon'] = v.icon, ['level'] = v.level - 1, ['index'] = #characters[currentID]['priestSpells'][v.level], ['memorizedIndex'] = -1, ['memorizedCount'] = 0, ['castableCount'] = 0,})
+							table.insert(chargen.choose_spell, {['count'] = 0, ['enabled'] = false, ['key'] = v.resref})
+						end
+					end
+				end
+			end
+		end
+		for k, v in ipairs(chargen.choose_spell) do
+			if v.key == specialResref then
+				table.remove(chargen.choose_spell, k)
+			end
+		end
+table.sort(chargen.choose_spell, sortByPriestSpellName)~~~~~
+//	REPLACE_TEXTUALLY CASE_INSENSITIVE ~\(name \'CHARGEN_MEMORIZE_PRIEST\'[^`]*clickable lua \"createCharScreen:IsDoneButtonClickable()\)~ ~\1 or #chargen.choose_spell == 0~
+
+END
+
+COPY_EXISTING ~%resref%.spl~ ~override~
+	PATCH_IF level = ~-1~ BEGIN
+		READ_LONG 0x34 level
+	END
+	PATCH_IF type = ~-1~ BEGIN
+		READ_SHORT 0x1C type
+	END
+	PATCH_IF name = ~-1~ BEGIN
+		READ_LONG NAME1 name
+	END
+	PATCH_IF description = ~-1~ BEGIN
+		READ_LONG UNIDENTIFIED_DESC description
+	END
+	PATCH_IF (~%icon%~ STRING_EQUAL_CASE ~~) BEGIN
+		READ_ASCII 0x3A icon
+	END
+	PATCH_IF (~%groundicon%~ STRING_EQUAL_CASE ~~) BEGIN
+		READ_ASCII 0x76 groundicon
+	END
+	READ_LONG 0x1E thespellunusability
+
+	IF_EXISTS
+	BUT_ONLY_IF_IT_CHANGES
+
+ACTION_IF NOT ~%excludeAllNormalWizardSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ OR NOT ~%excludeAllNormalPriestSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ BEGIN
+
+	ACTION_IF NOT ~%excludeAllNormalWizardSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ BEGIN
+
+		OUTER_PATCH_SAVE excludeAllNormalWizardSpellsFromThisKit ~%excludeAllNormalWizardSpellsFromThisKit%~ BEGIN
+			REPLACE_TEXTUALLY CASE_INSENSITIVE ~\'~ ~~
+			REPLACE_TEXTUALLY CASE_INSENSITIVE ~\"~ ~~
+		END
+	
+		COPY_EXISTING ~kit.ids~ ~override~
+			COUNT_2DA_ROWS 2 numrows
+			FOR (i = 0; i < numrows; ++i) BEGIN
+				READ_2DA_ENTRY i 1 2 thekitname
+				PATCH_IF ~%thekitname%~ STRING_EQUAL_CASE ~%excludeAllNormalWizardSpellsFromThisKit%~ BEGIN
+					READ_2DA_ENTRY i 0 2 thekitid
+					thekitid = thekitid + 0
+					TEXT_SPRINT excludeAllNormalWizardSpellsFromThisKit ~%thekitid%~
+				END
+			END
+			BUT_ONLY_IF_IT_CHANGES
+	
+		COPY_EXISTING ~m_meexsp.lua~ ~override~
+			REPLACE_TEXTUALLY CASE_SENSITIVE ~me_excludeAllNormalWizardSpellsFromTheseKits = {~ ~me_excludeAllNormalWizardSpellsFromTheseKits = {[%excludeAllNormalWizardSpellsFromThisKit%] = true, ~
+
+	END
+
+	ACTION_IF NOT ~%excludeAllNormalPriestSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ BEGIN
+
+		OUTER_PATCH_SAVE excludeAllPriestWizardSpellsFromThisKit ~%excludeAllNormalPriestSpellsFromThisKit%~ BEGIN
+			REPLACE_TEXTUALLY CASE_INSENSITIVE ~\'~ ~~
+			REPLACE_TEXTUALLY CASE_INSENSITIVE ~\"~ ~~
+		END
+	
+		COPY_EXISTING ~kit.ids~ ~override~
+			COUNT_2DA_ROWS 2 numrows
+			FOR (i = 0; i < numrows; ++i) BEGIN
+				READ_2DA_ENTRY i 1 2 thekitname
+				PATCH_IF ~%thekitname%~ STRING_EQUAL_CASE ~%excludeAllNormalPriestSpellsFromThisKit%~ BEGIN
+					READ_2DA_ENTRY i 0 2 thekitid
+					thekitid = thekitid + 0
+					TEXT_SPRINT excludeAllNormalPriestSpellsFromThisKit ~%thekitid%~
+				END
+			END
+			BUT_ONLY_IF_IT_CHANGES
+	
+		COPY_EXISTING ~m_meexsp.lua~ ~override~
+			REPLACE_TEXTUALLY CASE_SENSITIVE ~me_excludeAllNormalPriestSpellsFromTheseKits = {~ ~me_excludeAllNormalPriestSpellsFromTheseKits = {[%excludeAllNormalPriestSpellsFromThisKit%] = true, ~
+
+		ACTION_IF NOT FILE_EXISTS_IN_GAME ~MECSEP.spl~ BEGIN
+			COPY_EXISTING ~MECS0.spl~ ~override/MECSEP.spl~
+				LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=(0 - 1) END
+				FOR (i = 1; i <= 7; ++i) BEGIN
+					FOR (j = 0; j <= 4; ++j) BEGIN
+						FOR (k = 0; k <= 9; ++k) BEGIN
+							PATCH_IF FILE_EXISTS_IN_GAME ~SPPR%i%%j%%k%.spl~ BEGIN
+								LPF ADD_SPELL_EFFECT INT_VAR opcode=172 target=1 timing=1 STR_VAR resource= EVAL ~SPPR%i%%j%%k%~ END
+							END
+						END
+					END
+				END
+		END
+
+		COPY_EXISTING ~kitlist.2da~ ~override~
+			COUNT_2DA_ROWS 10 numrows
+			FOR (i = 1; i < numrows; ++i) BEGIN
+				READ_2DA_ENTRY i 9 10 kit_id
+				kit_id = kit_id + 0
+				PATCH_IF kit_id=excludeAllNormalPriestSpellsFromThisKit BEGIN
+					READ_2DA_ENTRY i 5 10 abilities_of_kit
+					INNER_ACTION BEGIN
+						COPY_EXISTING ~%abilities_of_kit%.2da~ ~override~
+							PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%abilities_of_kit%.2da~ ~%AP_MECSEP%~) BEGIN
+								COUNT_2DA_COLS numcolumns2
+								COUNT_2DA_ROWS 1 numrows2
+								SPRINT newspellrow ~ME_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP   AP_MECSEP~								FOR (j = 41; j < numcolumns2; ++j) BEGIN
+									SPRINT newspellrow ~%newspellrow%~ ^ ~   ME_MECSEP~
+								END
+								INSERT_2DA_ROW numrows2 1 ~%newspellrow%~
+							END
+							IF_EXISTS
+					END
+				END
+			END
+			BUT_ONLY_IF_IT_CHANGES
+	END
+
+END ELSE ACTION_IF level > ~-1~ AND type > ~-1~ BEGIN
+
+	ACTION_GET_STRREF 10174 stringfighter
+	ACTION_GET_STRREF 3139 stringmage
+
+	OUTER_SET numKitsChecked = 0
+	COPY_EXISTING ~m_meexsp.lua~ ~override~
+		READ_2DA_ENTRY 0 2 3 numKitsChecked
+	
+	OUTER_SET previousNumKitsChecked = numKitsChecked
+	
+	COPY_EXISTING ~clastext.2da~ ~override~
+		COUNT_2DA_COLS numcolumns
+		COUNT_2DA_ROWS numcolumns numrows
+		FOR (i = numKitsChecked; i < numrows; ++i) BEGIN
+			READ_2DA_ENTRY i 0 numcolumns class_special_name
+			READ_2DA_ENTRY i 1 numcolumns class_id
+			PATCH_IF (~%class_special_name%~ STRING_EQUAL_CASE ~WILD_MAGE~) BEGIN
+				READ_2DA_ENTRY i 5 numcolumns kit_name_ref
+				GET_STRREF kit_name_ref kit_name
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~ui.menu~ ~override~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~me_classTextID = {~ ~me_classTextID = {["%kit_name%"] = {%class_id%, 0x80000000}, ~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~<FIGHTERTYPE>~ ~%stringfighter%~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~<MAGESCHOOL>~ ~%stringmage%~
+				END
+			END ELSE BEGIN
+				READ_2DA_ENTRY i 2 numcolumns kit_id
+				is_special_kit_id = 0
+				k = 0x40
+				WHILE k <= 0x4000 BEGIN
+					PATCH_IF kit_id = k BEGIN
+						is_special_kit_id = 1
+						k = 0x8000
+					END
+					k = k * 2
+				END
+				PATCH_IF is_special_kit_id = 0 AND kit_id > 0 AND kit_id < 0x4000 BEGIN
+					kit_id = kit_id + 0x4000
+				END
+				READ_2DA_ENTRY i 5 numcolumns kit_name_ref
+				GET_STRREF kit_name_ref kit_name
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~ui.menu~ ~override~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~me_classTextID = {~ ~me_classTextID = {["%kit_name%"] = {%class_id%, %kit_id%}, ~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~<FIGHTERTYPE>~ ~%stringfighter%~
+						REPLACE_TEXTUALLY CASE_INSENSITIVE ~<MAGESCHOOL>~ ~%stringmage%~
+				END
+			END
+			numKitsChecked = numKitsChecked + 1
+		END
+		BUT_ONLY_IF_IT_CHANGES
+
+	COPY_EXISTING ~m_meexsp.lua~ ~override~
+		SET_2DA_ENTRY 0 2 3 numKitsChecked
+
+	OUTER_SET thespellunusability = 0
+	OUTER_TEXT_SPRINT alignment_exclude ~{}~
+
+	ACTION_IF STRING_LENGTH ~%resref%~ >= 4 BEGIN
+		LAF SUBSTRING INT_VAR start=0 length=4 STR_VAR string= EVAL ~%resref%~ RET spwipr=substring END
+		ACTION_IF ~%spwipr%~ STRING_EQUAL_CASE ~SPWI~ BEGIN
+			COPY_EXISTING ~hidespl.2da~ ~override~
+				PATCH_IF NOT FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%resref%~) BEGIN
+					COUNT_2DA_COLS numcolumns
+					COUNT_2DA_ROWS numcolumns numrows
+					PATCH_IF numcolumns = 3 BEGIN
+						INSERT_2DA_ROW numrows numcolumns ~%resref%    1          0~
+					END ELSE PATCH_IF numcolumns = 4 BEGIN
+						INSERT_2DA_ROW numrows numcolumns ~%resref%    1          0          0~
+					END
+				END
+				BUT_ONLY_IF_IT_CHANGES
+		END ELSE ACTION_IF ~%spwipr%~ STRING_EQUAL_CASE ~SPPR~ BEGIN
+			COPY_EXISTING ~hidespl.2da~ ~override~
+				PATCH_IF NOT FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%resref%~) BEGIN
+					COUNT_2DA_COLS numcolumns
+					COUNT_2DA_ROWS numcolumns numrows
+					PATCH_IF numcolumns = 3 BEGIN
+						INSERT_2DA_ROW numrows numcolumns ~%resref%    1          0~
+					END ELSE PATCH_IF numcolumns = 4 BEGIN
+						INSERT_2DA_ROW numrows numcolumns ~%resref%    1          0          0~
+					END
+				END
+				BUT_ONLY_IF_IT_CHANGES
+		END
+	END
+
+	COPY_EXISTING ~class.ids~ ~override~
+		COUNT_2DA_ROWS 2 numclassrows
+		BUT_ONLY_IF_IT_CHANGES
+
+	COPY_EXISTING ~kit.ids~ ~override~
+		COUNT_2DA_ROWS 2 numkitrows
+		BUT_ONLY_IF_IT_CHANGES
+
+	OUTER_SET restrict_alignment = 0
+	ACTION_CLEAR_ARRAY class_include_list
+	ACTION_CLEAR_ARRAY kit_include_list
+	ACTION_CLEAR_ARRAY kit_exclude_list
+	OUTER_SET $alignment_exclude_list(~17~) = 0
+	OUTER_SET $alignment_exclude_list(~18~) = 0
+	OUTER_SET $alignment_exclude_list(~19~) = 0
+	OUTER_SET $alignment_exclude_list(~33~) = 0
+	OUTER_SET $alignment_exclude_list(~34~) = 0
+	OUTER_SET $alignment_exclude_list(~35~) = 0
+	OUTER_SET $alignment_exclude_list(~49~) = 0
+	OUTER_SET $alignment_exclude_list(~50~) = 0
+	OUTER_SET $alignment_exclude_list(~51~) = 0
+	OUTER_PATCH_SAVE class_include ~%class_include%~ BEGIN
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[%WNL%%MNL%%LNL%]~ ~ ~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~\([0-9a-zA-Z'\"]\)[ %TAB%]*}~ ~\1, }~
+		PATCH_IF NOT (~%class_include%~ STRING_CONTAINS_REGEXP ~['\"]~) BEGIN
+			PATCH_SILENT
+			FOR (i = 0; i < numclassrows; ++i) BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~class.ids~ ~override~
+						READ_2DA_ENTRY i 0 2 theclassid
+						READ_2DA_ENTRY i 1 2 theclassname
+						BUT_ONLY_IF_IT_CHANGES
+				END
+				REPLACE_TEXTUALLY CASE_INSENSITIVE ~['\"]%theclassname%['\"]~ ~%theclassid%~
+			END
+			PATCH_VERBOSE
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~202~ ~1, 7, 10, 13, 14, 17~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~203~ ~2, 7, 8, 9, 10, 16, 17~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~204~ ~3, 8, 14, 15, 17, 18~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~205~ ~4, 9, 10, 13, 15~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~206~ ~5~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~207~ ~6~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~208~ ~11, 16~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~209~ ~12, 18~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[{}]~ ~~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~,~ ~ , ~
+		COUNT_2DA_COLS numcolumns
+		FOR (i = 0; i < numcolumns; ++i) BEGIN
+			READ_2DA_ENTRY 0 i numcolumns theentry
+			PATCH_IF NOT (~%theentry%~ STRING_EQUAL_CASE ~,~) BEGIN
+				theentry = theentry + 0
+				SET $class_include_list(~%theentry%~) = theentry
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~ , ~ ~,~
+	END
+	OUTER_PATCH_SAVE kit_include ~%kit_include%~ BEGIN
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[%WNL%%MNL%%LNL%]~ ~ ~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~\([0-9a-fA-F]\)[ %TAB%]*}~ ~\1, }~
+		PATCH_IF NOT (~%kit_include%~ STRING_CONTAINS_REGEXP ~['\"]~) BEGIN
+			PATCH_SILENT
+			FOR (i = 0; i < numkitrows; ++i) BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~kit.ids~ ~override~
+						READ_2DA_ENTRY i 0 2 thekitid
+						READ_2DA_ENTRY i 1 2 thekitname
+						BUT_ONLY_IF_IT_CHANGES
+				END
+				REPLACE_TEXTUALLY CASE_INSENSITIVE ~['\"]%thekitname%['\"]~ ~%thekitid%~
+			END
+			PATCH_VERBOSE
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[{}]~ ~~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~,~ ~ , ~
+		COUNT_2DA_COLS numcolumns
+		FOR (i = 0; i < numcolumns; ++i) BEGIN
+			READ_2DA_ENTRY 0 i numcolumns theentry
+			PATCH_IF NOT (~%theentry%~ STRING_EQUAL_CASE ~,~) BEGIN
+				theentry = theentry + 0
+				SET $kit_include_list(~%theentry%~) = theentry
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~ , ~ ~,~
+	END
+	OUTER_PATCH_SAVE kit_exclude ~%kit_exclude%~ BEGIN
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[%WNL%%MNL%%LNL%]~ ~ ~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~\([0-9a-fA-F]\)[ %TAB%]*}~ ~\1, }~
+		PATCH_IF NOT (~%kit_exclude%~ STRING_CONTAINS_REGEXP ~['\"]~) BEGIN
+			PATCH_SILENT
+			FOR (i = 0; i < numkitrows; ++i) BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~kit.ids~ ~override~
+						READ_2DA_ENTRY i 0 2 thekitid
+						READ_2DA_ENTRY i 1 2 thekitname
+						BUT_ONLY_IF_IT_CHANGES
+				END
+				REPLACE_TEXTUALLY CASE_INSENSITIVE ~['\"]%thekitname%['\"]~ ~%thekitid%~
+			END
+			PATCH_VERBOSE
+		END
+		PATCH_IF type != 2 BEGIN
+			PATCH_IF ((thespellunusability BAND 0x00000040) = 0x00000040) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x40, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000080) = 0x00000080) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x80, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000100) = 0x00000100) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x100, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000200) = 0x00000200) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x200, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000400) = 0x00000400) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x400, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000800) = 0x00000800) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x800, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00001000) = 0x00001000) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x1000, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00002000) = 0x00002000) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x2000, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00004000) = 0x00004000) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x4000, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x80000000) = 0x80000000) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x80000000, ~
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[{}]~ ~~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~,~ ~ , ~
+		COUNT_2DA_COLS numcolumns
+		FOR (i = 0; i < numcolumns; ++i) BEGIN
+			READ_2DA_ENTRY 0 i numcolumns theentry
+			PATCH_IF NOT (~%theentry%~ STRING_EQUAL_CASE ~,~) BEGIN
+				theentry = theentry + 0
+				SET $kit_exclude_list(~%theentry%~) = theentry
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~ , ~ ~,~
+	END
+
+	OUTER_PATCH_SAVE alignment_exclude ~%alignment_exclude%~ BEGIN
+		PATCH_IF type = 2 BEGIN
+			PATCH_IF ((thespellunusability BAND 0x00000001) = 0x00000001) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x31, 0x32, 0x33, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000002) = 0x00000002) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x13, 0x23, 0x33, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000004) = 0x00000004) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x11, 0x21, 0x31, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000008) = 0x00000008) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x12, 0x22, 0x32, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000010) = 0x00000010) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x11, 0x12, 0x13, ~
+			END
+			PATCH_IF ((thespellunusability BAND 0x00000020) = 0x00000020) BEGIN
+				REPLACE_TEXTUALLY ~{~ ~{0x21, 0x22, 0x23, ~
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~[{}]~ ~~
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~,~ ~ , ~
+		COUNT_2DA_COLS numcolumns
+		FOR (i = 0; i < numcolumns; ++i) BEGIN
+			READ_2DA_ENTRY 0 i numcolumns theentry
+			PATCH_IF NOT (~%theentry%~ STRING_EQUAL_CASE ~,~) BEGIN
+				restrict_alignment = 1
+				theentry = theentry + 0
+				SET $alignment_exclude_list(~%theentry%~) = theentry
+			END
+		END
+		REPLACE_TEXTUALLY CASE_INSENSITIVE ~ , ~ ~,~
+	END
+
+	OUTER_TEXT_SPRINT ability_gained ~GA_%resref%~
+
+	ACTION_IF restrict_alignment > 0 BEGIN
+		COPY_EXISTING ~MECS0.spl~ ~override~
+			READ_SHORT 0x28 thenextindex
+			thenextindex += 1
+			WRITE_SHORT 0x28 thenextindex
+
+		OUTER_TEXT_SPRINT ability_gained ~AP_MECS%thenextindex%~
+
+		COPY_EXISTING ~MECS0.spl~ ~override/MECS%thenextindex%.spl~
+			LPF ALTER_EFFECT INT_VAR check_headers=1 check_globals=0 match_opcode=177 STR_VAR match_resource=~MECS0~ resource= EVAL ~MECS%thenextindex%~ END
+			PHP_EACH alignment_exclude_list AS thealignmentkey => thealignment BEGIN
+				PATCH_IF thealignment > 0 BEGIN
+					LPF DELETE_EFFECT INT_VAR check_headers=1 check_globals=0 match_opcode=177 match_parameter1=thealignment match_parameter2=8 END
+				END
+			END
+
+		COPY_EXISTING ~MECS0.eff~ ~override/MECS%thenextindex%.eff~
+			WRITE_ASCIIE 0x30 ~%resref%~ #8
+	END
+
+	OUTER_SET add_to_meexsp = 0
+
+	ACTION_PHP_EACH class_include_list AS theclasskey => theclass BEGIN
+		OUTER_TEXT_SPRINT theclassclab ~~
+		OUTER_TEXT_SPRINT theclassspelltable ~~
+		ACTION_IF theclass = 3 OR theclass = 6 OR theclass = 11 OR theclass = 12 BEGIN
+			ACTION_IF theclass = 3 BEGIN
+				OUTER_TEXT_SPRINT theclassclab ~clabpr01~
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplprs~
+			END ELSE ACTION_IF theclass = 6 BEGIN
+				OUTER_TEXT_SPRINT theclassclab ~clabpa01~
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplpal~
+			END ELSE ACTION_IF theclass = 11 BEGIN
+				OUTER_TEXT_SPRINT theclassclab ~clabdr01~
+				OUTER_TEXT_SPRINT theclassspelltable ~mxspldru~
+			END ELSE ACTION_IF theclass = 12 BEGIN
+				OUTER_TEXT_SPRINT theclassclab ~clabrn01~
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplran~
+			END
+			OUTER_SET class_level = 0
+			COPY_EXISTING ~%theclassspelltable%.2da~ ~override~
+				COUNT_2DA_COLS numcolumns
+				COUNT_2DA_ROWS numcolumns numrows
+				PATCH_IF numcolumns > level BEGIN
+					FOR (i = 0; i < numrows; ++i) BEGIN
+						READ_2DA_ENTRY i level numcolumns num_spells
+						PATCH_IF num_spells > 0 BEGIN
+							READ_2DA_ENTRY i 0 numcolumns class_level
+							i = numrows
+						END
+					END
+				END
+				IF_EXISTS
+				BUT_ONLY_IF_IT_CHANGES
+
+			ACTION_IF class_level > 0 BEGIN
+					COPY_EXISTING ~%theclassclab%.2da~ ~override~
+						PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%theclassclab%.2da~ ~%ability_gained%~) BEGIN
+							COUNT_2DA_COLS numcolumns
+							COUNT_2DA_ROWS numcolumns numrows
+							SPRINT newspellrow ~ME_%resref%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+							FOR (i = 41; i < numcolumns; ++i) BEGIN
+								SPRINT newspellrow ~%newspellrow%~ ^ ~        ****~
+							END
+							INSERT_2DA_ROW numrows numcolumns ~%newspellrow%~
+							SET_2DA_ENTRY numrows class_level numcolumns ~%ability_gained%~
+						END
+						IF_EXISTS
+
+				COPY_EXISTING ~kitlist.2da~ ~override~
+					COUNT_2DA_ROWS 10 numrows
+					FOR (i = 1; i < numrows; ++i) BEGIN
+						READ_2DA_ENTRY i 8 10 class_of_kit
+						PATCH_IF class_of_kit=theclass BEGIN
+							READ_2DA_ENTRY i 9 10 kit_id
+							kit_id = kit_id + 0
+							kit_excluded = 0
+							PHP_EACH kit_exclude_list AS thekitkey => thekit BEGIN
+								PATCH_IF kit_id = thekit BEGIN
+									kit_excluded = 1
+								END
+							END
+							PATCH_IF kit_excluded = 0 BEGIN
+								READ_2DA_ENTRY i 5 10 abilities_of_kit
+								INNER_ACTION BEGIN
+									COPY_EXISTING ~%abilities_of_kit%.2da~ ~override~
+										PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%abilities_of_kit%.2da~ ~%ability_gained%~) BEGIN
+											COUNT_2DA_COLS numcolumns2
+											COUNT_2DA_ROWS 1 numrows2
+											SPRINT newspellrow ~ME_%resref%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+											FOR (j = 41; j < numcolumns2; ++j) BEGIN
+												SPRINT newspellrow ~%newspellrow%~ ^ ~        ****~
+											END
+											INSERT_2DA_ROW numrows2 1 ~%newspellrow%~
+											SET_2DA_ENTRY numrows2 class_level 1 ~%ability_gained%~
+										END
+										IF_EXISTS
+								END
+							END
+						END
+					END
+					BUT_ONLY_IF_IT_CHANGES
+			END
+		END ELSE ACTION_IF theclass = 1 OR theclass = 5 OR theclass = 7 OR theclass = 10 OR theclass = 13 OR theclass = 14 OR theclass = 17 OR theclass = 19 OR theclass = 21 BEGIN
+			OUTER_SET add_to_meexsp = 1
+		END
+	END
+
+	ACTION_PHP_EACH kit_include_list AS thekitkey => thekit BEGIN
+		OUTER_SET theclass = 0
+		OUTER_TEXT_SPRINT theclassclab ~~
+		OUTER_TEXT_SPRINT theclassspelltable ~~
+		OUTER_TEXT_SPRINT abilities_of_kit ~~
+		COPY_EXISTING ~kitlist.2da~ ~override~
+			COUNT_2DA_ROWS 10 numrows
+			FOR (i = 1; i < numrows; ++i) BEGIN
+				READ_2DA_ENTRY i 9 10 kit_id
+				kit_id = kit_id + 0
+				PATCH_IF kit_id = thekit BEGIN
+					READ_2DA_ENTRY i 8 10 theclass
+					READ_2DA_ENTRY i 5 10 abilities_of_kit
+				END
+			END
+			BUT_ONLY_IF_IT_CHANGES
+
+		ACTION_IF theclass = 3 OR theclass = 6 OR theclass = 11 OR theclass = 12 BEGIN
+			ACTION_IF theclass = 3 BEGIN
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplprs~
+			END ELSE ACTION_IF theclass = 6 BEGIN
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplpal~
+			END ELSE ACTION_IF theclass = 11 BEGIN
+				OUTER_TEXT_SPRINT theclassspelltable ~mxspldru~
+			END ELSE ACTION_IF theclass = 12 BEGIN
+				OUTER_TEXT_SPRINT theclassspelltable ~mxsplran~
+			END
+			OUTER_SET class_level = 0
+			COPY_EXISTING ~%theclassspelltable%.2da~ ~override~
+				COUNT_2DA_COLS numcolumns
+				COUNT_2DA_ROWS numcolumns numrows
+				PATCH_IF numcolumns > level BEGIN
+					FOR (i = 0; i < numrows; ++i) BEGIN
+						READ_2DA_ENTRY i level numcolumns num_spells
+						PATCH_IF num_spells > 0 BEGIN
+							READ_2DA_ENTRY i 0 numcolumns class_level
+							i = numrows
+						END
+					END
+				END
+				IF_EXISTS
+				BUT_ONLY_IF_IT_CHANGES
+
+			ACTION_IF class_level > 0 BEGIN
+
+				COPY_EXISTING ~%abilities_of_kit%.2da~ ~override~
+					PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%abilities_of_kit%.2da~ ~%ability_gained%~) BEGIN
+						COUNT_2DA_COLS numcolumns
+						COUNT_2DA_ROWS 1 numrows
+						SPRINT newspellrow ~ME_%resref%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+						FOR (i = 41; i < numcolumns; ++i) BEGIN
+							SPRINT newspellrow ~%newspellrow%~ ^ ~        ****~
+						END
+						INSERT_2DA_ROW numrows 1 ~%newspellrow%~
+						SET_2DA_ENTRY numrows class_level 1 ~%ability_gained%~
+					END
+					IF_EXISTS
+			END
+		END ELSE BEGIN
+			OUTER_SET add_to_meexsp = 1
+		END
+	END
+
+//ACTION_IF add_to_meexsp = 1 BEGIN
+
+	COPY_EXISTING ~m_meexsp.lua~ ~override~
+		PATCH_IF FILE_CONTAINS_EVALUATED (~m_meexsp.lua~ ~\[\"resref\"\][ %TAB%]+=[ %TAB%]+\"%resref%\"~) BEGIN
+
+			PATCH_IF !(~%scroll%~ STRING_EQUAL_CASE ~~) AND FILE_CONTAINS_EVALUATED (~m_meexsp.lua~ ~\[\"resref\"\] = \"%resref%\",[^\[]*\[\"scroll\"\] = \"\"~) BEGIN
+				REPLACE_TEXTUALLY CASE_SENSITIVE ~\[\"resref\"\] = \"%resref%\"[^\[]*\[\"scroll\"\] = \"\"~ ~["resref"] = "%resref%",
+		["scroll"] = "%scroll%"~
+			END
+			REPLACE_EVALUATE
+~\[\"resref\"\] = \"%resref%\",[^\[]*\[\"scroll\"\] = \"\([^\"]*\)\",[^{]*{\([^}]*\)}[^{]*{\([^}]*\)}[^{]*{\([^}]*\)}~
+BEGIN
+	SPRINT class_include ~%class_include%~ ^ ~%MATCH2%~
+	SPRINT kit_include ~%kit_include%~ ^ ~%MATCH3%~
+	SPRINT kit_exclude ~%kit_exclude%~ ^ ~%MATCH4%~
+END
+~["resref"] = "%resref%",
+		["scroll"] = "%MATCH1%",
+		["icon"] = "%icon%",
+		["groundicon"] = "%groundicon%",
+		["level"] = %level%,
+		["type"] = %type%,
+		["name"] = %name%,
+		["description"] = %description%,
+		["class_include"] = {%class_include%},
+		["kit_include"] = {%kit_include%},
+		["kit_exclude"] = {%kit_exclude%}~
+
+		END ELSE BEGIN
+			REPLACE_TEXTUALLY CASE_SENSITIVE ~me_addSpellChoice = {~ ~me_addSpellChoice = {
+	{
+		["resref"] = "%resref%",
+		["scroll"] = "%scroll%",
+		["icon"] = "%icon%",
+		["groundicon"] = "%groundicon%",
+		["level"] = %level%,
+		["type"] = %type%,
+		["name"] = %name%,
+		["description"] = %description%,
+		["class_include"] = {%class_include%},
+		["kit_include"] = {%kit_include%},
+		["kit_exclude"] = {%kit_exclude%},
+		["alignment_exclude"] = {%alignment_exclude%}
+	},~
+		END
+		IF_EXISTS
+
+//END
+
+END ELSE BEGIN
+	WARN ~%resref%.spl does not exist in game or in the override folder.~
+END
+
+END

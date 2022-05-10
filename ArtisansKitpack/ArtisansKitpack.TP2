@@ -2,6 +2,7 @@ BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
 VERSION ~2.1~
 ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/kit_strref.tpa~
@@ -11,83 +12,342 @@ ALWAYS
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 
-BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~
+BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~ DESIGNATED 1000
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 
-BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~
+BEGIN ~Artisan's Kitpack: Arcane Archer (Fighter/Mage)~ DESIGNATED 1001
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
+INCLUDE ~%MOD_FOLDER%/lib/aamage.tpa~
+
+BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~ DESIGNATED 1002
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
 
-BEGIN ~Artisan's Kitpack: The Art of Slaughter (Berserker Rework)~
+BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be installed.~
+
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid2.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid4.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid6.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid7.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+
+BEGIN ~Artisan's Kitpack: The Art of Slaughter (Berserker Rework)~ DESIGNATED 1003
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
 
-BEGIN ~Artisan's Kitpack: Art of the Sword Saint (Kensai Rework)~
+BEGIN ~Artisan's Kitpack: Art of the Sword Saint (Kensai Rework)~ DESIGNATED 1004
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
 
-BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~
+BEGIN ~Artisan's Kitpack: The Art of Rage (Barbarian Rework)~ DESIGNATED 1005
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Barbarian.tpa~
+
+BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~ DESIGNATED 2001
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
 
-BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~
+BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~ DESIGNATED 2002
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
 
-BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~
+BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~ DESIGNATED 3001
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
 
-BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~
+BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~ DESIGNATED 3101
+GROUP ~Paladin Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit must be installed.~
+ACTION_IF FILE_EXISTS_IN_GAME ~ajanti.cre~ THEN BEGIN
+    COPY_EXISTING ~ajanti.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+		BUT_ONLY
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~ajanti4.cre~ THEN BEGIN
+    COPY_EXISTING ~ajanti4.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+		BUT_ONLY
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~ajanti6.cre~ THEN BEGIN
+    COPY_EXISTING ~ajanti6.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+		BUT_ONLY
+END
+
+BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~ DESIGNATED 3002
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
 
-BEGIN ~Artisan's Kitpack: Way of the Anti-Paladin (Blackguard Rework)~
+BEGIN ~Artisan's Kitpack: Inquisitor Rework~ DESIGNATED 3003
+GROUP ~Paladin Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Inquisitor.tpa~
+
+BEGIN ~Artisan's Kitpack: Way of the Anti-Paladin (Blackguard Rework)~ DESIGNATED 3004
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Blackguard.tpa~
 
-BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~
+BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~ DESIGNATED 5001
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Elementalist.tpa~
 
-BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~
+BEGIN ~Artisan's Kitpack: Give Cernd the Elementalist Kit~ DESIGNATED 5101
+GROUP ~Druid Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Elementalist Kit must be installed.~
+ ACTION_FOR_EACH cernd IN CERND10 CERND12 CERND13 CERND13B CERND14 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%cernd%.cre~ THEN BEGIN
+    COPY_EXISTING ~%cernd%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ELEM~))
+		BUT_ONLY
+END
+END
+
+BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~ DESIGNATED 5002
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Hivemaster.tpa~
 
-BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~
+BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~ DESIGNATED 7001
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 
-BEGIN ~Artisan's Kitpack: Magekiller Thief Kit~
+BEGIN ~Artisan's Kitpack: Give Imoen the Rogue Archer Kit~ DESIGNATED 7101
+GROUP ~Thief Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Rogue Archer Kit must be installed.~
+FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7102~ ~Imoen is already installed as a Trickster.~
+ ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
+    COPY_EXISTING ~%imoen%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
+		SET_BG2_PROFICIENCY 102 0
+		SET_BG2_PROFICIENCY 105 2
+		BUT_ONLY
+END
+END
+
+BEGIN ~Artisan's Kitpack: Magekiller Thief Kit~ DESIGNATED 7002
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/magekiller.tpa~
 
-BEGIN ~Artisan's Kitpack: Trickster Thief Kit~
+BEGIN ~Artisan's Kitpack: Trickster Thief Kit~ DESIGNATED 7003
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/trickster.tpa~
 
-BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~
+BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
+GROUP ~Thief Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
+INCLUDE ~%MOD_FOLDER%/lib/trickster-mods.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Imoen the Trickster Kit~ DESIGNATED 7102
+GROUP ~Thief Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Rogue Archer Kit must be installed.~
+FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7101~ ~Imoen is already installed as a Rogue Archer.~
+ ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
+    COPY_EXISTING ~%imoen%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRICKS~))
+		ADD_KNOWN_SPELL ~C0TR#29Z~ #0 ~innate~
+		ADD_MEMORIZED_SPELL ~C0TR#29Z~ #0 ~innate~
+		LPF ADD_CRE_EFFECT INT_VAR opcode = 206 timing = 9 target = 2 STR_VAR resource = C0TR#04 END
+		BUT_ONLY
+END
+END
+
+BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Rework)~ DESIGNATED 7004
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 
-BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~
+BEGIN ~Assassin~ DESIGNATED 7103
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+GROUP ~Thief Kits~
+SUBCOMPONENT ~Artisan's Kitpack: Make Montaron a(n)~
+	  COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON~ ~OVERRIDE~
+
+BEGIN ~Fighter/Assassin~ DESIGNATED 7104
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+GROUP ~Thief Kits~
+SUBCOMPONENT ~Artisan's Kitpack: Make Montaron a(n)~
+COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON/DUALKIT~ ~OVERRIDE~
+ADD_KIT ~C0FASS~
+
+ // appended to CLASWEAP.2da
+ ~C0FASS		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                T   S           F   Q             S S
+//10                                W   C           L   U             W I
+//9                         B L S   O   I   W       A   A             O N
+//8                         A O H   H   M   A       I   R C   S       R G
+//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0FASS   2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0FASS				0      9	0	15	0	0~
+
+ // appended to ABCLSMOD.2da
+ ~C0FASS				0	0	0	0	0	-2~
+
+ // appended to ABDCDSRQ.2da
+ ~C0FASS                		0       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0FASS                 	0       0       0       0       0	0~
+
+ // appended to ALIGNMNT.2da
+ ~C0FASS                  	0       1       1       0      1	1       0       1       1~
+
+ // appended to DUALCLAS.2da
+ ~C0FASS                  	0       0       0       0       0       0~
+
+ // path to your CLAB-style 2da file 
+ ~%MOD_FOLDER%/2das/blankclab.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00040000     9~
+
+ // HLA table to use; see LUABBR.2da
+ ~C0FASS~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~LEAT08 * HELM07 BAG20 RING06 RING21 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~fighter / assassin~
+  SAY ~Fighter / Assassin~
+  SAY ~FIGHTER/ASSASSIN: This character can use the abilities of a Fighter and an Assassin. They may Specialize in, but not Master, any weapon they can use.
+  
+ASSASSIN: The Way of the Assassin is a feared profession, and rightfully so. A master of the art of killing, the assassin is noteworthy for being able to slay a living man with a single calculated blow or from the slightest cut with a poisoned blade. No man alive is capable of killing a target in as many ways as an assassin, and once an assassin has marked a chosen target, their fate is often sealed. While the act of assassination demands swiftness and guile, an assassin's most important skill is patience; the patience to analyze their target, observing for weaknesses, and finding the most effective way to ensure the kill and fade away unseen.
+
+Those who choose to walk the path of assassination do so for a variety of reasons. Many are opportunists, selling their services for personal gain. Some are vigilantes, hoping to make the world a better (or at least more peaceful) place by exterminating 'undesirables'. Yet others do so simply for the thrill of the kill. It is said that no two assassins are alike in either motive or technique.
+
+Because of the unsavory nature of their profession as well as their preferred mode of operation, assassins are dreaded and reviled by decent folk. Assassins do not seek fame and recognition, as such things are detrimental to their cause and thus they rarely take positions of leadership or band in groups at all. The best assassins are all but unknown.
+
+Advantages:
+– Begins with a x3 backstab multiplier. The assassin's backstab multiplier caps at x7 at 17th level.
+– Gains a +10% bonus to Hide in Shadows and Move Silently at 1st level and an extra +5% for every level thereafter.
+– Gains a +1 bonus to Saving Throws vs. Death at 1st level and every 10 levels thereafter.
+– May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+– Gains the Analysis and Enhanced Backstab passive effects.
+– From 5th level onwards, gains the Hidden Blade passive effect.
+– From 10th level onwards, gains the Cloak of Shadows passive effect.
+
+Disadvantages:
+– -2 penalty to Charisma.
+– -2 penalty to starting Reputation.
+– May not wear armor heavier than leather armor.
+– May not Set Traps.
+– May only be of any non-good alignment.
+– May only distribute 10 skill points per level among thieving skills.
+
+ABILITIES:
+
+POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+ANALYSIS: For every round that the assassin remains invisible, <PRO_HESHE> gains a +1 bonus to hit and damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Additionally, if the assassin remains invisible for a full ten rounds, <PRO_HISHER> next attack becomes an automatic critical hit. Upon exiting stealth, all stacked bonuses are depleted immediately.
+
+ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+  Paralysis: Target must save vs. death at +2 or become paralyzed for 2 rounds.
+  Hamstring: Target must save vs. death or have their movement rate and Dexterity halved for 8 rounds.
+  Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.
+  Cutthroat: Target must save vs. death or be silenced for 20 rounds.
+  Lethality (Level 17+): Target must save vs. death at +4 or be slain instantly. If target is immune to death effects, deal 20% maximum hit points in damage instead.
+
+HIDDEN BLADE: When the assassin kills <PRO_HISHER> target, <PRO_HESHE> briefly turns invisible and moves at double <PRO_HISHER> movement rate for one round. This may not occur more than once every five rounds, reduced by one round for every 5 levels gained thereafter (no cooldown at 30th level)
+
+CLOAK OF SHADOWS: The assassin's mastery of stealth renders <PRO_HIMHER> completely undetectable and untargetable by all means, whether magical or mundane, while hiding or invisible. Even creatures that normally see through invisibility cannot perceive the assassin.~
+
+LAF fl#add_kit_ee
+  STR_VAR
+		kit_name = C0FASS
+		backstab = ~2  3  3  3  3  4  4  4  4  5  5  5  5  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7~
+		sneakatt = ~0  1  1  2  2  3  3  4  4  5  5  6  6  7  7  8  8  9  9  10 10 11 11 12 12 13 13 14 14 15 15  16  16  17  17  18  18  19  19  20  20  21  21  22  22  23  23  24  24  25  25~
+		crippstr = ~1  2  2  3  3  4  4  5  5  6  6  7  7  8  8  9  9  10 10 11 11 12 12 13 13 14 14 15  15  16  16  17  17  18  18  19  19  20  20  21  21  22  22  23  23  24  24  25  25  26  26~ 
+		clasiskl = ~0 0 0 10 10 0 0~
+		clswpbon = ~0 0 3~
+		thiefskl = ~40 10~
+		hpclass = ~HPROG~
+END
+LAF qd_multiclass
+	STR_VAR
+		kit_name = C0FASS
+		kit_clab = CLABTH02
+		base_class = ~T~
+		mc_dir = ~%MOD_FOLDER%/2das~
+END
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0AS#NM.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Assassin~)
+WRITE_LONG 0x48 4
+	  COPY_EXISTING_REGEXP ~MONTAR.*.cre~ ~override~
+	  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0FASS~))
+
+BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 
-BEGIN ~Original Stat Bonuses~
+BEGIN ~Original Stat Bonuses~ DESIGNATED 8002
 SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
 GROUP ~Sorcerer Kits~
 OUTER_SET dd = 1
 INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
 
-BEGIN ~Nerfed stat bonuses (net +2 to STR)~
+BEGIN ~Nerfed stat bonuses (net +2 to STR)~ DESIGNATED 8003
 SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
 GROUP ~Sorcerer Kits~
 OUTER_SET dd = 2
 INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
 
-BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~
+BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~ DESIGNATED 9001
 GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
+
+BEGIN ~Artisan's Kitpack: Give M'khiin the Warhorn Shaman Kit~ DESIGNATED 9101
+GROUP ~Shaman Kits~
+REQUIRE_PREDICATE (GAME_INCLUDES ~sod~) ~This component requires Siege of Dragonspear.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~9001~ ~The Warhorn Shaman Kit must be installed.~
+	  COPY_EXISTING ~bdmkhi7.cre~ ~override~
+	  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0WSHAM~))
+	  WRITE_BYTE 0x24 90
+	  WRITE_BYTE 0x26 90
+	  SET_BG2_PROFICIENCY 92 2
+	  SET_BG2_PROFICIENCY 102 0
+
+BEGIN ~Artisan's Kitpack: Monk Revisions~ DESIGNATED 10001
+GROUP ~Monk Kits~
+INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~

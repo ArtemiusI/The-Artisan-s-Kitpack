@@ -56,9 +56,9 @@ ADD_KIT ~C0ELEM~
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
   SAY ~elementalist~
   SAY ~Elementalist~
-  SAY ~ELEMENTALIST: Elementalist druids specialize in the natural energies of Nature, allowing them to command the elements with exceptional skill.
+  SAY ~^0xFF12B4E6ELEMENTALIST:^- Elementalist druids specialize in the natural energies of Nature, allowing them to command the elements with exceptional skill.
 
-Advantages:
+^0xFF12B4E6Advantages:^-
 – +20% resistance to acid, cold, electrical and fire damage.
 – +20% to acid, cold, electrical and fire damage dealt.
 – Two arcane spells per spell level are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
@@ -68,9 +68,9 @@ Advantages:
   4th level: Fire Shield (Red), Ice Storm
   5th level: Cone of Cold, Sunfire
   6th level: Chain Lightning, Death Fog
-  7th level: Protection from the Elements, Delayed Blast Fireball
+  7th level: Protection from the Elements, Acid Storm
 
-Disadvantages:
+^0xFF12B4E6Disadvantages:^-
 – May not wear any armor.
 – May not cast any spells of the Animal and non-Elemental Summoning Spheres.
 – May not shapeshift into any animal forms.~
@@ -109,3 +109,57 @@ COPY_EXISTING ~SPWI702.spl~ ~override/C0EL702.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI712.spl~ ~override/C0EL712.spl~
 WRITE_SHORT 0x1C 2 
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI724.spl~ ~override/C0EL724.spl~
+WRITE_SHORT 0x1C 2 
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Elementalist/acidstorm/astorma.bam~ ~override~
+COPY ~%MOD_FOLDER%/Elementalist/acidstorm/astormx.bam~ ~override~
+COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724.spl~ ~override~
+SAY NAME1 ~Acid Storm~
+SAY UNIDENTIFIED_DESC ~Acid Storm
+(Evocation)
+
+Level: 7
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 7
+Area of Effect: 12-ft. radius
+Saving Throw: 1/2
+
+This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
+COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724b.bam~ ~override~
+COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724c.bam~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Elementalist/acidstorm/IDPRO211.PRO~
+END
+
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR204~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~ kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR305~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR319~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR402~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR410~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+ACTION_IF FILE_EXISTS ~sppr418.spl~ THEN BEGIN
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR418~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR501~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR517~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR602~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR604~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR717~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
+
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL103~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL115~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL211~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL217~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL304~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL308~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL404~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL418~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL503~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL523~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL614~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL615~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL702~  kit_include=~{'C0ELEM', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL712~  kit_include=~{'C0ELEM', }~ END

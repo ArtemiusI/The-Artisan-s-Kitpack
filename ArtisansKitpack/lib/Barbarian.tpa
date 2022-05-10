@@ -1,4 +1,31 @@
 
+COPY ~%MOD_FOLDER%/BARBARIAN/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/BARBARIAN/bams~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS~ ~OVERRIDE~
+
+APPEND ~STATE.IDS~ // STUN, PANIC, BERSERK, CHARM, FEEBLEMIND, CONFUSED
+  ~0x8010202f C0_BARB_STATUS~
+  UNLESS ~C0_BARB_STATUS~
+  
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Toughness~) STR_VAR bam_file = c0bari01 RET c0bari01 = icon END
+
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
 
@@ -9,6 +36,7 @@ CLASS FEATURES:
 – May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
 – Moves 2 points faster than other characters.
 – Immune to backstab.
+– Iron Will: The barbarian gains +1 to all Saving Throws for every 4 points of Constitution greater than 9.
 – Gains the Toughness passive ability.
 
 TOUGHNESS: The barbarian gains 5% physical damage reduction. This bonus is doubled when the barbarian falls below 50% maximum hit points.
@@ -29,16 +57,35 @@ INDOMITABLE WILL: When the barbarian is afflicted with any of the following affl
 – 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
 – 18th level: The barbarian no longer suffers fatigue penalties after Rage.
 – 20th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
+– 22nd level: Deathless Frenzy: The barbarian becomes unable to die for one round after Rage.
 – 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
 – Hit Die: d12~
 	
-COPY ~%MOD_FOLDER%/BARBARIAN/2DA~ ~OVERRIDE~
-COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS/C0BAR#1X.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0bari01 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 98 special = c0bari01 END
+
+COPY ~%MOD_FOLDER%/BARBARIAN/spells/c0bar#03.eff~ ~override~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~STATE~ ~C0_BARB_STATUS~)
+COPY ~%MOD_FOLDER%/BARBARIAN/spells/c0bar#06.spl~ ~override~
+SAY NAME1 ~Mighty Blow: Active~
+SAY NAME2 ~Mighty Blow: Active~
+SAY UNIDENTIFIED_DESC ~Mighty Blow
+
+The barbarian may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of damage per hit (melee only). THAC0 and damage modifiers increase to 8 from level 20 onwards.~
+
+COPY ~%MOD_FOLDER%/BARBARIAN/spells/c0bar#07.spl~ ~override~
+SAY NAME1 ~Mighty Blow: Inactive~
+SAY NAME2 ~Mighty Blow: Inactive~
+SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Mighty Blow at will.~
 
 COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS/SPCL152.SPL~ ~OVERRIDE~
-SAY NAME1 ~Rage~
-SAY UNIDENTIFIED_DESC ~Rage
-The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution and a +2 bonus to Saving Throws vs. Spell. However, the barbarian incurs a -2 penalty to Armor Class. Additionally, activating Rage restores any drained levels from the barbarian and protects them from subsequent level drain effects for the duration. When the rage expires, the barbarian becomes fatigued and suffers a -2 penalty to Strength, Dexterity, Armor Class and Movement Rate for 5 rounds. The barbarian cannot use Rage until this duration is over.~
+SAY NAME1 ~Barbarian Rage~
+SAY UNIDENTIFIED_DESC ~Barbarian Rage
+The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution and a +2 bonus to Saving Throws vs. Spell. However, the barbarian incurs a -2 penalty to Armor Class. Additionally, activating Rage restores any drained levels from the barbarian and protects them from subsequent level drain effects for the duration. When the rage expires, the barbarian becomes fatigued and suffers a -2 penalty to Strength, Dexterity, Armor Class and Movement Rate for 5 rounds. The barbarian cannot use Rage until this duration is over. From 10th level, Strength and Constitution bonuses are increased to +6, and from 24th level, they are increased to +8.~
 
+COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS/SPCL152a.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 206 parameter1 = RESOLVE_STR_REF (~You must wait for the current duration of Rage to expire.~) STR_VAR match_resource = spcl152 END
+  
 COPY ~%MOD_FOLDER%/BARBARIAN/SPELLS/C0BAR#05.SPL~ ~OVERRIDE~
 SAY NAME1 ~Indomitable Will~

@@ -30,7 +30,7 @@ Advantages
 – May turn undead as a Paladin of the same level.
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
 Level 1-10: x2
-Level 11-20: x3
+Level 11+: x3
 
 – May memorize a small selection of Mage spells:
 Level 1: Blindness, Larloch's Minor Drain
@@ -107,6 +107,12 @@ SAY NAME1 ~Life Drain~
 SAY UNIDENTIFIED_DESC ~Life Drain
 The blackguard saps the vitality of an unfortunate victim within touch range, draining 1 point of THAC0 and Damage (an additional point is drained per 5 levels up to a maximum of 5 points at 20th level), as well as 1 hit point per level, and adding it to <PRO_HISHER> maximum. The drained attributes last for 3 rounds + 1 round per level. Non-living beings, such as undead and constructs, are immune to the effects.~
 
+ACTION_IF FILE_EXISTS ~C0TR#20A.spl~ THEN BEGIN
+COPY_EXISTING ~C0TR#20A.SPL~ OVERRIDE
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0BG#02 END
+SAY NAME1 ~Mimic: Life Drain~
+END
+
 COPY_EXISTING ~c0as#p01.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
@@ -124,6 +130,15 @@ The user is capable of coating <PRO_HISHER> weapon for the next eight hours with
 11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
 16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
 21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4.~
+COPY_EXISTING ~c0as#p01.spl~ ~override/spcl423.spl~
+
+
+ACTION_IF FILE_EXISTS ~C0TR#30A.spl~ THEN BEGIN
+COPY_EXISTING ~C0TR#30A.SPL~ OVERRIDE
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0ASIN8B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0as#p1 END
+SAY NAME1 ~Mimic: Poison Weapon~
+END
 
 COPY_EXISTING ~C0BG#00.spl~ ~override~
   LPF ALTER_EFFECT

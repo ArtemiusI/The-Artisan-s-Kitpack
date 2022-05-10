@@ -1,0 +1,124 @@
+//ENABLE MORE MULTICLASSES___________________________________________________________
+//
+
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 34 1 8 ~1~
+		SET_2DA_ENTRY 35 1 8 ~1~
+		SET_2DA_ENTRY 36 1 8 ~1~
+		SET_2DA_ENTRY 37 1 8 ~1~
+		SET_2DA_ENTRY 46 1 8 ~1~
+		SET_2DA_ENTRY 47 1 8 ~1~
+		SET_2DA_ENTRY 48 1 8 ~1~
+		SET_2DA_ENTRY 49 1 8 ~1~
+		SET_2DA_ENTRY 50 1 8 ~1~
+		SET_2DA_ENTRY 51 1 8 ~1~
+//		SET_2DA_ENTRY 25 2 8 ~1~
+		SET_2DA_ENTRY 35 2 8 ~1~
+		SET_2DA_ENTRY 47 2 8 ~1~
+		SET_2DA_ENTRY 48 2 8 ~1~
+		SET_2DA_ENTRY 50 2 8 ~1~
+		SET_2DA_ENTRY 51 2 8 ~1~
+		SET_2DA_ENTRY 48 3 8 ~1~
+		SET_2DA_ENTRY 48 4 8 ~1~
+		SET_2DA_ENTRY 35 5 8 ~1~
+		SET_2DA_ENTRY 48 5 8 ~1~
+	BUT_ONLY
+END
+ACTION_IF ENGINE_IS ~tob~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 11 1 7 ~1~
+		SET_2DA_ENTRY 12 1 7 ~1~
+		SET_2DA_ENTRY 13 1 7 ~1~
+		SET_2DA_ENTRY 14 1 7 ~1~
+		SET_2DA_ENTRY 15 1 7 ~1~
+		SET_2DA_ENTRY 16 1 7 ~1~
+		SET_2DA_ENTRY 17 1 7 ~1~
+		SET_2DA_ENTRY 18 1 7 ~1~
+		SET_2DA_ENTRY 19 1 7 ~1~
+		SET_2DA_ENTRY 20 1 7 ~1~
+//		SET_2DA_ENTRY 5 2 7 ~1~
+		SET_2DA_ENTRY 12 2 7 ~1~
+		SET_2DA_ENTRY 15 2 7 ~1~
+		SET_2DA_ENTRY 16 2 7 ~1~
+		SET_2DA_ENTRY 18 2 7 ~1~
+		SET_2DA_ENTRY 20 2 7 ~1~
+		SET_2DA_ENTRY 16 3 7 ~1~
+		SET_2DA_ENTRY 16 4 7 ~1~
+		SET_2DA_ENTRY 12 5 7 ~1~
+		SET_2DA_ENTRY 16 5 7 ~1~
+	BUT_ONLY
+END
+
+ADD_KIT ~c0aa2~
+  ~c0aa2                1           1           1           1           1           1           1           1~
+  ~c0aa2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa2                0       15      0       14      0       0~
+  ~c0aa2                0       0       0       0       0       0~
+  ~c0aa2                17      0       0       0       0       0~
+  ~c0aa2                15      0       0       0       0       0~
+  ~c0aa2                1       1       1       1       1       1       1       1       1~
+  ~c0aa2                0       0       0       0       0       0~
+  ~ArtisansKitpack/2das/blankclab.2da~
+  ~K_FM_E K_FM_HE~
+  ~0x00008000     7~
+  ~fm0~
+  ~CLCK13 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY ~arcane archer / mage~
+  SAY ~Arcane Archer / Mage~
+  SAY ~ARCANE ARCHER/MAGE: This character can use the abilities of an Arcane Archer and a Mage, though they cannot cast spells while wearing armor.
+
+ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army.
+
+Advantages:
+
+- May achieve grandmastery in longbows, shortbows or crossbows.
+- +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
+- Gains the Enhance Arrow ability.
+
+ENHANCE ARROW: The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
+
+- 3rd level: May use Entropic Shield once per day.
+
+ENTROPIC SHIELD: A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.
+
+- 5th level: May use Imbue Arrow ability three times per day.
+
+IMBUE ARROW: Using arcane magic, the arcane archer enchants <PRO_HISHER> next missile within one round to explode, dealing 1d6 additional fire damage for every five levels gained thereafter in an area of effect.
+
+- 9th level: May use Seeker Arrow ability once per day.
+
+SEEKER ARROW: A skilled arcane archer can enchant <PRO_HISHER> arrows to strike its target unerringly. <PRO_HISHER> next missile attack within one round is a guaranteed critical hit and deals two points of extra damage for every five levels gained thereafter.
+
+- 13th level: May use Phase Arrow ability once per day.
+
+PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow within one round to become an incorporeal missile that penetrates armor, reducing the target's missile resistance by 50% as well as their armor class vs. missiles by two points for every five levels gained thereafter.
+
+- 17th level: May use Arrow of Death ability once per day.
+
+ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe on a failed save vs. death. Target's saving throw penalty is increased by one for every 5 levels gained thereafter.
+
+Disadvantages:
+
+- THAC0 penalty of 2 when wielding a melee weapon.
+- Race restricted to elf or half-elf.
+- May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
+- May not exceed proficiency (one slot) in any weapon style.
+- May not wear armor heavier than elven chain mail.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = c0aa2
+    hpclass  = ~HPFM~
+END
+
+LAF qd_multiclass
+	STR_VAR
+		kit_name = c0aa2
+		kit_clab = c0aa
+		base_class = ~F~
+		mc_dir = ~%MOD_FOLDER%/2das~
+END
+
+COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0AANAME.EFF~
+WRITE_LONG 0x1c RESOLVE_STR_REF (~Arcane Archer~)
+WRITE_LONG 0x48 2
