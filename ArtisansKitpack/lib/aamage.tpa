@@ -1,7 +1,7 @@
 //ENABLE MORE MULTICLASSES___________________________________________________________
 //
 
-	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+COPY_EXISTING ~CLSRCREQ.2da~ ~override~
 		SET_2DA_ENTRY 34 1 8 ~1~
 		SET_2DA_ENTRY 35 1 8 ~1~
 		SET_2DA_ENTRY 36 1 8 ~1~
@@ -22,8 +22,6 @@
 		SET_2DA_ENTRY 48 4 8 ~1~
 		SET_2DA_ENTRY 35 5 8 ~1~
 		SET_2DA_ENTRY 48 5 8 ~1~
-	BUT_ONLY
-END
 ACTION_IF ENGINE_IS ~tob~ THEN BEGIN
 	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
 		SET_2DA_ENTRY 11 1 7 ~1~

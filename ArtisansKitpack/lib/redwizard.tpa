@@ -55,18 +55,19 @@ ADD_KIT ~C0REDWIZ~
 
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
   SAY ~red wizard~
-  SAY ~Red Wizard (Conjuration)~
+  SAY ~Red Wizard (Conjurer)~
   SAY ~RED WIZARD: The Red Wizards are the masters of Thay, the conquerors of that land’s native Rashemi, and the would-be magical overlords of Faerûn. They focus on a school of magic more intently than any specialist, achieving incredible mastery of magic within a very narrow focus. Seen as cruel and evil tyrants by people across Toril, a few choose to leave their region, assume secret identities, and practice magic without having to worry about political alliances and possible slave uprisings.
 
 Advantages:
-– Enhanced Specialization: Upon becoming a Red Wizard, a character increases his devotion to his wizard school of specialization, gaining various bonuses towards their chosen school. All enemies within a 20-ft. radius of the Red Wizard suffer an additional -2 penalty to saving throws against spells of the Red Wizard's specialization.
+– Enhanced Specialization: Upon becoming a Red Wizard, a character increases his devotion to his wizard school of specialization, gaining various bonuses towards their chosen school.
+– All enemies within a 30-ft. radius of the Red Wizard suffer a -4 penalty when making Saving Throws against spells from the specialist's chosen school from all sources in place of the specialist's normal modifier on spells cast.
 – May cast one extra spell per level in addition to the bonus gained by specialization.
+– Spell Power: The Red Wizard's arcane spells are cast as though one level higher than their actual level. This bonus increases by +1 at 3rd, 6th, 9th and 12th level.
 – Specialist Defense: The Red Wizard gains an additional +1 bonus to saving throws against spells from his specialist school. This bonus increases by +1 at 4th, 8th, 12th and 16th level.
-– Spell Power: The Red Wizard's arcane spells are cast as though one level higher than their actual level. This bonus increases by +1 at 5th, 10th, 15th and 20th level.
 
 Disadvantages:
 – Must be of any non-good alignment.
-– In exchange for Enhanced Specialization, the Red Wizard must choose an additional prohibited school. He can never again learn spells from those prohibited schools, but can still use the prohibited spells he knew prior to becoming a Red Wizard. Edwin's additional prohibited school is Illusion.~
+– In exchange for Enhanced Specialization, the Red Wizard must choose an additional prohibited school. Edwin's additional prohibited school is Illusion.~
 
 LAF fl#add_kit_ee
   STR_VAR
@@ -86,6 +87,15 @@ Weight: 1~
 	ACTION_IF FILE_EXISTS_IN_GAME ~%edwin%.cre~ THEN BEGIN
     COPY_EXISTING ~%edwin%.cre~ ~override~
 		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0REDWIZ~))
+		REMOVE_KNOWN_SPELL ~SPWI120~ ~SPWI106~ ~SPWI212~ ~SPWI201~ ~SPWI307~ ~SPWI405~ ~SPWI505~
 		BUT_ONLY
 END
 END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EDWIN.BCS~ THEN BEGIN
+COPY_EXISTING_REGEXP GLOB ~EDWIN.BCS~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~AddSpecialAbility("SPWI212")~ ~~
+  END
+  BUT_ONLY
+  END

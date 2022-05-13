@@ -3,15 +3,64 @@ COPY ~%MOD_FOLDER%/MonkRevision/audio~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/bam~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/eff~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/fists~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/items~ ~OVERRIDE~
+
+//ENABLE MONK FOR HALFORCS___________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 54 1 8 ~1~
+		SET_2DA_ENTRY 54 7 8 ~1~
+		SET_2DA_ENTRY 56 1 8 ~1~
+		SET_2DA_ENTRY 56 7 8 ~1~
+		SET_2DA_ENTRY 57 1 8 ~1~
+		SET_2DA_ENTRY 57 7 8 ~1~
+	BUT_ONLY
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
+    ~female~ => ~MONK_FEMALE_HALFORC~
+    ~male~ => ~MONK_MALE_HALFORC~
+  END
+  ACTION_PHP_EACH halforc_monk_anims_6xxx AS folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/MonkRevision\animations\halforc\%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/MonkRevision\animations\halforc\%folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\halforc\female/6515.ini~ ~override/6515.ini~
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\halforc\male/6505.ini~ ~override/6505.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x6505 MONK_MALE_HALFORC~
+    APPEND ~ANIMATE.IDS~ ~0x6515 MONK_FEMALE_HALFORC~
+END
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_staff_anims_6xxx BEGIN
+    ~female_staff~ => ~MONK_FEMALE_HUMAN_STAFF~
+    ~male_staff~ => ~MONK_MALE_HUMAN_STAFF~
+    ~female_ho_staff~ => ~MONK_FEMALE_HALFORC_STAFF~
+    ~male_ho_staff~ => ~MONK_MALE_HALFORC_STAFF~
+  END
+  ACTION_PHP_EACH monk_staff_anims_6xxx AS folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\staff/%folder%\6xxx.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
+*/
 // WISDOM
-APPEND ~splprot.2da~ ~C0MNWIS 39 -1 1~
+APPEND ~splprot.2da~ ~C0HTWIS 39 -1 1~ UNLESS ~C0HTWIS~
 COPY_EXISTING ~splprot.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
-	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0MNWIS~ BEGIN
-	    SET C0MNWIS = %row%
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTWIS~ BEGIN
+	    SET C0HTWIS = %row%
 	  END
 	END
 COPY ~%MOD_FOLDER%/MonkRevision/spells~ ~OVERRIDE~
@@ -19,11 +68,23 @@ COPY ~%MOD_FOLDER%/MonkRevision/spells~ ~OVERRIDE~
 		INT_VAR
 			match_opcode = 326
 			match_parameter2 = 194
-			parameter2 = C0MNWIS
+			parameter2 = C0HTWIS
 			silent = 1
 	END
-	
-
+	/*
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
+    PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x21 monk //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 26) BEGIN // if it is a staff
+        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+*/
 DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 	OUTER_SET count = 0
 
@@ -55,6 +116,8 @@ DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
 				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
 					SET_2DA_ENTRY_LATER wweapprof 34 (col + 1) 1
+					//SET_2DA_ENTRY_LATER wweapprof 25 (col + 1) 1
+					//SET_2DA_ENTRY_LATER wweapprof 31 (col + 1) 1
 					SET_2DA_ENTRY_LATER wweapprof 34 58 3
 					SET_2DA_ENTRY_LATER wweapprof 18 58 3
 				END
@@ -274,6 +337,8 @@ COPY_EXISTING ~SPCL811.SPL~ OVERRIDE
 SAY NAME1 ~Stunning Blow~
 SAY UNIDENTIFIED_DESC ~Stunning Blow
 The monk sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.~
+COPY_EXISTING ~C0MN#01Z.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Stunned~) END
 
 COPY_EXISTING ~SPCL815.SPL~ OVERRIDE
 SAY NAME1 ~Wholeness of Body~
@@ -457,3 +522,330 @@ COPY_EXISTING ~C0SSM05.SPL~ OVERRIDE
 SAY NAME1 ~Solar Shield~
 SAY UNIDENTIFIED_DESC ~Solar Shield
 The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of fire damage and must make a save vs. spells or take an additional 1d8 fire damage and be blinded for one round.~
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//ITEMS
+
+COPY_EXISTING ~C0MNRO01.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +1~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 6
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO01.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +1~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 6
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO02.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +2~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 5
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO03.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +3~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 4
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO04.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +4~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 3
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO05.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Shining Hand +5~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~The Shining Hand Monastery in Vaasa has made an impressive reputation, and a small fortune, designing these robes. Demand has spread across many nations, such that different variations on the similar robes keep the monks hard at work. The robes increase a monk's senses to such a degree that she can focus on her opponent and move her body to absorb blows.
+
+Equipped abilities:
+– Armor Class: 2
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO06.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Old Order~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~Whatever the motives of the Monks of the Old Order might be, no one doubts that they are keenly, defensively minded. Rumor has it that the masters of the order attain ranks by being able to survive a beating by an Ogre, without ever raising a hand in defense. True or not, these robes, produced by the order to fund monasteries, are the trade mark of any monk who would survive in the frontlines of combat, against an enemy clad in armor.
+
+Equipped abilities:
+– Armor Class: +2
+– Physical Resistance: +10%
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO07.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Dark Moon~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~When she was a young student in the monastery of the Dark Moon monks, Beyl Van Yoren's teachers would constantly urge her to move faster and faster. They were finally appeased, when she suddenly began to be able to hit them four shots for every one of theirs. Despite her speed, Beyl found she had trouble concentrating on lessons, usually because she was moving so much faster than everyone else, that she would often grow bored and restless. Eventually she gave up the robes and the monastery to go and live with the wizard, whom she had traded 'personal favors' with for months, to earn the robes.
+
+Equipped abilities:
+– Haste
+– Saving Throws: -1
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO08.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Broken Ones~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~These bulky robe are worn by followers of Ilmater, god of endurance and martyrdom. Monks of the Order of the Broken Ones follow a code of selflessness, raising their fists to defend the innocents rather than deal harm to others. These robes are reflective of their pacifistic ideology, designed to protect its wearer from danger.
+
+Equipped abilities:
+– Armor Class: +4
+– Saving Throws: +2
+– Maximum Hit Points: +30
+– THAC0: -2
+– Immunity to Poison
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNBR01.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Yellow Rose +1~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Also referred to as the Disciples of the Saint Sollars, the Monastic Order of the Yellow Rose is known equally for its acts of great loyalty to its allies and those of great destruction to its enemies. Monks of this Order frequently travel alongside paladins of Ilmater, serving as trusted guides and companions to these knights of the suffering lord.
+
+Equipped abilities:
+– Fist THAC0: +1
+– Unarmed attacks strike as +1 weapons and deal 1 additional electrical damage
+
+Weight: 2~
+
+COPY_EXISTING ~C0MNBR02.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Yellow Rose +2~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Also referred to as the Disciples of the Saint Sollars, the Monastic Order of the Yellow Rose is known equally for its acts of great loyalty to its allies and those of great destruction to its enemies. Monks of this Order frequently travel alongside paladins of Ilmater, serving as trusted guides and companions to these knights of the suffering lord.
+
+Equipped abilities:
+– Fist THAC0: +2
+– Unarmed attacks strike as +2 weapons and deal 2 additional electrical damage
+
+Weight: 2~
+
+COPY_EXISTING ~C0MNBR03.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Yellow Rose +3~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Also referred to as the Disciples of the Saint Sollars, the Monastic Order of the Yellow Rose is known equally for its acts of great loyalty to its allies and those of great destruction to its enemies. Monks of this Order frequently travel alongside paladins of Ilmater, serving as trusted guides and companions to these knights of the suffering lord.
+
+Equipped abilities:
+– Fist THAC0: +3
+– Unarmed attacks strike as +3 weapons and deal 3 additional electrical damage
+
+Weight: 2~
+
+COPY_EXISTING ~C0MNBR04.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Long Death +1~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Founded in distant Thay, the Monastic Order of the Long Death celebrates the passage from life to lifelessness in all of its forms. It is said by those who have survived encounters with the Order that the grip of its adherents is like the icy touch of death itself, not soon to be forgotten.
+
+Equipped abilities:
+– Fist THAC0: +1
+– Unarmed attacks strike as +1 weapons and deal 1 additional cold damage
+
+Weight: 2~
+
+COPY_EXISTING ~C0MNBR05.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Long Death +2~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Founded in distant Thay, the Monastic Order of the Long Death celebrates the passage from life to lifelessness in all of its forms. It is said by those who have survived encounters with the Order that the grip of its adherents is like the icy touch of death itself, not soon to be forgotten.
+
+Equipped abilities:
+– Fist THAC0: +2
+– Unarmed attacks strike as +2 weapons and deal 2 additional cold damage
+
+Weight: 2~
+
+COPY_EXISTING ~C0MNBR06.ITM~ OVERRIDE
+SAY NAME1 ~Gauntlets~
+SAY NAME2 ~Gloves of the Long Death +3~
+SAY UNIDENTIFIED_DESC ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+SAY DESC ~Founded in distant Thay, the Monastic Order of the Long Death celebrates the passage from life to lifelessness in all of its forms. It is said by those who have survived encounters with the Order that the grip of its adherents is like the icy touch of death itself, not soon to be forgotten.
+
+Equipped abilities:
+– Fist THAC0: +3
+– Unarmed attacks strike as +3 weapons and deal 3 additional cold damage
+
+Weight: 2~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~tem3402.sto~ THEN BEGIN
+COPY_EXISTING ~tem3402.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro01~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnro02~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr01~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~stoblack.sto~ THEN BEGIN
+COPY_EXISTING ~stoblack.sto~ ~override~
+ADD_STORE_ITEM ~c0mnbr05~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~AR5001.ARE~ BEGIN
+    COPY_EXISTING ~AR5001.are~ ~override~
+      LPF ADD_AREA_ITEM
+      INT_VAR
+        container_to_add_to = 1
+      STR_VAR
+        item_to_add = ~c0mnbr04~
+      END
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~AR2615.ARE~ BEGIN
+    COPY_EXISTING ~AR2615.are~ ~override~
+      LPF ADD_AREA_ITEM
+      INT_VAR
+        container_to_add_to = 2
+      STR_VAR
+        item_to_add = ~c0mnbr02~
+      END
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~tem4082.sto~ THEN BEGIN
+COPY_EXISTING ~tem4082.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro01~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnro02~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnro03~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr01~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdkazzre.sto~ THEN BEGIN
+COPY_EXISTING ~bdkazzre.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro05~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bddosia.sto~ THEN BEGIN
+COPY_EXISTING ~bddosia.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro08~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbeleg4.sto~ THEN BEGIN
+COPY_EXISTING ~bdbeleg4.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro01~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnro02~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnro03~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr01~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr02~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr04~ #0 #0 #0 ~IDENTIFIED~ #1
+ADD_STORE_ITEM ~c0mnbr05~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdinsa06.cre~ THEN BEGIN
+COPY_EXISTING ~bdinsa06.cre~ ~override~
+ADD_CRE_ITEM ~c0mnbr03~ #0 #0 #0 ~NONE~ ~GLOVES~
+END
+
+ACTION_IF GAME_INCLUDES ~SOD~ THEN BEGIN
+COPY ~%MOD_FOLDER%/MonkRevision/creatures/C0MNEV01.cre~ ~override~
+SAY NAME1 ~Black Hand~
+SAY NAME2 ~Black Hand~
+COPY_EXISTING BD5300.are override
+  LPF fj_are_structure
+    INT_VAR
+    fj_loc_x          = 1417
+    fj_loc_y          = 1131
+    fj_dest_x         = 1417
+    fj_dest_y         = 1131
+    fj_animation      = 0x6500 
+    fj_orientation    = 0     
+    STR_VAR
+    fj_structure_type = actor
+    fj_name           = Black Hand
+    fj_cre_resref     = c0mnev01
+  END
+END
