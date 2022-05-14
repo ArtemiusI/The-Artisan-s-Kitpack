@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2.1~
+VERSION ~2.4~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
@@ -12,6 +12,73 @@ ALWAYS
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 
+BEGIN ~Artisan's Kitpack: Enable All Classes for All Races~ DESIGNATED 0001
+GROUP ~Rule Tweaks~
+INCLUDE ~%MOD_FOLDER%/lib/unlock_classes.tpa~
+
+BEGIN ~All Races~ DESIGNATED 0002
+GROUP ~Rule Tweaks~
+SUBCOMPONENT ~Artisan's Kitpack: Enable Multi-Classes for~
+COPY_EXISTING ~clsrcreq.2da~ ~override~
+  COUNT_2DA_ROWS 8 rows
+  FOR (row = 0 ; row < rows ; ++row) BEGIN
+    READ_2DA_ENTRY row 0 8 entry
+    PATCH_IF (("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE"        = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_CLERIC"      = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_THIEF"       = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_THIEF"  = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "MAGE_THIEF"          = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_MAGE"         = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_THIEF"        = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_DRUID"       = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_CLERIC" = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_RANGER"       = 0)) BEGIN
+      FOR (col = 1; col < 8 ; ++col) BEGIN
+        SET_2DA_ENTRY row col 8 1
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+ACTION_IF FILE_EXISTS_IN_GAME ~RACETEXT.2DA~ THEN BEGIN
+COPY_EXISTING ~RACETEXT.2DA~ OVERRIDE
+READ_2DA_ENTRY 1 3 5 human_racetext 
+END
+ 
+OUTER_SPRINT old ~Humans may not multi-class.~ // text to be removed
+ACTION_GET_STRREF %human_racetext% text // human description
+OUTER_INNER_PATCH_SAVE text ~%text%~ BEGIN
+  REPLACE_TEXTUALLY ~%old%~ ~~ // delete text if found
+END
+STRING_SET_EVALUATE 9550 ~%text%~
+
+BEGIN ~All Races Except Human~ DESIGNATED 0003
+GROUP ~Rule Tweaks~
+SUBCOMPONENT ~Artisan's Kitpack: Enable Multi-Classes for~
+COPY_EXISTING ~clsrcreq.2da~ ~override~
+  COUNT_2DA_ROWS 8 rows
+  FOR (row = 0 ; row < rows ; ++row) BEGIN
+    READ_2DA_ENTRY row 0 8 entry
+    PATCH_IF (("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE"        = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_CLERIC"      = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_THIEF"       = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_THIEF"  = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "MAGE_THIEF"          = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_MAGE"         = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_THIEF"        = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_DRUID"       = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_CLERIC" = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC_RANGER"       = 0)) BEGIN
+      FOR (col = 2; col < 8 ; ++col) BEGIN
+        SET_2DA_ENTRY  row col 8 1
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+
 BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~ DESIGNATED 1000
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
@@ -21,10 +88,12 @@ GROUP ~Fighter Kits~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/aamage.tpa~
 
-BEGIN ~Artisan's Kitpack: Give Skitia's Emily the Arcane Archer Kit~ DESIGNATED 1102
+BEGIN ~Arcane Archer~ DESIGNATED 1102
 GROUP ~Fighter Kits~
+SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
-FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1103~ ~Emily has already been installed as an Arcane Archer/Mage.~
+REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
 LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
 COPY ~Emily/creatures/X3milyAA.cre~ ~override/X3mily.cre~
   SAY NAME1 @1 //~Emily~
@@ -141,10 +210,12 @@ END
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 
-BEGIN ~Artisan's Kitpack: Give Skitia's Emily the Arcane Archer/Mage Kit~ DESIGNATED 1103
+BEGIN ~Arcane Archer / Mage~ DESIGNATED 1103
 GROUP ~Fighter Kits~
+SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
-FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1102~ ~Emily has already been installed as an Arcane Archer.~
+REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
 LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
 
 COPY ~Emily/creatures/X3milyAM.cre~ ~override/X3mily.cre~
@@ -257,6 +328,251 @@ COPY ~Emily/creatures/SoD/X32milyM.cre~ ~override/X32mily.cre~
   SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
   WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
 END 
+
+LOAD_TRA ~%MOD_FOLDER%/tra/%s~
+
+BEGIN ~Arcane Archer~ DESIGNATED 1104
+GROUP ~Fighter Kits~
+SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
+REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
+LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
+
+COPY ~SkitiaNPCs/cre/X3EmiA.cre~ ~override/X3Emi.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+
+COPY ~SkitiaNPCs/cre/X3EmiA25.cre~ ~override/X3Emi25.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi25~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi25~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+
+LOAD_TRA ~%MOD_FOLDER%/tra/%s~
+
+
+BEGIN ~Arcane Archer / Mage~ DESIGNATED 1105
+GROUP ~Fighter Kits~
+SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
+REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
+LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
+
+COPY ~SkitiaNPCs/cre/X3EmiM.cre~ ~override/X3Emi.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+
+COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
+   SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi25~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi25~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 

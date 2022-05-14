@@ -1,0 +1,85 @@
+COPY_EXISTING ~clsrcreq.2da~ ~override~
+  COUNT_2DA_ROWS 8 rows
+  FOR (row = 0 ; row < rows ; ++row) BEGIN
+    READ_2DA_ENTRY row 0 8 entry
+    PATCH_IF (("%entry%" STRING_COMPARE_CASE "MAGE"      = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "FIGHTER"   = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "BARBARIAN" = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "CLERIC"    = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "THIEF"     = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "BARD"      = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "PALADIN"   = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "DRUID"     = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "RANGER"    = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "SORCERER"  = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "MONK"      = 0) OR
+              ("%entry%" STRING_COMPARE_CASE "SHAMAN"    = 0)) BEGIN
+      FOR (col = 2; col < 8 ; ++col) BEGIN
+        SET_2DA_ENTRY row col 8 1
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+OUTER_SET col_start = 1
+
+COPY_EXISTING ~mgsrcreq.2da~ ~override~
+  FOR (col = (col_start + 1); col < (col_start + 8) ; ++col) BEGIN
+    SET_2DA_ENTRY 0 col (col_start + 8) 1
+  END
+  SET_2DA_ENTRY 0 (col_start + 6) (col_start + 8) 0 // keep mage/gnome = 0
+  PRETTY_PRINT_2DA
+  BUT_ONLY 
+
+COPY_EXISTING ~clsrcreq.2da~ ~override~
+  COUNT_2DA_ROWS 8 rows
+  FOR (row = 0 ; row < rows ; ++row) BEGIN
+    READ_2DA_ENTRY row 0 8 entry
+    PATCH_IF NOT (("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE"        = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER_CLERIC"      = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER_THIEF"       = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_THIEF"  = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "MAGE_THIEF"          = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "CLERIC_MAGE"         = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "CLERIC_THIEF"        = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER_DRUID"       = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER_MAGE_CLERIC" = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "CLERIC_RANGER"       = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "MAGE"                = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "FIGHTER"             = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "BARBARIAN"           = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "CLERIC"              = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "THIEF"               = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "BARD"                = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "PALADIN"             = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "DRUID"               = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "RANGER"              = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "SORCERER"            = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "MONK"                = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "SHAMAN"              = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "DWARVEN_DEFENDER"    = 0) OR
+                  ("%entry%" STRING_COMPARE_CASE "DUALCLASS"           = 0)) BEGIN
+      FOR (col = 1; col < 8 ; ++col) BEGIN
+        SET_2DA_ENTRY row col 8 1
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+// let dwarves get 17 CHR to be paladins
+COPY_EXISTING ~abracead.2da~ ~override~
+  READ_2DA_ENTRY 1 6 7 foo
+  PATCH_IF (foo < "-1") THEN BEGIN
+    SET_2DA_ENTRY  1 6 7 "-1"
+  END
+  // let half-orcs get 17 INT so they can dual to mages, config-only option
+  PATCH_IF ((VARIABLE_IS_SET halforc_dual_to_mage) AND (halforc_dual_to_mage = 1)) BEGIN  
+    READ_2DA_ENTRY 6 4 7 foo
+    PATCH_IF (foo < "-1") THEN BEGIN
+      SET_2DA_ENTRY  6 4 7 "-1"
+    END
+  END  
+  PRETTY_PRINT_2DA
+  BUT_ONLY
