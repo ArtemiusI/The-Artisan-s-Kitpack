@@ -134,32 +134,3 @@ This spell unleashes an acidic downpour on the area of effect, doing 1d4 points 
 COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724b.bam~ ~override~
 COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724c.bam~ ~override~
 END
-
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR204~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~ kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR305~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR319~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR402~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR410~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-ACTION_IF FILE_EXISTS ~sppr418.spl~ THEN BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR418~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR501~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR517~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR602~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR604~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR717~ class_include=~{'DRUID_ALL', 'RANGER_ALL', }~  kit_exclude=~{'C0ELEM', }~ END
-
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL103~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL115~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL211~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL217~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL304~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL308~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL404~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL418~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL503~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL523~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL614~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL615~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL702~  kit_include=~{'C0ELEM', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~C0EL724~  kit_include=~{'C0ELEM', }~ END
