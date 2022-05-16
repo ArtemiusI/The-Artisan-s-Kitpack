@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2.4~
+VERSION ~2.41~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~

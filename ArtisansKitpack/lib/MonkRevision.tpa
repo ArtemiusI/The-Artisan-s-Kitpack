@@ -77,7 +77,7 @@ COPY ~%MOD_FOLDER%/MonkRevision/spells~ ~OVERRIDE~
 	LPF ALTER_EFFECT
 		INT_VAR
 			match_opcode = 326
-			match_parameter2 = 194
+			match_special = 1000
 			parameter2 = C0HTWIS
 			silent = 1
 	END
@@ -289,6 +289,9 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
   FOR (row = 0; row < numRows; row += 1) BEGIN
     SET_2DA_ENTRY row 2 numCols ~0~
   END
+	
+COPY_EXISTING ~clasiskl.2da~ ~override~
+SET_2DA_ENTRY 8 55 1 ~10~
 	
 COPY_EXISTING ~MFIST1.ITM~ OVERRIDE
 SAY NAME1 ~Fist~
@@ -532,6 +535,10 @@ COPY_EXISTING ~C0SSM05.SPL~ OVERRIDE
 SAY NAME1 ~Solar Shield~
 SAY UNIDENTIFIED_DESC ~Solar Shield
 The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of fire damage and must make a save vs. spells or take an additional 1d8 fire damage and be blinded for one round.~
+
+
+COPY_EXISTING ~c0as#p01.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Poison~) END
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
