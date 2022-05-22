@@ -938,6 +938,6 @@ BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
 
-BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20000
+BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20001
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster.tpa~
