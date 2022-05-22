@@ -1,0 +1,174 @@
+COPY ~%MOD_FOLDER%/Paladin/Martyr/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Paladin/Martyr/spells~ ~OVERRIDE~
+
+// Martyr
+
+ADD_KIT ~C0ILM~
+
+ // appended to CLASWEAP.2da
+ ~C0ILM		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                T   S           F   Q             S S
+//10                                W   C           L   U             W I
+//9                         B L S   O   I   W       A   A             O N
+//8                         A O H   H   M   A       I   R C   S       R G
+//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0ILM		2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 0 0 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0ILM				12      0	9	0	13	17~
+
+ // appended to ABCLSMOD.2da
+ ~C0ILM				0	0	0	0	0	0~
+
+ // appended to ABDCDSRQ.2da
+ ~C0ILM                		0       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0ILM                 	0       0       0       0       0	0~
+
+ // appended to ALIGNMNT.2da
+ ~C0ILM                  	1       0       0       0       0	0       0       0       0~
+
+ // appended to DUALCLAS.2da
+ ~C0ILM                  	0       0       0       0       0       0~
+
+ // path to your CLAB-style 2da file 
+ ~%MOD_FOLDER%/Paladin/Martyr/2da/C0ILMCL.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~K_P_H K_P_E K_P_HE K_P_HL K_P_G K_P_D K_P_HO~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00000008     6~
+
+ // HLA table to use; see LUABBR.2da
+ ~PA0~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~martyr~
+  SAY ~Martyr~
+  SAY ~MARTYR: Martyrs are worshippers of Ilmater, the good god of suffering, endurance and perseverance. Paladins of Ilmater's order are compassionate and train themselves to become protectors of their allies and to alleviate the suffering of others.
+
+Advantages:
+– May use Lay on Hands three times per day.
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– May use the Sacrifice ability once per day. Gains an additional use at 5th level and every 5 levels thereafter.
+
+SACRIFICE: The martyr transfers 10 hit points plus 2 per level to the target, up to a maximum of 50 hit points at 20th level. The martyr cannot be killed by the sacrifice—if their hit points would go below 1, they are knocked unconscious instead.
+
+– May use the Martyrdom ability once per day starting at level 5. Gains an additional use at 10th level and every 10 levels thereafter.
+
+MARTYRDOM: The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr gains a temporary +6 bonus to Armor Class, +30% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.
+
+– 3rd level: Gains Aura of Protection.
+
+AURA OF PROTECTION: The martyr exudes a protective aura which shields their companions, granting all nearby allied creatures with in a 15-ft. radius bonuses to Armor Class and resistance to crushing, piercing, slashing and missile damage.
+  3rd - +1 to Armor Class and +5% resistance.
+  10th - +2 to Armor Class and +10% resistance.
+  17th - +2 to Armor Class and +15% resistance.
+  24th - +3 to Armor Class and +20% resistance.
+
+– 9th level: Gains the Final Breath passive effect.
+
+FINAL BREATH: The martyr's dauntless heroism and endurance keeps their allies motivated and safe, even in death. If the martyr is slain, all allies are healed for 50% of their maximum hit points and gain +4 to hit, damage and saving throws for two turns.
+
+– 12th level: The martyr becomes immune to fatigue.
+– 15th level: May use the Ilmater's Grace ability once per day.
+
+ILMATER'S GRACE: The martyr may call upon a second wind in battle, instantly healing half of their maximum hit points. The martyr gradually regenerates an additional half of their maximum hit points over the next five rounds.
+
+– Hit Die: d12
+
+Disadvantages:
+– Incurs a -1 penalty to damage.
+– May not cast Protection from Evil.
+– May not use Smite Evil.
+– May not Turn Undead.
+– May not use ranged weapons.~
+
+LAF fl#add_kit_ee
+  STR_VAR
+    kit_name = C0ILM
+    clswpbon = ~1 0 3~
+	hpclass = ~HPBARB~
+	clsrcreq = ~1 0 0 0 0 0 0~
+    numwslot = 3
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Protection~) STR_VAR bam_file = c0ilmi2i RET c0ilmi2i = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Martyrdom~) STR_VAR bam_file = c0ilms2i RET c0ilms2i = icon END
+
+// CURRENT HP CHECK
+APPEND ~splprot.2da~ ~C0CURHP%TAB%0%TAB%-1%TAB%0~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0CURHP~ BEGIN
+	    SET C0CURHP = %row%
+	  END
+	END
+	
+	
+COPY_EXISTING ~c0ilms1.spl~ ~override~
+SAY NAME1 ~Sacrifice~
+SAY NAME2 ~Sacrifice~
+SAY UNIDENTIFIED_DESC ~Sacrifice
+The martyr transfers 10 hit points plus 2 per level to the target, up to a maximum of 50 hit points at 20th level. The martyr cannot be killed by the sacrifice—if their hit points would go below 1, they are knocked unconscious instead.~
+
+COPY_EXISTING ~c0ilms1a.spl~ ~override~
+	
+COPY_EXISTING ~c0ilmi2.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = c0ilmi2i END
+	
+COPY_EXISTING ~C0ilms2.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 142
+	  parameter2 = c0ilms2i
+END
+SAY NAME1 ~Martyrdom~
+SAY NAME2 ~Martyrdom~
+SAY UNIDENTIFIED_DESC ~Martyrdom
+The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr gains a temporary +6 bonus to Armor Class, +30% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.~
+
+COPY_EXISTING ~C0ilms3.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Regenerating~)
+END
+SAY NAME1 ~Ilmater's Grace~
+SAY NAME2 ~Ilmater's Grace~
+SAY UNIDENTIFIED_DESC ~Ilmater's Grace
+The martyr may call upon a second wind in battle, instantly healing half of their maximum hit points. The martyr gradually regenerates an additional half of their maximum hit points over the next five rounds.~
+
+COPY_EXISTING ~C0ilms5.spl~ ~override~
+SAY NAME1 ~Final Breath~

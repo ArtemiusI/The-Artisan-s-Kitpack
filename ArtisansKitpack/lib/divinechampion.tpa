@@ -36,7 +36,7 @@ ADD_KIT ~C0DC~
  ~C0DC                  	0       0       0       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/DivineChampion/C0DC.2da~
+ ~%MOD_FOLDER%/Paladin/DivineChampion/C0DC.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_P_H K_P_E K_P_HE K_P_G K_P_HL K_P_D K_P_HO~
@@ -69,7 +69,11 @@ SMITE INFIDEL: The divine champion's next attack within two rounds deals 1d4 poi
 DIVINE WRATH: The divine champion channels a portion of their deity's power, gaining a +4 bonus to Strength, Dexterity and Constitution for 1 turn + 1 round per level gained thereafter. After the effect has expired, the divine champion becomes fatigued.
 
 Disadvantages:
+– Does not gain additional Saving Throws with Charisma.
+– Does not gain Aura of Courage.
 – May not Turn Undead.
+– May not use Smite Evil.
+– May not use Cure Disease.
 – May not cast priest spells.~
 
 LAF fl#add_kit_ee
@@ -79,18 +83,18 @@ LAF fl#add_kit_ee
 END
 APPEND ~fallen.2da~ ~C0DC 0~
 
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc01.spl~ ~override~
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc02a.eff~ ~override~
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc02a.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc01.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc02a.eff~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc02a.spl~ ~override~
 SAY NAME1 ~Smite Infidel~
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc02.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc02.spl~ ~override~
 SAY NAME1 ~Smite Infidel~
 SAY UNIDENTIFIED_DESC ~Smite Infidel
 The divine champion's next attack within two rounds deals 1d4 points of magic damage per 2 levels to any creature of a different moral (good, neutral, evil) alignment to the caster.~
 
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc03.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc03.spl~ ~override~
 SAY NAME1 ~Divine Wrath~
 SAY UNIDENTIFIED_DESC ~Divine Wrath
 The divine champion channels a portion of their deity's power, gaining a +4 bonus to Strength, Dexterity and Constitution for 1 turn + 1 round per level gained thereafter. After the effect has expired, the divine champion becomes fatigued.~
 
-COPY ~%MOD_FOLDER%/DivineChampion/c0dc04.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc04.spl~ ~override~

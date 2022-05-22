@@ -1,6 +1,6 @@
-COPY ~%MOD_FOLDER%/Inquisitor/2da~ ~override~
-COPY ~%MOD_FOLDER%/Inquisitor/bams~ ~override~
-COPY ~%MOD_FOLDER%/Inquisitor/spells~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Inquisitor/2da~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Inquisitor/bams~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Inquisitor/spells~ ~override~
 
 // ICONS
 
@@ -44,8 +44,10 @@ EYES OF TRUTH: The inquisitor has a 20% + 2% per level chance of dispelling host
 – Immune to hold and charm.
 
 Disadvantages:
-– May not turn undead.
+– May not Turn Undead.
 – May not use the Lay On Hands ability. 
+– May not use the Smite Evil ability. 
+– May not cast Cure Disease.
 – May not cast priest spells.~
 
 COPY_EXISTING ~C0INQ01.SPL~ OVERRIDE

@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/Elementalist/2da~ ~override~
-COPY ~%MOD_FOLDER%/Elementalist/spells~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/2da~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/spells~ ~override~
 
 ADD_KIT ~C0ELEM~
 
@@ -39,7 +39,7 @@ ADD_KIT ~C0ELEM~
  ~C0ELEM                  	1       0       0       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Elementalist/2da/C0ELEM.2da~
+ ~%MOD_FOLDER%/Druid/Elementalist/2da/C0ELEM.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_D_H K_D_E K_D_HE K_D_HL K_D_D K_D_G K_D_HO~
@@ -113,10 +113,10 @@ WRITE_SHORT 0x1C 2
 END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Elementalist/acidstorm/astorma.bam~ ~override~
-COPY ~%MOD_FOLDER%/Elementalist/acidstorm/astormx.bam~ ~override~
-ADD_PROJECTILE ~%MOD_FOLDER%/Elementalist/acidstorm/IDPRO211.PRO~
-COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724.spl~ ~override/C0EL724.SPL~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astorma.bam~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astormx.bam~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/IDPRO211.PRO~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724.spl~ ~override/C0EL724.SPL~
 LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO211 END
 WRITE_SHORT 0x1C 2 
 SAY NAME1 ~Acid Storm~
@@ -131,6 +131,6 @@ Area of Effect: 12-ft. radius
 Saving Throw: 1/2
 
 This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
-COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724b.bam~ ~override~
-COPY ~%MOD_FOLDER%/Elementalist/acidstorm/spwi724c.bam~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724b.bam~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724c.bam~ ~override~
 END

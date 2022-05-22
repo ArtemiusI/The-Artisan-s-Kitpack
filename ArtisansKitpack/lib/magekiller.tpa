@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/Magekiller/2da~ ~override~
-COPY ~%MOD_FOLDER%/Magekiller/spells~ ~override~
+COPY ~%MOD_FOLDER%/Thief/Magekiller/2da~ ~override~
+COPY ~%MOD_FOLDER%/Thief/Magekiller/spells~ ~override~
 
 ADD_KIT ~C0MKILL~
 
@@ -39,7 +39,7 @@ ADD_KIT ~C0MKILL~
  ~C0MKILL      	1       1       0       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Magekiller/2da/c0mkill.2da~
+ ~%MOD_FOLDER%/Thief/Magekiller/2da/c0mkill.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_T_H K_T_E K_T_HE K_T_G K_T_HL K_T_D K_T_HO~
@@ -185,7 +185,7 @@ END
 COPY_EXISTING ~C0MK#010.SPL~ ~OVERRIDE~
 SAY NAME1 ~Imprison Arcana~
 SAY UNIDENTIFIED_DESC ~Imprison Arcana
-The Magekiller, upon touching an arcane magic-user, imprisons them in an extradimensional antimagic prison indefinitely within which they are unable to escape save for the use of a Freedom spell. Imprison Arcana ignores Magic Resistance and there is no Saving Throw against the effects, but the ability is only effective against mages and will fail if attempted by anyone else.
+The Magekiller, upon touching an arcane magic-user, imprisons them in an extradimensional antimagic prison indefinitely within which they are unable to escape save for the use of a Freedom spell. Imprison Arcana ignores Magic Resistance and there is no Saving Throw against the effects, but the ability is only effective against mages and will fail if attempted on anyone else.
 
 This ability may only be chosen once.
 

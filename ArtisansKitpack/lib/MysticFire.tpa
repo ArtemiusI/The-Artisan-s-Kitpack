@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/MysticFire/2da~ ~override~
-COPY ~%MOD_FOLDER%/MysticFire/spells~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/2da~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells~ ~override~
 
 /*
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
@@ -28,7 +28,7 @@ ADD_KIT ~c0mf~
   ~c0mf                0       0       0       0       0       0~
   ~c0mf                1       0       0       0       0       0       0       0       0~
   ~c0mf                0       0       0       0       0       0~
-  ~%MOD_FOLDER%/MysticFire/2da/c0mf.2da~
+  ~%MOD_FOLDER%/Paladin/MysticFire/2da/c0mf.2da~
   ~K_P_H K_P_E K_P_HE K_P_HL K_P_G K_P_D K_P_HO~
   ~0x00004000     6~
   ~mf~
@@ -61,6 +61,8 @@ Disadvantages:
 
 – -1 penalty to THAC0 modifier, with an additional -1 at 10th level and every 10 levels thereafter.
 – May not learn the following High Level Abilities: Whirlwind Attack, Greater Whirlwind Attack, Power Attack, Critical Strike, Smite
+– Does not gain Aura of Courage.
+– May not use Smite Evil.
 – May not use Protection From Evil.
 – May not Turn Undead.
 – May not use Lay on Hands.~
@@ -76,7 +78,7 @@ END
 
 COPY_EXISTING ~SPWI112.SPL~ ~OVERRIDE/C0MF101.SPL~
 WRITE_SHORT 0X1C 2
-COPY ~%MOD_FOLDER%/MysticFire/SPELLS/C0MF102.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/SPELLS/C0MF102.SPL~ ~OVERRIDE~
 SAY NAME1 ~Shocking Grasp~
 SAY UNIDENTIFIED_DESC ~Shocking Grasp
 (Alteration)
@@ -89,7 +91,7 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 This modified Shocking Grasp spell allows the Mystic Fire Knight to imbue a melee weapon instead of <PRO_HISHER> hand. When the Mystic Fire Knight touches a creature while this spell is in effect, an electrical charge will deal 1d8 points of damage plus 1 per level of the caster to the creature touched. In addition, the attack strikes as a +6 weapon. The Mystic Fire Knight only has one charge, and once an opponent has been touched, the spell's energies have been used. The Mystic Fire Knight has 1 round per level to touch the target creature.~
-COPY ~%MOD_FOLDER%/MysticFire/SPELLS/C0MF102a.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/SPELLS/C0MF102a.SPL~ ~OVERRIDE~
 COPY_EXISTING ~SPWI114.SPL~ ~OVERRIDE/C0MF103.SPL~
 WRITE_SHORT 0X1C 2
 COPY_EXISTING ~SPWI123.SPL~ ~OVERRIDE/C0MF104.SPL~
@@ -143,12 +145,12 @@ WRITE_SHORT 0x1C 3
 COPY_EXISTING ~SPWI701.SPL~ ~OVERRIDE/C0MF704.SPL~
 WRITE_SHORT 0x1C 3
 
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mf01.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf01.spl~ ~override~
 SAY NAME1 ~Shatter Spell~
 SAY NAME2 ~Shatter Spell~
 SAY UNIDENTIFIED_DESC ~Shatter Spell
 Knights of the Mystic Fire are able to smite spellcasters and disrupt their defensive spells as well as their ability to cast magic. The next attack made by the Mystic Fire within two rounds will dispel the target's combat protections. Additionally, if the target fails a save vs. spells at -2, they suffer 100% spell failure for two rounds.~
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mf01a.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf01a.spl~ ~override~
 	LPF ALTER_EFFECT
 		INT_VAR
 			match_opcode = 139
@@ -162,19 +164,19 @@ COPY ~%MOD_FOLDER%/MysticFire/spells/c0mf01a.spl~ ~override~
 			parameter1 = RESOLVE_STR_REF (~Miscast Magic~)
 		END
  
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mf02.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf02.spl~ ~override~
 SAY NAME1 ~Spellblade~
 SAY NAME2 ~Spellblade~
 SAY UNIDENTIFIED_DESC ~Spellblade
 The Mystic Fire Knight enchants <PRO_HISHER> weapon for the next hour, giving it a +3 enchantment level and dealing 1d4 magic damage (+1d4 per five caster levels up to level 20) and reducing targets' magic resistance by 5% per hit for two turns. Enchantment bonus increases to +4 at 12th level and +5 at 18th level.~
 
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl1.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl1.spl~ ~override~
 SAY NAME1 ~Extra Level 1 Spell~
 SAY NAME2 ~Extra Level 1 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 1 Spell
 Choosing this ability allows the Mystic Fire Knight to cast one additional Level 1 spell.~
  
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl2.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl2.spl~ ~override~
 SAY NAME1 ~Extra Level 2 Spell~
 SAY NAME2 ~Extra Level 2 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 2 Spell
@@ -182,7 +184,7 @@ Choosing this ability allows the Mystic Fire Knight to cast one additional Level
 
 Requires: Extra Level 1 Spell~
  
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl3.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl3.spl~ ~override~
 SAY NAME1 ~Extra Level 3 Spell~
 SAY NAME2 ~Extra Level 3 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 3 Spell
@@ -190,7 +192,7 @@ Choosing this ability allows the Mystic Fire Knight to cast one additional Level
 
 Requires: Extra Level 2 Spell~
  
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl4.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl4.spl~ ~override~
 SAY NAME1 ~Extra Level 4 Spell~
 SAY NAME2 ~Extra Level 4 Spell~
 SAY UNIDENTIFIED_DESC ~Extra Level 4 Spell
@@ -198,13 +200,13 @@ Choosing this ability allows the Mystic Fire Knight to cast one additional Level
 
 Requires: Extra Level 3 Spell~
 
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl5.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl5.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge I~
 SAY NAME2 ~Arcane Knowledge I~
 SAY UNIDENTIFIED_DESC ~Arcane Knowledge
 An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +1 to all Saving Throws and the ability to cast Cone of Cold, Spell Immunity, Oracle and Sunfire once per day.~
 
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl6.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl6.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge II~
 SAY NAME2 ~Arcane Knowledge II~
 SAY UNIDENTIFIED_DESC ~Arcane Knowledge II
@@ -212,7 +214,7 @@ An experienced Mystic Fire Knight develops more knowledge of arcane spells close
 
 Requires: Arcane Knowledge I~
 
-COPY ~%MOD_FOLDER%/MysticFire/spells/c0mfhl7.spl~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mfhl7.spl~ ~override~
 SAY NAME1 ~Arcane Knowledge III~
 SAY NAME2 ~Arcane Knowledge III~
 SAY UNIDENTIFIED_DESC ~Arcane Knowledge III

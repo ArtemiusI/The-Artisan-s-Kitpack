@@ -1,6 +1,6 @@
-COPY ~%MOD_FOLDER%/Blackguard/2da~ ~override~
-COPY ~%MOD_FOLDER%/Blackguard/bams~ ~override~
-COPY ~%MOD_FOLDER%/Blackguard/spells~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Blackguard/2da~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Blackguard/bams~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Blackguard/spells~ ~override~
 
 // ICONS
 
@@ -68,6 +68,7 @@ Disadvantages:
 – Incurs a -2 penalty to Reputation.
 – Alignment restricted to evil.
 – May not cast Detect Evil.
+– May not use Smite Evil.
 – May not cast Protection From Evil as an innate ability.
 – May not use the Lay on Hands ability.~
 
@@ -78,19 +79,19 @@ APPEND ~crippstr.2da~ ~BLACKGUARD 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 
 
 // REPUTATION
 ACTION_IF FILE_EXISTS_IN_GAME ~CLABPA06.2da~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Blackguard/2da/CLABPA06.2da~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Blackguard/2da/CLABPA06.2da~ ~override~
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
-EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Paladin/Blackguard/scripts/reputation.baf~
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
-EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/Paladin/Blackguard/scripts/reputation.baf~
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
-EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/Blackguard/scripts/reputation.baf~
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/Paladin/Blackguard/scripts/reputation.baf~
 END
 
 COPY_EXISTING ~C0BG#00.spl~ ~override~

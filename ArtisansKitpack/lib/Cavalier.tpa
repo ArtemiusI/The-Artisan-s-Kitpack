@@ -1,0 +1,72 @@
+COPY ~%MOD_FOLDER%/Paladin/Cavalier/2da~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Cavalier/bams~ ~override~
+COPY ~%MOD_FOLDER%/Paladin/Cavalier/spells~ ~override~
+
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Chivalry~) STR_VAR bam_file = c0cav01i RET c0cav01i = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Heroic Inspiration~) STR_VAR bam_file = c0cav02i RET c0cav02i = icon END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~CAVALIER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~CAVALIER: This class represents the most common picture of the knight: the chivalrous warrior who epitomizes honor, courage, and loyalty. The Cavalier is specialized in battling "classical" evil monsters such as demons and dragons.
+
+Advantages:
+– Immunity to Charm, Poison, Fear and Morale Failure.
+– +3 bonus to hit and damage rolls against all fiendish and draconic creatures.
+– 3rd level: Gains Aura of Chivalry.
+
+AURA OF CHIVALRY: The cavalier exudes an aura which inspires their allies to fight at the best of their ability. All allies within visual range of the cavalier become immune to fear and morale failure and gain bonuses in combat.
+  3rd - +1 to Armor Class and THAC0.
+  10th - +2 to Armor Class and THAC0.
+  17th - +2 to Armor Class, THAC0 and Damage.
+  24th - +3 to Armor Class, THAC0 and Damage.
+
+– 9th level: Gains Heroic Inspiration.
+
+HEROIC INSPIRATION: When the cavalier's maximum hit points falls below 50%, all allies (except the cavalier) within visual range gain an additional +1 bonus to hit, damage and saving throws.
+
+Disadvantages:
+– May not Turn Undead.
+– May not use ranged weapons and incurs a -4 penalty to hit if wielding a melee/ranged weapon in ranged mode.~
+
+COPY_EXISTING ~C0CAV01.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = c0cav01i END
+
+COPY_EXISTING ~C0CAV02.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Gained Passive Ability: Heroic Inspiration~)
+END
+
+COPY_EXISTING ~C0CAV02A.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Heroic Inspiration: +1 to THAC0, Damage and Saving Throws to all allies~)
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 267
+	  parameter1 = RESOLVE_STR_REF (~Heroic Inspiration: +1 to THAC0, Damage and Saving Throws to all allies~)
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 142
+	  parameter2 = c0cav02i
+END

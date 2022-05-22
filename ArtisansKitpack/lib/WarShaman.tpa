@@ -1,8 +1,8 @@
-COPY ~%MOD_FOLDER%/WarShaman/2da~ ~override~
-COPY ~%MOD_FOLDER%/WarShaman/bam~ ~override~
-COPY ~%MOD_FOLDER%/WarShaman/eff~ ~override~
-COPY ~%MOD_FOLDER%/WarShaman/itm~ ~override~
-COPY ~%MOD_FOLDER%/WarShaman/spl~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/2da~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/bam~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/eff~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/itm~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/spl~ ~override~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~K_SH_E.2DA~ THEN BEGIN
 COPY_EXISTING ~K_SH_H.2DA~ ~OVERRIDE/K_SH_E.2DA~
@@ -95,7 +95,7 @@ ADD_KIT ~C0WSHAM~
 
   // Appended to DUALCLAS.2da
   ~C0WSHAM                0       0       0       0       0       0~
-  ~%MOD_FOLDER%/WarShaman/2da/C0WSHAM.2da~
+  ~%MOD_FOLDER%/Shaman/WarShaman/2da/C0WSHAM.2da~
   // PC races and classes allowed to use this kit, from KITTABLE.2da
   ~K_SH_H K_SH_E K_SH_HE K_SH_HL K_SH_G K_SH_D K_SH_HO~
   ~0x00004000        21~
@@ -119,63 +119,63 @@ ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
 END
 
 ACTION_IF NOT GAME_IS ~IWDEE~ THEN BEGIN
-COMPILE ~%MOD_FOLDER%/WarShaman/BAF/C0WSHPR.BAF~
+COMPILE ~%MOD_FOLDER%/Shaman/WarShaman/BAF/C0WSHPR.BAF~
 END
 
 ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
-COMPILE ~%MOD_FOLDER%/WarShaman/BAF/IWDEE/C0WSHPR.BAF~
+COMPILE ~%MOD_FOLDER%/Shaman/WarShaman/BAF/IWDEE/C0WSHPR.BAF~
 END
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR1.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR1.cre~ ~override~
 SAY NAME1 ~Spirit Warrior~
 SAY NAME2 ~Spirit Warrior~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR1~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR2.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR2.cre~ ~override~
 SAY NAME1 ~Spirit Archer~
 SAY NAME2 ~Spirit Archer~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR2~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR3.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR3.cre~ ~override~
 SAY NAME1 ~Spirit Berserker~
 SAY NAME2 ~Spirit Berserker~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR3~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR4.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR4.cre~ ~override~
 SAY NAME1 ~Spirit Berserker~
 SAY NAME2 ~Spirit Berserker~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR4~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR5.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR5.cre~ ~override~
 SAY NAME1 ~Ancestral Spirit~
 SAY NAME2 ~Ancestral Spirit~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR5~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR6.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR6.cre~ ~override~
 SAY NAME1 ~Valkyrie Archer~
 SAY NAME2 ~Valkyrie Archer~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR6~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/CRE/C0WSPIR7.cre~ ~override~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/CRE/C0WSPIR7.cre~ ~override~
 SAY NAME1 ~Valkyrie Shieldmaiden~
 SAY NAME2 ~Valkyrie Shieldmaiden~
 WRITE_ASCII 0x248 ~BDSHUNSU~  #8  // override
 WRITE_ASCII 0x268 ~C0WSHPR~  #8  // default
 WRITE_ASCII 0x280 ~C0WSPIR7~ #32 // death variable
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSH04.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSH04.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT
 	INT_VAR
 		match_opcode = 139
@@ -207,7 +207,7 @@ LPF ALTER_EFFECT
 		parameter1 = RESOLVE_STR_REF (~No spirits answer your call.~)
 END
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS1.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS1.SPL~ ~OVERRIDE~
 SAY NAME1 ~Battle Ardor~
 SAY UNIDENTIFIED_DESC ~Battle Ardor
 (Alteration)
@@ -222,7 +222,7 @@ Saving Throw: None
 
 With this spell, the caster becomes empowered by the borrowed strength of ancient warrior spirits. For the duration of the spell, the caster gains a non-cumulative +2 bonus to THAC0 and damage, with an additional +1 bonus per 10 caster levels thereafter.~
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS2.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS2.SPL~ ~OVERRIDE~
 SAY NAME1 ~Rallying Cry~
 SAY UNIDENTIFIED_DESC ~Rallying Cry
 (Abjuration)
@@ -237,7 +237,7 @@ Saving Throw: None
 
 The caster lets out an inspiring battlecry towards <PRO_HISHER> companions, raising their morale to the highest and granting a non-cumulative +2 bonus to Armor Class and THAC0. The recipients' morale will gradually reset to normal as the duration runs out. If the recipients are affected by magical fear, this is negated.~
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS3.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS3.SPL~ ~OVERRIDE~
 SAY NAME1 ~Fury of the Winds~
 SAY UNIDENTIFIED_DESC ~Fury of the Winds
 (Enchantment/Charm)
@@ -260,7 +260,7 @@ The caster imbues the power of the northern winds and storms into <PRO_HISHER> w
    
 Additionally, due to the caster's weapons being imbued with the power of wind, <PRO_HESHE> is hasted for the duration.~
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS4.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS4.SPL~ ~OVERRIDE~
 SAY NAME1 ~Storm Barrier~
 SAY UNIDENTIFIED_DESC ~Storm Barrier
 (Evocation)
@@ -275,7 +275,7 @@ Saving Throw: None
 
 The Storm Barrier protects the user from electrical damage by surrounding the caster with a shield of lightning. This shield not only grants the user 50% Electrical Resistance, but also protects the caster from attacks made within a 5-ft. radius around the caster. An opponent that hits the caster with any weapons or spells within this radius suffers 1d8+2 electrical damage.~
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS5.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS5.SPL~ ~OVERRIDE~
 SAY NAME1 ~Stormbound Axes~
 SAY UNIDENTIFIED_DESC ~Stormbound Axes
 (Evocation)
@@ -289,12 +289,12 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell creates several axe-shaped bolts of lightning, one for each two experience levels the caster has obtained, which are held in the caster's hands in place of <PRO_HISHER> usual weapons. The axes can be hurled at targets up to 50 feet away and are treated as missiles with a +5 bonus to the attack rolls. Each axe deals 2d6+10 electrical damage plus an additional 10 magic damage and stunning the target for 3 rounds if they fail a Save vs. Spells at -2. The caster may hurl one axe per round.~
-COPY ~%MOD_FOLDER%/WarShaman/ITM/C0WSHS5.ITM~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/ITM/C0WSHS5.ITM~ ~OVERRIDE~
 SAY NAME1 ~Stormbound Axes~
 SAY NAME2 ~Stormbound Axes~
 
-ADD_PROJECTILE ~%MOD_FOLDER%/WarShaman/PRO/C0WSHS6.PRO~ ~Wrath of the Skies~
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS6.SPL~ ~OVERRIDE~
+ADD_PROJECTILE ~%MOD_FOLDER%/Shaman/WarShaman/PRO/C0WSHS6.PRO~ ~Wrath of the Skies~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS6.SPL~ ~OVERRIDE~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
@@ -315,7 +315,7 @@ Saving Throw: None
 
 This powerful spell causes an icy storm to rain down upon the caster's chosen location, dealing 2d10 damage per round (half cold, half magical) and reducing all enemies' Magic Resistance by 50% and Armor Class by 4 points for as long as they remain within the storm. This spell is not affected by Magic Resistance and does not affect allies.~
 
-COPY ~%MOD_FOLDER%/WarShaman/SPL/C0WSHS7.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Shaman/WarShaman/SPL/C0WSHS7.SPL~ ~OVERRIDE~
 SAY NAME1 ~Undying Fervor~
 SAY UNIDENTIFIED_DESC ~Undying Fervor
 (Alteration)

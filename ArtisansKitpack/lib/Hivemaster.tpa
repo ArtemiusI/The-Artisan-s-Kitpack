@@ -1,8 +1,8 @@
-COPY ~%MOD_FOLDER%/Hivemaster/2da~ ~override~
-COPY ~%MOD_FOLDER%/Hivemaster/animations~ ~override~
-COPY ~%MOD_FOLDER%/Hivemaster/spells~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/2da~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells~ ~override~
 
-INCLUDE ~%MOD_FOLDER%/Hivemaster/fl#add_kit_ee.tpa~
+INCLUDE ~%MOD_FOLDER%/Druid/Hivemaster/fl#add_kit_ee.tpa~
 ADD_KIT ~C0HIVE2~
 
  // appended to CLASWEAP.2da
@@ -41,7 +41,7 @@ ADD_KIT ~C0HIVE2~
  ~C0HIVE2                  	1       0       0       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Hivemaster/2da/C0HIVECL.2da~
+ ~%MOD_FOLDER%/Druid/Hivemaster/2da/C0HIVECL.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_D_H K_D_E K_D_HE K_D_HL K_D_D K_D_G K_D_HO~
@@ -98,7 +98,7 @@ PRETTY_PRINT_2DA
 	
 END
 
-COPY ~%MOD_FOLDER%/Hivemaster/spells/C0HIVE1.spl~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE1.spl~ ~override~
 SAY NAME1 ~Shapeshift: Huge Spider~
 SAY NAME2 ~Shapeshift: Huge Spider~
 SAY UNIDENTIFIED_DESC ~Shapeshift: Huge Spider
@@ -112,7 +112,7 @@ Base Armor Class: 8
 Number of Attacks: 2
 Damage: 1d4 piercing, 1 poison damage per second for 1 round (save vs. poison at +2), hits as a +1 weapon~
 
-COPY ~%MOD_FOLDER%/Hivemaster/spells/C0HIVE2.spl~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE2.spl~ ~override~
 SAY NAME1 ~Shapeshift: Sword Spider~
 SAY NAME2 ~Shapeshift: Sword Spider~
 SAY UNIDENTIFIED_DESC ~Shapeshift: Sword Spider
@@ -126,7 +126,7 @@ Base Armor Class: 7
 Number of Attacks: 4
 Damage: 1d6 slashing, hits as a +3 weapon~
 
-COPY ~%MOD_FOLDER%/Hivemaster/spells/C0HIVE3.spl~ ~override~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE3.spl~ ~override~
 SAY NAME1 ~Shapeshift: Wraith Spider~
 SAY NAME2 ~Shapeshift: Wraith Spider~
 SAY UNIDENTIFIED_DESC ~Shapeshift: Wraith Spider

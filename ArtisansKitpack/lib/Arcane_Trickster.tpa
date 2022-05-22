@@ -1,0 +1,101 @@
+COPY ~%MOD_FOLDER%/MultiKit/Arcane_Trickster/2das~ ~override~
+COPY ~%MOD_FOLDER%/MultiKit/Arcane_Trickster/spells~ ~override~
+
+ADD_KIT ~C0ATR~
+  ~C0ATR    1           1           1           1           1           1           1           1~
+ // appended column-wise to WEAPPROF.2da
+//11        T   S           F   Q S S
+//10        W   C           L   U W I
+//9 B L S   O   I   W       A   A O N
+//8 A O H   H   M   A       I   R C   S       R G
+//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2     E E E E E E E E E E E
+//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0ATR  	1 1 1 0 1 0 0 1 0 1 1 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+ 
+ // appended to ABCLASRQ.2da
+  ~C0ATR    0       12      0       15      0       0~
+ // appended to ABCLSMOD.2da
+  ~C0ATR    0       0       0       0       0       0~
+ // appended to ABDCDSRQ.2da
+  ~C0ATR    0       0       0       0       0       0~
+ // appended to ABDCSCRQ.2da
+  ~C0ATR    0       0       0       0       0       0~
+ // appended to ALIGNMNT.2da
+  ~C0ATR    0       0       0       1       1       1       1       1       1~
+ // appended to DUALCLAS.2da
+  ~C0ATR    0       0       0       0       0       0~
+ // path to your CLAB-style 2da file 
+  ~%MOD_FOLDER%/MultiKit/Arcane_Trickster/2das/C0ATR.2da~
+  ~K_MT_H K_MT_E K_MT_HE K_MT_HL K_MT_G K_MT_D K_MT_HO~
+  ~0x00004000     13~
+  ~fm~
+  ~LEAT14 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY ~arcane trickster~
+  SAY ~Arcane Trickster~
+  SAY ~ARCANE TRICKSTER: Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief. With an extensive knowledge of arcane arts to complement their skills in thievery, they are among the most adaptable of adventurers.
+
+Advantages:
+– +10% bonus to Pick Pockets and Detect Illusions.
+– Stealth Caster: The arcane trickster's spells cast while hiding or invisible have their casting time reduced to 1, if higher.
+– Impromptu Sneak Attack: The arcane trickster's backstabs reduce the target's Dexterity by 4 points and Saving Throws by 2 points for 1 hour. This effect is non-cumulative on the same target.
+– May use Pilfer Magic once per day.
+
+PILFER MAGIC: The arcane trickster may steal the magical power of a targeted mage or bard, removing one memorized arcane spell of the highest level from the target and restoring one of the arcane trickster's own.
+
+– 5th level: Gains an extra use of Pilfer Magic.
+– 9th level: Gains an extra use of Pilfer Magic.
+– 10th level: Pilfer Magic removes one spell protection from the target of up to 5th level.
+– 13th level: Gains an extra use of Pilfer Magic.
+– 15th level: Pilfer Magic removes one spell protection from the target of up to 8th level.
+– 17th level: Gains an extra use of Pilfer Magic.
+– 20th level: Pilfer Magic removes one spell protection from the target of up to 9th level.
+
+Disadvantages:
+– Must be of non-lawful alignment.
+– Backstab advances more slowly compared to an unkitted Thief:
+  Level 1-8: x2
+  Level 9-12: x3
+  Level 13+: x4
+– May only distribute 20 skill points per level among thieving skills.~
+
+LAF fl#add_kit_ee
+INT_VAR
+		briefdesc = RESOLVE_STR_REF (~ARCANE TRICKSTER: Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief. With an extensive knowledge of arcane arts to complement their skills in thievery, they are among the most adaptable of adventurers.~)
+STR_VAR
+	kit_name = C0ATR
+    clswpbon = ~1 0 5~
+    clasiskl = ~10 0 0 0 0 10 0~
+	clascolr = ~57 58 122 1 43~
+    clasthac = ~0~
+    clsrcreq = ~1 1 1 1 1 1 1~
+	backstab = ~2 2 2 2 2 2 2 2 2 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	sneakatt = ~1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	thiefskl = ~40 20~
+END
+
+LAF qd_multiclass
+	STR_VAR
+		kit_name = C0ATR
+		kit_clab = C0ATR
+		base_class = ~T~
+		mc_dir = ~%MOD_FOLDER%/MultiKit/Arcane_Trickster/2das~
+END
+
+COPY_EXISTING ~C0ATRNAM.SPL~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Arcane Trickster~) END
+
+COPY_EXISTING ~C0ATR01.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Spell Protections Removed~) END
+SAY NAME1 ~Pilfer Magic~
+SAY UNIDENTIFIED_DESC ~Pilfer Magic
+The arcane trickster may steal the magical power of a targeted mage or bard, removing one memorized arcane spell of the highest level from the target and restoring one of the arcane trickster's own.~
+COPY_EXISTING ~C0ATR01B.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Spell Pilfered~) END
+
+COPY_EXISTING ~C0ATR02.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Impromptu Sneak Attack~) END

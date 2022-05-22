@@ -1,6 +1,6 @@
-COPY ~%MOD_FOLDER%/Kensai/2da~ ~override~
-COPY ~%MOD_FOLDER%/Kensai/bam~ ~override~
-COPY ~%MOD_FOLDER%/Kensai/spells~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/2da~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/bam~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/spells~ ~override~
 
 // FATIGUE
 APPEND ~splprot.2da~ ~FATIGUEGTEQ%TAB%30%TAB%-1%TAB%4~
@@ -75,15 +75,15 @@ Disadvantages:
 – Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
 – Alignment restricted to any non-chaotic.~
 
-COPY ~%MOD_FOLDER%/Kensai/2da/clabfi04.2da~ ~override~
-COPY ~%MOD_FOLDER%/Kensai/2da/luc0kn.2da~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/clabfi04.2da~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/luc0kn.2da~ ~override~
 
 COPY_EXISTING ~SPCL144.SPL~ ~OVERRIDE~
 SAY NAME1 ~Ki Focus~
 SAY UNIDENTIFIED_DESC ~KI FOCUS
 All successful attacks within the next 12 seconds will never miss and deal 20% increased physical damage.~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#03.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -106,7 +106,7 @@ SAY NAME1 ~Defensive Fighting~
 SAY UNIDENTIFIED_DESC ~DEFENSIVE FIGHTING
 The Kensai sets <PRO_HISHER> base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus. When deactivated, the Kensai must wait one turn before Defensive Fighting may be reactivated.~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#04.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#04.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -117,7 +117,7 @@ END
 SAY NAME1 ~Ki Strike~
 SAY UNIDENTIFIED_DESC ~KI STRIKE
 The Kensai's next attack within one round of casting the ability has a doubled Ki Critical modifier and deals maximum damage. The Kensai incurs a cumulative fatigue penalty upon landing the attack, the amount of which decreases as the Kensai gains levels. Ki Strike will fail if the Kensai is overly fatigued.~
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#04X.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#04X.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -126,27 +126,27 @@ COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#04X.SPL~ ~OVERRIDE~
 	  parameter1 = RESOLVE_STR_REF (~The Kensai is too fatigued to attempt a Ki Strike.~)
 END
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#05.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#05.SPL~ ~OVERRIDE~
 SAY NAME1 ~Deactivate Defensive Fighting~
 SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Defensive Fighting.~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#07.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#07.SPL~ ~OVERRIDE~
 SAY NAME1 ~Improved Ki Critical~
 SAY UNIDENTIFIED_DESC ~The Kensai gains a permanent +2 bonus to their critical hit modifier.
 
 Requires: Power Attack~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#08.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#08.SPL~ ~OVERRIDE~
 SAY NAME1 ~Overwhelming Critical~
 SAY UNIDENTIFIED_DESC ~The Kensai's critical hits reduce the target's physical resistances by a cumulative 5% for 4 rounds.~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#09.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#09.SPL~ ~OVERRIDE~
 SAY NAME1 ~Second Wind~
 SAY UNIDENTIFIED_DESC ~The Kensai heals for 5% of <PRO_HISHER> maximum hit points and reduces a small amount of <PRO_HISHER> fatigue modifier upon landing a critical hit.
 
 Requires: Overwhelming Critical~
 
-COPY ~%MOD_FOLDER%/Kensai/SPELLS/C0KN#10.SPL~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#10.SPL~ ~OVERRIDE~
 SAY NAME1 ~Devastating Critical~
 SAY UNIDENTIFIED_DESC ~The Kensai's critical hits kill the target instantly on a failed Saving Throw vs. Death. Creatures with 8 or lower HD die with no save.
 

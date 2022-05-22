@@ -1,8 +1,6 @@
-COPY ~%MOD_FOLDER%/DarkHunter/2da~ ~override~
-COPY ~%MOD_FOLDER%/DarkHunter/bams~ ~override~
-COPY ~%MOD_FOLDER%/DarkHunter/spells~ ~override~
-
-INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
+COPY ~%MOD_FOLDER%/Ranger/DarkHunter/2da~ ~override~
+COPY ~%MOD_FOLDER%/Ranger/DarkHunter/bams~ ~override~
+COPY ~%MOD_FOLDER%/Ranger/DarkHunter/spells~ ~override~
 
 // Minsc
 
@@ -46,7 +44,7 @@ ADD_KIT ~C0DHUNT~
  ~C0DHUNT                  	0       0       0       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/DarkHunter/2da/C0DHUNT.2da~
+ ~%MOD_FOLDER%/Ranger/DarkHunter/2da/C0DHUNT.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_R_H K_R_E K_R_HE K_R_G K_R_HL K_R_D K_R_HO~

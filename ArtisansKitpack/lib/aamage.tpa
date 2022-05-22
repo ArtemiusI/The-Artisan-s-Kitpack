@@ -1,28 +1,3 @@
-//ENABLE MORE MULTICLASSES___________________________________________________________
-//
-
-COPY_EXISTING ~CLSRCREQ.2da~ ~override~
-		SET_2DA_ENTRY 34 1 8 ~1~
-		SET_2DA_ENTRY 35 1 8 ~1~
-		SET_2DA_ENTRY 36 1 8 ~1~
-		SET_2DA_ENTRY 37 1 8 ~1~
-		SET_2DA_ENTRY 46 1 8 ~1~
-		SET_2DA_ENTRY 47 1 8 ~1~
-		SET_2DA_ENTRY 48 1 8 ~1~
-		SET_2DA_ENTRY 49 1 8 ~1~
-		SET_2DA_ENTRY 50 1 8 ~1~
-		SET_2DA_ENTRY 51 1 8 ~1~
-//		SET_2DA_ENTRY 25 2 8 ~1~
-		SET_2DA_ENTRY 35 2 8 ~1~
-		SET_2DA_ENTRY 47 2 8 ~1~
-		SET_2DA_ENTRY 48 2 8 ~1~
-		SET_2DA_ENTRY 50 2 8 ~1~
-		SET_2DA_ENTRY 51 2 8 ~1~
-		SET_2DA_ENTRY 48 3 8 ~1~
-		SET_2DA_ENTRY 48 4 8 ~1~
-		SET_2DA_ENTRY 35 5 8 ~1~
-		SET_2DA_ENTRY 48 5 8 ~1~
-
 ADD_KIT ~c0aa2~
   ~c0aa2                1           1           1           1           1           1           1           1~
   ~c0aa2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~

@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/RedWizard/2das~ ~override~
-COPY ~%MOD_FOLDER%/RedWizard/spells~ ~override~
+COPY ~%MOD_FOLDER%/Mage/RedWizard/2das~ ~override~
+COPY ~%MOD_FOLDER%/Mage/RedWizard/spells~ ~override~
 
 ADD_KIT ~C0REDWIZ~
 
@@ -39,7 +39,7 @@ ADD_KIT ~C0REDWIZ~
  ~C0REDWIZ      	1       1       0       1       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/RedWizard/2das/C0REDWIZ.2da~
+ ~%MOD_FOLDER%/Mage/RedWizard/2das/C0REDWIZ.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~~
@@ -75,7 +75,7 @@ LAF fl#add_kit_ee
 	hpclass = ~HPWIZ~
 END
 
-COPY ~%MOD_FOLDER%/RedWizard/items/misc89.itm~ ~override~
+COPY ~%MOD_FOLDER%/Mage/RedWizard/items/misc89.itm~ ~override~
 SAY NAME1 ~Edwin's Amulet~
 SAY DESC ~This is Edwin's birthright, inlaid with his family stone.
 

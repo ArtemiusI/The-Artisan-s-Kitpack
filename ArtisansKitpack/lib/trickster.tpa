@@ -15,7 +15,7 @@ ADD_KIT ~C0TRICKS~
 //3         	O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2        		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1      	    D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
- ~C0TRICKS		1 1 3 0 1 0 0 3 0 1 1 0 0 1 1 1 0 1 0 0 0 0 1 3 0 3 3 3 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+ ~C0TRICKS		1 1 3 0 1 0 0 3 0 1 1 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
     
  // appended to ABCLASRQ.2da
  ~C0TRICKS				0      9	0	17	0	0~
@@ -36,7 +36,7 @@ ADD_KIT ~C0TRICKS~
  ~C0TRICKS                  	1       1       1       0       0       0~
 
  // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Trickster/2da/C0TRICKS.2da~
+ ~%MOD_FOLDER%/Thief/Trickster/2da/C0TRICKS.2da~
 
  // PC races and classes allowed to use this kit, from KITTABLE.2da
  ~K_T_H K_T_E K_T_HE K_T_G K_T_HL K_T_D K_T_HO~
@@ -96,9 +96,9 @@ STR_VAR
 	thiefskl = ~40 20~
 END
 
-COPY ~%MOD_FOLDER%/Trickster/2da~ OVERRIDE
-COPY ~%MOD_FOLDER%/Trickster/bam~ OVERRIDE
-COPY ~%MOD_FOLDER%/Trickster/spells~ OVERRIDE
+COPY ~%MOD_FOLDER%/Thief/Trickster/2da~ OVERRIDE
+COPY ~%MOD_FOLDER%/Thief/Trickster/bam~ OVERRIDE
+COPY ~%MOD_FOLDER%/Thief/Trickster/spells~ OVERRIDE
 
 // MIMICRY
 COPY_EXISTING ~C0TR#02.SPL~ OVERRIDE

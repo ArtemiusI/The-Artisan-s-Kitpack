@@ -1,4 +1,4 @@
-LOAD_TRA ~ArtisansKitpack/PaleMaster/tra/english/setup.tra~
+LOAD_TRA ~%MOD_FOLDER%/Sorcerer/PaleMaster/tra/english/setup.tra~
 
 // -----------------------------
 // PALE MASTER KIT (TOME NOT INSTALLED)
@@ -13,7 +13,7 @@ ADD_KIT ~PaleMaster~
 	~PaleMaster 0 0 0 0 0 15~ //abdcscrq.2da
 	~PaleMaster 0 1 1 0 1 1 0 1 1~ //alignmnt.2da
 	~PaleMaster 0 0 0 0 0 0~ //dualclas.2da
-	~ArtisansKitpack/PaleMaster/PMaster.2da~ //CLAB
+	~%MOD_FOLDER%/Sorcerer/PaleMaster/PMaster.2da~ //CLAB
 	~K_S_H K_S_E K_S_HE~
 	~0x00004000     19~
 	~So1~
@@ -68,17 +68,17 @@ BEGIN
 WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
 SET "num_abil" = ("%num_abil%" - 1)
 END
-COPY ~ArtisansKitpack/PaleMaster/abilities~ ~override~
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities~ ~override~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
      SAY NAME1 @5
      SAY UNIDENTIFIED_DESC @6
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
      SAY NAME1 @7
      SAY UNIDENTIFIED_DESC @8
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
      SAY NAME1 @9
      SAY UNIDENTIFIED_DESC @10
-COPY ~ArtisansKitpack/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
      SAY NAME1 @11
      SAY NAME2 @11
 END
@@ -97,7 +97,7 @@ ADD_KIT ~PaleMaster~
 	~PaleMaster 0 0 0 0 0 15~ //abdcscrq.2da
 	~PaleMaster 0 1 1 0 1 1 0 1 1~ //alignmnt.2da
 	~PaleMaster 0 0 0 0 0 0~ //dualclas.2da
-	~ArtisansKitpack/PaleMaster/PMaster.2da~ //CLAB
+	~%MOD_FOLDER%/Sorcerer/PaleMaster/PMaster.2da~ //CLAB
 	~K_S_H K_S_E K_S_HE K_S_G~
 	~0x00004000     19~
 	~Ma0~
@@ -152,17 +152,17 @@ BEGIN
 WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
 SET "num_abil" = ("%num_abil%" - 1)
 END
-COPY ~ArtisansKitpack/PaleMaster/abilities~ ~override~
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities~ ~override~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil2.spl~ ~override~ //undead graft
      SAY NAME1 @5
      SAY UNIDENTIFIED_DESC @6
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil3.spl~ ~override~ //skeleton abomination
      SAY NAME1 @7
      SAY UNIDENTIFIED_DESC @8
-COPY ~ArtisansKitpack/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/PMAbil4.spl~ ~override~ //deathless master's touch
      SAY NAME1 @9
      SAY UNIDENTIFIED_DESC @10
-COPY ~ArtisansKitpack/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/abilities/Bonegrd.cre~ ~override~ //skeleton abomination cre
      SAY NAME1 @11
      SAY NAME2 @11
 

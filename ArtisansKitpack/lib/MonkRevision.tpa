@@ -140,7 +140,7 @@ END
 
 LAF mod_monk_profs END
 	
- ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
   COPY_EXISTING ~clastext.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
@@ -289,10 +289,22 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
   FOR (row = 0; row < numRows; row += 1) BEGIN
     SET_2DA_ENTRY row 2 numCols ~0~
   END
-	
+  
 COPY_EXISTING ~clasiskl.2da~ ~override~
-SET_2DA_ENTRY 8 55 1 ~10~
-	
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "DARK_MOON" = 0) BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count (val+10)
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
 COPY_EXISTING ~MFIST1.ITM~ OVERRIDE
 SAY NAME1 ~Fist~
 SAY NAME2 ~Fist~
@@ -813,8 +825,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~AR2615.ARE~ BEGIN
       END
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~tem4082.sto~ THEN BEGIN
-COPY_EXISTING ~tem4082.sto~ ~override~
+ACTION_IF FILE_EXISTS_IN_GAME ~tem4802.sto~ THEN BEGIN
+COPY_EXISTING ~tem4802.sto~ ~override~
 ADD_STORE_ITEM ~c0mnro01~ #0 #0 #0 ~IDENTIFIED~ #1
 ADD_STORE_ITEM ~c0mnro02~ #0 #0 #0 ~IDENTIFIED~ #1
 ADD_STORE_ITEM ~c0mnro03~ #0 #0 #0 ~IDENTIFIED~ #1
