@@ -19,7 +19,6 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
 
 END
 
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Negation~) STR_VAR bam_file = c0inqi01 RET c0inqi01 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Negation~) STR_VAR bam_file = c0inqi02 RET c0inqi02 = icon END
 
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~INQUISITOR~ RET kit_strref END
@@ -52,8 +51,6 @@ Disadvantages:
 
 COPY_EXISTING ~C0INQ01.SPL~ OVERRIDE
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0inqi02 END
-COPY_EXISTING ~C0INQ01a.SPL~ OVERRIDE
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0inqi01 END
 
 COPY_EXISTING ~SPCL231.SPL~ OVERRIDE
   SAY NAME1 ~Dispel Magic~
