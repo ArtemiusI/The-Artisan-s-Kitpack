@@ -86,7 +86,7 @@ Advantages:
 – May achieve Mastery (three slots) in Two-Weapon Style.
 – +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level.
 – Unfettered Defense: The Invisible Blade's base Armor Class improves at a value equal to 10 - (Intelligence - 12).
-– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus piercing damage on the initial hit and unmitigated damage for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
+– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus unmitigated damage on the initial hit and for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
   1st-4th: 2 damage per round, 2 rounds
   5th-8th: 3 damage per round, 4 rounds
   9th-12th: 4 damage per round, 8 rounds
@@ -113,6 +113,7 @@ STR_VAR
 	sneakatt = ~1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2~
 	hpclass = ~hprog~
     numwslot = 2
+	clascolr = ~199 186 182 83 190~
 	clasiskl = ~0 0 0 0 0 0 0~
 	thiefscl = ~100 100 100 100 100 100 0 0~
 	thiefskl = ~40 15~

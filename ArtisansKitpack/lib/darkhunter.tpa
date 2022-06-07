@@ -65,8 +65,7 @@ ADD_KIT ~C0DHUNT~
 
 Dark Hunters, unlike typical rangers, may be of any alignment and, as their skills are not bestowed by a deity like typical rangers, will never fall.
 
-ADVANTAGES:
-– +25% to Move Silently and Hide In Shadows.
+Advantages:
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
   Level 1-8: x2
   Level 9-16: x3
@@ -81,19 +80,11 @@ POISON WEAPON: The dark hunter is capable of coating <PRO_HISHER> weapon for the
   16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
   21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
 
-- From 3rd level onwards, may use the Set Snare ability once per day with 50% chance of success, plus an additional 5% for every level gained thereafter to a maximum of 100%. Gains extra uses every 6 levels thereafter.
-
-SET SNARE: Set a trap in the chosen location when no hostile creatures are in sight. Traps grow more powerful with the character's level and can only be triggered by enemies.
-  1st Level: Deals 2d8+5 missile damage.
-  11th Level: Deals 2d8+5 missile damage, plus 2d6 poison damage per round for the next 3 rounds.
-  16th Level: Deals 3d8+5 missile damage, plus 4d8+2 fire damage.
-  21st Level: Deals 3d8+5 missile damage and 20 poison damage with no save; slays target if a Save vs. Death with a +4 bonus is failed.
-  
 - From 10th level onwards, may use the Set Manhunter Snare ability once per day.
 
 SET MANHUNTER SNARE: The Manhunter is a powerful trap intended for crippling and tracking marks. This trap deals 10d10+20 missile damage and paralyzes the target on a failed Save vs. Death (-1 modifier penalty per 8 levels), or else greatly reduces the victim's movement rate, as well as causing them to bleed uncontrollably, dealing an additional 24 damage over 4 rounds. Additionally, the target is revealed for the bleed duration, remaining visible outside of allies' vision range and are unable to enter stealth or become invisible. The Manhunter's secondary effects do not apply against undead, elementals and non-corporeal beings.
 
-DISADVANTAGES:
+Disadvantages:
 – May not cast priest spells.
 – May not Dual-Class.
 – May not wear armor heavier than studded leather.
@@ -106,6 +97,7 @@ LAF fl#add_kit_ee
 	clasiskl = ~0 0 0 25 25 0 50~
 	clascolr = ~182 182 136 184 142~
 	thiefscl = ~0 0 0 100 100 0 100 0~
+	thiefskl = ~0 15~
 END
 
 COPY_EXISTING ~c0as#p01.spl~ ~override~

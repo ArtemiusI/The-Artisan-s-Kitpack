@@ -97,14 +97,16 @@ Disadvantages:
 – Alignment restricted to any non-lawful.
 – May not wear heavier armor than splint mail.
 – May cast one less priest spell per level.
+– May not Set Traps.
 – May not Specialize in ranged weapons.~
 
 LAF fl#add_kit_ee
   STR_VAR
     kit_name = c0tbm
 	hpclass = ~HPBARB~
+	thiefskl = ~0 10~
 END
-
+  
 // Spells
 
 COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/spin117.spl~ ~override~

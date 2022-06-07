@@ -1,0 +1,146 @@
+COPY ~%MOD_FOLDER%/Ranger/Beastmaster/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Ranger/Beastmaster/spells~ ~OVERRIDE~
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BEASTMASTER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~BEAST MASTER: This Ranger is a wanderer and is not comfortable in civilized lands. Therefore, <PRO_HESHE> maintains a natural affinity for all beings of nature, from animals to beasts considered monsters by ordinary folk; they are <PRO_HISHER> friends and comrades-in-arms, and the Beast Master has a limited form of telepathic communication with them. 
+
+Advantages:
+– Beast Friend: The beast master gains a +2 bonus to Armor Class and Saving Throws against animals and monstrous creatures. Additionally, allied animals and monstrous creatures within visual range of the beast master gain a non-cumulative +2 bonus to Armor Class, Saving Throws, THAC0 and damage.
+– May use Find Familiar ability to summon a pseudo dragon (if lawful or neutral good) or fairy dragon (if chaotic good) companion.
+– May use an Enhanced version of Charm Animal.
+
+ENHANCED CHARM ANIMAL: This advanced version of Charm Animal is similar to the original ability, but the animal must make a Saving Throw vs. Spell at -6 instead. The ability may also affect monstrous creatures such as ankhegs, wyverns and umber hulks. After the regular 2 turns of the ability has expired, the animal remains friendly towards the beast master and will assist them against any enemies they see, but cannot be controlled.
+
+– 6th level: May cast Animal Rage as an ability once per day. Gains an additional use at 9th and 12th level.
+
+ANIMAL RAGE: This spell imbues the target creature with animal ferocity. The target creature gains a Strength score of 19, +20 Hit Points, +20% movement rate, and a +2 bonus to all Saving Throws. The target loses the ability to cast spells while Animal Rage is in effect; when enemies are within sight, <PRO_HESHE> immediately attacks in melee, using whatever is in hand. While this spell is in effect, there is a 5% chance per round that the target will go berserk, attacking friend and foe alike.
+
+– 8th level: May cast Animal Summoning I as a 1st level divine spell.
+– 9th level: Greater Beast Friend: allied bonuses from Beast Friend increased to +4.
+– 10th level: May cast Animal Summoning II as a 2nd level divine spell.
+– 12th level: May cast Animal Summoning III as a 3rd level divine spell.
+– 14th level: May cast Wyvern Call as an innate ability once per day. Gains an additional use at 18th level.
+– 15th level: Beast Guardian: allied bonuses from Beast Friend increased to +6.
+
+Disadvantages:
+– May only use non metal-based weapons. (clubs, spears, quarterstaves, crossbows, longbows, shortbows, darts, slings)
+– May only use non metal-based armors.
+– Incurs a -2 penalty to Charisma.~
+/*
+CALL OF THE WILD: The beast master calls upon the creatures of the wild, summoning 1d4 creatures to assist them in battle. The types of creature that can be summoned are dependent on the beast master’s level and the area in which the ability is used.
+
+  5th level+: Dogs, bears, wolves, rats, spiders
+  9th level+: Ettercaps, dire bears, dire wolves, giant spiders, ankhegs, myconids, baby wyverns
+  13th level+: Wyverns, umber hulks, sword spiders, spore colonies
+  18th level+: Basilisks, greater wyverns
+*/
+APPEND ~thiefskl.2da~
+~BEASTMASTER 0 10~
+  
+  COPY_EXISTING ~abclsmod.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BEASTMASTER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 6 cols %-2%
+	  END
+	END
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "BEASTMASTER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "BEASTMASTER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count (val+20)
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+COPY_EXISTING C0BMA01.SPL OVERRIDE
+SAY NAME1 ~Enhanced Charm Animal~
+SAY UNIDENTIFIED_DESC ~Enhanced Charm Animal
+This advanced version of Charm Animal is similar to the original ability, but the animal must make a Saving Throw vs. Spell at -6 instead. The ability may also affect monstrous creatures such as ankhegs, wyverns and umber hulks. After the regular 2 turns of the ability has expired, the animal remains friendly towards the beast master and will assist them against any enemies they see, but cannot be controlled.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR522.SPL~ BEGIN
+COPY_EXISTING ~SPPR522.spl~ ~override/C0BMA02.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI619.SPL~ BEGIN
+COPY_EXISTING ~SPWI619.spl~ ~override/C0BMA03.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR522.SPL~ BEGIN
+COPY ~%MOD_FOLDER%/Ranger/Beastmaster/spells/sppr522~ ~override~
+COPY_EXISTING ~SPPR522.spl~ ~override/C0BMA02.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+SAY NAME1 ~Animal Rage~
+SAY UNIDENTIFIED_DESC ~Animal Rage
+(Enchantment)
+
+Level: 5
+Sphere: Combat
+Range: Touch
+Duration: 15 rounds
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell imbues the target creature with animal ferocity. The target creature gains a Strength score of 19, +20 Hit Points, +20% movement rate, and a +2 bonus to all Saving Throws. The target loses the ability to cast spells while Animal Rage is in effect; when enemies are within sight, <PRO_HESHE> immediately attacks in melee, using whatever is in hand. While this spell is in effect, there is a 5% chance per round that the target will go berserk, attacking friend and foe alike.~
+
+COPY_EXISTING ~SPPR522B.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Berserking~) END
+END

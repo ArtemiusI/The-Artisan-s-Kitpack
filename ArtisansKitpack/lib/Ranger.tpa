@@ -1,0 +1,102 @@
+COPY ~%MOD_FOLDER%/Ranger/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Ranger/spells~ ~OVERRIDE~
+
+APPEND ~splprot.2da~ ~C0_OUTDOORS_CHECK%TAB%0x106%TAB%1%TAB%8~ UNLESS ~C0_OUTDOORS_CHECK~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_OUTDOORS_CHECK~ BEGIN
+	    SET C0_OUTDOORS_CHECK = %row%
+	  END
+	END
+
+ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
+  COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~RANGER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~RANGER: The Ranger is a warrior and a woods<PRO_MANWOMAN> who is skilled with weapons and is knowledgeable in the ways of the forest. The Ranger often protects and guides lost travelers and honest peasant-folk. A Ranger needs to be strong and wise to the ways of nature to live a full life.
+
+CLASS FEATURES:
+
+– May wear helmets.
+– May wear any armor and use any weapon.
+– May not exceed Specialization (two slots) in any weapon class.
+– May achieve Specialization (two slots) in any fighting style.
+– Begins Specialized (two slots) in Two-Weapon Style and may place a third slot into it. 
+– May select a racial enemy, which grants a +4 bonus to hit and damage rolls against the selected enemy race.
+– May use the Charm Animal ability once per day. Gains one use at level 1 and an additional use every 2 levels thereafter.
+– May use the Hide In Shadows ability while wearing no armor, leather armor, or studded leather armor.
+– Woodland Stride: The ranger's movement rate is increased by 2 while outdoors. From 5th level onward, the ranger becomes immune to Entangle and Web effects.
+– Camouflage: The ranger gains a 25% bonus to Hide in Shadows and Move Silently while outdoors.
+– May use the Set Snare ability once per day. Gains one use at level 1 and an additional use every 5 levels thereafter.
+
+SET SNARE: Set a trap in the chosen location when no hostile creatures are in sight. Traps grow more powerful with the Thief's level and can only be triggered by enemies.
+  1st level: Deals 2d8+5 missile damage.
+  11th level: Deals 2d8+5 missile damage and additionally deals 2d6 poison damage per round for the next 3 rounds.
+  16th level: Deals 3d8+5 missile damage and 4d8+2 fire damage.
+  21st level: Deals 3d8+5 missile damage and 20 poison damage with no save; slays target if a Save vs. Death with a +4 bonus is failed.
+  
+– May use the Tracking ability at will while outdoors.
+
+TRACKING: With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war for 3 rounds. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.
+  
+– May cast druidic spells starting at level 8.
+– Alignment restricted to good.
+– Hit Die: d10
+
+Prime Requisites For Dual-Classing: Strength, Dexterity, Wisdom~)
+	  END
+	END
+  BUT_ONLY
+	END
+	END
+	
+COPY_EXISTING ~c0rng00.eff~ ~override~
+	WRITE_BYTE 0x20 %C0_OUTDOORS_CHECK%
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+APPEND ~thiefskl.2da~
+~RANGER	0 10~
+    
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count (val+20)
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~SPCL922.SPL~ OVERRIDE
+SAY NAME1 ~Tracking~
+SAY UNIDENTIFIED_DESC ~Tracking
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war for 3 rounds. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.
+
+This ability only works while outdoors.~

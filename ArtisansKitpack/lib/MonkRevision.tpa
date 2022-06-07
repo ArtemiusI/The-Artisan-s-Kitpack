@@ -140,8 +140,9 @@ END
 
 LAF mod_monk_profs END
 	
-ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
-  COPY_EXISTING ~clastext.2da~ ~override~
+ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
+  COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
@@ -156,6 +157,7 @@ CLASS FEATURES:
 – May only use weapons available to the Thief class.
 – May only become Proficient (one slot) in any weapon class.
 – May become Proficient (one slot) in Single-Weapon Style and Two-Weapon Style.
+– May use the Hide In Shadows and Find Trap abilities (but may not disarm traps)
 – Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
 – May make 2 unarmed attacks per round.
 – -1 to Speed Factor per 3 levels.
@@ -204,6 +206,7 @@ EMPTY BODY: The monk gains the ability to fade from sight, granting them partial
 	  END
 	END
   BUT_ONLY
+	END
 	END
   
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DARK_MOON~ RET kit_strref END

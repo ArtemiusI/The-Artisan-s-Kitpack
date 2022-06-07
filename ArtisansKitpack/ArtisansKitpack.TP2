@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2.6~
+VERSION ~2.5~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
@@ -618,16 +618,43 @@ BEGIN ~Artisan's Kitpack: The Art of Rage (Barbarian Overhaul)~ DESIGNATED 1005
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Barbarian.tpa~
 
+BEGIN ~Artisan's Kitpack: Ranger Overhaul (required for kit components)~ DESIGNATED 2000
+GROUP ~Ranger Kits~
+INCLUDE ~%MOD_FOLDER%/lib/ranger.tpa~
+
+BEGIN ~Artisan's Kitpack: Archer Overhaul~ DESIGNATED 2010
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
+GROUP ~Ranger Kits~
+INCLUDE ~%MOD_FOLDER%/lib/archer.tpa~
+
+BEGIN ~Artisan's Kitpack: Stalker Overhaul~ DESIGNATED 2011
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
+GROUP ~Ranger Kits~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
+END
+
+INCLUDE ~%MOD_FOLDER%/lib/stalker.tpa~
+
+BEGIN ~Artisan's Kitpack: Beast Master Overhaul~ DESIGNATED 2012
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
+GROUP ~Ranger Kits~
+
+INCLUDE ~%MOD_FOLDER%/lib/beastmaster.tpa~
+
 BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~ DESIGNATED 2001
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
 
 BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~ DESIGNATED 2002
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
 
-BEGIN ~Artisan's Kitpack: Paladin Overhaul~ DESIGNATED 3000
+BEGIN ~Artisan's Kitpack: Paladin Overhaul (required for kit components)~ DESIGNATED 3000
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/paladin.tpa~
 
@@ -760,6 +787,11 @@ END
 
 BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Overhaul)~ DESIGNATED 7004
 GROUP ~Thief Kits~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
+END
+
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 
 BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103

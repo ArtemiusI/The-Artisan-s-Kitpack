@@ -1,0 +1,113 @@
+COPY ~%MOD_FOLDER%/Ranger/Archer/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Ranger/Archer/spells~ ~OVERRIDE~
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~FERALAN~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with ranged weapons—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. Whether as a harrier launching a one-man fusillade of arrows or a sharpshooter hiding in the shadows waiting for the perfect shot, the archer is a master of all forms of marksmanship. To become so skilled with their art, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
+
+Advantages:
+– +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
+– +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows, darts and slings.
+– Eagle Eye: The archer's visual range is increased by 4 while stealthed or invisible.
+– May use the Rapid Shot modal ability.
+
+RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
+
+– May use the Called Shot ability once per day. Gains an additional use at every 4th level.
+
+CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Archer:
+ 4th level: -1 penalty to target's THAC0.
+ 8th level: -1 penalty to target's Saving Throws vs. Spell.
+ 12th level: -1 penalty to the target's Strength score.
+ 16th level: +2 bonus to damage roll.
+ 
+– 3rd level: May use the Tracking Shot ability once per round. This ability counts as a free action.
+
+TRACKING SHOT: The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.
+
+– 12th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 16th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
+
+Disadvantages:
+– Hit Die: d8
+– THAC0 penalty of -3 while wielding melee weapons.
+– May only become Proficient (one slot) with melee weapons.
+– May only Specialize (two slots) in Two-Weapon Style.
+– May not Set Traps.
+– May not use the Charm Animal ability.~
+
+	
+APPEND ~thiefskl.2da~
+~FERALAN 0 10~
+  
+// ARCHER - HIT DIE
+COPY_EXISTING ~hpclass.2da~ OVERRIDE
+REPLACE_TEXTUALLY CASE_INSENSITIVE ~ARCHER              HPWAR~ ~ARCHER              HPARCH~
+  
+// ARCHER - PROFICIENCIES
+ACTION_CLEAR_ARRAY weapprof_cols_archer
+        
+COPY_EXISTING ~weapprof.2da~  ~override~
+  COUNT_2DA_COLS col_count
+  SET col_check = col_count - 1
+  FOR (column = 0; column < col_check; ++column) BEGIN
+    READ_2DA_ENTRY 0 column col_check name
+    PATCH_IF (("FERALAN" STRING_COMPARE_CASE "%name%" = 0)) BEGIN
+      SET column += 1 // row with names has an empty entry for the first column
+      DEFINE_ASSOCIATIVE_ARRAY weapprof_cols_archer BEGIN ~%column%~ => ~%column%~ END
+    END
+  END
+  PATCH_PHP_EACH weapprof_cols_archer AS column => foo BEGIN
+    FOR (row = 8; row < 32; ++row) BEGIN
+      READ_2DA_ENTRY row column col_count stars
+      PATCH_IF (stars < 5) BEGIN
+        SET_2DA_ENTRY 26 column col_count 5
+        SET_2DA_ENTRY 27 column col_count 5
+        SET_2DA_ENTRY 31 column col_count 2
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
+
+COPY_EXISTING C0ARC03.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
+SAY NAME1 ~Rapid Shot~
+SAY UNIDENTIFIED_DESC ~Rapid Shot
+The archer may make an additional attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+
+COPY_EXISTING C0ARC03z.SPL OVERRIDE
+SAY NAME1 ~Deactivate Rapid Shot~
+SAY UNIDENTIFIED_DESC ~Deactivate Rapid Shot
+Use this ability to deactivate Rapid Shot mode.~
+
+COPY_EXISTING C0ARC04.SPL OVERRIDE
+SAY NAME1 ~Tracking Shot~
+SAY UNIDENTIFIED_DESC ~Tracking Shot
+The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.~
+
+COPY_EXISTING C0ARC04a.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 2~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 3~) END
+LPF ALTER_EFFECT INT_VAR header = 2 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 4~) END
+LPF ALTER_EFFECT INT_VAR header = 3 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 5~) END
+LPF ALTER_EFFECT INT_VAR header = 4 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 6~) END
+COPY_EXISTING C0ARC04z.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot Ready~) END
