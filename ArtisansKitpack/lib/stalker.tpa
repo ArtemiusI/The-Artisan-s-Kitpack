@@ -16,7 +16,7 @@ LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~STALKER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~STALKER: Stalkers serve as covert intelligence-gatherers, comfortable in both wilderness and urban settings. They are spies, informants, and interrogators. Their versatile set of skills allow them to take on any mission, whether it involves persuasion, assassination, or open combat.
 
 Advantages:
-– May distribute 15 skill points per level.
+– +10% bonus to Set Traps.
 – Gains Camouflage bonuses to Hide in Shadows and Move Silently (+25%) while indoors.
 – May use Tracking while indoors.
 – Stealth Caster: The stalker's spells cast while hiding or invisible have their casting time reduced to 1, if higher. 
@@ -34,9 +34,6 @@ ANALYZE: With this ability, the user carefully observes the target and identifie
 Disadvantages:
 – May not wear armor heavier than studded leather.~
 
-APPEND ~thiefskl.2da~
-~STALKER 0 15~
-  
 COPY_EXISTING ~c0stk00.eff~ ~override~
 	WRITE_BYTE 0x20 %C0_OUTDOORS_CHECK%	
 
@@ -82,7 +79,7 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
     READ_2DA_ENTRY 0 col col_count kit
     PATCH_IF ("%kit%" STRING_COMPARE_CASE "STALKER" = 0) BEGIN
       READ_2DA_ENTRY 7 col col_count val
-      SET_2DA_ENTRY  7 col col_count (val+20)
+      SET_2DA_ENTRY  7 col col_count (val+35)
       SET col = col_count // kill loop
     END
   END  

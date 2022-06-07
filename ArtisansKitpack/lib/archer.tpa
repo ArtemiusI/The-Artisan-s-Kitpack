@@ -7,7 +7,7 @@ STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with 
 Advantages:
 – +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
 – +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
-– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows, darts and slings.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows and darts.
 – Eagle Eye: The archer's visual range is increased by 4 while stealthed or invisible.
 – May use the Rapid Shot modal ability.
 
@@ -37,9 +37,6 @@ Disadvantages:
 – May not use the Charm Animal ability.~
 
 	
-APPEND ~thiefskl.2da~
-~FERALAN 0 10~
-  
 // ARCHER - HIT DIE
 COPY_EXISTING ~hpclass.2da~ OVERRIDE
 REPLACE_TEXTUALLY CASE_INSENSITIVE ~ARCHER              HPWAR~ ~ARCHER              HPARCH~
@@ -62,7 +59,6 @@ COPY_EXISTING ~weapprof.2da~  ~override~
       READ_2DA_ENTRY row column col_count stars
       PATCH_IF (stars < 5) BEGIN
         SET_2DA_ENTRY 26 column col_count 5
-        SET_2DA_ENTRY 27 column col_count 5
         SET_2DA_ENTRY 31 column col_count 2
       END
     END

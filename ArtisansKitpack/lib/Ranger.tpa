@@ -76,9 +76,6 @@ COPY_EXISTING ~thiefscl.2da~ ~override~
   PRETTY_PRINT_2DA
   BUT_ONLY
   
-APPEND ~thiefskl.2da~
-~RANGER	0 10~
-    
 COPY_EXISTING ~clasiskl.2da~ ~override~
   REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
   COUNT_2DA_COLS col_count

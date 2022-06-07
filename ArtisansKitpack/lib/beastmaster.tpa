@@ -34,9 +34,7 @@ CALL OF THE WILD: The beast master calls upon the creatures of the wild, summoni
   13th level+: Wyverns, umber hulks, sword spiders, spore colonies
   18th level+: Basilisks, greater wyverns
 */
-APPEND ~thiefskl.2da~
-~BEASTMASTER 0 10~
-  
+
   COPY_EXISTING ~abclsmod.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
