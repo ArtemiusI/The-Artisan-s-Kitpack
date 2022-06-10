@@ -797,7 +797,7 @@ INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 GROUP ~Thief Kits~
-COPY ~%MOD_FOLDER%/ASSASSIN/MONTARON~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/THIEF/ASSASSIN/MONTARON~ ~OVERRIDE~
 
 BEGIN ~Artisan's Kitpack: Invisible Blade Thief Kit~ DESIGNATED 7005
 GROUP ~Thief Kits~

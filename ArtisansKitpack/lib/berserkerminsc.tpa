@@ -104,7 +104,6 @@ LAF fl#add_kit_ee
   STR_VAR
     kit_name = c0tbm
 	hpclass = ~HPBARB~
-	thiefskl = ~0 10~
 END
   
 // Spells

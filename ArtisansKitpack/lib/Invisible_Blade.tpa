@@ -12,18 +12,7 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	    SET C0HTINT = %row%
 	  END
 	END
-// CURRENT HP CHECK
-APPEND ~splprot.2da~ ~C0CURHP%TAB%0%TAB%-1%TAB%0~
-COPY_EXISTING ~splprot.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
-	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0CURHP~ BEGIN
-	    SET C0CURHP = %row%
-	  END
-	END
-
+	
 ADD_KIT ~C0_INVISIBLE_BLADE~
 
  // appended to CLASWEAP.2da
@@ -86,7 +75,7 @@ Advantages:
 – May achieve Mastery (three slots) in Two-Weapon Style.
 – +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level.
 – Unfettered Defense: The Invisible Blade's base Armor Class improves at a value equal to 10 - (Intelligence - 12).
-– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus unmitigated damage on the initial hit and for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
+– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus piercing damage on the initial hit and unmitigated damage for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
   1st-4th: 2 damage per round, 2 rounds
   5th-8th: 3 damage per round, 4 rounds
   9th-12th: 4 damage per round, 8 rounds
@@ -155,9 +144,6 @@ LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_
 LPF ALTER_EFFECT INT_VAR header = 2 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Bleeding Wound—Damage Taken (4)~) END
 LPF ALTER_EFFECT INT_VAR header = 3 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Bleeding Wound—Damage Taken (6)~) END
 LPF ALTER_EFFECT INT_VAR header = 4 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Bleeding Wound—Damage Taken (8)~) END
-
-COPY_EXISTING ~C0IVB01X.EFF~ ~OVERRIDE~
-	WRITE_BYTE 0x20 %C0CURHP%
 
 COPY_EXISTING ~C0IVB02.SPL~ OVERRIDE
 SAY NAME1 ~Feint~
