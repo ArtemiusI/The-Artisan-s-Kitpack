@@ -48,10 +48,11 @@ ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow withi
 Disadvantages:
 – Hit Die: d8
 – THAC0 penalty of 2 when wielding a melee weapon.
+– May not use Power Attack or Expertise.
 – Race restricted to human, elf or half-elf.
 – May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
 – May not exceed proficiency (one slot) in any weapon style.
-– May not wear armor heavier than chain mail.~
+– May not wear armor heavier than elven chain mail.~
 
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain1.spl~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain2.spl~ ~override~

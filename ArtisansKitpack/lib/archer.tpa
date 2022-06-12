@@ -66,6 +66,7 @@ COPY_EXISTING ~weapprof.2da~  ~override~
   PRETTY_PRINT_2DA
   BUT_ONLY
 
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
   STR_VAR bam_file = "****"
@@ -84,15 +85,19 @@ END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
 
 COPY_EXISTING C0ARC03.SPL OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
 SAY NAME1 ~Rapid Shot~
 SAY UNIDENTIFIED_DESC ~Rapid Shot
-The archer may make an additional attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+The user may make an additional ranged attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+
+COPY_EXISTING C0ARC03b.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
 
 COPY_EXISTING C0ARC03z.SPL OVERRIDE
-SAY NAME1 ~Deactivate Rapid Shot~
-SAY UNIDENTIFIED_DESC ~Deactivate Rapid Shot
-Use this ability to deactivate Rapid Shot mode.~
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
+END
 
 COPY_EXISTING C0ARC04.SPL OVERRIDE
 SAY NAME1 ~Tracking Shot~

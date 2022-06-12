@@ -1,17 +1,6 @@
 COPY ~%MOD_FOLDER%/Ranger/Stalker/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Ranger/Stalker/spells~ ~OVERRIDE~
 
-APPEND ~splprot.2da~ ~C0_OUTDOORS_CHECK%TAB%0x106%TAB%1%TAB%8~ UNLESS ~C0_OUTDOORS_CHECK~
-COPY_EXISTING ~splprot.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
-	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_OUTDOORS_CHECK~ BEGIN
-	    SET C0_OUTDOORS_CHECK = %row%
-	  END
-	END
-
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~STALKER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~STALKER: Stalkers serve as covert intelligence-gatherers, comfortable in both wilderness and urban settings. They are spies, informants, and interrogators. Their versatile set of skills allow them to take on any mission, whether it involves persuasion, assassination, or open combat.
 
@@ -34,8 +23,19 @@ ANALYZE: With this ability, the user carefully observes the target and identifie
 Disadvantages:
 – May not wear armor heavier than studded leather.~
 
+APPEND ~splprot.2da~ ~C0_OUTDOORS_CHECK%TAB%0x106%TAB%1%TAB%8~ UNLESS ~C0_OUTDOORS_CHECK~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_OUTDOORS_CHECK~ BEGIN
+	    SET C0_OUTDOORS_CHECK = %row%
+	  END
+	END
+
 COPY_EXISTING ~c0stk00.eff~ ~override~
-	WRITE_BYTE 0x20 %C0_OUTDOORS_CHECK%	
+	WRITE_SHORT 0x20 C0_OUTDOORS_CHECK
 
 COPY_EXISTING ~C0STK01.SPL~ OVERRIDE
 SAY NAME1 ~Tracking~

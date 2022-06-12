@@ -1,0 +1,133 @@
+COPY ~%MOD_FOLDER%/Fighter/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/spells~ ~OVERRIDE~
+
+ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
+  COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 0; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~FIGHTER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~FIGHTER: The Fighter is a champion, swords<PRO_MANWOMAN>, soldier, and brawler who lives or dies by <PRO_HISHER> knowledge of weapons and tactics. Fighters can be found at the front of any battle, contesting toe-to-toe with monsters and villains. Through extensive training and experience, a Fighter may master many weapons throughout <PRO_HISHER> lifetime. A good Fighter needs to be strong and healthy if <PRO_HESHE> hopes to survive.
+
+CLASS FEATURES:
+
+– May wear helmets.
+– May wear any armor and use any weapon.
+– May achieve Grand Mastery (five slots) with any weapon class.
+– May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
+– Does not suffer penalties for wielding a non-proficient weapon.
+– 5th level: May use the Power Attack and Expertise modal abilities. Only one of the two may be activated at any time.
+
+POWER ATTACK: The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.
+
+EXPERTISE: The Fighter focuses on defense at the expense of accuracy, sacrificing 3 points of THAC0 to increase their Armor Class by 3. The Fighter must have 15 or greater Intelligence to activate this ability.
+
+– 6th level: May use the Rapid Shot modal ability.
+
+RAPID SHOT: The Fighter may make an additional ranged attack per round at a -4 penalty to hit.
+
+– 12th level: Improved Rapid Shot: The Fighter’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 14th level: May use Improved Power Attack and Improved Expertise, which provide 6 points to the original abilities' bonuses and penalties.
+– 20th level: The Fighter achieves Specialization (two slots) in all weapons they were not already at least specialized in.
+
+– Hit Die: d10
+
+Prime Requisites For Dual-Classing: Strength~)
+	  END
+	END
+  BUT_ONLY
+	END
+	END
+	
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Power Attack~) STR_VAR bam_file = C0FIG01I RET C0FIG01I = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Power Attack~) STR_VAR bam_file = C0FIG01J RET C0FIG01J = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Expertise~) STR_VAR bam_file = C0FIG02I RET C0FIG02I = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Expertise~) STR_VAR bam_file = C0FIG02J RET C0FIG02J = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
+
+COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
+COPY_EXISTING ~C0FIG01.SPL~ OVERRIDE
+SAY NAME1 ~Power Attack~
+SAY UNIDENTIFIED_DESC ~Power Attack
+The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.~
+	
+COPY_EXISTING ~C0FIG01a.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01I END
+
+COPY_EXISTING ~C0FIG01b.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01J END
+
+COPY_EXISTING ~C0FIG01c.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
+
+COPY_EXISTING ~C0FIG02X.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise—Inadequate Intelligence~) END
+COPY_EXISTING ~C0FIG02.SPL~ OVERRIDE
+SAY NAME1 ~Expertise~
+SAY UNIDENTIFIED_DESC ~Expertise
+The Fighter focuses on defense at the expense of accuracy, sacrificing 3 points of THAC0 to increase their Armor Class by 3. The Fighter must have 15 or greater Intelligence to activate this ability.~
+
+COPY_EXISTING ~C0FIG02a.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG02I END
+
+COPY_EXISTING ~C0FIG02b.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Expertise Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG02J END
+
+COPY_EXISTING ~C0FIG02c.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise Inactive~) END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
+
+COPY_EXISTING C0ARC03.SPL OVERRIDE
+SAY NAME1 ~Rapid Shot~
+SAY UNIDENTIFIED_DESC ~Rapid Shot
+The user may make an additional ranged attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+
+COPY_EXISTING C0ARC03b.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
+
+COPY_EXISTING C0ARC03z.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
+END

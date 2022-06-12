@@ -73,6 +73,7 @@ Disadvantages:
 – May not use any armor, helmets, gauntlets, bracers or shields.
 – May not use missile weapons.
 – Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
+– Does not gain Specialization in all weapons at 20th level.
 – Alignment restricted to any non-chaotic.~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/clabfi04.2da~ ~override~

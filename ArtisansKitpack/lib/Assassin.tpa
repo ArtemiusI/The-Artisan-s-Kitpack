@@ -519,7 +519,7 @@ The assassin is capable of coating <PRO_HISHER> weapon for the next eight hours 
 21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4. */
 COPY_EXISTING ~c0as#p01.spl~ ~override/spcl423.spl~
 
-ACTION_IF FILE_EXISTS ~C0TR#30A.spl~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~C0TR#30A.spl~ THEN BEGIN
 COPY_EXISTING ~C0TR#30A.SPL~ OVERRIDE
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0ASIN8B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0as#p1 END

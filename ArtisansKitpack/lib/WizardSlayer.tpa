@@ -1,0 +1,205 @@
+COPY ~%MOD_FOLDER%/Fighter/WizardSlayer/2da~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/WizardSlayer/spells~ ~override~
+
+// Resistances
+DEFINE_ACTION_FUNCTION	ADD_SPLPROT	INT_VAR	stat = 0	value = 0	relation = 0	RET	new_row		BEGIN
+	ACTION_IF	(stat > 278)	BEGIN	WARN	~SPLPROT.2DA - Stat out of Bounds.~	END
+	ACTION_IF	((stat != 259) AND (stat != 260) AND (relation > 11))	BEGIN	WARN	~SPLPROT.2DA - Relation out of Bounds.~	END
+	COPY_EXISTING ~SPLPROT.2DA~	OVERRIDE
+		COUNT_2DA_COLS	cols
+		COUNT_2DA_ROWS cols rows
+		TEXT_SPRINT check_row ~~
+		TEXT_SPRINT check_stat ~~
+		SET new_row = 0
+		FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+			PATCH_IF (~%check_stat%~ STRING_EQUAL ~%stat%~)	BEGIN	READ_2DA_ENTRY current_row 2 cols check_value
+				PATCH_IF (~%check_value%~ STRING_EQUAL ~%value%~)	BEGIN	READ_2DA_ENTRY current_row 3 cols check_relation
+					PATCH_IF (~%check_relation%~ STRING_EQUAL ~%relation%~)	BEGIN	new_row = current_row	current_row = rows	END
+				END
+			END
+		END
+		PATCH_IF (new_row = 0)	BEGIN
+			FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+				PATCH_IF (~%check_stat%~ STRING_EQUAL ~*~)	BEGIN	new_row = current_row	current_row = rows	END
+			END
+			PATCH_IF (new_row = 0)	BEGIN	new_row = rows	INSERT_2DA_ROW rows cols ~%new_row%		   %stat%		   %value%		   %relation%~
+			END	ELSE	BEGIN	SET_2DA_ENTRY new_row 1 cols ~%stat%~	SET_2DA_ENTRY new_row 2 cols ~%value%~	SET_2DA_ENTRY new_row 3 cols ~%relation%~	END
+		END
+	BUT_ONLY
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Spellslayer Strike~) STR_VAR bam_file = C0WSL11I RET C0WSL11I = icon END
+
+//	Array of Restistance / Stat#
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_0_9	BEGIN
+	~MRES_DMG_ARRAY_0_9~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_0_9 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 1	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 10	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_10_19	BEGIN
+	~MRES_DMG_ARRAY_10_19~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_10_19 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 10	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 19	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_20_29	BEGIN
+	~MRES_DMG_ARRAY_20_29~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_20_29 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 20	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 29	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_30_39	BEGIN
+	~MRES_DMG_ARRAY_30_39~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_30_39 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 30	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 39	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_40_49	BEGIN
+	~MRES_DMG_ARRAY_40_49~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_40_49 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 40	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 49	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	MRES_DMG_ARRAY_50_128	BEGIN
+	~MRES_DMG_ARRAY_50_128~	=>	18
+END
+ACTION_PHP_EACH	MRES_DMG_ARRAY_50_128 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 50	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 128	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~WIZARD_SLAYER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~WIZARD SLAYER: This warrior has been specially trained by <PRO_HISHER> sect to excel in hunting and combating spellcasters of all kinds, developing an innate power to nullify and disrupt magical energies of all kinds. Under specific situations, the Wizard Slayer may even use this power more offensively, unleashing powerful blows against non-magic users. This energy, however, has the unfortunate side-effect of negating the benefits of many magical items, rendering them useless in <PRO_HISHER> hands.
+
+Advantages:
+– Each successful hit made by the Wizard Slayer bestows a cumulative chance of spell failure on the target equal to their 10% + 1% per level for 15 rounds.
+– The Wizard Slayer's critical hits cast Breach on the target, even if they are immune to the attack.
+– Gains Magic Resistance equal to 10% + 1% per level.
+– 4th level: May use the Spellslayer Strike ability twice per day, gaining an additional use every two levels thereafter.
+
+SPELLSLAYER STRIKE: The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase the hit and damage rolls of their next successful attack by the same amount. The Wizard Slayer regains their Magic Resistance after two turns have passed.
+
+– 8th level: May use the Antimagic Field ability once per day. Gains an additional use at levels 10 and 12.
+
+ANTIMAGIC FIELD: The Wizard Slayer extends their innate Magic Resistance to all nearby allies within a 15-ft. radius, granting them half of the Wizard Slayer's base amount. This effect lasts for five rounds, and the Wizard Slayer loses their own innate Magic Resistance for the duration and may not use Spellslayer Strike while the effect is active.
+
+– 16th level: Spell Barrier: The Wizard Slayer absorbs the effects of the first spell targeted at them of any spell level. This does not prevent the effects of area effect spells and clouds that do not target the Wizard Slayer. The Spell Barrier is restored after one turn has passed.
+
+Disadvantages:
+– May not use any magic items that do not have a Magic Resistance component apart from weapons and armor.
+– Does not gain Specialization in all weapons at 20th level.~
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~                  //Kindly provided and explained by kjeron with a solid base that Grammarsalad gave me to start knowing what to ask and look for.
+	PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+		READ_SHORT	0x6a	fx_off
+		READ_SHORT	0x70	glob_fx
+		FOR	(j = 0; j < glob_fx; ++j)	BEGIN
+			READ_SHORT (fx_off + j * 0x30) opcode
+			PATCH_IF (opcode = 31) OR (opcode = 166)  BEGIN
+				WRITE_BYTE	0x002f	(THIS BAND 0b11111101)
+				SET j = glob_fx
+			END
+		END
+	END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~POTN33.itm~ ~override~                            //Potion of Magic Blocking
+WRITE_BYTE 0x2f (THIS BAND 0b11111101)
+
+COPY_EXISTING ~POTN34.itm~ ~override~                            //Potion of Magic Protection
+WRITE_BYTE 0x2f (THIS BAND 0b11111101)
+
+COPY_EXISTING ~POTN35.itm~ ~override~                            //Potion of Magic Shielding
+WRITE_BYTE 0x2f (THIS BAND 0b11111101)
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI513.SPL~ BEGIN
+COPY_EXISTING ~SPWI513.spl~ ~override/C0WSL00.spl~
+WRITE_SHORT 0x1C 4 
+WRITE_LONG 0x34 1 
+READ_LONG 0x64 "offset_abil"
+READ_SHORT 0x68 "num_abil"
+READ_ASCII ("%offset_abil%" + 0x04) "bam" 
+WRITE_EVALUATED_ASCII 0x3A "%bam%" 
+WHILE (0 < "%num_abil%")
+BEGIN
+WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
+SET "num_abil" = ("%num_abil%" - 1)
+END
+END
+
+COPY_EXISTING ~C0WSL01.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 1 parameter2 = MRES_DMG_ARRAY_0_9 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 2 parameter2 = MRES_DMG_ARRAY_10_19 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 3 parameter2 = MRES_DMG_ARRAY_20_29 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 4 parameter2 = MRES_DMG_ARRAY_30_39 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 5 parameter2 = MRES_DMG_ARRAY_40_49 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 6 parameter2 = MRES_DMG_ARRAY_50_128 END
+SAY NAME1 ~Spellslayer Strike~
+SAY UNIDENTIFIED_DESC ~Spellslayer Strike
+The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase the hit and damage rolls of their next successful attack by the same amount. The Wizard Slayer regains their Magic Resistance after two turns have passed.~
+
+COPY_EXISTING ~C0WSL01a.SPL~ OVERRIDE
+SAY NAME1 ~Spellslayer Strike—10% Magic Resistance~
+COPY_EXISTING ~C0WSL01b.SPL~ OVERRIDE
+SAY NAME1 ~Spellslayer Strike—20% Magic Resistance~
+COPY_EXISTING ~C0WSL01c.SPL~ OVERRIDE
+SAY NAME1 ~Spellslayer Strike—30% Magic Resistance~
+COPY_EXISTING ~C0WSL01d.SPL~ OVERRIDE
+SAY NAME1 ~Spellslayer Strike—40% Magic Resistance~
+COPY_EXISTING ~C0WSL01e.SPL~ OVERRIDE
+SAY NAME1 ~Spellslayer Strike—50% Magic Resistance~
+
+COPY_EXISTING ~C0WSL01v.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Inadequate Magic Resistance~) END
+
+COPY_EXISTING ~C0WSL011.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0WSL11I END
+
+COPY_EXISTING ~C0WSL012.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0WSL11I END
+
+COPY_EXISTING ~C0WSL013.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0WSL11I END
+
+COPY_EXISTING ~C0WSL014.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0WSL11I END
+
+COPY_EXISTING ~C0WSL015.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0WSL11I END
+
+COPY_EXISTING ~C0WSL02.SPL~ OVERRIDE
+SAY NAME1 ~Antimagic Field~
+SAY UNIDENTIFIED_DESC ~Antimagic Field
+The Wizard Slayer extends their innate Magic Resistance to all nearby allies within a 15-ft. radius, granting them half of the Wizard Slayer's base amount. This effect lasts for five rounds, and the Wizard Slayer loses their own innate Magic Resistance for the duration and may not use Spellslayer Strike while the effect is active.~

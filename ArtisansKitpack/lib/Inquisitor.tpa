@@ -25,14 +25,15 @@ LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~INQUISITOR~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~INQUISITOR: The Inquisitor has dedicated <PRO_HISHER> life to finding and eliminating practitioners of evil magic and defeating the forces of darkness, and <PRO_HISHER> god has provided <PRO_HIMHER> with special abilities toward that end.
 
 Advantages:
-– Gains the Aura of Negation passive ability. 
+– Immune to Hold and Charm effects.
+– 3rd level: Gains the Aura of Negation passive ability. 
 
 AURA OF NEGATION: The Inquisitor has innate Magic Resistance and grants half the amount to all allies within a 20-ft. radius, while reducing the casting speed of all enemies within the same radius. The magnitude of effects are as follows:
 
-1st-6th level: 10% magic resistance, -1 casting speed
-7th-12th level: 14% magic resistance, -1 casting speed
-13th-18th level: 18% magic resistance, -2 casting speed
-19th level onwards: 22% magic resistance, -2 casting speed
+  3rd - 10% magic resistance, -1 casting speed
+  10th - 14% magic resistance, -1 casting speed
+  17th - 18% magic resistance, -2 casting speed
+  24th - 22% magic resistance, -2 casting speed
 
 – Gains the Eyes of Truth passive ability.
 
@@ -40,7 +41,6 @@ EYES OF TRUTH: The inquisitor has a 20% + 2% per level chance of dispelling host
 
 – May cast Dispel Magic once per day at the Inquisitor's level. Gains one use at level 1 and an additional use every 4 levels thereafter.
 – May cast Spell Turning once per day. Gains one use at level 1 and an additional use every 7 levels thereafter.
-– Immune to hold and charm.
 
 Disadvantages:
 – May not Turn Undead.

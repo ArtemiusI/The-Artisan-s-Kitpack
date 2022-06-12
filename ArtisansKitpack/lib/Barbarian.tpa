@@ -45,9 +45,13 @@ TOUGHNESS: The barbarian gains 5% physical damage reduction. This bonus is doubl
 
 RAGE: The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution and a +2 bonus to Saving Throws vs. Spell. However, the barbarian incurs a -2 penalty to Armor Class. Additionally, activating Rage restores any drained levels from the barbarian and protects them from subsequent level drain effects for the duration. When the rage expires, the barbarian becomes fatigued and suffers a -2 penalty to Strength, Dexterity, Armor Class and Movement Rate for 5 rounds. The barbarian cannot use Rage until this duration is over.
 
-– 3rd level: May use Mighty Blow.
+– 5th level: May use the Power Attack modal ability.
 
-MIGHTY BLOW: The barbarian may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of damage per hit (melee only). THAC0 and damage modifiers increase to 8 from level 20 onwards. This ability may be toggled at will.
+POWER ATTACK: The Barbarian forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Barbarian must have 17 or greater Strength to activate this ability.
+
+– 6th level: May use the Rapid Shot modal ability.
+
+RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4 penalty to hit.
 
 – 8th level: Gains the Indomitable Will passive ability.
 
@@ -55,6 +59,8 @@ INDOMITABLE WILL: When the barbarian is afflicted with any of the following affl
 
 – 10th level: Rage bonuses to Strength and Constitution increased to +6.
 – 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
+– 12th level: Improved Rapid Shot: The Fighter’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.
 – 18th level: The barbarian no longer suffers fatigue penalties after Rage.
 – 20th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
 – 22nd level: Deathless Frenzy: The barbarian becomes unable to die for one round after Rage.

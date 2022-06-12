@@ -79,7 +79,42 @@ COPY_EXISTING ~clsrcreq.2da~ ~override~
   BUT_ONLY
 
 
+BEGIN ~Artisan's Kitpack: Fighter Overhaul (required for kit components)~ DESIGNATED 1100
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
+
+BEGIN ~Artisan's Kitpack: Berserker Overhaul~ DESIGNATED 1003
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
+
+BEGIN ~Artisan's Kitpack: Wizard Slayer Overhaul~ DESIGNATED 1006
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/WizardSlayer.tpa~
+
+BEGIN ~Artisan's Kitpack: Kensai Overhaul~ DESIGNATED 1004
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
+
+BEGIN ~Artisan's Kitpack: Barbarian Overhaul~ DESIGNATED 1005
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Barbarian.tpa~
+
+BEGIN ~Artisan's Kitpack: Dwarven Defender Overhaul + Vanguard Fighter Kit~ DESIGNATED 1007
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/dwarvendefender.tpa~
+
+BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~ DESIGNATED 1002
+FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1007~ ~The Dwarven Defender Overhaul is already installed.~
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
+
 BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~ DESIGNATED 1000
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 
@@ -576,10 +611,6 @@ COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 
-BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~ DESIGNATED 1002
-GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
-
 BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 GROUP ~Fighter Kits~
@@ -605,18 +636,6 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be i
 	  COPY_EXISTING ~khalid7.cre~ ~override~
 		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
 		END
-
-BEGIN ~Artisan's Kitpack: The Art of Slaughter (Berserker Overhaul)~ DESIGNATED 1003
-GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
-
-BEGIN ~Artisan's Kitpack: Art of the Sword Saint (Kensai Overhaul)~ DESIGNATED 1004
-GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
-
-BEGIN ~Artisan's Kitpack: The Art of Rage (Barbarian Overhaul)~ DESIGNATED 1005
-GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Barbarian.tpa~
 
 BEGIN ~Artisan's Kitpack: Ranger Overhaul (required for kit components)~ DESIGNATED 2000
 GROUP ~Ranger Kits~

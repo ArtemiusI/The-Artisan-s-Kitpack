@@ -73,9 +73,9 @@ BERSERKER RAGE: The Rashemi berserker becomes Enraged for 2 turns. While Enraged
 
 Once the duration has ended, the Rashemi berserker becomes Winded, reducing his THAC0, Armor Class and Damage by four points, and he is unable to become Enraged again for one turn.
 
-– 5th level: May use Mighty Blow.
+– 5th level: May use the Power Attack modal ability.
 
-MIGHTY BLOW: The Rashemi berserker may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of Melee Damage per hit. THAC0 and Melee Damage modifiers increase to 8 from level 20 onwards. This ability may be toggled at will.
+POWER ATTACK: The Berserker forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Berserker must have 17 or greater Strength to activate this ability.
 
 – 8th level: Gains Unbreakable Will.
 
@@ -85,6 +85,7 @@ UNBREAKABLE WILL: Rashemi berserkers have tremendous willpower. The berserker pe
 
 UNSTOPPABLE RAGE: The Rashemi berserker has become a juggernaut while Enraged, truly a being to be feared. The berserker is immune to all movement-hindering effects and Imprisonment while Enraged.
 
+– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.
 – 16th level: Gains Tireless Rage.
 
 TIRELESS RAGE: The Rashemi berserker is no longer Winded and will not suffer damage after his rage has ended.
@@ -108,6 +109,45 @@ END
   
 // Spells
 
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0FIG01.SPL~ BEGIN
+COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/fighter~ ~override~
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Power Attack~) STR_VAR bam_file = C0FIG01I RET C0FIG01I = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Power Attack~) STR_VAR bam_file = C0FIG01J RET C0FIG01J = icon END
+
+COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
+COPY_EXISTING ~C0FIG01.SPL~ OVERRIDE
+SAY NAME1 ~Power Attack~
+SAY UNIDENTIFIED_DESC ~Power Attack
+The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.~
+	
+COPY_EXISTING ~C0FIG01a.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01I END
+
+COPY_EXISTING ~C0FIG01b.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01J END
+
+COPY_EXISTING ~C0FIG01c.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
+END
+
 COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/spin117.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
@@ -129,18 +169,6 @@ Once the duration has ended, the Rashemi berserker becomes winded, reducing his 
 16th level: The Rashemi berserker is no longer winded and will not suffer damage after his rage has ended.
 
 18th level: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of entering rage.~
-
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/c0tbm1.spl~ ~override~
-SAY NAME1 ~Mighty Blow: Active~
-SAY NAME2 ~Mighty Blow: Active~
-SAY UNIDENTIFIED_DESC ~Mighty Blow
-
-The Rashemi berserker may choose to forsake accuracy for more power, reducing his THAC0 by 4 but dealing 4 extra points of damage per hit (melee only). THAC0 and damage modifiers increase to 8 from level 20 onwards.~
-
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/c0tbm2.spl~ ~override~
-SAY NAME1 ~Mighty Blow: Inactive~
-SAY NAME2 ~Mighty Blow: Inactive~
-SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Mighty Blow at will.~
 
 COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/c0tbm3.spl~ ~override~
 SAY NAME1 ~Fatigue~
