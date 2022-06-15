@@ -50,7 +50,13 @@ Disadvantages:
 – May not use Smite Evil.~
 
 COPY_EXISTING ~C0UHU01.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = c0uhu01i END
+      LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0uhu01i
+      END
 
 COPY_EXISTING ~C0UHU02.spl~ ~override~
 SAY NAME1 ~Smite Undead~

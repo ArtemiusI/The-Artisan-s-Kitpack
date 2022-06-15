@@ -107,12 +107,7 @@ COPY_EXISTING ~SPWI615.spl~ ~override/C0EL615.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI702.spl~ ~override/C0EL702.spl~
 WRITE_SHORT 0x1C 2 
-ACTION_IF FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
-COPY_EXISTING ~SPWI724.spl~ ~override/C0EL724.spl~
-WRITE_SHORT 0x1C 2 
-END
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
 COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astorma.bam~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astormx.bam~ ~override~
 ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/IDPRO211.PRO~
@@ -133,4 +128,3 @@ Saving Throw: 1/2
 This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
 COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724b.bam~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724c.bam~ ~override~
-END

@@ -69,7 +69,13 @@ END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Courage~) STR_VAR bam_file = c0pal00i RET c0pal00i = icon END
 
 COPY_EXISTING ~C0PAL00.SPL~ OVERRIDE
-  LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = c0pal00i END
+      LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0pal00i
+      END
 COPY_EXISTING ~C0PAL01.SPL~ OVERRIDE
 	LPF ALTER_EFFECT
 		INT_VAR

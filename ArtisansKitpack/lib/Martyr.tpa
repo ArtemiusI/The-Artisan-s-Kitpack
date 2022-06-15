@@ -146,7 +146,13 @@ The martyr transfers 10 hit points plus 2 per level to the target, up to a maxim
 COPY_EXISTING ~c0ilms1a.spl~ ~override~
 	
 COPY_EXISTING ~c0ilmi2.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = c0ilmi2i END
+      LPF ADD_SPELL_EFFECT
+      INT_VAR
+	    opcode = 142
+	    target = 2
+		timing = 9
+        parameter2 = c0ilmi2i
+      END
 	
 COPY_EXISTING ~C0ilms2.spl~ ~override~
   LPF ALTER_EFFECT
