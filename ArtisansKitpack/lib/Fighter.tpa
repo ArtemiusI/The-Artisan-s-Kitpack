@@ -1,6 +1,12 @@
 COPY ~%MOD_FOLDER%/Fighter/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/spells~ ~OVERRIDE~
 
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI01.2DA~ BEGIN
+COPY_EXISTING ~CLABFI01.2DA~ OVERRIDE
+APPEND ~CLABFI01.2DA~ ~AKPSKILL1    ****        ****        ****        ****        GA_C0FIG01  GA_C0ARC03  ****        ****        ****        ****        ****        AP_C0ARC03Z ****        ****        ****        ****        ****        ****        ****        AP_C0FIG03  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
+AKPSKILL2    ****        ****        ****        ****        GA_C0FIG02  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+END
+
 ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
   COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
@@ -12,7 +18,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
 	    SET patch_row = %row%
 		SET_2DA_ENTRY (%patch_row%) 4 cols RESOLVE_STR_REF (~FIGHTER: The Fighter is a champion, swords<PRO_MANWOMAN>, soldier, and brawler who lives or dies by <PRO_HISHER> knowledge of weapons and tactics. Fighters can be found at the front of any battle, contesting toe-to-toe with monsters and villains. Through extensive training and experience, a Fighter may master many weapons throughout <PRO_HISHER> lifetime. A good Fighter needs to be strong and healthy if <PRO_HESHE> hopes to survive.
 
-CLASS FEATURES:
+CLASS FEATURES: 
 
 – May wear helmets.
 – May wear any armor and use any weapon.
@@ -61,7 +67,6 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Power Attack~) STR_VA
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Power Attack~) STR_VAR bam_file = C0FIG01J RET C0FIG01J = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Expertise~) STR_VAR bam_file = C0FIG02I RET C0FIG02I = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Expertise~) STR_VAR bam_file = C0FIG02J RET C0FIG02J = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
 
 COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
@@ -101,20 +106,6 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Exper
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
-DEFINE_ACTION_FUNCTION cd_new_portrait_icon
-  INT_VAR string = 0
-  STR_VAR bam_file = "****"
-  RET     icon
-  BEGIN
-
-  COPY_EXISTING ~statdesc.2da~ ~override~
-    COUNT_2DA_ROWS 3 count
-    READ_2DA_ENTRY (count - 1) 0 3 icon
-    SET icon += 1
-
-  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
-
-END
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
 

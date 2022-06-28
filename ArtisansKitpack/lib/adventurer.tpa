@@ -1,3 +1,6 @@
+
+COPY ~%MOD_FOLDER%/Thief/Adventurer/spells~ ~OVERRIDE~
+
 ADD_KIT ~C0ADVENT~
 
  // appended to CLASWEAP.2da
@@ -58,6 +61,10 @@ ADD_KIT ~C0ADVENT~
 Advantages:
 – +1 to hit and damage rolls with any missile weapon at level 1 and every 3 levels thereafter.
 – May achieve Mastery (3 slots) in any missile weapon.
+– May use the Rapid Shot modal ability.
+
+RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
+
 – May use the Called Shot ability once per day. Gains one use at level 4 and an additional use every 4 levels thereafter.
 
 CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Rogue Archer:
@@ -65,6 +72,9 @@ CALLED SHOT: All successful ranged attacks within the next 10 seconds have the f
  8th level: -1 penalty to target's Saving Throws vs. Spell.
  12th level: -1 penalty to the target's Strength score.
  16th level: +2 bonus to damage roll.
+ 
+– 14th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 18th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
 
 Disadvantages:
 – May not use Backstab ability.~
@@ -77,4 +87,39 @@ STR_VAR
 	sneakatt = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
 	hpclass = ~hprog~
     numwslot = 2
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
+COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
+
+COPY_EXISTING C0ARC03.SPL OVERRIDE
+SAY NAME1 ~Rapid Shot~
+SAY UNIDENTIFIED_DESC ~Rapid Shot
+The user may make an additional ranged attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+
+COPY_EXISTING C0ARC03b.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
+
+COPY_EXISTING C0ARC03z.SPL OVERRIDE
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
 END

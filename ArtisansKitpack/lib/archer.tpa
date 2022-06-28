@@ -65,9 +65,7 @@ COPY_EXISTING ~weapprof.2da~  ~override~
   END
   PRETTY_PRINT_2DA
   BUT_ONLY
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
-COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
+  
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
   STR_VAR bam_file = "****"
@@ -82,6 +80,9 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
 
 END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
+COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
 

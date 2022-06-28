@@ -430,8 +430,8 @@ The monk prepares their ki for a mighty leaping strike that resembles the pounce
 Requires: Dragon Fist~
 
 COPY_EXISTING ~C0MN#H07.SPL~ OVERRIDE
-SAY NAME1 ~Thousand Strikes~
-SAY UNIDENTIFIED_DESC ~Thousand Strikes
+SAY NAME1 ~Thousand Hands~
+SAY UNIDENTIFIED_DESC ~Thousand Hands
 This ability allows the monk to unleash a blindingly fast barrage of unarmed blows faster than the eye can match. For the next two rounds, the monk's attacks per round while unarmed are set to 10.~
 
 COPY_EXISTING ~C0MN#H08.SPL~ OVERRIDE

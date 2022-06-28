@@ -108,10 +108,62 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must 
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/dwarvendefender.tpa~
 
+BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1007~ ~The Vanguard Kit must be installed.~
+
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid2.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid4.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid6.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid7.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~ DESIGNATED 1002
 FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1007~ ~The Dwarven Defender Overhaul is already installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+GROUP ~Fighter Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be installed.~
+
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid2.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid4.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid6.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
+		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
+	  COPY_EXISTING ~khalid7.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+		END
 
 BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~ DESIGNATED 1000
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
@@ -610,32 +662,6 @@ COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
   WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
-
-BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
-  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
-GROUP ~Fighter Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be installed.~
-
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid2.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid4.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid6.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid7.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
 
 BEGIN ~Artisan's Kitpack: Ranger Overhaul (required for kit components)~ DESIGNATED 2000
 GROUP ~Ranger Kits~
