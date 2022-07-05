@@ -18,6 +18,13 @@ SAY NAME1 ~Mimicry: Shadowcasting~
 SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 shadow spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards.~
 END
 
+ACTION_IF FILE_EXISTS ~c0as#p1.spl~ THEN BEGIN
+COPY_EXISTING ~C0TR#30A.SPL~ OVERRIDE
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0ASIN8B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0as#p1 END
+SAY NAME1 ~Mimic: Poison Weapon~
+END
+
 ACTION_IF FILE_EXISTS_IN_GAME ~c0auin1.spl~ THEN BEGIN
   APPEND ~C0TR#001.2da~ ~ARTIFICER C0TR#M1A 3~ UNLESS ~ARTIFICER~
   APPEND ~C0TR#002.2da~ ~ARTIFICER C0TR#M1B 3~ UNLESS ~ARTIFICER~
@@ -108,7 +115,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = pmabil2 END
 SAY NAME1 ~Mimic: Undead Graft~
 END
 
- ACTION_FOR_EACH mod_mimics IN M0 BEGIN
+ ACTION_FOR_EACH mod_mimics IN 30 M0 M1 M2 M3 M4 M5 M6 BEGIN
 ACTION_IF FILE_EXISTS ~C0TR%mod_mimics%A.SPL~ THEN BEGIN
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%B.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#05B END
