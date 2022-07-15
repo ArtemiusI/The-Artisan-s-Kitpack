@@ -18,7 +18,7 @@ SAY NAME1 ~Mimicry: Shadowcasting~
 SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 shadow spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards.~
 END
 
-ACTION_IF FILE_EXISTS ~c0as#p1.spl~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~c0as#p1.spl~ THEN BEGIN
 COPY_EXISTING ~C0TR#30A.SPL~ OVERRIDE
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0ASIN8B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0as#p1 END
@@ -116,22 +116,22 @@ SAY NAME1 ~Mimic: Undead Graft~
 END
 
  ACTION_FOR_EACH mod_mimics IN 30 M0 M1 M2 M3 M4 M5 M6 BEGIN
-ACTION_IF FILE_EXISTS ~C0TR%mod_mimics%A.SPL~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~C0TR#%mod_mimics%A.SPL~ THEN BEGIN
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%B.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#05B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#05Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%C.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#06B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#06Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%D.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#07B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#07Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%E.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#08B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#08Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%F.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#09B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#09Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%G.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#10B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#10Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%H.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#11B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#11Y END
 	COPY_EXISTING ~C0TR#%mod_mimics%A.SPL~ ~override/C0TR#%mod_mimics%I.SPL~
-LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#12B END
+LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = C0TR#12Y END
 END
 END

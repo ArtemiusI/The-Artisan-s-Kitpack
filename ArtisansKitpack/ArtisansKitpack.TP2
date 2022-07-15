@@ -783,6 +783,15 @@ REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:E
 GROUP ~Mage Kits~
 INCLUDE ~%MOD_FOLDER%/lib/redwizard.tpa~
 
+BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Overhaul)~ DESIGNATED 7004
+GROUP ~Thief Kits~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
+END
+
+INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
+
 BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~ DESIGNATED 7001
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
@@ -829,15 +838,6 @@ FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7101~ ~Imoen is already installed 
 		BUT_ONLY
 END
 END
-
-BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Overhaul)~ DESIGNATED 7004
-GROUP ~Thief Kits~
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
-INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
-END
-
-INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 
 BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
