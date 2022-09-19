@@ -67,6 +67,13 @@ INDOMITABLE WILL: When the barbarian is afflicted with any of the following affl
 – 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
 – Hit Die: d12~
 	
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+COPY_EXISTING ~CLABFI05.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
+END
+
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/SPELLS/C0BAR#1X.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0bari01 END
   LPF ALTER_EFFECT INT_VAR match_opcode = 98 special = c0bari01 END

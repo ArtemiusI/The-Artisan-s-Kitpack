@@ -1,23 +1,5 @@
-COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das~ ~override~
-COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells~ ~override~
-
-ADD_KIT ~c0aa~
-  ~c0aa                1           1           1           1           1           1           1           1~
-  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-  ~c0aa                0       15      0       14      0       0~
-  ~c0aa                0       0       0       0       0       0~
-  ~c0aa                17      0       0       0       0       0~
-  ~c0aa                15      0       0       0       0       0~
-  ~c0aa                1       1       1       1       1       1       1       1       1~
-  ~c0aa                0       0       1       1       0       0~
-  ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das/c0aa.2da~
-  ~K_F_H K_F_E K_F_HE~
-  ~0x00008000     2~
-  ~fi0~
-  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-  SAY ~arcane archer~
-  SAY ~Arcane Archer~
-  SAY ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+OUTER_SPRINT aa_desc ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
 
 Advantages:
 – +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
@@ -49,10 +31,76 @@ Disadvantages:
 – Hit Die: d8
 – THAC0 penalty of 2 when wielding a melee weapon.
 – May not use Power Attack or Expertise.
+– Does not gain Improved Initiative.
 – Race restricted to human, elf or half-elf.
 – May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
 – May not exceed proficiency (one slot) in any weapon style.
 – May not wear armor heavier than elven chain mail.~
+END
+
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+COPY_EXISTING ~CLABFI03.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0ARC03~ ~****     ~
+OUTER_SPRINT aa_desc ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+
+Advantages:
+– +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
+– Gains the Enhance Arrow ability.
+
+ENHANCE ARROW: The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
+
+– 3rd level: May use Entropic Shield once per day.
+
+ENTROPIC SHIELD: A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.
+
+– 5th level: May use Imbue Arrow ability three times per day.
+
+IMBUE ARROW: Using arcane magic, the arcane archer enchants <PRO_HISHER> next missile within one round to explode, dealing 1d6 additional fire damage for every five levels gained thereafter in an area of effect.
+
+– 9th level: May use Seeker Arrow ability once per day.
+
+SEEKER ARROW: A skilled arcane archer can enchant <PRO_HISHER> arrows to strike its target unerringly. <PRO_HISHER> next missile attack within one round is a guaranteed critical hit and deals two points of extra damage for every five levels gained thereafter.
+
+– 13th level: May use Phase Arrow ability once per day.
+
+PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow within one round to become an incorporeal missile that penetrates armor, dealing 4d6 bonus magical damage and reducing the target's missile resistance by 50% as well as their armor class vs. missiles by two points every five levels gained thereafter for 1 turn.
+
+– 17th level: May use Arrow of Death ability once per day.
+
+ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe. Targets with more than 60 hit points may make a save vs. death to avoid the effect. Saving throw penalty increases by one for every five levels gained thereafter.
+
+Disadvantages:
+– Hit Die: d8
+– THAC0 penalty of 2 when wielding a melee weapon.
+– Race restricted to human, elf or half-elf.
+– May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
+– May not exceed proficiency (one slot) in any weapon style.
+– May not wear armor heavier than elven chain mail.~
+END
+
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells~ ~override~
+
+ADD_KIT ~c0aa~
+  ~c0aa                1           1           1           1           1           1           1           1~
+  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa                0       15      0       14      0       0~
+  ~c0aa                0       0       0       0       0       0~
+  ~c0aa                17      0       0       0       0       0~
+  ~c0aa                15      0       0       0       0       0~
+  ~c0aa                1       1       1       1       1       1       1       1       1~
+  ~c0aa                0       0       1       1       0       0~
+  ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das/c0aa.2da~
+  ~K_F_H K_F_E K_F_HE~
+  ~0x00008000     2~
+  ~fi0~
+  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY ~arcane archer~
+  SAY ~Arcane Archer~
+  SAY aa_desc
 
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain1.spl~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain2.spl~ ~override~

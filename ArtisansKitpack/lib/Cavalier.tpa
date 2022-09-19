@@ -28,6 +28,13 @@ STRING_SET_EVALUATE kit_strref ~CAVALIER: This class represents the most common 
 Advantages:
 – Immunity to Charm, Poison, Fear and Morale Failure.
 – +3 bonus to hit and damage rolls against all fiendish and draconic creatures.
+– May use the Challenge ability once per day. Gains an additional use every 8th level.
+
+CHALLENGE: The cavalier marks a targeted creature with a Challenge, reducing both the target's and the cavalier's own Armor Class by 10 for the next three rounds. The cavalier deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
+  1st-11th level: 2d10 damage
+  12th-19th level: 4d10 damage
+  20th+ level: 6d10 damage
+
 – 3rd level: Gains Aura of Chivalry.
 
 AURA OF CHIVALRY: The cavalier exudes an aura which inspires their allies to fight at the best of their ability. All allies within visual range of the cavalier become immune to fear and morale failure and gain bonuses in combat.
@@ -75,4 +82,17 @@ END
     INT_VAR
       match_opcode = 142
 	  parameter2 = c0cav02i
+END
+
+COPY_EXISTING ~C0CAV03.spl~ ~override~
+SAY NAME1 ~Challenge!~
+SAY UNIDENTIFIED_DESC ~Challenge
+The cavalier marks a targeted creature with a Challenge, reducing both the target's and the cavalier's own Armor Class by 10 for the next three rounds. The cavalier deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
+  1st-11th level: 2d10 damage
+  12th-19th level: 4d10 damage
+  20th+ level: 6d10 damage~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Challenged~)
 END

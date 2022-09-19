@@ -1,3 +1,46 @@
+COPY ~%MOD_FOLDER%/Fighter/Berserker/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/BAMS~ ~OVERRIDE~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BERSERKER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~BERSERKER: This is a warrior who is in tune with <PRO_HISHER> animalistic side and, during combat, can achieve an ecstatic state of mind that will enable <PRO_HIMHER> to fight longer, harder, and more savagely than any person has a right to. Berserkers tend to be barbarian-like in nature, but not always. Sometimes it is a conscious choice that a warrior in training makes. Regardless, opponents on the battlefield will be unsettled when they see the savage and inhuman elements of the Berserker's personality. This class is common amongst dwarves, known to them as the Battlerager.
+
+Advantages:
+– Immunity to fear, morale failure and involuntary berserk effects.
+– Gains the In Extremis passive effect.
+
+IN EXTREMIS: Berserkers revel in the thrill of carnage to a sadomasochistic degree, and fight harder when approaching death while most warriors would falter or retreat. While powerful, the berserker's technique is a double-edged sword – as the berserker accumulates more wounds in battle, their blows become increasingly deadly, yet their defense falters, becoming more vulnerable to further damage.
+  >75% Hit Points: +2 to THAC0 and Damage, -2 penalty to Armor Class
+  >50% Hit Points: +4 to THAC0 and Damage, -4 penalty to Armor Class
+  >25% Hit Points: +8 to THAC0 and Damage, -6 penalty to Armor Class
+
+– May use the Enrage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+
+ENRAGE: The berserker taps into <PRO_HISHER> frenzy though sheer force of will, instantly gaining the maximum benefits of In Extremis regardless of current hit points for one turn. However, tapping into the berserker's desperate power causes <HIMHER> to suffer 10% of <PRO_HISHER> maximum hit points in damage each round unless a Save vs. Death is made. This damage is non-lethal and will only knock the berserker unconscious.
+
+– From 4th level onwards, may use the Reckless Frenzy ability at will.
+
+RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly reducing <PRO_HISHER> hit points to 20% of <PRO_PRO_HISHER> maximum. This ability has no effect if used while the berserker is already below 25% maximum hit points. Additionally, Reckless Frenzy removes the berserker's winded state.
+
+– From 7th level onwards, the berserker gains +2/+4/+8 to <PRO_HISHER> movement rate while under the effects of In Extremis.
+
+– From 10th level onwards, the berserker's trance-like state makes <PRO_HIMHER> more likely to shrug off debilitating effects, gaining +2/+5/+10 to all Saving Throws while under the effects of In Extremis.
+
+– From 14th level onwards, the berserker gains 10%/20%/50% resistance to all damage while under the effects of In Extremis.
+
+– From 20th level onwards, the berserker deals 15%/30%/70% additional slashing, piercing and crushing damage from all sources while under the effects of In Extremis.
+
+Disadvantages:
+– Becomes winded for five rounds after using Enrage, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls. Additionally, the berserker is unable to gain the benefits of In Extremis while winded.
+– Does not gain Improved Initiative.
+– May not use Expertise or Rapid Shot.
+– May not Specialize in ranged weapons.
+– Alignment restricted to any non-lawful.~
+END
+	
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+COPY_EXISTING ~CLABFI02.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
 
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BERSERKER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~BERSERKER: This is a warrior who is in tune with <PRO_HISHER> animalistic side and, during combat, can achieve an ecstatic state of mind that will enable <PRO_HIMHER> to fight longer, harder, and more savagely than any person has a right to. Berserkers tend to be barbarian-like in nature, but not always. Sometimes it is a conscious choice that a warrior in training makes. Regardless, opponents on the battlefield will be unsettled when they see the savage and inhuman elements of the Berserker's personality. This class is common amongst dwarves, known to them as the Battlerager.
@@ -29,14 +72,10 @@ RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly redu
 
 Disadvantages:
 – Becomes winded for five rounds after using Enrage, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls. Additionally, the berserker is unable to gain the benefits of In Extremis while winded.
-– Does not gain Specialization in all weapons at 20th level.
-– May not use Expertise or Rapid Shot.
 – May not Specialize in ranged weapons.
 – Alignment restricted to any non-lawful.~
+END
 	
-COPY ~%MOD_FOLDER%/Fighter/Berserker/2DA~ ~OVERRIDE~
-COPY ~%MOD_FOLDER%/Fighter/Berserker/BAMS~ ~OVERRIDE~
-
 // ICONS
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon

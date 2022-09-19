@@ -1,6 +1,7 @@
 COPY ~%MOD_FOLDER%/Fighter/DwarvenDefender/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/DwarvenDefender/spells~ ~OVERRIDE~
 
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DWARVEN_DEFENDER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~DWARVEN DEFENDER: The Dwarven Defender is a formidable warrior that is reputed to be worth two soldiers of any other race. Trained extensively in the art of dwarven warfare, a handful of these stout fighters can render a defensive line all but unbreakable. 
 
@@ -28,9 +29,46 @@ The Dwarven Defender reduces their attacks per round by 1/2 and melee damage by 
 Disadvantages:
 – May not use Improved Power Attack and Improved Expertise.
 – May not use Rapid Shot.
-– Does not gain Specialization in all weapons at 20th level.
+– Does not gain Improved Initiative.
 – May not exceed High Mastery (four slots) in axes and war hammers.
 – May not exceed Specialization (two slots) in any other weapon.~
+END
+
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+COPY_EXISTING ~CLABFI06.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0DWD01~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0DWD02~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DWARVEN_DEFENDER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~DWARVEN DEFENDER: The Dwarven Defender is a formidable warrior that is reputed to be worth two soldiers of any other race. Trained extensively in the art of dwarven warfare, a handful of these stout fighters can render a defensive line all but unbreakable. 
+
+Advantages:
+– Immunity to Stun and Displacement effects.
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– Fortitude: The Dwarven Defender is healed for one hit point each time they take damage.
+– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
+
+DEFENSIVE STANCE: The Dwarven Defender assumes a defensive position, prepared to endure all attacks in their direction, gaining various bonuses based on their level for 1 turn. From 1st level, the Dwarven Defender gains +2 to Armor Class and Saving Throws, 20% resistance to all damage, their effective personal space is doubled, preventing creatures from passing them in a larger radius, but their movement rate are halved and they are unable to make critical hits during the stance. Additional bonuses with level are as follows:
+  5th level: Armor Class and Saving Throw bonus increased to +3.
+  8th level: Damage Resistance increased to 35%.
+  11th level: Armor Class and Saving Throw bonus increased to +4.
+  14th level: Inflicts 4d6+4 non-lethal damage as recoil to incoming melee attackers.
+  18th level: Armor Class and Saving Throw bonus increased to +6. Damage Resistance increased to 50%.
+  
+– May use the Shield Bash modal ability.
+
+SHIELD BASH: The Dwarven Defender slams their shield into the target for their first melee attack on each target to unbalance and daze them, dealing 1d10 bonus crushing damage and reducing the target's Armor Class by 2 points and temporarily rendering them unable to take actions for one round on a failed Save vs. Breath Weapons (-1 to modifier per 5 levels). The Dwarven Defender may only attempt a Shield Bash on a single target once per two rounds.
+
+The Dwarven Defender reduces their attacks per round by 1/2 and melee damage by 2 points while Shield Bash is active.
+  
+– Hit Die: d12
+
+Disadvantages:
+– May not exceed High Mastery (four slots) in axes and war hammers.
+– May not exceed Specialization (two slots) in any other weapon.~
+END
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0

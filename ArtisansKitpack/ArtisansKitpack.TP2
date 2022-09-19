@@ -84,27 +84,23 @@ GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
 
 BEGIN ~Artisan's Kitpack: Berserker Overhaul~ DESIGNATED 1003
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
 
 BEGIN ~Artisan's Kitpack: Wizard Slayer Overhaul~ DESIGNATED 1006
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WizardSlayer.tpa~
 
 BEGIN ~Artisan's Kitpack: Kensai Overhaul~ DESIGNATED 1004
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Kensai.tpa~
 
 BEGIN ~Artisan's Kitpack: Barbarian Overhaul~ DESIGNATED 1005
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Barbarian.tpa~
 
 BEGIN ~Artisan's Kitpack: Dwarven Defender Overhaul + Vanguard Fighter Kit~ DESIGNATED 1007
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
+FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Fighter Kit is already installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/dwarvendefender.tpa~
 
@@ -166,7 +162,6 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be i
 		END
 
 BEGIN ~Artisan's Kitpack: Arcane Archer Fighter Kit~ DESIGNATED 1000
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1100~ ~The Fighter Overhaul must be installed.~
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher.tpa~
 
@@ -668,12 +663,10 @@ GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ranger.tpa~
 
 BEGIN ~Artisan's Kitpack: Archer Overhaul~ DESIGNATED 2010
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/archer.tpa~
 
 BEGIN ~Artisan's Kitpack: Stalker Overhaul~ DESIGNATED 2011
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
@@ -683,19 +676,16 @@ END
 INCLUDE ~%MOD_FOLDER%/lib/stalker.tpa~
 
 BEGIN ~Artisan's Kitpack: Beast Master Overhaul~ DESIGNATED 2012
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 
 INCLUDE ~%MOD_FOLDER%/lib/beastmaster.tpa~
 
 BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~ DESIGNATED 2001
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/berserkerminsc.tpa~
 
 BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~ DESIGNATED 2002
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
 
@@ -705,27 +695,22 @@ INCLUDE ~%MOD_FOLDER%/lib/paladin.tpa~
 
 BEGIN ~Artisan's Kitpack: Cavalier Overhaul~ DESIGNATED 3010
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/Cavalier.tpa~
 
 BEGIN ~Artisan's Kitpack: Inquisitor Overhaul~ DESIGNATED 3003
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/Inquisitor.tpa~
 
 BEGIN ~Artisan's Kitpack: Undead Hunter Overhaul~ DESIGNATED 3011
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/UndeadHunter.tpa~
 
 BEGIN ~Artisan's Kitpack: Blackguard Overhaul~ DESIGNATED 3004
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/Blackguard.tpa~
 
 BEGIN ~Artisan's Kitpack: Divine Champion Paladin Kit~ DESIGNATED 3001
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/divinechampion.tpa~
 
 BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~ DESIGNATED 3101
@@ -750,12 +735,10 @@ END
 
 BEGIN ~Artisan's Kitpack: Mystic Fire Paladin Kit~ DESIGNATED 3002
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
 
 BEGIN ~Artisan's Kitpack: Martyr Paladin Kit~ DESIGNATED 3005
 GROUP ~Paladin Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3000~ ~The Paladin Overhaul must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/Martyr.tpa~
 
 BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~ DESIGNATED 5001
@@ -818,11 +801,6 @@ INCLUDE ~%MOD_FOLDER%/lib/magekiller.tpa~
 BEGIN ~Artisan's Kitpack: Trickster Thief Kit~ DESIGNATED 7003
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/trickster.tpa~
-
-BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
-GROUP ~Thief Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
-INCLUDE ~%MOD_FOLDER%/lib/trickster-mods.tpa~
 
 BEGIN ~Artisan's Kitpack: Give Imoen the Trickster Kit~ DESIGNATED 7102
 GROUP ~Thief Kits~
@@ -887,7 +865,10 @@ BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
 
-
 BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20001
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster.tpa~
+
+BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
+INCLUDE ~%MOD_FOLDER%/lib/trickster-mods.tpa~

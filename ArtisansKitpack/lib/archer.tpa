@@ -1,6 +1,7 @@
 COPY ~%MOD_FOLDER%/Ranger/Archer/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells~ ~OVERRIDE~
 
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~FERALAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with ranged weapons—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. Whether as a harrier launching a one-man fusillade of arrows or a sharpshooter hiding in the shadows waiting for the perfect shot, the archer is a master of all forms of marksmanship. To become so skilled with their art, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
 
@@ -8,7 +9,7 @@ Advantages:
 – +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
 – +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
 – May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows and darts.
-– Eagle Eye: The archer's visual range is increased by 4 while stealthed or invisible.
+– Eagle Eye: The archer's visual range is increased while stealthed or invisible.
 – May use the Rapid Shot modal ability.
 
 RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
@@ -35,7 +36,42 @@ Disadvantages:
 – May only Specialize (two slots) in Two-Weapon Style.
 – May not Set Traps.
 – May not use the Charm Animal ability.~
+END
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~FERALAN~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with ranged weapons—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. Whether as a harrier launching a one-man fusillade of arrows or a sharpshooter hiding in the shadows waiting for the perfect shot, the archer is a master of all forms of marksmanship. To become so skilled with their art, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
 
+Advantages:
+– +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
+– +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows and darts.
+– Eagle Eye: The archer's visual range is increased while stealthed or invisible.
+– May use the Rapid Shot modal ability.
+
+RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
+
+– May use the Called Shot ability once per day. Gains an additional use at every 4th level.
+
+CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Archer:
+ 4th level: -1 penalty to target's THAC0.
+ 8th level: -1 penalty to target's Saving Throws vs. Spell.
+ 12th level: -1 penalty to the target's Strength score.
+ 16th level: +2 bonus to damage roll.
+ 
+– 3rd level: May use the Tracking Shot ability once per round. This ability counts as a free action.
+
+TRACKING SHOT: The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.
+
+– 12th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 16th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
+
+Disadvantages:
+– Hit Die: d8
+– THAC0 penalty of -3 while wielding melee weapons.
+– May only become Proficient (one slot) with melee weapons.
+– May only Specialize (two slots) in Two-Weapon Style.
+– May not use the Charm Animal ability.~
+END
 	
 // ARCHER - HIT DIE
 COPY_EXISTING ~hpclass.2da~ OVERRIDE

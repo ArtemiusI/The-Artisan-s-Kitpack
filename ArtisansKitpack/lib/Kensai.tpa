@@ -73,11 +73,17 @@ Disadvantages:
 – May not use any armor, helmets, gauntlets, bracers or shields.
 – May not use missile weapons.
 – Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
-– Does not gain Specialization in all weapons at 20th level.
 – Alignment restricted to any non-chaotic.~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/clabfi04.2da~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/luc0kn.2da~ ~override~
+
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+COPY_EXISTING ~CLABFI04.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
+END
 
 COPY_EXISTING ~SPCL144.SPL~ ~OVERRIDE~
 SAY NAME1 ~Ki Focus~
