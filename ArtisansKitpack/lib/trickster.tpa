@@ -269,7 +269,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#29Z END
 SAY NAME1 ~Mimic: Arcane Spellcasting~
 COPY_EXISTING ~C0TR#29Z.SPL~ OVERRIDE
 SAY NAME1 ~Mimicry: Spellcasting~
-SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 arcane spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards. If the trickster is not dual-classed to a mage, spells cast via this ability use half of the trickster's level when determining power.~
+SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 arcane spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards.~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#30A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL423B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL423 END

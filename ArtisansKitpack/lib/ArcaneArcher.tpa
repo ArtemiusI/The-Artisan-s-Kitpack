@@ -1,5 +1,21 @@
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
-OUTER_SPRINT aa_desc ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+ADD_KIT ~c0aa~
+  ~c0aa                1           1           1           1           1           1           1           1~
+  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa                0       15      0       14      0       0~
+  ~c0aa                0       0       0       0       0       0~
+  ~c0aa                17      0       0       0       0       0~
+  ~c0aa                15      0       0       0       0       0~
+  ~c0aa                1       1       1       1       1       1       1       1       1~
+  ~c0aa                0       0       1       1       0       0~
+  ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das/c0aa.2da~
+  ~K_F_H K_F_E K_F_HE~
+  ~0x00008000     2~
+  ~fi0~
+  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY ~arcane archer~
+  SAY ~Arcane Archer~
+  SAY ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
 
 Advantages:
 – +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
@@ -38,13 +54,32 @@ Disadvantages:
 – May not wear armor heavier than elven chain mail.~
 END
 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells~ ~override~
+
 ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
-COPY_EXISTING ~CLABFI03.2DA~ OVERRIDE
+COPY_EXISTING ~C0AA.2DA~ OVERRIDE
 REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
 REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
 REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
 REPLACE_TEXTUALLY ~GA_C0ARC03~ ~****     ~
-OUTER_SPRINT aa_desc ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+ADD_KIT ~c0aa~
+  ~c0aa                1           1           1           1           1           1           1           1~
+  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  ~c0aa                0       15      0       14      0       0~
+  ~c0aa                0       0       0       0       0       0~
+  ~c0aa                17      0       0       0       0       0~
+  ~c0aa                15      0       0       0       0       0~
+  ~c0aa                1       1       1       1       1       1       1       1       1~
+  ~c0aa                0       0       1       1       0       0~
+  ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das/c0aa.2da~
+  ~K_F_H K_F_E K_F_HE~
+  ~0x00008000     2~
+  ~fi0~
+  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+  SAY ~arcane archer~
+  SAY ~Arcane Archer~
+  SAY ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
 
 Advantages:
 – +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
@@ -80,27 +115,6 @@ Disadvantages:
 – May not exceed proficiency (one slot) in any weapon style.
 – May not wear armor heavier than elven chain mail.~
 END
-
-COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das~ ~override~
-COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells~ ~override~
-
-ADD_KIT ~c0aa~
-  ~c0aa                1           1           1           1           1           1           1           1~
-  ~c0aa 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-  ~c0aa                0       15      0       14      0       0~
-  ~c0aa                0       0       0       0       0       0~
-  ~c0aa                17      0       0       0       0       0~
-  ~c0aa                15      0       0       0       0       0~
-  ~c0aa                1       1       1       1       1       1       1       1       1~
-  ~c0aa                0       0       1       1       0       0~
-  ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das/c0aa.2da~
-  ~K_F_H K_F_E K_F_HE~
-  ~0x00008000     2~
-  ~fi0~
-  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-  SAY ~arcane archer~
-  SAY ~Arcane Archer~
-  SAY aa_desc
 
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain1.spl~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain2.spl~ ~override~
