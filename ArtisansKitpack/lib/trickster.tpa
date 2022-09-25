@@ -64,7 +64,7 @@ TRICKERY: The Trickster uses masterful sleight of hand and quick movement to ins
 
 – May use the Mimicry ability.
 
-MIMICRY: Whether through careful examination, learning through use, or natural talent, tricksters are able to imitate the skills of almost any profession and adapt them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit.
+MIMICRY: Whether through careful examination, learning through use, or natural talent, tricksters are able to imitate the skills of almost any profession and adapt them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit. If dual-classed, the trickster retains use of their learned abilities while their class is inactive.
 
 – 5th level: Gains one use of Mimicry.
 – 8th level: Opportunist penalties increased to 2.
@@ -107,7 +107,7 @@ SAY UNIDENTIFIED_DESC ~The Trickster uses masterful sleight of hand and quick mo
 
 COPY_EXISTING ~C0TR#04Y.SPL~ OVERRIDE
 SAY NAME1 ~Mimicry I~
-SAY UNIDENTIFIED_DESC ~Whether through careful examination, learning through use, or natural talent, tricksters are able to adapt the skills of almost any profession and imitate them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit.~
+SAY UNIDENTIFIED_DESC ~Whether through careful examination, learning through use, or natural talent, tricksters are able to imitate the skills of almost any profession and adapt them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit. If dual-classed, the trickster retains use of their learned abilities while their class is inactive.~
 
 COPY_EXISTING ~C0TR#04.SPL~ ~OVERRIDE/C0TR#05.SPL~
 LPF ALTER_EFFECT STR_VAR match_resource = C0TR#04Y resource = C0TR#05Y END
@@ -269,7 +269,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#29Z END
 SAY NAME1 ~Mimic: Arcane Spellcasting~
 COPY_EXISTING ~C0TR#29Z.SPL~ OVERRIDE
 SAY NAME1 ~Mimicry: Spellcasting~
-SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 arcane spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards.~
+SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 arcane spell of choice. Level 2 spells may be cast from 6th level, level 3 from 11th level and level 4 from 16th level onwards. If the trickster is not dual-classed to a mage, spells cast via this ability use half of the trickster's level when determining power.~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#30A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL423B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL423 END

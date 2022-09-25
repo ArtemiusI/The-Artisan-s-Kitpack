@@ -1,18 +1,5 @@
 ACTION_IF dd = 1 THEN BEGIN
-// Claws
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd07.spl~ ~override~
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0ddfist.eff~ ~override~
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0ddfist.itm~ ~override~
-// Strength bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd02.spl~ ~override~
-// Intelligence bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd03.spl~ ~override~
-// Movement bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd04.spl~ ~override~
-// Dragon Apotheosis
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd05.spl~ ~override~
-// Fire Resistance Icon
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd06.spl~ ~override~
+COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells~ ~override~
 
 COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/2das/c0dd.2DA~ ~override/clabso01.2da~
 
@@ -37,7 +24,7 @@ BREATH WEAPON: The Dragon Disciple breathes a gout of flame up to 30 ft. long, i
 – 18th level: Movement rate increased by 2.
 – 20th level: Gains Dragon Apotheosis.
 
-DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +2 to Strength, +1 to Charisma, +2 to AC as well as immunity to blindness, unconsciousness, hold and fire damage.
+DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +2 to Strength, +1 to Charisma, +2 to AC as well as Infravision, immunity to unconsciousness, hold and fire damage. Additionally, the dragon disciple gains slightly increased visual range and may target partially invisible foes.
 
 – Hit Die: d6
 
@@ -45,16 +32,7 @@ Disadvantages:
 – May cast one fewer spell per level per day.~
 
 ACTION_IF dd = 2 THEN BEGIN
-// Strength bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd02.spl~ ~override~
-// Intelligence bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd03.spl~ ~override~
-// Movement bonus
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd04.spl~ ~override~
-// Dragon Apotheosis
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd05b.spl~ ~override~
-// Fire Resistance Icon
-COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells/c0dd06.spl~ ~override~
+COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/spells~ ~override~
 
 COPY ~%MOD_FOLDER%/Sorcerer/DragonDisciple/2das/c0dd2.2DA~ ~override/clabso01.2da~
 
@@ -78,7 +56,7 @@ BREATH WEAPON: The Dragon Disciple breathes a gout of flame up to 30 ft. long, i
 – 18th level: Movement rate increased by 2.
 – 20th level: Gains Dragon Apotheosis.
 
-DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +1 to Strength, +1 to Charisma, +2 to AC as well as immunity to blindness, unconsciousness, hold and fire damage.
+DRAGON APOTHEOSIS: The dragon disciple completes its transformation, becoming effectively a half-dragon. Gains +1 to Strength, +1 to Charisma, +2 to AC as well as Infravision, immunity to unconsciousness, hold and fire damage. Additionally, the dragon disciple gains slightly increased visual range and may target partially invisible foes.
 
 – Hit Die: d8
 

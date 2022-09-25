@@ -26,6 +26,7 @@ END
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Toughness~) STR_VAR bam_file = c0bari01 RET c0bari01 = icon END
 
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
 
@@ -59,13 +60,47 @@ INDOMITABLE WILL: When the barbarian is afflicted with any of the following affl
 
 – 10th level: Rage bonuses to Strength and Constitution increased to +6.
 – 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
-– 12th level: Improved Rapid Shot: The Fighter’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
 – 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.
 – 18th level: The barbarian no longer suffers fatigue penalties after Rage.
 – 20th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
 – 22nd level: Deathless Frenzy: The barbarian becomes unable to die for one round after Rage.
 – 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
 – Hit Die: d12~
+END
+	
+ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than splint mail.
+– May not exceed Specialization (two slots) with any weapon class.
+– May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
+– Moves 2 points faster than other characters.
+– Immune to backstab.
+– Iron Will: The barbarian gains +1 to all Saving Throws for every 4 points of Constitution greater than 9.
+– Gains the Toughness passive ability.
+
+TOUGHNESS: The barbarian gains 5% physical damage reduction. This bonus is doubled when the barbarian falls below 50% maximum hit points.
+
+– May use the Rage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+
+RAGE: The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution and a +2 bonus to Saving Throws vs. Spell. However, the barbarian incurs a -2 penalty to Armor Class. Additionally, activating Rage restores any drained levels from the barbarian and protects them from subsequent level drain effects for the duration. When the rage expires, the barbarian becomes fatigued and suffers a -2 penalty to Strength, Dexterity, Armor Class and Movement Rate for 5 rounds. The barbarian cannot use Rage until this duration is over.
+
+– 8th level: Gains the Indomitable Will passive ability.
+
+INDOMITABLE WILL: When the barbarian is afflicted with any of the following afflictions: berserk, charm, hold, fear, stun, sleep, feeblemind, confusion, <PRO_HESHE> has a 20% (+2% per level gained) chance each round to break free of their affliction.
+
+– 10th level: Rage bonuses to Strength and Constitution increased to +6.
+– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
+– 18th level: The barbarian no longer suffers fatigue penalties after Rage.
+– 20th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
+– 22nd level: Deathless Frenzy: The barbarian becomes unable to die for one round after Rage.
+– 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
+– Hit Die: d12~
+END
 	
 ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 COPY_EXISTING ~CLABFI05.2DA~ OVERRIDE

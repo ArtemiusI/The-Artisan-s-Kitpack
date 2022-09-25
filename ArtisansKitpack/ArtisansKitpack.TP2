@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2.5~
+VERSION ~2.9~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
@@ -79,7 +79,7 @@ COPY_EXISTING ~clsrcreq.2da~ ~override~
   BUT_ONLY
 
 
-BEGIN ~Artisan's Kitpack: Fighter Overhaul (required for kit components)~ DESIGNATED 1100
+BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
 
@@ -658,7 +658,7 @@ COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 
-BEGIN ~Artisan's Kitpack: Ranger Overhaul (required for kit components)~ DESIGNATED 2000
+BEGIN ~Artisan's Kitpack: Ranger Overhaul~ DESIGNATED 2000
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ranger.tpa~
 
@@ -689,7 +689,7 @@ BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~ DESIGNATED 2002
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
 
-BEGIN ~Artisan's Kitpack: Paladin Overhaul (required for kit components)~ DESIGNATED 3000
+BEGIN ~Artisan's Kitpack: Paladin Overhaul~ DESIGNATED 3000
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/paladin.tpa~
 

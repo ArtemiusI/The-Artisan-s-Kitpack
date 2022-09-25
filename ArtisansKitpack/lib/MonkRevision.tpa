@@ -219,7 +219,7 @@ Advantages:
 – May place 3 slots into Two-Weapon Style.
 – May use Sorcerous Lineage once per day. Gains extra uses at 6th and 12th levels.
 
-SORCEROUS LINEAGE: Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level.
+SORCEROUS LINEAGE: Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level. The spell cast via this ability use half of the Dark Moon Monk's level when determining power.
 
 – 5th level: May cast Chilling Palm once per day.
 
@@ -488,7 +488,7 @@ The monk gains an additional daily use of Quivering Palm. This ability may be ta
 COPY_EXISTING ~C0DMM01.SPL~ OVERRIDE
 SAY NAME1 ~Sorcerous Lineage~
 SAY UNIDENTIFIED_DESC ~Sorcerous Lineage
-Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level.~
+Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level. The spell cast via this ability use half of the Dark Moon Monk's level when determining power.~
 
 COPY_EXISTING ~C0DMM02.SPL~ OVERRIDE
 SAY NAME1 ~Chilling Palm~
