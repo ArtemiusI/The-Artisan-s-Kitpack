@@ -960,3 +960,38 @@ BEGIN
     END
   END
 END
+
+///////////////////////////////////////////////////////////////////////////
+// Borrowed from aVENGER to assist in updating CLAB files                //
+///////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION set_clab_2da_entries INT_VAR f_MaxLevel = 50 f_Increment = 100 BEGIN
+  COUNT_2DA_COLS num_col
+  READ_2DA_ENTRIES_NOW r2en num_col
+  c = 0
+  newrow = r2en + 1
+  SPRINT newrow "fl#row%newrow%"
+  FOR (i=f_MinLevel;i < num_col AND i <= f_MaxLevel;i += f_Increment) BEGIN
+    SPRINT cell ""
+    FOR (j = 0;!"%cell%" STRING_EQUAL_CASE "****" AND j < r2en;++j) BEGIN
+      READ_2DA_ENTRY_FORMER r2en j i cell
+      PATCH_IF "%cell%" STRING_EQUAL_CASE "****" BEGIN
+        SET_2DA_ENTRY_LATER s2el j i "%f_Entry%"
+      END
+    END
+    PATCH_IF !"%cell%" STRING_EQUAL_CASE "****" BEGIN
+      FOR (j = c;j < i - 1;++j) BEGIN //- 1 because that's where we'd want our entry
+        SPRINT newrow "%newrow% ****"
+        ++c
+      END
+      SPRINT newrow "%newrow% %f_Entry%"
+      ++c
+    END
+  END
+  SET_2DA_ENTRIES_NOW s2el num_col
+  PATCH_IF c > 0 BEGIN
+    FOR (i = c;i < num_col - 1;++i) BEGIN //- 1 because num_col includes the row name
+      SPRINT newrow "%newrow% ****"
+    END
+    INSERT_2DA_ROW r2en num_col "%newrow%"
+  END
+END
