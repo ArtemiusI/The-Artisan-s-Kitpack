@@ -47,7 +47,134 @@ Prime Requisites For Dual-Classing: Strength~)
   BUT_ONLY
 	END
 	END
-	
+
+///////////////////////////////////////////////////////////////////////////
+// Append to SPLPROT.2DA                                                 //
+///////////////////////////////////////////////////////////////////////////
+// Weapon Profs
+ACTION_FOR_EACH weapon_prof IN
+      89  // BASTARDSWORD
+      90  // LONGSWORD
+      91  // SHORTSWORD
+      92  // AXE
+      93  // TWOHANDEDSWORD
+      94  // KATANA
+      95  // SCIMITAR
+      96  // DAGGER
+      97  // WARHAMMER
+      115 // CLUB
+      98  // SPEAR
+      99  // HALBERD
+      100 // FLAILMORNINGSTAR
+      101 // MACE
+      102 // QUARTERSTAFF
+      103 // CROSSBOW
+      104 // LONGBOW
+      105 // SHORTBOW
+      106 // DART
+      107 // SLING
+    BEGIN
+      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%2%TAB%2~
+    END
+
+// Weapon Style Profs
+APPEND ~splprot.2da~ ~prof_111%TAB%111%TAB%2%TAB%2~ // 2HANDED
+APPEND ~splprot.2da~ ~prof_112%TAB%112%TAB%2%TAB%2~ // SWORDANDSHIELD
+APPEND ~splprot.2da~ ~prof_113%TAB%113%TAB%2%TAB%2~ // SINGLEWEAPON
+APPEND ~splprot.2da~ ~prof_114%TAB%114%TAB%3%TAB%2~ // SINGLEWEAPON
+
+// Update all imported files so they point in the correct direction.
+COPY_EXISTING ~splprot.2da~ ~override~
+    COUNT_2DA_COLS cols
+    READ_2DA_ENTRIES_NOW rows cols
+    FOR (row = 1; row < rows; ++row) BEGIN
+      READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+      
+      // WEAPON PROF ----------------------------------------------------------//
+      // BASTARDSWORD
+      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_89~ BEGIN 
+        SET prof_89 = %row%
+      // LONGSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_90~ BEGIN
+        SET prof_90 = %row%
+      END
+      // SHORTSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_91~ BEGIN
+        SET prof_91 = %row%
+      // AXE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_92~ BEGIN
+        SET prof_92 = %row%
+      // TWOHANDEDSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_93~ BEGIN
+        SET prof_93 = %row%
+      // KATANA
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_94~ BEGIN
+        SET prof_94 = %row%
+      // SCIMITAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_95~ BEGIN
+        SET prof_95 = %row%
+      // DAGGER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_96~ BEGIN
+        SET prof_96 = %row%
+      // WARHAMMER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_97~ BEGIN
+        SET prof_97 = %row%
+      // CLUB
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_115~ BEGIN
+        SET prof_115 = %row%
+      // SPEAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_98~ BEGIN
+        SET prof_98 = %row%
+      // HALBERD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_99~ BEGIN
+        SET prof_99 = %row%
+      // FLAILMORNINGSTAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_100~ BEGIN
+        SET prof_100 = %row%
+      // MACE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_101~ BEGIN
+        SET prof_101 = %row%
+      // QUARTERSTAFF
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_102~ BEGIN
+        SET prof_102 = %row%
+      // CROSSBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_103~ BEGIN
+        SET prof_103 = %row%
+      // LONGBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_104~ BEGIN
+        SET prof_104 = %row%
+      // SHORTBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_105~ BEGIN
+        SET prof_105 = %row%
+      // DART
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_106~ BEGIN
+        SET prof_106 = %row%
+      END
+    // SLING
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_107~ BEGIN
+        SET prof_107 = %row%
+
+    // WEAPON STYLE ---------------------------------------------------------//
+    // 2HANDED
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_111~ BEGIN
+        SET prof_111 = %row%
+    // SWORDANDSHIELD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_112~ BEGIN
+        SET prof_112 = %row%
+    // SINGLEWEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_113~ BEGIN
+        SET prof_113 = %row%
+    // 2WEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_114~ BEGIN
+        SET prof_114 = %row%
+    END
+
+// Update Prof Checks
+COPY_EXISTING ~moarm01.spl~ ~override~ // Make this your spell cast for bastard sword check
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% END
+
+// Continue doing the above for all profs
+
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
   STR_VAR bam_file = "****"
