@@ -3,10 +3,50 @@ COPY ~%MOD_FOLDER%/Fighter/spells~ ~OVERRIDE~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI01.2DA~ BEGIN
 COPY_EXISTING ~CLABFI01.2DA~ OVERRIDE
-APPEND ~CLABFI01.2DA~ ~AKPSKILL1    ****        ****        ****        ****        GA_C0FIG01  GA_C0ARC03  ****        ****        ****        ****        ****        AP_C0ARC03Z ****        ****        ****        ****        ****        ****        ****        AP_C0FIG03  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-AKPSKILL2    ****        ****        ****        ****        GA_C0FIG02  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
-END
+//APPEND ~CLABFI01.2DA~ ~AKPSKILL1    ****        ****        ****        ****        GA_C0FIG01  GA_C0ARC03  ****        ****        ****        ****        ****        AP_C0ARC03Z ****        ****        ****        ****        ****        ****        ****        AP_C0FIG03  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
+//AKPSKILL2    ****        ****        ****        ****        GA_C0FIG02  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+//END
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0FIG03 END
+  PRETTY_PRINT_2DA
+BUT_ONLY
 
+///////////////////////////////////////////////////////////////////////////
+// Set Abilities for all Fighter Kits                                    //
+// This allows all previously installed fighter kits to receive the      //
+// benefits of your overhaul                                             //
+///////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+  PATCH_IF (%kit_class% = 2) BEGIN
+    // Set New Fighter Abilities
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      // Add new abilities to all Fighter kits
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+      PATCH_IF !("%kit_label%" STRING_EQUAL_CASE "C0VNGD") BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END
+	LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END
+	LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END
+	LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+	LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0FIG03 END
+        PRETTY_PRINT_2DA
+      END
+      BUT_ONLY
+      END
+    END
+  END
+  END
+  
 ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
   COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
