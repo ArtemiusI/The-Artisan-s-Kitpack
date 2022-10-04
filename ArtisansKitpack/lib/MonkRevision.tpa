@@ -286,6 +286,23 @@ Disadvantages:
 – May not use Quivering Palm ability.
 – May not use Empty Body ability.~
 
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Flurry of Blows~) STR_VAR bam_file = C0MN#04I RET C0MN#04I = icon END
+
 COPY_EXISTING ~clswpbon.2da~ ~override~
   COUNT_2DA_COLS numCols
   COUNT_2DA_ROWS numCols numRows
@@ -352,9 +369,12 @@ The monk, while unarmed or wielding daggers, short swords or ninja-to, may make 
 
 Upon reaching 8th level, the bonus increases to one full attack per round. At 10th level, THAC0 penalty decreases to -1.~
 
-COPY_EXISTING ~C0MN#04a.SPL~ OVERRIDE
-SAY NAME1 ~Deactivate Flurry of Blows~
-SAY UNIDENTIFIED_DESC ~Toggle this ability to deactivate Flurry of Blows.~
+COPY_EXISTING ~C0MN#04B.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0MN#04I END
+
+COPY_EXISTING ~C0MN#04Z.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Inactive~) END
 
 COPY_EXISTING ~C0MN#05.SPL~ OVERRIDE
 SAY NAME1 ~Empty Body~
@@ -488,7 +508,7 @@ The monk gains an additional daily use of Quivering Palm. This ability may be ta
 COPY_EXISTING ~C0DMM01.SPL~ OVERRIDE
 SAY NAME1 ~Sorcerous Lineage~
 SAY UNIDENTIFIED_DESC ~Sorcerous Lineage
-Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level. The spell cast via this ability use half of the Dark Moon Monk's level when determining power.~
+Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level.~
 
 COPY_EXISTING ~C0DMM02.SPL~ OVERRIDE
 SAY NAME1 ~Chilling Palm~

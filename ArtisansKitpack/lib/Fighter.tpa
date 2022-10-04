@@ -3,15 +3,13 @@ COPY ~%MOD_FOLDER%/Fighter/spells~ ~OVERRIDE~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI01.2DA~ BEGIN
 COPY_EXISTING ~CLABFI01.2DA~ OVERRIDE
-//APPEND ~CLABFI01.2DA~ ~AKPSKILL1    ****        ****        ****        ****        GA_C0FIG01  GA_C0ARC03  ****        ****        ****        ****        ****        AP_C0ARC03Z ****        ****        ****        ****        ****        ****        ****        AP_C0FIG03  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-//AKPSKILL2    ****        ****        ****        ****        GA_C0FIG02  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
-//END
   // Borrowed from Rogue Rebalancing
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0FIG03 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
   PRETTY_PRINT_2DA
 BUT_ONLY
 
@@ -33,18 +31,225 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       INNER_ACTION BEGIN
       // Add new abilities to all Fighter kits
       COPY_EXISTING ~%kit_clab%.2DA~ override
-      PATCH_IF !("%kit_label%" STRING_EQUAL_CASE "C0VNGD") BEGIN
-        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END
-	LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END
-	LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END
-	LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
-	LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0FIG03 END
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // (IMPROVED) POWER ATTACK
         PRETTY_PRINT_2DA
       END
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
+				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // (IMPROVED) EXPERTISE
+        PRETTY_PRINT_2DA
+      END
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
+				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+		LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+        PRETTY_PRINT_2DA
+      END
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
+				("%kit_label%" STRING_EQUAL_CASE "WIZARDSLAYER") OR
+				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
+				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 5 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+        PRETTY_PRINT_2DA
+      END
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+        PRETTY_PRINT_2DA
+      END
+	  
       BUT_ONLY
       END
     END
   END
+  END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    blclatxt  
+    clastext  
+    sodcltxt 
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//BERSERKER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "BERSERKER" BEGIN
+          READ_2DA_ENTRY index 4 col_count berserker_desc
+          SPRINT old_berserker ~– May not Specialize in ranged weapons.~
+          SPRINT new_berserker ~– May not use Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– May not Specialize in ranged weapons.~
+          GET_STRREF %berserker_desc% berserker_text
+          INNER_PATCH_SAVE berserker_text ~%berserker_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_berserker%~ ~%new_berserker%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%berserker_desc%~ ~%berserker_text%~
+          END
+		END
+//WIZARDSLAYER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "WIZARD_SLAYER" BEGIN
+          READ_2DA_ENTRY index 4 col_count wizardslayer_desc
+          SPRINT old_wizardslayer ~Disadvantages:~
+          SPRINT new_wizardslayer ~Disadvantages:
+– Does not gain Specialization in all weapons at 16th level.~
+          GET_STRREF %wizardslayer_desc% wizardslayer_text
+          INNER_PATCH_SAVE wizardslayer_text ~%wizardslayer_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_wizardslayer%~ ~%new_wizardslayer%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%wizardslayer_desc%~ ~%wizardslayer_text%~
+          END
+        END
+//KENSAI
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "KENSAI" BEGIN
+          READ_2DA_ENTRY index 4 col_count kensai_desc
+          SPRINT old_kensai ~Disadvantages:~
+          SPRINT new_kensai ~Disadvantages:
+– May not use Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.~
+          GET_STRREF %kensai_desc% kensai_text
+          INNER_PATCH_SAVE kensai_text ~%kensai_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_kensai%~ ~%new_kensai%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kensai_desc%~ ~%kensai_text%~
+          END
+        END
+//DWARVEN_DEFENDER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "DWARVEN_DEFENDER" BEGIN
+          READ_2DA_ENTRY index 4 col_count dwarvendefender_desc
+          SPRINT old_dwarvendefender ~– Race restricted to dwarf.~
+          SPRINT new_dwarvendefender ~– Race restricted to dwarf.
+– May not use Improved Power Attack and Improved Expertise.
+– May not use Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+          GET_STRREF %dwarvendefender_desc% dwarvendefender_text
+          INNER_PATCH_SAVE dwarvendefender_text ~%dwarvendefender_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_dwarvendefender%~ ~%new_dwarvendefender%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%dwarvendefender_desc%~ ~%dwarvendefender_text%~
+          END
+        END
+//VANGUARD
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0VNGD" BEGIN
+          READ_2DA_ENTRY index 4 col_count vanguard_desc
+          SPRINT old_vanguard ~Disadvantages:~
+          SPRINT new_vanguard ~Disadvantages:
+– May not use Improved Power Attack and Improved Expertise.
+– May not use Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+          GET_STRREF %vanguard_desc% vanguard_text
+          INNER_PATCH_SAVE vanguard_text ~%vanguard_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_vanguard%~ ~%new_vanguard%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%vanguard_desc%~ ~%vanguard_text%~
+          END
+        END
+//ARCANE ARCHER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0AA" BEGIN
+          READ_2DA_ENTRY index 4 col_count arcane_archer_desc
+          SPRINT old_arcane_archer ~Disadvantages:~
+          SPRINT new_arcane_archer ~Disadvantages:
+– May not use Power Attack or Expertise.
+– Does not gain Specialization in all weapons at 16th level.~
+          GET_STRREF %arcane_archer_desc% arcane_archer_text
+          INNER_PATCH_SAVE arcane_archer_text ~%arcane_archer_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_arcane_archer%~ ~%new_arcane_archer%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%arcane_archer_desc%~ ~%arcane_archer_text%~
+          END
+        END
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0AA2" BEGIN
+          READ_2DA_ENTRY index 4 col_count arcane_archer_desc
+          SPRINT old_arcane_archer ~Disadvantages:~
+          SPRINT new_arcane_archer ~Disadvantages:
+– May not use Power Attack or Expertise.
+– Does not gain Specialization in all weapons at 16th level.~
+          GET_STRREF %arcane_archer_desc% arcane_archer_text
+          INNER_PATCH_SAVE arcane_archer_text ~%arcane_archer_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_arcane_archer%~ ~%new_arcane_archer%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%arcane_archer_desc%~ ~%arcane_archer_text%~
+          END
+        END
+//BARBARIAN
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "BARBARIAN" BEGIN
+          READ_2DA_ENTRY index 4 col_count barbarian_desc
+          SPRINT old_barbarian ~– 11th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15 and 19.~
+          SPRINT new_barbarian ~– 5th level: May use the Power Attack modal ability.
+
+POWER ATTACK: The Barbarian forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Barbarian must have 17 or greater Strength to activate this ability.
+
+– 6th level: May use the Rapid Shot modal ability.
+
+RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4 penalty to hit.
+
+– 11th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15 and 19.
+– 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.~
+          SPRINT old_barbarian_1 ~– 8th level: Gains the Indomitable Will passive ability.~
+          SPRINT new_barbarian_1 ~– 5th level: May use the Power Attack modal ability.
+
+POWER ATTACK: The Barbarian forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Barbarian must have 17 or greater Strength to activate this ability.
+
+– 6th level: May use the Rapid Shot modal ability.
+
+RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4 penalty to hit.
+
+– 8th level: Gains the Indomitable Will passive ability.~
+          SPRINT old_barbarian_2 ~– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.~
+          SPRINT new_barbarian_2 ~– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
+– 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.~
+          GET_STRREF %barbarian_desc% barbarian_text
+          INNER_PATCH_SAVE barbarian_text ~%barbarian_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_barbarian%~ ~%new_barbarian%~
+            REPLACE_TEXTUALLY ~%old_barbarian_1%~ ~%new_barbarian_1%~
+            REPLACE_TEXTUALLY ~%old_barbarian_2%~ ~%new_barbarian_2%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%barbarian_desc%~ ~%barbarian_text%~
+          END
+        END
+		
+      END
+      BUT_ONLY
+    END
   END
   
 ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
@@ -64,7 +269,6 @@ CLASS FEATURES:
 – May wear any armor and use any weapon.
 – May achieve Grand Mastery (five slots) with any weapon class.
 – May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
-– Does not suffer penalties for wielding a non-proficient weapon.
 – 5th level: May use the Power Attack and Expertise modal abilities. Only one of the two may be activated at any time.
 
 POWER ATTACK: The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.
@@ -77,6 +281,7 @@ RAPID SHOT: The Fighter may make an additional ranged attack per round at a -4 p
 
 – 12th level: Improved Rapid Shot: The Fighter’s penalty to hit while Rapid Shot is active is reduced to -2.
 – 14th level: May use Improved Power Attack and Improved Expertise, which provide 6 points to the original abilities' bonuses and penalties.
+– 16th level: Gains Specialization in all weapons that the Fighter is not already Specialized or greater in.
 – 20th level: Improved Initiative: The Fighter gains an additional half attack per round.
 
 – Hit Die: d10
@@ -137,7 +342,6 @@ COPY_EXISTING ~splprot.2da~ ~override~
       // LONGSWORD
       END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_90~ BEGIN
         SET prof_90 = %row%
-      END
       // SHORTSWORD
       END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_91~ BEGIN
         SET prof_91 = %row%
@@ -189,7 +393,6 @@ COPY_EXISTING ~splprot.2da~ ~override~
       // DART
       END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_106~ BEGIN
         SET prof_106 = %row%
-      END
     // SLING
       END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_107~ BEGIN
         SET prof_107 = %row%
@@ -208,10 +411,70 @@ COPY_EXISTING ~splprot.2da~ ~override~
       END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_114~ BEGIN
         SET prof_114 = %row%
     END
+    END
+    END
 
 // Update Prof Checks
-COPY_EXISTING ~moarm01.spl~ ~override~ // Make this your spell cast for bastard sword check
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% END
+COPY_EXISTING ~c0fig04.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% STR_VAR match_resource = c0fig04a END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_90% STR_VAR match_resource = c0fig04b END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_91% STR_VAR match_resource = c0fig04c END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_92% STR_VAR match_resource = c0fig04d END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_93% STR_VAR match_resource = c0fig04e END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_94% STR_VAR match_resource = c0fig04f END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_95% STR_VAR match_resource = c0fig04g END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_96% STR_VAR match_resource = c0fig04h END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_97% STR_VAR match_resource = c0fig04i END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_98% STR_VAR match_resource = c0fig04j END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_99% STR_VAR match_resource = c0fig04k END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_100% STR_VAR match_resource = c0fig04l  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_101% STR_VAR match_resource = c0fig04m  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_102% STR_VAR match_resource = c0fig04n  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_103% STR_VAR match_resource = c0fig04o  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_104% STR_VAR match_resource = c0fig04p  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_105% STR_VAR match_resource = c0fig04q  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_106% STR_VAR match_resource = c0fig04r  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_107% STR_VAR match_resource = c0fig04s  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_115% STR_VAR match_resource = c0fig04t  END
+	
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04b.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 90 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04c.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 91 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04d.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 92 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04e.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 93 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04f.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 94 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04g.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 95 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04h.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 96 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04i.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 97 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04j.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 98 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04k.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 99 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04l.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 100 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04m.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 101 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04n.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 102 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04o.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 103 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04p.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 104 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04q.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 105 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04r.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 106 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04s.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 107 END
+COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04t.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 115 END
 
 // Continue doing the above for all profs
 

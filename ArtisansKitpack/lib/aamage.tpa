@@ -47,7 +47,6 @@ PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow wi
 ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe on a failed save vs. death. Target's saving throw penalty is increased by one for every 5 levels gained thereafter.
 
 Disadvantages:
-
 - THAC0 penalty of 2 when wielding a melee weapon.
 - Race restricted to elf or half-elf.
 - May not exceed proficiency (one slot) in weapons other than longbows and shortbows.

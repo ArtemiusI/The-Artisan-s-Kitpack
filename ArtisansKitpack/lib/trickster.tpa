@@ -1,3 +1,8 @@
+
+COPY ~%MOD_FOLDER%/Thief/Trickster/2da~ OVERRIDE
+COPY ~%MOD_FOLDER%/Thief/Trickster/bam~ OVERRIDE
+COPY ~%MOD_FOLDER%/Thief/Trickster/spells~ OVERRIDE
+
 ADD_KIT ~C0TRICKS~
 
  // appended to CLASWEAP.2da
@@ -85,6 +90,57 @@ Disadvantages:
 – May only distribute 20 skill points per level among thieving skills.
 – Only receives 90% of all experience earned as a trickster.~
 
+ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~C0TRICKS.2DA~ BEGIN
+COPY_EXISTING ~C0TRICKS.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 25 f_MaxLevel = 25 STR_VAR f_Entry = AP_SPCL915 END // USE ANY ITEMS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 30 f_MaxLevel = 30 STR_VAR f_Entry = AP_C0TR#HL END // MASTERY
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+ACTION_FOR_EACH description IN 
+    blclatxt  
+    clastext  
+    sodcltxt 
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+//TRICKSTER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0TRICKS" BEGIN
+          READ_2DA_ENTRY index 4 col_count trickster_desc
+          SPRINT old_trickster1 ~– 25th level: Gains one use of Mimicry.~
+          SPRINT new_trickster1 ~– 25th level: Gains one use of Mimicry and may Use Any Items.~
+          SPRINT old_trickster2 ~– 30th level: Opportunist penalties increased to 4. Gains one use of Mimicry.~
+          SPRINT new_trickster2 ~– 30th level: Opportunist penalties increased to 4. Gains one use of Mimicry.
+– 30th level: Gains one use of Mastery, which may be used to permanently learn Esoteric Swordplay or Easy as Breathing.
+
+ESOTERIC SWORDPLAY: The Trickster's experience in observing and mimicking countless warriors has granted them a cohesive understanding of many fighting styles. Upon learning this ability, the Trickster permanently gains one and a half extra attacks per round.
+
+EASY AS BREATHING: The Trickster's proficiency with their Mimicry allows them to use their arsenal of techniques with alarming speed and efficiency. Upon learning this ability, the Trickster gains permanent Aura Cleansing.~
+          GET_STRREF %trickster_desc% trickster_text
+          INNER_PATCH_SAVE trickster_text ~%trickster_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_trickster%~ ~%new_trickster%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%trickster_desc%~ ~%trickster_text%~
+          END
+		END
+	END
+
+      BUT_ONLY
+    END
+  END
+  
+END
+END
+
 LAF fl#add_kit_ee
 STR_VAR
 	kit_name = C0TRICKS
@@ -95,10 +151,6 @@ STR_VAR
     numwslot = 2
 	thiefskl = ~40 20~
 END
-
-COPY ~%MOD_FOLDER%/Thief/Trickster/2da~ OVERRIDE
-COPY ~%MOD_FOLDER%/Thief/Trickster/bam~ OVERRIDE
-COPY ~%MOD_FOLDER%/Thief/Trickster/spells~ OVERRIDE
 
 // MIMICRY
 COPY_EXISTING ~C0TR#02.SPL~ OVERRIDE
@@ -406,6 +458,26 @@ COPY_EXISTING ~C0TR#43A.SPL~ ~OVERRIDE/C0TR#55A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL921B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL921 END
 SAY NAME1 ~Mimic: Magic Flute~
+
+COPY_EXISTING ~C0TR#HL.SPL~ ~OVERRIDE~
+SAY NAME1 ~Mastery~
+SAY UNIDENTIFIED_DESC ~This ability may be used once to learn either Esoteric Swordplay or Easy as Breathing.
+
+ESOTERIC SWORDPLAY: The Trickster's experience in observing and mimicking countless warriors has granted them a cohesive understanding of many fighting styles. Upon learning this ability, the Trickster permanently gains one and a half extra attacks per round.
+
+EASY AS BREATHING: The Trickster's proficiency with their Mimicry allows them to use their arsenal of techniques with alarming speed and efficiency. Upon learning this ability, the Trickster gains permanent Aura Cleansing.~
+
+COPY_EXISTING ~C0TR#H1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Esoteric Swordplay~
+SAY UNIDENTIFIED_DESC ~The Trickster's experience in observing and mimicking countless warriors has granted them a cohesive understanding of many fighting styles. Upon learning this ability, the Trickster permanently gains one and a half extra attacks per round.
+
+This ability is mutually exclusive with Easy as Breathing.~
+
+COPY_EXISTING ~C0TR#H2.SPL~ ~OVERRIDE~
+SAY NAME1 ~Easy as Breathing~
+SAY UNIDENTIFIED_DESC ~The Trickster's proficiency with their Mimicry allows them to use their arsenal of techniques with alarming speed and efficiency. Upon learning this ability, the Trickster gains permanent Aura Cleansing.
+
+This ability is mutually exclusive with Esoteric Swordplay.~
 
  ACTION_FOR_EACH mimics IN 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 BEGIN
 	COPY_EXISTING ~C0TR#%mimics%A.SPL~ ~override/C0TR#%mimics%B.SPL~

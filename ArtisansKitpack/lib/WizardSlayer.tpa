@@ -100,35 +100,6 @@ ACTION_PHP_EACH	MRES_DMG_ARRAY_50_128 AS one => two	BEGIN
 	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
 END
 
-ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
-LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~WIZARD_SLAYER~ RET kit_strref END
-STRING_SET_EVALUATE kit_strref ~WIZARD SLAYER: This warrior has been specially trained by <PRO_HISHER> sect to excel in hunting and combating spellcasters of all kinds, developing an innate power to nullify and disrupt magical energies of all kinds. Under specific situations, the Wizard Slayer may even use this power more offensively, unleashing powerful blows against non-magic users. This energy, however, has the unfortunate side-effect of negating the benefits of many magical items, rendering them useless in <PRO_HISHER> hands.
-
-Advantages:
-– Each successful hit made by the Wizard Slayer bestows a cumulative chance of spell failure on the target equal to their 10% + 1% per level for 15 rounds.
-– The Wizard Slayer's critical hits cast Breach on the target, even if they are immune to the attack.
-– Gains Magic Resistance equal to 10% + 1% per level.
-– 4th level: May use the Spellslayer Strike ability twice per day, gaining an additional use every two levels thereafter.
-
-SPELLSLAYER STRIKE: The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase the hit and damage rolls of their next successful attack by the same amount. The Wizard Slayer regains their Magic Resistance after two turns have passed.
-
-– 8th level: May use the Antimagic Field ability once per day. Gains an additional use at levels 10 and 12.
-
-ANTIMAGIC FIELD: The Wizard Slayer extends their innate Magic Resistance to all nearby allies within a 15-ft. radius, granting them half of the Wizard Slayer's base amount. This effect lasts for five rounds, and the Wizard Slayer loses their own innate Magic Resistance for the duration and may not use Spellslayer Strike while the effect is active.
-
-– 16th level: Spell Barrier: The Wizard Slayer absorbs the effects of the first spell targeted at them of any spell level. This does not prevent the effects of area effect spells and clouds that do not target the Wizard Slayer. The Spell Barrier is restored after one turn has passed.
-
-Disadvantages:
-– May not use any magic items that do not have a Magic Resistance component apart from weapons and armor.
-– Does not gain Improved Initiative.~
-END
-
-ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
-COPY_EXISTING ~CLABFI03.2DA~ OVERRIDE
-REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
-REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
-REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
-REPLACE_TEXTUALLY ~GA_C0ARC03~ ~****     ~
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~WIZARD_SLAYER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~WIZARD SLAYER: This warrior has been specially trained by <PRO_HISHER> sect to excel in hunting and combating spellcasters of all kinds, developing an innate power to nullify and disrupt magical energies of all kinds. Under specific situations, the Wizard Slayer may even use this power more offensively, unleashing powerful blows against non-magic users. This energy, however, has the unfortunate side-effect of negating the benefits of many magical items, rendering them useless in <PRO_HISHER> hands.
 
@@ -148,7 +119,6 @@ ANTIMAGIC FIELD: The Wizard Slayer extends their innate Magic Resistance to all 
 
 Disadvantages:
 – May not use any magic items that do not have a Magic Resistance component apart from weapons and armor.~
-END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~                  //Kindly provided and explained by kjeron with a solid base that Grammarsalad gave me to start knowing what to ask and look for.
 	PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
