@@ -34,7 +34,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       PATCH_IF !(
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // (IMPROVED) POWER ATTACK
         PRETTY_PRINT_2DA
@@ -44,7 +45,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // (IMPROVED) EXPERTISE
         PRETTY_PRINT_2DA
@@ -53,7 +55,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
 				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
 		LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
@@ -66,7 +69,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 5 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
         PRETTY_PRINT_2DA
@@ -74,7 +78,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       PATCH_IF !(
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD")
+				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
         PRETTY_PRINT_2DA
@@ -90,9 +95,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 // Update Kit Descriptions                                               //
 ///////////////////////////////////////////////////////////////////////////
 ACTION_FOR_EACH description IN 
-    blclatxt  
     clastext  
-    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~
@@ -205,6 +208,22 @@ ACTION_FOR_EACH description IN
           END
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%arcane_archer_desc%~ ~%arcane_archer_text%~
+          END
+        END
+//SIEGEMASTER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_SIEGEMASTER" BEGIN
+          READ_2DA_ENTRY index 4 col_count siegemaster_desc
+          SPRINT old_siegemaster ~Disadvantages:~
+          SPRINT new_siegemaster ~Disadvantages:
+– May not use Power Attack, Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+          GET_STRREF %siegemaster_desc% siegemaster_text
+          INNER_PATCH_SAVE siegemaster_text ~%siegemaster_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_siegemaster%~ ~%new_siegemaster%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%siegemaster_desc%~ ~%siegemaster_text%~
           END
         END
 //BARBARIAN

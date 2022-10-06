@@ -9,9 +9,9 @@ Advantages:
 – Gains the In Extremis passive effect.
 
 IN EXTREMIS: Berserkers revel in the thrill of carnage to a sadomasochistic degree, and fight harder when approaching death while most warriors would falter or retreat. While powerful, the berserker's technique is a double-edged sword – as the berserker accumulates more wounds in battle, their blows become increasingly deadly, yet their defense falters, becoming more vulnerable to further damage.
-  >75% Hit Points: +2 to THAC0 and Damage, -2 penalty to Armor Class
-  >50% Hit Points: +4 to THAC0 and Damage, -4 penalty to Armor Class
-  >25% Hit Points: +8 to THAC0 and Damage, -6 penalty to Armor Class
+  >75% Hit Points: +2 to melee THAC0 and Damage, -2 penalty to Armor Class
+  >50% Hit Points: +4 to melee THAC0 and Damage, -4 penalty to Armor Class
+  >25% Hit Points: +8 to melee THAC0 and Damage, -6 penalty to Armor Class
 
 – May use the Enrage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 

@@ -1,0 +1,248 @@
+COPY ~%MOD_FOLDER%/Fighter/Siegemaster/2das~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Siegemaster/spells~ ~override~
+
+ADD_KIT ~C0_SIEGEMASTER~
+
+ // appended to CLASWEAP.2da
+ ~C0_SIEGEMASTER		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                    		T   S           F   Q             S S
+//10                                   			W   C           L   U             W I
+//9                        			    B L S   O   I   W       A   A             O N
+//8                        				A O H   H   M   A       I   R C   S       R G
+//7         			L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         			_ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         			S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         			W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         			O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2        				R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1      	  			D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0_SIEGEMASTER		1 1 5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0_SIEGEMASTER				17      12	0	0	0	0~
+
+ // appended to ABCLSMOD.2da
+ ~C0_SIEGEMASTER				0	0	0	0	0	0~
+
+ // appended to ABDCDSRQ.2da
+ ~C0_SIEGEMASTER                	17       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0_SIEGEMASTER                 	15       0       0       0       0		 0~
+
+ // appended to ALIGNMNT.2da
+ ~C0_SIEGEMASTER                  	1       1       1       1       1	1       1       1       1~
+
+ // appended to DUALCLAS.2da
+ ~C0_SIEGEMASTER                  	0       1       1       1       1       0~
+
+ // path to your CLAB-style 2da file 
+ ~override/C0SIEGEM.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~K_F_H K_F_E K_F_HE K_F_G K_F_HL K_F_HO~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00004000     2~
+
+ // HLA table to use; see LUABBR.2da
+ ~c0sieg~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~siegemaster~
+  SAY ~Siegemaster~
+  SAY ~SIEGEMASTER: The siegemaster is a heavily armed and armored warrior who specializes in terrifying long-ranged assaults. Wielding the largest and heaviest of ranged weapons with absolute ease, their lethal shots can penetrate even the most durable armors and heavily fortified castles. To the siegemaster, there is no such thing as an 'impenetrable defense'.
+
+Advantages:
+– +1 bonus to hit and damage rolls with ranged weapons on every 2nd level.
+– +50% bonus to missile damage dealt, which is increased to +250% if a successful attack has not been made within two rounds.
+– Gains the Armor Penetration and Heavy Draw passive effects.
+
+ARMOR PENETRATION: The siegemaster excels at breaking armor and other impenetrable defenses, dealing an additional point of unmitigated piercing damage per point of Armor Class of the target below 10. Additionally, the siegemaster's critical hits penetrate through 50% of the target's missile resistance.
+
+HEAVY DRAW: The siegemaster's missiles strike with extreme force, stunning the target for 2 seconds and knocking them away slightly. However, after each attack, the Siegemaster's movement rate is briefly slowed by 75%, which cannot be prevented by Free Action.
+
+– 10th level: May use the Longshot ability once per day.
+
+LONGSHOT: The siegemaster becomes a living artillery weapon. For the next two attacks, the siegemaster deals maximum damage, gains +10 to their ranged critical hit modifier and their attacks will no longer critically miss. Additionally, their visual range is greatly increased. However, their movement rate is reduced by 90% while Longshot is active. If an attack is not expended within two rounds, Longshot will automatically expire.
+
+– 15th level: Longshot is now active for the next three attacks.
+– 20th level: Longshot is now active for the next four attacks.
+
+Disadvantages:
+– May never make more than one attack per round unless Hasted.
+– May not exceed Proficiency (one slot) in weapons other than crossbows and longbows.
+– May not exceed Proficiency (one slot) in any weapon style.~
+
+// Resistances
+DEFINE_ACTION_FUNCTION	ADD_SPLPROT	INT_VAR	stat = 0	value = 0	relation = 0	RET	new_row		BEGIN
+	ACTION_IF	(stat > 278)	BEGIN	WARN	~SPLPROT.2DA - Stat out of Bounds.~	END
+	ACTION_IF	((stat != 259) AND (stat != 260) AND (relation > 11))	BEGIN	WARN	~SPLPROT.2DA - Relation out of Bounds.~	END
+	COPY_EXISTING ~SPLPROT.2DA~	OVERRIDE
+		COUNT_2DA_COLS	cols
+		COUNT_2DA_ROWS cols rows
+		TEXT_SPRINT check_row ~~
+		TEXT_SPRINT check_stat ~~
+		SET new_row = 0
+		FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+			PATCH_IF (~%check_stat%~ STRING_EQUAL ~%stat%~)	BEGIN	READ_2DA_ENTRY current_row 2 cols check_value
+				PATCH_IF (~%check_value%~ STRING_EQUAL ~%value%~)	BEGIN	READ_2DA_ENTRY current_row 3 cols check_relation
+					PATCH_IF (~%check_relation%~ STRING_EQUAL ~%relation%~)	BEGIN	new_row = current_row	current_row = rows	END
+				END
+			END
+		END
+		PATCH_IF (new_row = 0)	BEGIN
+			FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+				PATCH_IF (~%check_stat%~ STRING_EQUAL ~*~)	BEGIN	new_row = current_row	current_row = rows	END
+			END
+			PATCH_IF (new_row = 0)	BEGIN	new_row = rows	INSERT_2DA_ROW rows cols ~%new_row%		   %stat%		   %value%		   %relation%~
+			END	ELSE	BEGIN	SET_2DA_ENTRY new_row 1 cols ~%stat%~	SET_2DA_ENTRY new_row 2 cols ~%value%~	SET_2DA_ENTRY new_row 3 cols ~%relation%~	END
+		END
+	BUT_ONLY
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+APPEND ~splprot.2da~ ~C0_SIEGEMASTER_AC 2 -1 1~ UNLESS ~C0_SIEGEMASTER_AC~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_SIEGEMASTER_AC~ BEGIN
+	    SET C0_SIEGEMASTER_AC = %row%
+	  END
+	END
+	
+COPY_EXISTING ~C0SIEG2.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 0 parameter2 = C0_SIEGEMASTER_AC END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED02.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 2 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED03.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 3 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED04.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 4 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED05.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 5 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED06.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 6 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED07.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 7 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED08.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 8 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED09.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 9 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED10.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 10 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED11.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 11 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED12.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 12 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED13.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 13 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED14.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 14 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED15.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 15 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED16.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 16 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED17.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 17 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED18.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 18 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED19.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 19 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED20.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 20 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED21.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 21 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED22.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 22 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED23.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 23 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED24.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 24 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED25.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 25 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED26.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 26 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED27.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 27 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED28.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 28 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED29.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 29 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED30.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 30 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED31.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 31 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED32.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 32 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED33.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 33 END
+
+COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED34.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 34 END
+
+COPY_EXISTING ~C0SIEG4.SPL~ ~OVERRIDE~
+SAY NAME1 ~Longshot~
+SAY UNIDENTIFIED_DESC ~Longshot
+The siegemaster becomes a living artillery weapon. For the next two attacks, the siegemaster deals maximum damage, gains +10 to their ranged critical hit modifier and their attacks will no longer critically miss. Additionally, their visual range is greatly increased. However, they are unable to move while Longshot is active. If an attack is not expended within two rounds, Longshot will automatically expire.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = C0_SIEGEMASTER
+    clswpbon = ~0 0 3~
+	hpclass = ~HPWAR~
+    numwslot = 4
+END

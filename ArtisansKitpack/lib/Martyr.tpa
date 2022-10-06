@@ -79,14 +79,17 @@ AURA OF PROTECTION: The martyr exudes a protective aura which shields their comp
   17th - +2 to Armor Class and +15% resistance.
   24th - +3 to Armor Class and +20% resistance.
 
-– 9th level: Gains the Final Breath passive effect.
+– 8th level: Gains the Final Breath passive effect.
 
 FINAL BREATH: The martyr's dauntless heroism and endurance keeps their allies motivated and safe, even in death. If the martyr is slain, all allies are healed for 50% of their maximum hit points and gain +4 to hit, damage and saving throws for two turns.
 
-– 12th level: The martyr becomes immune to fatigue.
+– 10th level: The martyr becomes immune to fatigue.
+– 12th level: While Martyrdom is active, the martyr's melee attacks heal the closest ally within a 10-ft. radius for 2d6+2 hit points on hit.
 – 15th level: May use the Ilmater's Grace ability once per day.
 
 ILMATER'S GRACE: The martyr may call upon a second wind in battle, instantly healing half of their maximum hit points. The martyr gradually regenerates an additional half of their maximum hit points over the next five rounds.
+
+– 20th level: Tribulations: The martyr permanently gains +50 additional maximum hit points.
 
 – Hit Die: d12
 
@@ -163,7 +166,16 @@ END
 SAY NAME1 ~Martyrdom~
 SAY NAME2 ~Martyrdom~
 SAY UNIDENTIFIED_DESC ~Martyrdom
-The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr gains a temporary +6 bonus to Armor Class, +30% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.~
+The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr gains a temporary +6 bonus to Armor Class, +30% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued.
+
+From 12th level onwards, while Martyrdom is active, the martyr's melee attacks heal the closest ally within a 10-ft. range for 2d6+2 hit points on hit.
+
+This ability may not be used in conjuction with Hardiness.~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Paladin/Martyr/spells/c0ilms2a.PRO~ ~C0 Martyrdom~
+
+COPY_EXISTING ~C0ilms2a.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = c0ilms2a END
 
 COPY_EXISTING ~C0ilms3.spl~ ~override~
   LPF ALTER_EFFECT

@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~2.9~
+VERSION ~3.0~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
@@ -100,32 +100,6 @@ FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Fighter Kit is
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/dwarvendefender.tpa~
 
-BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
-  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
-GROUP ~Fighter Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1007~ ~The Vanguard Kit must be installed.~
-
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid2.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid4.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid6.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid7.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-
 BEGIN ~Artisan's Kitpack: Vanguard Fighter Kit~ DESIGNATED 1002
 FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1007~ ~The Dwarven Defender Overhaul is already installed.~
 GROUP ~Fighter Kits~
@@ -134,7 +108,7 @@ INCLUDE ~%MOD_FOLDER%/lib/vanguard.tpa~
 BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 GROUP ~Fighter Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1002~ ~The Vanguard Kit must be installed.~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1002~ OR MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1007~) ~The Vanguard Kit must be installed.~
 
 		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
 	  COPY_EXISTING ~khalid.cre~ ~override~
@@ -654,6 +628,10 @@ COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
 
 LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 
+BEGIN ~Artisan's Kitpack: Siegemaster Fighter Kit~ DESIGNATED 1008
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Siegemaster.tpa~
+
 BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
@@ -826,6 +804,84 @@ BEGIN ~Artisan's Kitpack: Invisible Blade Thief Kit~ DESIGNATED 7005
 GROUP ~Thief Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Invisible_Blade.tpa~
 
+BEGIN ~Artisan's Kitpack: Give Hexxat the Invisible Blade Kit~ DESIGNATED 7104
+GROUP ~Thief Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7005~ ~The Invisible Blade Kit must be installed.~
+ ACTION_FOR_EACH hexxat IN ohhex8 ohhex9 ohhex10 ohhex11 ohhex13 ohhex15 ohhex25 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%hexxat%.cre~ THEN BEGIN
+    COPY_EXISTING ~%hexxat%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_INVISIBLE_BLADE~))
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex8.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex8.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex9.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex9.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex10.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex10.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex11.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex11.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex13.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex13.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex15.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex15.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex25.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex25.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+END
+
 BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
@@ -868,6 +924,18 @@ INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
 BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20001
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Jan the Arcane Trickster Kit~ DESIGNATED 21001
+GROUP ~Multi-Class Kits~
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20001~ ~The Elementalist Kit must be installed.~
+ ACTION_FOR_EACH jan IN jan8 jan10 jan11 jan12 jan15 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%jan%.cre~ THEN BEGIN
+    COPY_EXISTING ~%jan%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ATR~))
+		BUT_ONLY
+END
+END
 
 BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
