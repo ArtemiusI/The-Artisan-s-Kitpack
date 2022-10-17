@@ -60,7 +60,7 @@ ADD_KIT ~C0_INVISIBLE_BLADE~
  ~0x00004000     4~
 
  // HLA table to use; see LUABBR.2da
- ~INVB~
+ ~C0INVB~
 
  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
  ~LEAT14 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 DAGG13~
@@ -73,7 +73,7 @@ ADD_KIT ~C0_INVISIBLE_BLADE~
 Advantages:
 – May achieve Grandmastery (five slots) in Daggers.
 – May achieve Mastery (three slots) in Two-Weapon Style.
-– +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level.
+– +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level up to a maximum of +11 at 20th level.
 – Unfettered Defense: The Invisible Blade's base Armor Class improves at a value equal to 10 - (Intelligence - 12).
 – Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus piercing damage on the initial hit and unmitigated damage for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
   1st-4th: 2 damage per round, 2 rounds
