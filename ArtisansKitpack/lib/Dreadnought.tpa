@@ -1,0 +1,412 @@
+COPY ~%MOD_FOLDER%/Fighter/Dreadnought/2das~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Dreadnought/bams~ ~override~
+COPY ~%MOD_FOLDER%/Fighter/Dreadnought/spells~ ~override~
+
+ADD_KIT ~C0_DREADNOUGHT~
+
+ // appended to CLASWEAP.2da
+ ~C0_DREADNOUGHT		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                    		T   S           F   Q             S S
+//10                                   			W   C           L   U             W I
+//9                        			    B L S   O   I   W       A   A             O N
+//8                        				A O H   H   M   A       I   R C   S       R G
+//7         			L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         			_ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         			S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         			W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         			O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2        				R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1      	  			D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0_DREADNOUGHT		5 5 0 5 5 5 5 0 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0_DREADNOUGHT				17      0	0	0	0	0~
+
+ // appended to ABCLSMOD.2da
+ ~C0_DREADNOUGHT				0	0	0	0	0	0~
+
+ // appended to ABDCDSRQ.2da
+ ~C0_DREADNOUGHT                	17       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0_DREADNOUGHT                 	15       0       0       0       0		 0~
+
+ // appended to ALIGNMNT.2da
+ ~C0_DREADNOUGHT                  	1       1       1       1       1	1       1       1       1~
+
+ // appended to DUALCLAS.2da
+ ~C0_DREADNOUGHT                  	0       0       0       0       0       0~
+
+ // path to your CLAB-style 2da file 
+ ~override/C0DREADN.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~K_F_H K_F_E K_F_HE K_F_G K_F_HL K_F_HO~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00000008     2~
+
+ // HLA table to use; see LUABBR.2da
+ ~c0dred~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~dreadnought~
+  SAY ~Dreadnought~
+  SAY ~DREADNOUGHT: The dreadnought is a truly fearsome warrior that eschews finesse in favor of power and stamina, specializing in placing the entirety of their weight into their attacks, capable of felling even the strongest of opponents in a single blow. Despite their ferocity, however, only a fool would mistake the dreadnought's fighting style as simple brute force—rather, learning how to use their strength to its full potential and inflict the most damage possible is a difficult technique that few others can master.
+
+Advantages:
+– +5 bonus to minimum damage rolls.
+– Gains the Power Strike, Massive Criticals and Unstoppable passive effects.
+
+POWER STRIKE: The dreadnought may only ever make one attack per round outside of using certain abilities. However, they gain twice their Strength modifier for melee damage.
+
+MASSIVE CRITICALS: The dreadnought's melee critical hits inflict additional crushing damage, increasing with level, plus their regular Strength modifier, and stun the target for ten seconds on a Save vs. Death at a penalty equal to half of the dreadnought's normal Strength damage modifier, rounded down.
+  1st-4th level: +1d6
+  5th-8th level: +1d8
+  9th-12th level: +1d10
+  13th-16th level: +1d12
+  17th-20th level: +2d8
+  21st-24th level: +2d10
+  25th-28th level: +2d12
+  29th-32nd level: +3d10
+  33rd-36th level: +3d12
+  37th level+: +4d10
+
+UNSTOPPABLE: The dreadnought is immune to most movement-affecting effects, including Haste, Slow, Web, Hold Person, Grease and Entangle. However, they may be affected by movement rate effects. Additionally, when the Dreadnought is afflicted with a Stun, they are immediately cured of the effect and gain a +10 bonus to melee damage for the next round and immunity to further stun effects for 6 rounds.
+
+– May use the Heavy Assault Stance ability modal ability.
+
+HEAVY ASSAULT STANCE: The dreadnought reduces their base attacks per round to half per round, but deals an increased +120% slashing, piercing and crushing damage.
+
+– 3rd level: May use the All-Out Offense ability once per day. Gains additional uses every 8th level.
+
+ALL-OUT OFFENSE: The dreadnought puts their full force behind every attack for the next three rounds, becoming Hasted, gaining a +100% bonus to melee physical damage dealt, and dealing maximum damage per hit for the duration. However, for the same duration, they suffer a -6 penalty to Armor Class, a -50% penalty to resistances to crushing, piercing and slashing damage, and incur a large fatigue penalty after the ability expires. Additionally, the dreadnought is unable to cast spells, use items or use thieving skills for the duration. This ability may not be active at the same time as Hardiness.
+
+– 5th level: May use the Earth-Shattering Strike ability once per day. Gains an additional use at 10th and 15th level.
+
+EARTH-SHATTERING STRIKE: The dreadnought unleashes a heavy strike that inflicts damage upon the battlefield itself. For their next attack within three rounds, the dreadnought automatically rolls for a critical hit and applies Massive Critical's effect to secondary targets in a 10-ft. line in front of them and knocking all creatures aside from the attacked target slightly away. Additionally, the impact of the blow leaves a field in a 10-ft. radius for five rounds that halves the Dexterity and movement rate of all creatures except for the dreadnought standing within it.
+
+– 7th level: The dreadnought gains an additional +2 to melee damage.
+– 9th level: Massive Criticals now inflicts its additional damage and stun to all enemies within a 5-ft. radius centered on the dreadnought.
+– 12th level: Earth-Shattering Strike now applies for the next two attacks.
+– 13th level: The dreadnought gains an additional +2 to melee damage.
+– 15th level: Heavy Assault Stance's damage bonus increases to +150%.
+– 16th level: Earth-Shattering Strike now applies for the next three attacks.
+– 20th level: Heavy Assault Stance's damage bonus increases to +200%.
+
+– Hit Die: 2d8+4. The dreadnought continues to gain an additional +4 bonus to hit points beyond 10th level.
+
+Disadvantages:
+– -2 penalty to Armor Class.
+– May not dual-class.
+– May not use ranged weapons and incurs a -10 penalty to THAC0 when wielding a melee/ranged weapon in ranged mode.
+– May not be proficient in Sword and Shield or Two-Weapon Style.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = C0_DREADNOUGHT
+    clswpbon = ~0 0 3~
+	hpclass = ~HPC0DRED~
+    numwslot = 4
+END
+
+APPEND ~splprot.2da~ ~C0HTAPR_NOTEQUAL 8 -1 5~ UNLESS ~C0HTAPR_NOTEQUAL~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTAPR_NOTEQUAL~ BEGIN
+	    SET C0HTAPR_NOTEQUAL = %row%
+	  END
+	END
+
+APPEND ~splprot.2da~ ~C0HTAPR_EQUAL 8 -1 1~ UNLESS ~C0HTAPR_EQUAL~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTAPR_EQUAL~ BEGIN
+	    SET C0HTAPR_EQUAL = %row%
+	  END
+	END
+
+APPEND ~splprot.2da~ ~C0HTSTR 36 -1 1~ UNLESS ~C0HTSTR~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTSTR~ BEGIN
+	    SET C0HTSTR = %row%
+	  END
+	END
+
+APPEND ~splprot.2da~ ~C0HTSTREXTRA_GTEQUAL 37 -1 4~ UNLESS ~C0HTSTREXTRA_GTEQUAL~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTSTREXTRA_GTEQUAL~ BEGIN
+	    SET C0HTSTREXTRA_GTEQUAL = %row%
+	  END
+	END
+
+APPEND ~splprot.2da~ ~C0HTSTREXTRA 37 -1 1~ UNLESS ~C0HTSTREXTRA~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTSTREXTRA~ BEGIN
+	    SET C0HTSTREXTRA = %row%
+	  END
+	END
+
+DEFINE_ACTION_FUNCTION	ADD_SPLPROT	INT_VAR	stat = 0	value = 0	relation = 0	RET	new_row		BEGIN
+	ACTION_IF	(stat > 278)	BEGIN	WARN	~SPLPROT.2DA - Stat out of Bounds.~	END
+	ACTION_IF	((stat != 259) AND (stat != 260) AND (relation > 11))	BEGIN	WARN	~SPLPROT.2DA - Relation out of Bounds.~	END
+	COPY_EXISTING ~SPLPROT.2DA~	OVERRIDE
+		COUNT_2DA_COLS	cols
+		COUNT_2DA_ROWS cols rows
+		TEXT_SPRINT check_row ~~
+		TEXT_SPRINT check_stat ~~
+		SET new_row = 0
+		FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+			PATCH_IF (~%check_stat%~ STRING_EQUAL ~%stat%~)	BEGIN	READ_2DA_ENTRY current_row 2 cols check_value
+				PATCH_IF (~%check_value%~ STRING_EQUAL ~%value%~)	BEGIN	READ_2DA_ENTRY current_row 3 cols check_relation
+					PATCH_IF (~%check_relation%~ STRING_EQUAL ~%relation%~)	BEGIN	new_row = current_row	current_row = rows	END
+				END
+			END
+		END
+		PATCH_IF (new_row = 0)	BEGIN
+			FOR(current_row = 0; current_row < rows; ++current_row)	BEGIN	READ_2DA_ENTRY current_row 1 cols check_stat
+				PATCH_IF (~%check_stat%~ STRING_EQUAL ~*~)	BEGIN	new_row = current_row	current_row = rows	END
+			END
+			PATCH_IF (new_row = 0)	BEGIN	new_row = rows	INSERT_2DA_ROW rows cols ~%new_row%		   %stat%		   %value%		   %relation%~
+			END	ELSE	BEGIN	SET_2DA_ENTRY new_row 1 cols ~%stat%~	SET_2DA_ENTRY new_row 2 cols ~%value%~	SET_2DA_ENTRY new_row 3 cols ~%relation%~	END
+		END
+	BUT_ONLY
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	STR_EXTRA_1_75	BEGIN
+	~STR_EXTRA_1_75~		=>	37
+END
+ACTION_PHP_EACH	STR_EXTRA_1_75 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 1	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 76	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	STR_EXTRA_76_90	BEGIN
+	~STR_EXTRA_76_90~		=>	37
+END
+ACTION_PHP_EACH	STR_EXTRA_76_90 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 76	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 91	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	STR_EXTRA_91_99	BEGIN
+	~STR_EXTRA_91_99~		=>	37
+END
+ACTION_PHP_EACH	STR_EXTRA_91_99 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 91	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 99	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
+COPY_EXISTING ~C0DRED0C.SPL~ OVERRIDE
+SAY NAME1 ~Unstoppable~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Dreadnought/spells/c0dredp1.PRO~ ~Dreadnought Whirlwind~
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Dreadnought/spells/c0dredp2.PRO~ ~Dreadnought Shattering Strike~
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Dreadnought/spells/c0dredp3.PRO~ ~Dreadnought Ground~
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Heavy Assault Stance~) STR_VAR bam_file = c0dred3i RET c0dred3i = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Earth-Shattering Strike~) STR_VAR bam_file = c0dred5i RET c0dred5i = icon END
+
+COPY_EXISTING ~C0DREDC.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 1 parameter2 = C0HTSTR END
+
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = c0dredp1
+END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		header = 1
+		projectile = 1
+END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		header = 2
+		projectile = 1
+END
+
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC2.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDCA.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 2 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 1) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDCB.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 3 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 1) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDCC.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 4 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 2) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDCD.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 5 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 2) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDCE.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 6 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 3) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC4.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 7 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 3) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC5.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 8 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 4) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC6.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 9 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 4) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC7.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 10 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 5) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC8.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 11 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 5) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC9.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 12 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 6) END
+COPY_EXISTING ~C0DREDC1.SPL~ ~OVERRIDE/C0DREDC0.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 14 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 7) END
+
+COPY_EXISTING ~C0DREDC3.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DREDCA END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_1_75 STR_VAR match_resource = C0DREDCB END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_76_90 STR_VAR match_resource = C0DREDCC END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_91_99 STR_VAR match_resource = C0DREDCD END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DREDCE END
+
+COPY_EXISTING ~C0DRED3.SPL~ OVERRIDE
+SAY NAME1 ~Heavy Assault Stance~
+SAY UNIDENTIFIED_DESC ~Heavy Assault Stance
+The dreadnought reduces their base attacks per round to half per round, but deals an increased +120% slashing, piercing and crushing damage.~
+
+COPY_EXISTING ~C0DRED3A.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Heavy Assault Stance Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0dred3i END
+
+COPY_EXISTING ~C0DRED3C.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Heavy Assault Stance Inactive~) END
+
+COPY_EXISTING ~C0DRED4.SPL~ OVERRIDE
+SAY NAME1 ~All-Out Offense~
+SAY UNIDENTIFIED_DESC ~All-Out Offense
+The dreadnought puts their full force behind every attack for the next three rounds, becoming Hasted, gaining a +100% bonus to melee physical damage dealt, and dealing maximum damage per hit for the duration. However, for the same duration, they suffer a -6 penalty to Armor Class, a -50% penalty to resistances to crushing, piercing and slashing damage, and incur a large fatigue penalty after the ability expires. Additionally, the dreadnought is unable to cast spells, use items or use thieving skills for the duration. This ability may not be active at the same time as Hardiness.~
+
+COPY_EXISTING ~C0DRED5.SPL~ OVERRIDE
+SAY NAME1 ~Earth-Shattering Strike~
+SAY UNIDENTIFIED_DESC ~Earth-Shattering Strike
+The dreadnought unleashes a heavy strike that inflicts damage upon the battlefield itself. For their next attack within two rounds, the dreadnought automatically rolls for a critical hit and applies Massive Critical's effect to secondary targets in a 10-ft. line in front of them and knocking all creatures aside from the attacked target slightly away. Additionally, the impact of the blow leaves a field in a 10-ft. radius for five rounds that halves the Dexterity and movement rate of all creatures except for the dreadnought standing within it.~
+
+COPY_EXISTING ~C0DRED5B.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = c0dredp2
+END
+COPY_EXISTING ~C0DRED5C.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = c0dredp3
+END
+COPY_EXISTING ~C0DRED5D.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 1 parameter2 = C0HTSTR END
+
+COPY_EXISTING ~C0DRED5X.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0dred5i END
+
+COPY_EXISTING ~C0DRED5Y.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0dred5i END
+
+COPY_EXISTING ~C0DRED5Z.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0dred5i END
+
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED52.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED5F.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 2 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 1) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED5G.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 3 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 1) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED5H.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 4 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 2) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED5I.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 5 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 2) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED5J.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 6 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 3) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED54.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 7 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 3) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED55.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 8 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 4) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED56.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 9 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 4) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED57.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 10 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 5) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED58.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 11 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 5) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED59.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 12 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 6) END
+COPY_EXISTING ~C0DRED51.SPL~ ~OVERRIDE/C0DRED50.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 14 END
+LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 7) END
+
+COPY_EXISTING ~C0DRED53.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DRED5F END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_1_75 STR_VAR match_resource = C0DRED5G END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_76_90 STR_VAR match_resource = C0DRED5H END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_91_99 STR_VAR match_resource = C0DRED5I END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DRED5J END
+
+COPY_EXISTING ~C0DREDH1.SPL~ OVERRIDE
+SAY NAME1 ~Focused Attack~
+SAY UNIDENTIFIED_DESC ~The dreadnought gains a +5 bonus to their melee critical hit modifier while All-Out Offense is active.~
+
+COPY_EXISTING ~C0DREDH2.SPL~ OVERRIDE
+SAY NAME1 ~Juggernaut~
+SAY UNIDENTIFIED_DESC ~The dreadnought becomes a sheer engine of destruction while using All-Out Offense, instantly killing enemies who fall below 60 current hit points with their melee attacks. Additionally, their penalties while All-Out Offense is active is halved to -3 to Armor Class and -25% to resistances. Furthermore, the dreadnought becomes permanently immune to fatigue.~

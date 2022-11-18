@@ -78,23 +78,26 @@ ADD_KIT ~C0EK~
   SAY ~ELDRITCH KNIGHT: Studying the martial and arcane arts to equal degree, the eldritch knight is a versatile combatant who can cast fireball on their foes or charge them with sword drawn. The eldritch knight takes pride in their ability to use the right technique for the job: spells against physically tough foes and force of arms against spellcasting enemies. Eldritch knights split their time between physical training to become better soldiers and arcane study to learn more powerful spells. They tend to be driven individuals, because simultaneously perfecting their spellcasting and combat prowess requires immense time and effort.
 
 Advantages:
+– +2 to Armor Class.
 – Armored Caster: The Eldritch Knight may cast spells while wearing up to studded leather.
-– Combat Casting: The Eldritch Knight is skilled at casting spells in the midst of combat. After making a successful melee attack, the Eldritch Knight's casting speed is increased by 4 for one round. This may only occur once per five rounds.
-– 5th level: May use the Eldritch Strike ability once per day. Gains extra uses at levels 8, 11 and 14.
+– Combat Casting: The Eldritch Knight is skilled at casting spells in the midst of combat. If there is an enemy within 5-ft. of the Eldritch Knight, they gain an increased casting speed of 2.
+– 3rd level: May use the Eldritch Strike ability once per day. Gains extra uses at levels 6, 9, 12 and 15.
 
 ELDRITCH STRIKE: The Eldritch Knight empowers <PRO_HISHER> next successful attack to weaken their opponent's resistance to their spells, reducing their Saving Throws by 2 and Magic Resistance by 25% for three rounds. This effect is non-cumulative on the same target.
 
-– 8th level: Eldritch Strike reduces Saving Throws by 3 and Magic Resistance by 50%.
-– 9th level: May cast Dimension Door twice per day.
+– 5th level: Extend Spell: The Eldritch Knight's arcane spells have an increased duration of 20%.
+– 6th level: Eldritch Strike reduces Saving Throws by 3 and Magic Resistance by 50%.
+– 8th level: May cast Dimension Door twice per day.
 
 DIMENSION DOOR: This spell transports the caster to any place within the visual range of the caster. When the spell is cast, a dimensional portal opens up in front of the caster, who immediately steps through it. Upon passing through the portal, the caster finds <PRO_HIMHER>self at <PRO_HISHER> chosen destination.
 
-– 12th level: Battle Caster: The Eldritch Knight may cast spells while wearing any armor.
-– 14th level: Eldritch Strike reduces Saving Throws by 4 and Magic Resistance by 100%.
-– 16th level: Improved Combat Casting: Now may occur once per two rounds.
+– 10th level: Battle Caster: The Eldritch Knight may cast spells while wearing any armor.
+– 12th level: Eldritch Strike reduces Saving Throws by 4 and Magic Resistance by 100%.
+– 14th level: Improved Combat Casting: Bonus to casting speed increased to 4.
+– 16th level: Persistent Spell: The Eldritch Knight's arcane spells have an increased duration of 50%, replacing the Extend Spell bonus.
 
 Disadvantages:
-– The Eldritch Knight's spells are cast as though a level lower than a normal Mage of the same level.~
+– The Eldritch Knight learns the first spell of each spell level from 2nd level onwards by one level later than a regular Mage.~
 
 LAF fl#add_kit_ee
 INT_VAR
@@ -113,6 +116,14 @@ LAF qd_multiclass
 		kit_name = C0EK
 		kit_clab = C0EK
 		base_class = ~F~
+		mc_dir = ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/2das~
+END
+
+LAF qd_multiclass
+	STR_VAR
+		kit_name = C0EK
+		kit_clab = C0EK2
+		base_class = ~M~
 		mc_dir = ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/2das~
 END
 
@@ -136,10 +147,16 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Eldritch Strike~) STR
 
 COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0eknam.spl~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Eldritch Knight~) END
-COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek1.spl~ ~override~
+COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek1a.spl~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0ek1ic END
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 match_special = 1 parameter1 = RESOLVE_STR_REF (~Combat Casting Active~) END
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 match_special = 2 parameter1 = RESOLVE_STR_REF (~Combat Casting Ready~) END
+
+ADD_PROJECTILE ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ekpas.PRO~ ~Combat Casting~
+
+COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek1.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = c0ekpas
+END
 
 COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek2.spl~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0ek2ic END
@@ -163,3 +180,7 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell transports the caster to any place within the visual range of the caster. When the spell is cast, a dimensional portal opens up in front of the caster, who immediately steps through it. Upon passing through the portal, the caster finds <PRO_HIMHER>self at <PRO_HISHER> chosen destination.~
+
+COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek4.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Gained Passive Ability: Extend Spell~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Passive Ability: Persistent Spell~) END

@@ -123,7 +123,7 @@ POISON WEAPON: The assassin is capable of coating <PRO_HISHER> weapon for the ne
 
 PREPARATION: For every round that the assassin remains Invisible, <PRO_HESHE> gains a +1 bonus to Hit and Damage up to a cap of +2 at 1st level. This bonus increases by at +1 at 5th level and every 5 levels thereafter. Additionally, if the assassin remains Invisible for a full ten rounds, <PRO_HISHER> next attack becomes an automatic Critical Hit. Upon exiting stealth, all stacked bonuses are depleted immediately.
 
-ENHANCED BACKSTAB: The assassin is capable of crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
+ENHANCED BACKSTAB: The assassin is a master of sneak attacks, capable of backstabbing from any direction while stealthed, while crippling <PRO_HISHER> victim with <PRO_HISHER> backstabs, inflicting one of the following effects. Save modifiers decrease by one for every six levels gained thereafter.
   Paralysis: Target must save vs. death at +2 or become Paralyzed for 2 rounds.
   Hamstring: Target must save vs. death or have their Movement Rate and Dexterity halved for 8 rounds.
   Bleeding: Target must save vs. death at +2 or suffer 1d4+1 piercing damage every round for 2 rounds + 1 round/6 levels.

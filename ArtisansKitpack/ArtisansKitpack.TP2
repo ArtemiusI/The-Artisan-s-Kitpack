@@ -1,7 +1,8 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~3.0~
+VERSION ~3.1~
 ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/qd_multiclass.tpa~
@@ -631,6 +632,10 @@ LOAD_TRA ~%MOD_FOLDER%/tra/%s~
 BEGIN ~Artisan's Kitpack: Siegemaster Fighter Kit~ DESIGNATED 1008
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Siegemaster.tpa~
+
+BEGIN ~Artisan's Kitpack: Dreadnought Fighter Kit~ DESIGNATED 1009
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Dreadnought.tpa~
 
 BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
 GROUP ~Fighter Kits~

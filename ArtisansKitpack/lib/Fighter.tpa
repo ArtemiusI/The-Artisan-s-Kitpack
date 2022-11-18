@@ -46,7 +46,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // (IMPROVED) EXPERTISE
         PRETTY_PRINT_2DA
@@ -56,7 +57,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
 		LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
@@ -70,7 +72,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 5 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
         PRETTY_PRINT_2DA
@@ -79,7 +82,8 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
 				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
+				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
+				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
         PRETTY_PRINT_2DA
@@ -224,6 +228,22 @@ ACTION_FOR_EACH description IN
           END
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%siegemaster_desc%~ ~%siegemaster_text%~
+          END
+        END
+//DREADNOUGHT
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_DREADNOUGHT" BEGIN
+          READ_2DA_ENTRY index 4 col_count dreadnought_desc
+          SPRINT old_dreadnought ~Disadvantages:~
+          SPRINT new_dreadnought ~Disadvantages:
+– May not use Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+          GET_STRREF %dreadnought_desc% dreadnought_text
+          INNER_PATCH_SAVE dreadnought_text ~%dreadnought_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_dreadnought%~ ~%new_dreadnought%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%dreadnought_desc%~ ~%dreadnought_text%~
           END
         END
 //BARBARIAN

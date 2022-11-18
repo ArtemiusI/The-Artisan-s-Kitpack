@@ -96,8 +96,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~#PALFEAR.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Paladin/Spells/iwdee/#PALFEAR.SPL~ OVERRIDE
 END
 	
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPCL111.SPL~ BEGIN
-COPY ~%MOD_FOLDER%/Paladin/Spells/iwdee/SPCL111.SPL~ OVERRIDE
+COPY ~%MOD_FOLDER%/Paladin/Spells/C0PAL05.SPL~ OVERRIDE
 SAY NAME1 ~Cure Disease~
 SAY UNIDENTIFIED_DESC ~Cure Disease
 (Abjuration)
@@ -111,4 +110,3 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 When this spell is placed on a diseased individual, it immediately cures them and restores 5 lost Hit Points. The cure is permanent, but does not grant the recipient of the spell immunity from further afflictions. Blindness and deafness are also cured with this spell. This spell has no effect on undead, constructs, or extraplanar creatures.~
-END
