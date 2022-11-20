@@ -159,14 +159,14 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 
-APPEND ~splprot.2da~ ~C0HTSTREXTRA 37 -1 1~ UNLESS ~C0HTSTREXTRA~
+APPEND ~splprot.2da~ ~C0HTSTREXTRA_EQUAL 37 -1 1~ UNLESS ~C0HTSTREXTRA_EQUAL~
 COPY_EXISTING ~splprot.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
-	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTSTREXTRA~ BEGIN
-	    SET C0HTSTREXTRA = %row%
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTSTREXTRA_EQUAL~ BEGIN
+	    SET C0HTSTREXTRA_EQUAL = %row%
 	  END
 	END
 
@@ -307,11 +307,11 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 14 END
 LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 7) END
 
 COPY_EXISTING ~C0DREDC3.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DREDCA END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA_EQUAL STR_VAR match_resource = C0DREDCA END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_1_75 STR_VAR match_resource = C0DREDCB END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_76_90 STR_VAR match_resource = C0DREDCC END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_91_99 STR_VAR match_resource = C0DREDCD END
-LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DREDCE END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA_EQUAL STR_VAR match_resource = C0DREDCE END
 
 COPY_EXISTING ~C0DRED3.SPL~ OVERRIDE
 SAY NAME1 ~Heavy Assault Stance~
@@ -397,11 +397,11 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 14 END
 LPF ALTER_EFFECT INT_VAR match_savingthrow = 4 savebonus = (0 - 7) END
 
 COPY_EXISTING ~C0DRED53.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DRED5F END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA_EQUAL STR_VAR match_resource = C0DRED5F END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_1_75 STR_VAR match_resource = C0DRED5G END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_76_90 STR_VAR match_resource = C0DRED5H END
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = STR_EXTRA_91_99 STR_VAR match_resource = C0DRED5I END
-LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA STR_VAR match_resource = C0DRED5J END
+LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0HTSTREXTRA_EQUAL STR_VAR match_resource = C0DRED5J END
 
 COPY_EXISTING ~C0DREDH1.SPL~ OVERRIDE
 SAY NAME1 ~Focused Attack~
