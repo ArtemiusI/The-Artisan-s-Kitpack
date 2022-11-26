@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~3.1~
+VERSION ~3.2~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
@@ -723,6 +723,10 @@ INCLUDE ~%MOD_FOLDER%/lib/MysticFire.tpa~
 BEGIN ~Artisan's Kitpack: Martyr Paladin Kit~ DESIGNATED 3005
 GROUP ~Paladin Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Martyr.tpa~
+
+BEGIN ~Artisan's Kitpack: Shapeshifter Overhaul~ DESIGNATED 5100
+GROUP ~Druid Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter.tpa~
 
 BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~ DESIGNATED 5001
 GROUP ~Druid Kits~

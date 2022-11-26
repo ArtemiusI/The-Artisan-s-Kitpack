@@ -1,0 +1,145 @@
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/2DAs~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/SPELLS~ ~OVERRIDE~
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~SHAPESHIFTER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~SHAPESHIFTER: This Druid is not called Shapeshifter because <PRO_HESHE> has access to a great variety of forms, but rather because of <PRO_HISHER> complete dedication to a single alternate form. This Druid has willingly allowed <PRO_HIMHER>self to become infected with lycanthropy, but due to intense study and training <PRO_HESHE> has the ability to control <PRO_HISHER> affliction. The creature <PRO_HESHE> becomes is that of the werewolf, the most famous of the lycanthrope shape changers.
+
+Advantages:
+– Wolf's Eye: Gains Infravision. 
+– May shapeshift into the form of a wolf once per day. Gains additional uses at 3rd, 6th and 9th level.
+
+WOLF SHAPE: The wolf form grants the shapeshifter the greater value between +1 and 18 to their Strength and Dexterity, a base Armor Class of 4, two attacks per round, 1d8 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and the ability to knock opponents prone for one round unless a Save vs. Death is made. Additionally, the shapeshifter loses the ability to cast spells while transformed, but gains the ability to use the thieving skills Detect Traps, Detect Illusions and Stealth. The shapeshifter's thieving bonuses in this form improve with level and Dexterity.
+
+– 4th level: May shapeshift into the form of a werewolf once per day. Gains additional uses at 7th, 10th and 13th level.
+
+WEREWOLF SHAPE: The wolf form grants the shapeshifter the greater value between +2 and 20 to their Strength and Dexterity, a base Armor Class of 2, two attacks per round, 2d4+1 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and inflict bleeding damage on their attacks, dealing one point of unmitigated piercing damage per round for three rounds unless a Save vs. Death is made. Targets without blood are immune to bleeding damage.
+
+The attributes of the werewolf form improve with level.
+  5th level: +2 bonus to Movement Rate.
+  6th level: +10% Magic Resistance.
+  7th level: Bleed deals 2 damage per round and attacks strike as a +2 weapon.
+  8th level: Base Armor Class improves to -1.
+  9th level: Saving Throw modifier on bleed becomes -2.
+  10th level: Movement rate bonus increased to +4. Magic Resistance improves to +20%.
+  11th level: Base Armor Class improves to -4. Gains +15% resistance to Piercing, Slashing, Crushing and Missile damage.
+  12th level: Bleed deals 3 damage per round and attacks strike as a +3 weapon. Gains +40% resistance to Fire, Cold, Electricity and Acid damage.
+  13th level: Gains an additional attack per round.
+  14th level: Immunity to weapons of +1 enchantment and below. Magic Resistance improves to +50%.
+  15th level: Bleed deals 5 damage per round and attacks strike as a +4 weapon. Saving Throw modifier on bleed becomes -4.
+
+– 6th level: Gains the Primal Howl passive ability.
+
+PRIMAL HOWL: The shapeshifter, upon taking on their werewolf form, unleashes a terrifying howl which grants one and a half bonus attacks per round and a +3 bonus to armor class, hit and damage for the first three rounds of transformation. The bonuses decrease incrementally by half an attack and -1 to armor class, hit and damage per round of the duration, and the shapeshifter must wait six rounds before Primal Howl may activate again upon their next transformation. Additionally, the shapeshifter loses their bonuses immediately upon reverting to their natural form. Primal Howl's bonuses improve with level.
+  8th level: Greatly reduces morale in all enemies within a 25-ft. radius of the shapeshifter for 2 rounds unless a Save vs. Death is made. Targets may only be affected once per turn.
+  10th level: Bonuses increase to two attacks per round and +4 to hit and damage, and its duration is increased to 4 rounds. Additionally, upon killing a target, the shapeshifter has a 40% chance to immediately use Primal Howl again.
+  12th level: Saving Throw modifier on morale failure becomes -3.
+  14th level: Primal Howl grants half of its bonuses to all allies within a 25-ft. radius for half the duration.
+  15th level: The shapeshifter has a 100% chance to use Primal Howl on kill.
+  16th level: Induces stun in addition to fear with the same modifier and conditions.
+
+– 8th level: Wolf's Blood: The shapeshifter regenerates for one hit point per 3 rounds, which becomes tripled while in werewolf form.
+– 10th level: The shapeshifter's transformations no longer take up their action per round.
+– 12th level: The shapeshifter may transform into their wolf form at will.
+– 13th level: Greater Wolf's Blood: The shapeshifter's base regeneration rate is increased to one hit point per round.
+– 14th level: Natural Spell: The shapeshifter may cast priest spells while in their werewolf form, though at a -2 casting speed penalty.
+– 15th level: The shapeshifter may transform into their werewolf form at will and no longer receives a penalty to casting speed while transformed.
+
+Disadvantages:
+– May not cast any spells of the Animal and Summoning Spheres.
+– May not wear any armor.
+– No other shapeshifting abilities due to the effort required in maintaining balance in <PRO_HISHER> primary forms.
+– May not select the Elemental Summoning and Elemental Transformation High Level Abilities.~
+	
+  COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~SHAPESHIFTER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~C0-SS~
+	  END
+	END
+	
+COPY_EXISTING ~SPCL643.SPL~ ~OVERRIDE~
+LPF ALTER_SPELL_HEADER INT_VAR location = 0 END
+COPY_EXISTING ~SPCL644.SPL~ ~OVERRIDE~
+LPF ALTER_SPELL_HEADER INT_VAR location = 0 END
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-F.spl~ ~override~
+SAY NAME1 ~Shapeshift: Werewolf~
+SAY UNIDENTIFIED_DESC ~WEREWOLF SHAPE
+The wolf form grants the shapeshifter the greater value between +2 and base 20 to their Strength and Dexterity, a base Armor Class of 2, two attacks per round, 2d4+1 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and inflict bleeding damage on their attacks, dealing one point of unmitigated piercing damage per round for three rounds unless a Save vs. Death is made. Targets without blood are immune to bleeding damage.
+
+The attributes of the werewolf form improve with level.
+  5th level: +2 bonus to Movement Rate.
+  6th level: +10% Magic Resistance.
+  7th level: Bleed deals 2 damage per round and attacks strike as a +2 weapon.
+  8th level: Base Armor Class improves to -1.
+  9th level: Saving Throw modifier on bleed becomes -2.
+  10th level: Movement rate bonus increased to +4. Magic Resistance improves to +20%.
+  11th level: Base Armor Class improves to -4. Gains +15% resistance to Piercing, Slashing, Crushing and Missile damage.
+  12th level: Bleed deals 3 damage per round and attacks strike as a +3 weapon. Gains +40% resistance to Fire, Cold, Electricity and Acid damage.
+  13th level: Gains an additional attack per round.
+  14th level: Immunity to weapons of +1 enchantment and below. Magic Resistance improves to +50%.
+  15th level: Bleed deals 5 damage per round and attacks strike as a +4 weapon. Saving Throw modifier on bleed becomes -4.~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-FB2.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Bleeding~)
+  END
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Primal Howl Ready~)
+  END
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-H2.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Stunned~)
+  END
+SAY NAME1 ~Primal Howl~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-W.spl~ ~override~
+SAY NAME1 ~Shapeshift: Wolf~
+SAY UNIDENTIFIED_DESC ~WOLF SHAPE
+The wolf form grants the shapeshifter the greater value between +1 and base 18 to their Strength and Dexterity, a base Armor Class of 4, two attacks per round, 1d8 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and the ability to knock opponents prone for one round unless a Save vs. Death is made. Additionally, the shapeshifter loses the ability to cast spells while transformed, but gains the ability to use the thieving skills Detect Traps, Detect Illusions and Stealth. The shapeshifter's thieving bonuses in this form improve with level and Dexterity.~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL1.spl~ ~override~
+SAY NAME1 ~Shared Gift~
+SAY UNIDENTIFIED_DESC ~Shared Gift
+The shapeshifter may, for a single use in their lifetime, impart the gift of lycanthropy to a trusted ally. This permanently grants the chosen ally a single use of shapeshift into the werewolf form, as well as permanent Infravision and regeneration at a rate of one hit point per 3 rounds. Due to the shapeshifter's influence, the ally has full control over their form. The target must be a party member, and must not be another shapeshifter or have received Shared Gift from another shapeshifter.~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLA.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Permanently gained gift of Lycanthropy~)
+  END
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL2.spl~ ~override~
+SAY NAME1 ~Wolf Pack~
+SAY UNIDENTIFIED_DESC ~Wolf Pack
+The shapeshifter passively grants all other allies in their werewolf form, whether they are a shapeshifter or bearer of the Shared Gift, within a 15-ft. radius a +2 bonus to hit and damage. This bonus is cumulative with other shapeshifters that have chosen the same ability.
+
+Requires: Shared Gift~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL3.spl~ ~override~
+SAY NAME1 ~Elemental Fury~
+SAY UNIDENTIFIED_DESC ~Elemental Fury
+With this ability, the shapeshifter may choose one element (fire, cold, electrical, acid) once per day. Once chosen, the shapeshifter becomes permanently immune to that element while shapeshifted into their werewolf form, and deal an additional 2d6 damage on each hit. Elemental Fury may be used again to change the chosen element to another option.~
