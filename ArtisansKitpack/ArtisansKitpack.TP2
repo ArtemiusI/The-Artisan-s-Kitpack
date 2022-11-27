@@ -753,7 +753,7 @@ REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:E
 GROUP ~Mage Kits~
 INCLUDE ~%MOD_FOLDER%/lib/redwizard.tpa~
 
-BEGIN ~Artisan's Kitpack: Way of the Assassin (Assassin Overhaul)~ DESIGNATED 7004
+BEGIN ~Artisan's Kitpack: Assassin Overhaul~ DESIGNATED 7004
 GROUP ~Thief Kits~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
@@ -761,6 +761,11 @@ INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
 END
 
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
+
+BEGIN ~Artisan's Kitpack: Swashbuckler Overhaul~ DESIGNATED 7006
+GROUP ~Thief Kits~
+
+INCLUDE ~%MOD_FOLDER%/lib/Swashbuckler.tpa~
 
 BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~ DESIGNATED 7001
 GROUP ~Thief Kits~

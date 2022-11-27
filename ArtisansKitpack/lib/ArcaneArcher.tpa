@@ -57,6 +57,36 @@ Disadvantages:
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain1.spl~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain2.spl~ ~override~
 
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Enhance Arrow~) STR_VAR bam_file = c0aain3i RET c0aain3i = icon END
+
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain3.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0aain3i END
+
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain4.spl~ ~override~
+SAY NAME1 ~Enhance Arrow~
+SAY UNIDENTIFIED_DESC ~Enhance Arrow
+The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
+
+This ability may be used to toggle Enhance Arrow at will.~
+
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain4a.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Enhance Arrow Deactivated~) END
+
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aasp1.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
