@@ -65,19 +65,19 @@ ACTION_IF werewolf_npc_sprite = 1 THEN BEGIN
 COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
   READ_LONG 0x28 old_animation
     PATCH_IF (old_animation = 0x7E00) BEGIN
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF~) parameter2 = 1 timing = 1 probability1 = 25 probability2 = 0 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREY~) parameter2 = 1 timing = 1 probability1 = 50 probability2 = 26 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_BLACK~) parameter2 = 1 timing = 1 probability1 = 75 probability2 = 51 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_WHITE~) parameter2 = 1 timing = 1 probability1 = 100 probability2 = 76 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF~) parameter2 = 1 timing = 1 probability1 = 0 probability2 = 25 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREY~) parameter2 = 1 timing = 1 probability1 = 26 probability2 = 50 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_BLACK~) parameter2 = 1 timing = 1 probability1 = 51 probability2 = 75 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_WHITE~) parameter2 = 1 timing = 1 probability1 = 76 probability2 = 100 END
     END
   BUT_ONLY
 COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
   READ_LONG 0x28 old_animation
     PATCH_IF (old_animation = 0x7E01) BEGIN
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER~) parameter2 = 1 timing = 1 probability1 = 25 probability2 = 0 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_GREY~) parameter2 = 1 timing = 1 probability1 = 50 probability2 = 26 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_BLACK~) parameter2 = 1 timing = 1 probability1 = 75 probability2 = 51 END
-      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_WHITE~) parameter2 = 1 timing = 1 probability1 = 100 probability2 = 76 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER~) parameter2 = 1 timing = 1 probability1 = 0 probability2 = 25 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_GREY~) parameter2 = 1 timing = 1 probability1 = 26 probability2 = 50 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_BLACK~) parameter2 = 1 timing = 1 probability1 = 51 probability2 = 75 END
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_WEREWOLF_GREATER_WHITE~) parameter2 = 1 timing = 1 probability1 = 76 probability2 = 100 END
     END
   BUT_ONLY
 ACTION_IF FILE_EXISTS_IN_GAME ~C6LANF.CRE~ BEGIN
