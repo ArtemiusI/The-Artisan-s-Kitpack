@@ -62,6 +62,19 @@ Disadvantages:
 	  END
 	END
 	
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-INV.PRO~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-FN1.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SS-INV
+END
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-FN2.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SS-INV
+END
+
 COPY_EXISTING ~SPCL643.SPL~ ~OVERRIDE~
 LPF ALTER_SPELL_HEADER INT_VAR location = 0 END
 COPY_EXISTING ~SPCL644.SPL~ ~OVERRIDE~
@@ -143,3 +156,12 @@ COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL3.spl~ ~override~
 SAY NAME1 ~Elemental Fury~
 SAY UNIDENTIFIED_DESC ~Elemental Fury
 With this ability, the shapeshifter may choose one element (fire, cold, electrical, acid) once per day. Once chosen, the shapeshifter becomes permanently immune to that element while shapeshifted into their werewolf form, and deal an additional 2d6 damage on each hit. Elemental Fury may be used again to change the chosen element to another option.~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLE.spl~ ~override~
+SAY NAME1 ~Fury: Firefang~
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLF.spl~ ~override~
+SAY NAME1 ~Fury: Frostbite~
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLG.spl~ ~override~
+SAY NAME1 ~Fury: Acidhide~
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLH.spl~ ~override~
+SAY NAME1 ~Fury: Stormclaw~

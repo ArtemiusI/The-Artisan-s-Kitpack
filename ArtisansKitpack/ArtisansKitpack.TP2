@@ -728,6 +728,20 @@ BEGIN ~Artisan's Kitpack: Shapeshifter Overhaul~ DESIGNATED 5100
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter.tpa~
 
+BEGIN ~Shapeshifter Form Only~ DESIGNATED 5110
+SUBCOMPONENT ~Artisan's Kitpack: Shapeshifter Overhaul – Custom Werewolf Sprite~
+GROUP ~Druid Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5100~ ~The Shapeshifter Kit must be installed.~
+OUTER_SET werewolf_npc_sprite = 0
+INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter-sprite.tpa~
+
+BEGIN ~Replace all NPC Werewolf Sprites~ DESIGNATED 5111
+SUBCOMPONENT ~Artisan's Kitpack: Shapeshifter Overhaul – Custom Werewolf Sprite~
+GROUP ~Druid Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5100~ ~The Shapeshifter Kit must be installed.~
+OUTER_SET werewolf_npc_sprite = 1
+INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter-sprite.tpa~
+
 BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~ DESIGNATED 5001
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Elementalist.tpa~

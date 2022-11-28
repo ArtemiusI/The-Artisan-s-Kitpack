@@ -234,27 +234,27 @@ COPY_EXISTING ~C0TR#04Z.SPL~ ~OVERRIDE/C0TR#12Z.SPL~
 LPF ALTER_EFFECT STR_VAR resource = C0TR#12 END
 
 COPY_EXISTING ~C0TR#10A.SPL~ OVERRIDE
-SAY NAME1 ~Mimic: Enrage~
+SAY NAME1 ~Mimic: Berserker: Enrage~
 COPY_EXISTING ~C0TR#11A.SPL~ OVERRIDE
-SAY NAME1 ~Mimic: Wizard Slayer Magic Resistance~
+SAY NAME1 ~Mimic: Wizard Slayer: +5% Magic Resistance~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#12A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL144 END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL144 END
-SAY NAME1 ~Mimic: Kai~
+SAY NAME1 ~Mimic: Kensai: Kai~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#13A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPDWD02B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPDWD02 END
-SAY NAME1 ~Mimic: Defensive Stance~
+SAY NAME1 ~Mimic: Dwarven Defender: Defensive Stance~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#14A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL121B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL121 END
-SAY NAME1 ~Mimic: Called Shot~
+SAY NAME1 ~Mimic: Archer: Called Shot~
 COPY_EXISTING ~C0TR#15A.SPL~ OVERRIDE
-SAY NAME1 ~Mimic: Stalker Stealth~
+SAY NAME1 ~Mimic: Stalker: +15% Hide in Shadows and Move Silently~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#16A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPPR402B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#16Z END
-SAY NAME1 ~Mimic: Animal Summoning~
+SAY NAME1 ~Mimic: Beast Master: Animal Summoning~
 COPY_EXISTING ~C0TR#16Z.SPL~ OVERRIDE
 SAY NAME1 ~Animal Summoning~
 SAY UNIDENTIFIED_DESC ~The trickster casts the beastmaster's Animal Summoning priest spell. The spell cast depends on the trickster's level:
@@ -265,56 +265,56 @@ SAY UNIDENTIFIED_DESC ~The trickster casts the beastmaster's Animal Summoning pr
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#17A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL222B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL222 END
-SAY NAME1 ~Mimic: Remove Fear~
+SAY NAME1 ~Mimic: Cavalier: Remove Fear~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#18A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPPR303B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL231 END
-SAY NAME1 ~Mimic: Dispel Magic~
+SAY NAME1 ~Mimic: Inquisitor: Dispel Magic~
 COPY_EXISTING ~C0TR#19A.SPL~ OVERRIDE
 SAY NAME1 ~Mimic: Undead Hunter Undead Bane~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#20A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPWI119B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL102 END
-SAY NAME1 ~Mimic: Absorb Health~
+SAY NAME1 ~Mimic: Blackguard: Absorb Health~
 
 ACTION_IF FILE_EXISTS ~C0BG#00.spl~ THEN BEGIN
 COPY_EXISTING ~C0TR#20A.SPL~ OVERRIDE
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0BG#02 END
-SAY NAME1 ~Mimic: Life Drain~
+SAY NAME1 ~Mimic: Blackguard: Life Drain~
 END
 
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#21A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL741B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL741 END
-SAY NAME1 ~Mimic: Boon of Lathander~
+SAY NAME1 ~Mimic: Priest of Lathander: Boon of Lathander~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#22A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL731B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL731 END
-SAY NAME1 ~Mimic: Seeking Sword~
+SAY NAME1 ~Mimic: Priest of Helm: Seeking Sword~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#23A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL721B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL721 END
-SAY NAME1 ~Mimic: Storm Shield~
+SAY NAME1 ~Mimic: Priest of Talos: Storm Shield~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#24A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = OHTYR1B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = OHTYR1 END
-SAY NAME1 ~Mimic: Exaltation~
+SAY NAME1 ~Mimic: Priest of Tyr: Exaltation~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#25A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = OHTMPS2B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = OHTMPS2 END
-SAY NAME1 ~Mimic: Chaos of Battle~
+SAY NAME1 ~Mimic: Priest of Tempus: Chaos of Battle~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#26A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL621B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL621 END
-SAY NAME1 ~Mimic: Summon Spirit Animal~
+SAY NAME1 ~Mimic: Totemic Druid: Summon Spirit Animal~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#27A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPIN155B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL643 END
-SAY NAME1 ~Mimic: Shapeshift Werewolf~
+SAY NAME1 ~Mimic: Shapeshifter: Shapeshift Werewolf~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#28A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = PLYBASSB END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL634 END
-SAY NAME1 ~Mimic: Shapeshift Fire Salamander~
+SAY NAME1 ~Mimic: Avenger: Shapeshift Fire Salamander~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#29A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0TR#29B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#29Z END
@@ -325,47 +325,47 @@ SAY UNIDENTIFIED_DESC ~The trickster casts a level 1 arcane spell of choice. Lev
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#30A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL423B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL423 END
-SAY NAME1 ~Mimic: Poison Weapon~
+SAY NAME1 ~Mimic: Assassin: Poison Weapon~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#31A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL414B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL414 END
-SAY NAME1 ~Mimic: Set Special Snare~
+SAY NAME1 ~Mimic: Bounty Hunter: Set Special Snare~
 COPY_EXISTING ~C0TR#32A.SPL~ OVERRIDE
-SAY NAME1 ~Mimic: Swashbuckler Dual Wielding~
+SAY NAME1 ~Mimic: Swashbuckler: +2 to Off-Hand THAC0~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#33A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPSD02B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPSD02 END
-SAY NAME1 ~Mimic: Shadowstep~
+SAY NAME1 ~Mimic: Shadowdancer: Shadowstep~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#34A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL522B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPCL522 END
-SAY NAME1 ~Mimic: Defensive Spin~
+SAY NAME1 ~Mimic: Blade: Defensive Spin~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#35A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0TR#35B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#35Z END
-SAY NAME1 ~Mimic: Fool's Gambit~
+SAY NAME1 ~Mimic: Jester: Fool's Gambit~
 COPY_EXISTING ~C0TR#35Z.SPL~ OVERRIDE
 SAY NAME1 ~Fool's Gambit~
 SAY UNIDENTIFIED_DESC ~The trickster imitates the jester's bard song, applying its effects for 3 rounds. The trickster may act freely within the duration without breaking the effect.~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#36A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0TR#36B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#36Z END
-SAY NAME1 ~Mimic: War Chant~
+SAY NAME1 ~Mimic: Skald: War Chant~
 COPY_EXISTING ~C0TR#36Z.SPL~ OVERRIDE
 SAY NAME1 ~War Chant~
 SAY UNIDENTIFIED_DESC ~The trickster imitates the skald's bard song, applying its effects for 3 rounds. The trickster may act freely within the duration without breaking the effect.~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#37A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPWI117B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#37Z END
-SAY NAME1 ~Mimic: Frozen Fist~
+SAY NAME1 ~Mimic: Dark Moon Monk: Frozen Fist~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#38A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPCL238B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = C0TR#38Z END
-SAY NAME1 ~Mimic: Flaming Fists~
+SAY NAME1 ~Mimic: Sun Soul Monk: Flaming Fists~
 COPY_EXISTING ~C0TR#10A.SPL~ ~OVERRIDE/C0TR#39A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = SPDD03B END
 LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = SPDD03 END
-SAY NAME1 ~Mimic: Breath Weapon~
+SAY NAME1 ~Mimic: Dragon Disciple: Breath Weapon~
 
 COPY_EXISTING ~C0TR#40.SPL~ OVERRIDE
 SAY NAME1 ~Greater Mimicry I~
