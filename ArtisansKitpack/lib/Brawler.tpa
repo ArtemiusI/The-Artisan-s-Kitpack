@@ -1,0 +1,108 @@
+COPY ~%MOD_FOLDER%/MonkRevision/Brawler/2das~ ~override~
+COPY ~%MOD_FOLDER%/MonkRevision/Brawler/spells~ ~override~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~K_MN_HO.2DA~ THEN BEGIN
+COPY ~%MOD_FOLDER%/MonkRevision/K_MN_HO~ OVERRIDE
+END
+
+ADD_KIT ~C0_BRAWLER~
+
+ // appended to CLASWEAP.2da
+ ~C0_BRAWLER		1           1           1           1           1           1           1           1~
+
+ // appended column-wise to WEAPPROF.2da
+//11                                    		T   S           F   Q             S S
+//10                                   			W   C           L   U             W I
+//9                        			    B L S   O   I   W       A   A             O N
+//8                        				A O H   H   M   A       I   R C   S       R G
+//7         			L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6         			_ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5         			S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4         			W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3         			O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2        				R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1      	  			D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+ ~C0_BRAWLER			1 1 0 0 1 0 0 1 0 1 1 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+ // appended to ABCLASRQ.2da
+ ~C0_BRAWLER				14      0	16	0	0	0~
+
+ // appended to ABCLSMOD.2da
+ ~C0_BRAWLER				0	0	0	0	0	0~
+
+ // appended to ABDCDSRQ.2da
+ ~C0_BRAWLER                	0       0       0       0       0       0~
+
+ // appended to ABDCSCRQ.2da
+ ~C0_BRAWLER                 	0       0       0       0       0		 0~
+
+ // appended to ALIGNMNT.2da
+ ~C0_BRAWLER                  	1       1       1       1       1	1       1       1       1~
+
+ // appended to DUALCLAS.2da
+ ~C0_BRAWLER                  	0       0       0       0       0       0~
+
+ // path to your CLAB-style 2da file 
+ ~override/C0BRAWL.2da~
+
+ // PC races and classes allowed to use this kit, from KITTABLE.2da
+ ~K_MN_H K_MN_HO~
+
+ // usability flags, added to the end of the KITLIST.2da entry
+ ~0x00004000     20~
+
+ // HLA table to use; see LUABBR.2da
+ ~FI0~
+
+ // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
+ ~* * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+
+ // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
+  SAY ~brawler~
+  SAY ~Brawler~
+  SAY ~BRAWLER: The brawler is a warrior who specialized in the simplest form of combat—using only their bare fists. Their fighting skills, honed by raw, brutal fighting, foregoes the technique and spiritual training of the monk, using only the barest amount of ki to enhance their blows, otherwise relying purely on strength and tenacity. Their weathered and callused bodies, trained to be tough as steel, are symbolic of their experience.
+
+Advantages:
+– May be of any alignment.
+– Gains +5% to slashing, piercing, crushing and missile resistance every 5 levels up to a maximum of +40% at 40th level.
+– +1 to hit and damage rolls with unarmed attacks every 4 levels.
+– +1 bonus to critical hit modifiers with unarmed attacks every 5 levels.
+– May use the Brawling Stance ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+
+BRAWLING STANCE: All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration.
+
+– 10th level: Gains the Rejuvenation passive effect.
+
+REJUVENATION: When the brawler falls below 25% of their maximum hit points, they rapidly regenerate for 3 hit points per second for 30 seconds. This may only occur once per eight hours.
+
+– 14th level: Gains the Crushing Blow passive effect.
+
+CRUSHING BLOW: The Brawler's critical hits reduce the target's crushing resistance by a cumulative 25% for 2 rounds and stun the target for 3 seconds.
+
+– 20th level: Gains a +4 bonus to damage with unarmed attacks.
+– Hit Die: d12
+
+Disadvantage:
+– May not use thieving skills.
+– May not use Lay on Hands.
+– May not use Stunning Blow.
+– May not use Quivering Palm.
+– May not be proficient in ranged weapons.
+– Does not gain Magic Resistance.
+– Does not gain immunity to disease, slow, haste, charm, poison or non-magical weapons.~
+
+LAF fl#add_kit_ee
+STR_VAR
+	kit_name = C0_BRAWLER
+    clswpbon = ~1 3 2~
+	hpclass = ~HPBARB~
+    numwslot = 3
+	clascolr = ~1 6 43 138 93~
+	thiefscl = ~0 0 0 0 0 0 0 0~
+	thiefskl = ~0 0~
+END
+
+COPY_EXISTING ~C0BRW01.SPL~ ~OVERRIDE~
+SAY NAME1 ~Brawling Stance~
+SAY UNIDENTIFIED_DESC ~Brawling Stance
+All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration. From 15th level onwards, the Brawler gains an additional attack per round.~

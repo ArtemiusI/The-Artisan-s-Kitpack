@@ -172,6 +172,7 @@ BEGIN
             kit_class != 10 AND
             kit_class != 13 AND
             kit_class != 15 AND
+            kit_class != 20 AND
             ("%backstab%" STR_CMP "" OR
              "%thiefskl%" STR_CMP "" OR
              "%traplimt%" STR_CMP "" OR

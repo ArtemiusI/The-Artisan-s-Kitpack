@@ -4,7 +4,62 @@ COPY ~%MOD_FOLDER%/MonkRevision/bam~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/eff~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/fists~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/items~ ~OVERRIDE~
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+  PATCH_IF (%kit_class% = 20) BEGIN
+    // Set New Fighter Abilities
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      // Add new abilities to all Fighter kits
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
+        PRETTY_PRINT_2DA
+	  
+      BUT_ONLY
+      END
+    END
+  END
+  END
 
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//BRAWLER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_BRAWLER" BEGIN
+          READ_2DA_ENTRY index 4 col_count brawler_desc
+          SPRINT old_brawler_1 ~– May not use Lay on Hands.~
+          SPRINT new_brawler_1 ~– May not use Wholeness of Body.~
+          SPRINT old_brawler_2 ~– Does not gain Magic Resistance.
+– Does not gain immunity to disease, slow, haste, charm, poison or non-magical weapons.~
+          SPRINT new_brawler_2 ~– Does not gain Still Mind, Purity of Body, Diamond Body, Diamond Soul, Inner Eye or Perfect Self.~
+          GET_STRREF %brawler_desc% brawler_text
+          INNER_PATCH_SAVE brawler_text ~%brawler_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_brawler_1%~ ~%new_brawler_1%~
+            REPLACE_TEXTUALLY ~%old_brawler_2%~ ~%new_brawler_2%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%brawler_desc%~ ~%brawler_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
 //ENABLE MONK FOR HALFORCS___________________________________________________________
 //
 ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN

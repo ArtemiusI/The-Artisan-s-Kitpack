@@ -941,6 +941,10 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~9001~ ~The Warhorn Shaman Kit mus
 	  SET_BG2_PROFICIENCY 92 2
 	  SET_BG2_PROFICIENCY 102 0
 
+BEGIN ~Artisan's Kitpack: Brawler Kit~ DESIGNATED 10002
+GROUP ~Monk Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Brawler.tpa~
+
 BEGIN ~Artisan's Kitpack: Monk Revisions~ DESIGNATED 10001
 GROUP ~Monk Kits~
 INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~
