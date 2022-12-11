@@ -2,7 +2,50 @@ COPY ~%MOD_FOLDER%/Druid/Hivemaster/2da~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells~ ~override~
 
-INCLUDE ~%MOD_FOLDER%/Druid/Hivemaster/fl#add_kit_ee.tpa~
+ACTION_DEFINE_ASSOCIATIVE_ARRAY aranea_anims_Exxx BEGIN
+    ~aranea~ => ~C0_ARANEA~
+  END
+  ACTION_PHP_EACH aranea_anims_Exxx AS folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xE000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%/Exxx.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY ice_spider_anims_8xxx BEGIN
+    ~ice_spider~ => ~C0_ICE_SPIDER~
+  END
+  ACTION_PHP_EACH ice_spider_anims_8xxx AS folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x8000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations/%folder%/8xxx.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
+
+// PVRZ-based bams
+
+ACTION_FOR_EACH bamFile IN ~MSPIINV.bam~ BEGIN
+    COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations/ice_spider/inv/%bamFile%~ ~override~
+      LPF UPDATE_PVRZ_INDICES RET original_base_index new_base_index END
+    ACTION_IF (original_base_index >= 0 AND new_base_index >= 0) BEGIN
+      LAF INSTALL_PVRZ
+      INT_VAR
+        original_base_index = original_base_index
+        new_base_index = new_base_index
+      STR_VAR
+        source_file = EVAL ~%MOD_FOLDER%/Druid/Hivemaster/pvrz/mos%original_base_index%.pvrz~
+      END
+    END
+END
+
 ADD_KIT ~C0HIVE2~
 
  // appended to CLASWEAP.2da
@@ -26,7 +69,7 @@ ADD_KIT ~C0HIVE2~
  ~C0HIVE2				0      0	0	0	12	15~
 
  // appended to ABCLSMOD.2da
- ~C0HIVE2				0	0	0	0	0	0~
+ ~C0HIVE2				0	0	0	0	0	-3~
 
  // appended to ABDCDSRQ.2da
  ~C0HIVE2                		0       0       0       0       17       17~
@@ -50,7 +93,7 @@ ADD_KIT ~C0HIVE2~
  ~0x20000000     11~
 
  // HLA table to use; see LUABBR.2da
- ~DR0~
+ ~C0HIVE~
 
  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
@@ -62,22 +105,46 @@ ADD_KIT ~C0HIVE2~
 
 Advantages:
 – Immunity to all poisons and the following spells: Web, Summon Insects, Insect Plague, Creeping Doom
-– Gains a +2 bonus to Armor Class and Saving Throws vs. all insectoid creatures (e.g. spiders, beetles)
-– May cast Web and Spider Spawn as 2nd and 4th level priest spells respectively.
+– Verminfriend: Grants +2 to Armor Class, hit and damage to all allied spiders and insectoid creatures. From 10th level, all affected creatures deal double poison damage. From 14th level, all affected creatures are Hasted.
+– Chitinous Shell: Base Armor Class of 8. This improves by one point on every even-numbered level up to 14th level.
+– Six arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 6th level. These are listed below:
+  1st level: Blindness.
+  2nd level: Web.
+  3rd level: Spiderskin.
+  4th level: Spider Spawn.
+  5th level: Cloudkill.
+  6th level: Carrion Summons.
 – May use the Poison Weapon ability once per day. Gains another use at levels 7 and 14.
- 
-POISON WEAPON: The hivemaster is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
-  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
-  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
-  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
-  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
-  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
- 
-– 5th level: May shapeshift into a huge spider once per day.
-– 8th level: May shapeshift into a sword spider once per day.
-– 14th level: May shapeshift into a wraith spider once per day.
+
+POISON WEAPON: The hivemaster is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target’s Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 7th level: May Shapeshift into the form of a small spider, a phase spider, or a sword spider once per day.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+– 10th level: The hivemaster's transformations no longer take up their action per round.
+– 12th level: The hivemaster may transform into their spider forms at will.
+– 14th level: Natural Spell: The hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+– 14th level: The hivemaster may transform into a frost spider.
+
+FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+– 15th level: The hivemaster regenerates for 1 hit point per round. All spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.
+– 18th level: The hivemaster becomes immune to mind-affecting effects.
 
 Disadvantages:
+– Incurs a -3 penalty to Charisma.
+– Does not gain Elemental Resistance with levels.
+– May not cast Elemental Summoning spells.
 – May not wear heavier armor than leather.
 – May not shapeshift into default animal forms.~
 
@@ -98,71 +165,117 @@ PRETTY_PRINT_2DA
 	
 END
 
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEP.spl~ ~override~
+SAY NAME1 ~Shapeshift: Spider Form~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Spider Form
+This ability allows the hivemaster to shapeshift into a small spider, a phase spider or a sword spider. From 14th level, the hivemaster may shapeshift into a frost spider.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+14th level: FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
+
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVES.spl~ ~override~
+SAY NAME1 ~Shapeshift: Spider Form~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Spider Form
+This ability allows the hivemaster to shapeshift into a small spider, a phase spider or a sword spider. From 14th level, the hivemaster may shapeshift into a frost spider.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+14th level: FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
+
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE1.spl~ ~override~
-SAY NAME1 ~Shapeshift: Huge Spider~
-SAY NAME2 ~Shapeshift: Huge Spider~
-SAY UNIDENTIFIED_DESC ~Shapeshift: Huge Spider
-
-The hivemaster shapeshifts into a huge spider, gaining the following traits:
-
-Strength: 14
-Dexterity: 18
-
-Base Armor Class: 8
-Number of Attacks: 2
-Damage: 1d4 piercing, 1 poison damage per second for 1 round (save vs. poison at +2), hits as a +1 weapon~
+SAY NAME1 ~Shapeshift: Small Spider~
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE2.spl~ ~override~
-SAY NAME1 ~Shapeshift: Sword Spider~
-SAY NAME2 ~Shapeshift: Sword Spider~
-SAY UNIDENTIFIED_DESC ~Shapeshift: Sword Spider
+SAY NAME1 ~Shapeshift: Phase Spider~
 
-The hivemaster shapeshifts into a sword spider, gaining the following traits:
-
-Strength: 17
-Dexterity: 18
-
-Base Armor Class: 7
-Number of Attacks: 4
-Damage: 1d6 slashing, hits as a +3 weapon~
+COPY_EXISTING ~C0HPHASE.spl~ ~override~
+SAY NAME1 ~Dimension Door~
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE3.spl~ ~override~
-SAY NAME1 ~Shapeshift: Wraith Spider~
-SAY NAME2 ~Shapeshift: Wraith Spider~
-SAY UNIDENTIFIED_DESC ~Shapeshift: Wraith Spider
+SAY NAME1 ~Shapeshift: Sword Spider~
 
-The hivemaster shapeshifts into a wraith spider, gaining the following traits:
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE4.spl~ ~override~
+SAY NAME1 ~Shapeshift: Frost Spider~
 
-Strength: 19
-Dexterity: 18
+COPY_EXISTING ~C0PHIVE4.ITM~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = (IDS_OF_SYMBOL (~animate~ ~C0_ICE_SPIDER~)) END		
 
-Base Armor Class: 6
-Number of Attacks: 3
-Damage: 1d8 piercing, drains one level and one point of strength for 24 seconds (save vs. poison at -2), hits as a +4 weapon
-Immunity to normal weapons
-Regenerates 1 hit point every 12 seconds~
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEH1.spl~ ~override~
+SAY NAME1 ~Insect Shroud~
+SAY UNIDENTIFIED_DESC ~Insect Shroud
+With this ability, the hivemaster permanently becomes shrouded by a swarm of flying insects, almost invisible to the eye. These insects retaliate against targets who damage the hivemaster within a 10-ft. radius, dealing 1 point of damage per 2 seconds, reducing the target's Armor Class and THAC0 by 2, and inflicting 100% spell failure for 2 rounds.~
 
-COPY_EXISTING ~spwi215.spl~ ~override/C0HIVE4.spl~
-WRITE_SHORT 0x1C 2 
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HVPRO1.PRO~
 
-COPY_EXISTING ~spwi423.spl~ ~override/C0HIVE5.spl~
-WRITE_SHORT 0x1C 2
-SAY NAME1 ~Spider Spawn~
-SAY UNIDENTIFIED_DESC ~Spider Spawn
-(Conjuration/Summoning)
+COPY_EXISTING ~C0HIVH1A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		header = 1
+		projectile = C0HVPRO1
+END
 
-Level: 4
-Range: 120 ft.
-Duration: 6 rounds + 1 round/level
-Casting Time: 6
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEH2.spl~ ~override~
+SAY NAME1 ~Conjure Aranea Elder~
+SAY UNIDENTIFIED_DESC ~Conjure Aranea Elder
+
+Level: Quest
+Range: 30 ft.
+Duration: 5 turns
+Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
 
-Upon casting this spell, the hivemaster must throw several spider eggs into the air while saying the final command word. The result is that the eggs morph into a fully grown spider that will remain under the hivemaster's telepathic control. The type of spider that appears depends upon the level of the hivemaster casting the spell.
- 7th: giant spider.
- 9th: phase spider.
- 12th+: sword spider.
-When the spell is cast, there is a 20% chance that two spiders of the proper type will appear instead of just one. These spiders will remain under the hivemaster's control until they are slain, or until the spell duration expires.~
+This spell summons a powerful ancient aranea, a shapeshifting spiderkin with incredible arcane powers. The aranea remains for 1 turn under the control of the hivemaster, and may cast spells as though a 20th level sorcerer. Their melee attacks strike as a +4 weapon, dealing 1d10 piercing and 1d6 magic damage, additionally inflicting 5 poison damage per second for 10 rounds if a Save vs. Death at -5 is failed.~
+
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HVARAN.cre~ ~override~
+SAY NAME1 ~Aranea Elder~
+SAY NAME2 ~Aranea Elder~
+  WRITE_ASCII 0x280 ~C0HVARAN~  #32
+    WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~C0_ARANEA~))
+
+COPY_EXISTING ~spwi106.spl~ ~override/C0HVSP1.spl~
+WRITE_SHORT 0x1C 2 
+
+COPY_EXISTING ~spwi215.spl~ ~override/C0HVSP2.spl~
+WRITE_SHORT 0x1C 2 
+
+COPY_EXISTING ~C0HVSP3.spl~ ~override/C0HVSP3.spl~
+SAY NAME1 ~Spiderskin~
+SAY UNIDENTIFIED_DESC ~Spiderskin
+(Alteration)
+
+Level: 3
+Range: 0
+Duration: 12 hours
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell grants the target a +2 bonus to Armor Class, Save vs. Death and a +30% bonus to Hide in Shadows and Move Silently. These bonuses increase by +1 and +15% at 8th, 11th and 14th level.~
+
+COPY_EXISTING ~spwi423.spl~ ~override/C0HVSP4.spl~
+WRITE_SHORT 0x1C 2
+
+COPY_EXISTING ~spwi502.spl~ ~override/C0HVSP5.spl~
+WRITE_SHORT 0x1C 2
+
+COPY_EXISTING ~spwi623.spl~ ~override/C0HVSP6.spl~
+WRITE_SHORT 0x1C 2
 
 COPY_EXISTING ~c0as#p01.spl~ ~override~
   LPF ALTER_EFFECT

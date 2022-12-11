@@ -77,6 +77,39 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Enhance Arrow~) STR_V
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain3.spl~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0aain3i END
 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1a.eff~ ~override/c0aaen2a.eff~
+WRITE_SHORT 0x1c 2 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1b.eff~ ~override/c0aaen2b.eff~
+WRITE_SHORT 0x1c 2
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1c.eff~ ~override/c0aaen2c.eff~
+WRITE_SHORT 0x1c 2
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1d.eff~ ~override/c0aaen2d.eff~
+WRITE_SHORT 0x1c 2
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1a.eff~ ~override/c0aaen3a.eff~
+WRITE_SHORT 0x1c 3 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1b.eff~ ~override/c0aaen3b.eff~
+WRITE_SHORT 0x1c 3
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1c.eff~ ~override/c0aaen3c.eff~
+WRITE_SHORT 0x1c 3
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1d.eff~ ~override/c0aaen3d.eff~
+WRITE_SHORT 0x1c 3
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1a.eff~ ~override/c0aaen4a.eff~
+WRITE_SHORT 0x1c 4 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1b.eff~ ~override/c0aaen4b.eff~
+WRITE_SHORT 0x1c 4
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1c.eff~ ~override/c0aaen4c.eff~
+WRITE_SHORT 0x1c 4
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1d.eff~ ~override/c0aaen4d.eff~
+WRITE_SHORT 0x1c 4
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1a.eff~ ~override/c0aaen5a.eff~
+WRITE_SHORT 0x1c 5 
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1b.eff~ ~override/c0aaen5b.eff~
+WRITE_SHORT 0x1c 5
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1c.eff~ ~override/c0aaen5c.eff~
+WRITE_SHORT 0x1c 5
+COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aaen1d.eff~ ~override/c0aaen5d.eff~
+WRITE_SHORT 0x1c 5
+
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells/c0aain4.spl~ ~override~
 SAY NAME1 ~Enhance Arrow~
 SAY UNIDENTIFIED_DESC ~Enhance Arrow
