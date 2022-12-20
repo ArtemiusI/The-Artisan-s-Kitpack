@@ -969,6 +969,19 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20001~ ~The Elementalist Kit must
 END
 END
 
+BEGIN ~Artisan's Kitpack: Dreadnought - Set Dreadnought to 1 APR (install this if the Dreadnought is getting bonus APR from other mods)~ DESIGNATED 1209
+
+  COPY_EXISTING ~clswpbon.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~C0_DREADNOUGHT~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols 0
+	  END
+	END
+
 BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
 INCLUDE ~%MOD_FOLDER%/lib/trickster-mods.tpa~
