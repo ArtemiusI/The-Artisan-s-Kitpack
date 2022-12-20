@@ -199,18 +199,46 @@ From 15th level onwards, all spider forms gain +4 additional Strength and Dexter
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE1.spl~ ~override~
 SAY NAME1 ~Shapeshift: Small Spider~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Small Spider
+This ability allows the hivemaster to shapeshift into a small spider.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE2.spl~ ~override~
 SAY NAME1 ~Shapeshift: Phase Spider~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Phase Spider
+This ability allows the hivemaster to shapeshift into a phase spider.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
 
 COPY_EXISTING ~C0HPHASE.spl~ ~override~
 SAY NAME1 ~Dimension Door~
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE3.spl~ ~override~
 SAY NAME1 ~Shapeshift: Sword Spider~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Sword Spider
+This ability allows the hivemaster to shapeshift into a sword spider. 
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVE4.spl~ ~override~
 SAY NAME1 ~Shapeshift: Frost Spider~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Frost Spider
+This ability allows the hivemaster to shapeshift into a frost spider.
+
+FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
 
 COPY_EXISTING ~C0PHIVE4.ITM~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = (IDS_OF_SYMBOL (~animate~ ~C0_ICE_SPIDER~)) END		

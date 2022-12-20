@@ -141,7 +141,6 @@ CLOAK OF SHADOWS: The assassin's mastery of stealth renders <PRO_HIMHER> complet
 Disadvantages:
 – -2 penalty to Charisma.
 – -2 penalty to starting Reputation.
-– May not wear armor heavier than leather armor.
 – May not Set Traps.
 – May only be of any non-good alignment.
 – May only distribute 10 skill points per level among thieving skills.~
@@ -358,49 +357,6 @@ COPY_EXISTING ~crippstr.2da~ ~override~
 	  END
 	END
 	
-////// MAKE STUDDED LEATHER AND ELVEN CHAIN UNUSABLE BY ASSASSINS
-
-COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-    READ_BYTE    0x29 avenger //reads the byte containing the mage usability flag
-    PATCH_IF ((avenger BAND 0b00100000) = 0b00100000) BEGIN // if it is usable by mages
-      READ_BYTE    0x2b assassin //reads the byte containing bard usability flag
-      READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 2) BEGIN // if it is a robe or armor
-        WRITE_BYTE    0x2b (assassin BOR 0b00000100)  // makes usable by bards
-      END
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-
-ACTION_IF FILE_EXISTS_IN_GAME ~LEAT08.ITM~ THEN BEGIN
-COPY_EXISTING ~leat08.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-    READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
-    PATCH_IF ((assassin BAND 0b00000100) = 0b00000100) BEGIN // if it is usable by mages
-      READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 67) OR (type = 2) BEGIN // if it is a robe or armor
-        WRITE_BYTE    0x2b (assassin BAND 0b00000000)  // makes usable by bards
-      END
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-  END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~dragarm.ITM~ THEN BEGIN
-COPY_EXISTING ~dragarm.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-    READ_BYTE    0x2b assassin //reads the byte containing the mage usability flag
-    PATCH_IF ((assassin BAND 0b00000100) = 0b00000100) BEGIN // if it is usable by mages
-      READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 67) OR (type = 2) BEGIN // if it is a robe or armor
-        WRITE_BYTE    0x2b (assassin BAND 0b00000000)  // makes usable by bards
-      END
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-  END
-
 ACTION_IF FILE_EXISTS_IN_GAME ~clabth02.2da~ THEN BEGIN
 COPY ~%MOD_FOLDER%/Thief/Assassin/2da/clabth02.2da~ ~override~
 END

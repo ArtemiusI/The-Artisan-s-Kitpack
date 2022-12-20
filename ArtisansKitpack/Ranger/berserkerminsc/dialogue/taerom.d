@@ -19,14 +19,14 @@ EXTEND_BOTTOM TAEROM 14
 END
 
 CHAIN TAEROM a1
-~What's this then? Ah, an interesting piece of material indeed. I'm no tanner, but I can see it is remarkably sturdy and could make for a strong suit of armor. I'll make some hide armor out of this skin for 3,000 gold.~
+~What's this then? Ah, an interesting piece of material indeed. I'm no tanner, but I can see it is remarkably sturdy and could make for a strong suit of armor. I'll make some hide armor out of this skin for 6,000 gold.~
 END
-+ ~PartyGoldGT(2999)~ + ~A fair price for the workmanship of Taerom Thunderhammer. 3,000 gold it is.~ + a2
++ ~PartyGoldGT(2999)~ + ~A fair price for the workmanship of Taerom Thunderhammer. 6,000 gold it is.~ + a2
 ++ ~Though your offer is generous, it is more than I can afford right now.~ + a3
 
 CHAIN TAEROM a2
 ~Good on you. Now it will take me a while to finish, but you will soon have the finest armor in Beregost, if not the entire Sword Coast. Come back in five days, and I'll have it ready for you.~
-DO ~TakePartyGold(3000)
+DO ~TakePartyGold(6000)
 TakePartyItem("c0mskin")
 DestroyItem("c0mskin")
 SetGlobal("C0TaeromMakeArmor","GLOBAL",1)

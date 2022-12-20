@@ -19,11 +19,11 @@ ANIMAL RAGE: This spell imbues the target creature with animal ferocity. The tar
 – 9th level: Greater Beast Friend: allied bonuses from Beast Friend increased to +4.
 – 10th level: May cast Animal Summoning II as a 2nd level divine spell.
 – 12th level: May cast Animal Summoning III as a 3rd level divine spell.
-– 14th level: May cast Wyvern Call as an innate ability once per day. Gains an additional use at 18th level.
+– 14th level: May cast Wyvern Call as an innate ability once per day. Gains an additional use at 17th and 20th level.
 – 15th level: Beast Guardian: allied bonuses from Beast Friend increased to +6.
 
 Disadvantages:
-– May only use non metal-based weapons. (clubs, spears, quarterstaves, crossbows, longbows, shortbows, darts, slings)
+– May only use the following weapon types: axes, daggers, clubs, spears, quarterstaves, crossbows, longbows, shortbows, darts, slings.
 – May only use non metal-based armors.
 – Incurs a -2 penalty to Charisma.~
 /*
@@ -34,6 +34,63 @@ CALL OF THE WILD: The beast master calls upon the creatures of the wild, summoni
   13th level+: Wyverns, umber hulks, sword spiders, spore colonies
   18th level+: Basilisks, greater wyverns
 */
+
+// Item restrictions
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 ranger //reads the byte containing the fighter usability flag
+    PATCH_IF ((ranger BAND 0b00100000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x2B beastmaster //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 25) OR (type = 16) OR (type = 29) BEGIN // if it is a crossbow
+        WRITE_BYTE    0x2B (beastmaster BAND 0b11111101)  // makes usable by clerics
+      END
+    END
+  END
+BUT_ONLY
+
+ACTION_FOR_EACH nonmetalarmors IN ~plat06~ ~plat13~ ~plat18~ ~plat20~ ~ohdarmor~ ~king~ ~swanarm~ ~umhulk~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%nonmetalarmors%.itm~ THEN BEGIN
+COPY_EXISTING ~%nonmetalarmors%.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 ranger //reads the byte containing the fighter usability flag
+    PATCH_IF ((ranger BAND 0b00100000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x2B beastmaster //reads the byte containing monks usability flag
+        WRITE_BYTE    0x2B (beastmaster BAND 0b11111101)  // makes usable by clerics
+      END
+    END
+BUT_ONLY_IF_IT_CHANGES
+  END
+  END
+
+// Proficiencies
+
+ACTION_CLEAR_ARRAY weapprof_cols_beastmaster
+        
+COPY_EXISTING ~weapprof.2da~  ~override~
+  COUNT_2DA_COLS col_count
+  SET col_check = col_count - 1
+  FOR (column = 0; column < col_check; ++column) BEGIN
+    READ_2DA_ENTRY 0 column col_check name
+    PATCH_IF (("BEASTMASTER" STRING_COMPARE_CASE "%name%" = 0)) BEGIN
+      SET column += 1 // row with names has an empty entry for the first column
+      DEFINE_ASSOCIATIVE_ARRAY weapprof_cols_beastmaster BEGIN ~%column%~ => ~%column%~ END
+    END
+  END
+  PATCH_PHP_EACH weapprof_cols_beastmaster AS column => foo BEGIN
+    FOR (row = 8; row < 32; ++row) BEGIN
+      READ_2DA_ENTRY row column col_count stars
+      PATCH_IF (stars < 5) BEGIN
+        SET_2DA_ENTRY 11 column col_count 2
+        SET_2DA_ENTRY 15 column col_count 2
+        SET_2DA_ENTRY 18 column col_count 2
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
 
   COPY_EXISTING ~abclsmod.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns

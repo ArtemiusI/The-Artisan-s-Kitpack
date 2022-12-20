@@ -67,11 +67,11 @@ ADD_KIT ~c0tbm~
 Advantages:
 – Hit Die: d12
 – May achieve mastery in any melee weapon.
-– May use the Berserker Rage ability once per day. Gains one additional use every 5 levels.
+– May use the Berserker Rage ability once per day. Gains one additional use at every 4th level.
 
-BERSERKER RAGE: The Rashemi berserker becomes Enraged for 2 turns. While Enraged, he gains a +2 bonus to his Strength, one bonus attack per round, and becomes immune to Charm, Confusion, Fear, Feeblemind, Hold, Level Drain, Maze, Stun, and Sleep. However, his Armor Class is penalized by 4 points while Enraged. The Rashemi berserker also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree, possibly knocking him Unconscious. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to Strength increase to +4 at 12th level and +6 at 20th level.
+BERSERKER RAGE: The Rashemi berserker becomes Enraged for 1 turn. While Enraged, he gains a +2 bonus to his Strength, one bonus attack per round, and becomes immune to Charm, Confusion, Fear, Feeblemind, Hold, Level Drain, Maze, Stun, and Sleep. However, his Armor Class is penalized by 4 points while Enraged. The Rashemi berserker also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree, possibly knocking him Unconscious. Additionally, the berserker is unable to perform any action aside from movement and attacking, such as spellcasting, using items, stealth or talking until the rage has ended. Bonuses to Strength increase to +4 at 12th level and +6 at 20th level.
 
-Once the duration has ended, the Rashemi berserker becomes Winded, reducing his THAC0, Armor Class and Damage by four points, and he is unable to become Enraged again for one turn.
+Once the duration has ended, the Rashemi berserker becomes Winded, reducing his THAC0, Armor Class and Damage by four points, and he is unable to become Enraged again for 5 rounds.
 
 – 5th level: May use the Power Attack modal ability.
 
@@ -92,7 +92,7 @@ TIRELESS RAGE: The Rashemi berserker is no longer Winded and will not suffer dam
 
 – 18th level: Gains Deathless Frenzy.
 
-DEATHLESS FRENZY: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of being Enraged.
+DEATHLESS FRENZY: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first two rounds of being Enraged.
 
 Disadvantages:
 – Alignment restricted to any non-lawful.
@@ -190,18 +190,24 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc.cre~ THEN BEGIN
     COPY_EXISTING ~minsc.cre~ ~override~
+	WRITE_SHORT 0x24 12
+	WRITE_SHORT 0x26 12
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc2.cre~ THEN BEGIN
     COPY_EXISTING ~minsc2.cre~ ~override~
+	WRITE_SHORT 0x24 24
+	WRITE_SHORT 0x26 24
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc4.cre~ THEN BEGIN
     COPY_EXISTING ~minsc4.cre~ ~override~
+	WRITE_SHORT 0x24 48
+	WRITE_SHORT 0x26 48
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
@@ -211,6 +217,8 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc6.cre~ THEN BEGIN
     COPY_EXISTING ~minsc6.cre~ ~override~
+	WRITE_SHORT 0x24 72
+	WRITE_SHORT 0x26 72
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
@@ -220,6 +228,8 @@ END
 
 ACTION_IF GAME_IS ~BGEE~ AND FILE_EXISTS_IN_GAME ~minsc7.cre~ THEN BEGIN
     COPY_EXISTING ~minsc7.cre~ ~override~
+	WRITE_SHORT 0x24 72
+	WRITE_SHORT 0x26 72
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
 		SET_BG2_PROFICIENCY 104 1
@@ -229,7 +239,31 @@ END
 
 ACTION_IF GAME_IS ~BG2EE~ AND FILE_EXISTS_IN_GAME ~minsc7.cre~ THEN BEGIN
     COPY_EXISTING ~minsc7.cre~ ~override~
+	WRITE_SHORT 0x24 84
+	WRITE_SHORT 0x26 84
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc8.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc8.cre~ ~override~
+	WRITE_SHORT 0x24 96
+	WRITE_SHORT 0x26 96
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
+		SET_BG2_PROFICIENCY 104 1
+		SET_BG2_PROFICIENCY 93 3
+		BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~minsc9.cre~ THEN BEGIN
+    COPY_EXISTING ~minsc9.cre~ ~override~
+	WRITE_SHORT 0x24 108
+	WRITE_SHORT 0x26 108
+	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
 		BUT_ONLY
@@ -237,6 +271,8 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc10.cre~ THEN BEGIN
     COPY_EXISTING ~minsc10.cre~ ~override~
+	WRITE_SHORT 0x24 111
+	WRITE_SHORT 0x26 111
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
@@ -246,6 +282,8 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc12.cre~ THEN BEGIN
     COPY_EXISTING ~minsc12.cre~ ~override~
+	WRITE_SHORT 0x24 117
+	WRITE_SHORT 0x26 117
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
@@ -255,6 +293,8 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~minsc14.cre~ THEN BEGIN
     COPY_EXISTING ~minsc14.cre~ ~override~
+	WRITE_SHORT 0x24 123
+	WRITE_SHORT 0x26 123
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 	REMOVE_KNOWN_SPELLS
 	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
@@ -263,24 +303,10 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc14.cre~ THEN BEGIN
 		BUT_ONLY
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~minsc8.cre~ THEN BEGIN
-    COPY_EXISTING ~minsc8.cre~ ~override~
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
-		SET_BG2_PROFICIENCY 104 1
-		SET_BG2_PROFICIENCY 93 3
-		BUT_ONLY
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~minsc9.cre~ THEN BEGIN
-    COPY_EXISTING ~minsc9.cre~ ~override~
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
-		SET_BG2_PROFICIENCY 104 1
-		SET_BG2_PROFICIENCY 93 3
-		BUT_ONLY
-END
-
 ACTION_IF FILE_EXISTS_IN_GAME ~ttminsc.cre~ THEN BEGIN
     COPY_EXISTING ~ttminsc.cre~ ~override~
+	WRITE_SHORT 0x24 72
+	WRITE_SHORT 0x26 72
 	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -350,8 +376,8 @@ Equipped abilities:
 – Find Traps: -10%
 – Pick Pockets: -10%
 – Move Silently: -20%
-– Melee Damage Resistance: +10% (tripled while enraged)
-– Missile Damage Resistance: +40%
+– Melee Damage Resistance: +5% (+20% while enraged)
+– Missile Damage Resistance: +25% (+50% while enraged)
 – Regenerate one hit point per two rounds
 – While enraged, wearer moves at double their normal movement rate
 

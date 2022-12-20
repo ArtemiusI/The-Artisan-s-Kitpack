@@ -45,7 +45,7 @@ ACTION_FOR_EACH description IN
           SPRINT new_brawler_1 ~– May not use Wholeness of Body.~
           SPRINT old_brawler_2 ~– Does not gain Magic Resistance.
 – Does not gain immunity to disease, slow, haste, charm, poison or non-magical weapons.~
-          SPRINT new_brawler_2 ~– Does not gain Still Mind, Purity of Body, Diamond Body, Diamond Soul, Inner Eye or Perfect Self.~
+          SPRINT new_brawler_2 ~– Does not gain Still Mind, Purity of Body, Diamond Body, Diamond Soul or Perfect Self.~
           GET_STRREF %brawler_desc% brawler_text
           INNER_PATCH_SAVE brawler_text ~%brawler_text%~ BEGIN
             REPLACE_TEXTUALLY ~%old_brawler_1%~ ~%new_brawler_1%~
