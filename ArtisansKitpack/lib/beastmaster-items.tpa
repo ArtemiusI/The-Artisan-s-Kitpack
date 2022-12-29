@@ -1,0 +1,29 @@
+
+// Item restrictions
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 ranger //reads the byte containing the fighter usability flag
+    PATCH_IF ((ranger BAND 0b00100000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x2B beastmaster //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 25) OR (type = 16) OR (type = 29) BEGIN // if it is a crossbow
+        WRITE_BYTE    0x2B (beastmaster BAND 0b11111101)  // makes usable by clerics
+      END
+    END
+  END
+BUT_ONLY
+
+ACTION_FOR_EACH nonmetalarmors IN ~plat06~ ~plat13~ ~plat18~ ~plat20~ ~ohdarmor~ ~king~ ~swanarm~ ~umhulk~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%nonmetalarmors%.itm~ THEN BEGIN
+COPY_EXISTING ~%nonmetalarmors%.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 ranger //reads the byte containing the fighter usability flag
+    PATCH_IF ((ranger BAND 0b00100000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x2B beastmaster //reads the byte containing monks usability flag
+        WRITE_BYTE    0x2B (beastmaster BAND 0b11111101)  // makes usable by clerics
+      END
+    END
+BUT_ONLY_IF_IT_CHANGES
+  END
+  END

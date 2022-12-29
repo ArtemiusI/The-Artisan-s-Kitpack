@@ -24,6 +24,8 @@ SHIELD BASH: The Dwarven Defender slams their shield into the target for their f
 
 The Dwarven Defender reduces their attacks per round by 1/2 and melee damage by 2 points while Shield Bash is active.
   
+– 20th level: Unyielding: The dwarven defender permanently gains a 10% chance to negate incoming damage.
+
 – Hit Die: d12
 
 Disadvantages:
@@ -63,8 +65,10 @@ SHIELD BASH: The Dwarven Defender slams their shield into the target for their f
 
 The Dwarven Defender reduces their attacks per round by 1/2 and melee damage by 2 points while Shield Bash is active.
   
-– Hit Die: d12
+– 20th level: Unyielding: The dwarven defender permanently gains a 10% chance to negate incoming damage.
 
+– Hit Die: d12
+  
 Disadvantages:
 – May not exceed High Mastery (four slots) in axes and war hammers.
 – May not exceed Specialization (two slots) in any other weapon.~
@@ -122,6 +126,13 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Shiel
 
 COPY_EXISTING ~C0DWD03z.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Shield Bash Inactive~) END
+
+COPY_EXISTING ~C0DWD04b.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Incoming damage negated by Unyielding~)
+END
 
 ADD_KIT ~C0VNGD~
 
@@ -199,6 +210,8 @@ SHIELD BASH: The Vanguard slams their shield into the target for their first mel
 
 The Vanguard reduces their attacks per round by 1/2 and melee damage by 2 points while Shield Bash is active.
   
+– 20th level: Unyielding: The vanguard permanently gains a 10% chance to negate incoming damage.
+
 – Hit Die: d12
 
 Disadvantages:

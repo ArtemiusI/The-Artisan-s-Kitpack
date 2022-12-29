@@ -84,12 +84,12 @@ AURA OF PROTECTION: The martyr exudes a protective aura which shields their comp
 FINAL BREATH: The martyr's dauntless heroism and endurance keeps their allies motivated and safe, even in death. If the martyr is slain, all allies are healed for 50% of their maximum hit points and gain +4 to hit, damage and saving throws for two turns.
 
 – 10th level: The martyr becomes immune to fatigue.
-– 12th level: While Martyrdom is active, the martyr's melee attacks heal the closest ally within a 10-ft. radius for 2d6+2 hit points on hit.
+– 12th level: While Martyrdom is active, the martyr's melee attacks heal the closest ally within a 10-ft. radius for 1d6+2 hit points on hit.
 – 15th level: May use the Ilmater's Grace ability once per day.
 
 ILMATER'S GRACE: The martyr may call upon a second wind in battle, instantly healing half of their maximum hit points. The martyr gradually regenerates an additional half of their maximum hit points over the next five rounds.
 
-– 20th level: Tribulations: The martyr permanently gains +50 additional maximum hit points.
+– 20th level: Tribulations: The martyr permanently gains a 5% chance to negate incoming damage. If damage is negated, the martyr and the closest ally regenerate for 2 hit points per second for 5 seconds.
 
 – Hit Die: d12
 
@@ -190,3 +190,11 @@ The martyr may call upon a second wind in battle, instantly healing half of thei
 
 COPY_EXISTING ~C0ilms5.spl~ ~override~
 SAY NAME1 ~Final Breath~
+
+COPY_EXISTING ~C0ilms6b.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = c0ilms2a END
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Incoming damage negated by Tribulations~)
+END

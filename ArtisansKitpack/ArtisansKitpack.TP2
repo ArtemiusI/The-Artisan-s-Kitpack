@@ -969,6 +969,10 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20001~ ~The Elementalist Kit must
 END
 END
 
+BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (install this after any mods that add mod axes, daggers, spears, armor, etc.~ DESIGNATED 12012
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2012~ ~The Beastmaster Overhaul must be installed.~
+INCLUDE ~%MOD_FOLDER%/lib/beastmaster-items.tpa~
+
 BEGIN ~Artisan's Kitpack: Dreadnought - Set Dreadnought to 1 APR (install this if the Dreadnought is getting bonus APR from other mods)~ DESIGNATED 1209
 
   COPY_EXISTING ~clswpbon.2da~ ~override~
