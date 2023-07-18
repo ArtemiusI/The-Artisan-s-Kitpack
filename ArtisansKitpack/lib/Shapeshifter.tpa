@@ -63,6 +63,7 @@ Disadvantages:
 	END
 	
 ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-INV.PRO~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HWL.PRO~
 
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-FN1.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -80,7 +81,31 @@ LPF ALTER_SPELL_HEADER INT_VAR location = 0 END
 COPY_EXISTING ~SPCL644.SPL~ ~OVERRIDE~
 LPF ALTER_SPELL_HEADER INT_VAR location = 0 END
 
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-W.itm~ ~override~
+SAY NAME1 ~Wolf's Claw~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-F.itm~ ~override~
+SAY NAME1 ~Werewolf's Claw~
+
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-F.spl~ ~override~
+SAY NAME1 ~Shapeshift: Werewolf~
+SAY UNIDENTIFIED_DESC ~WEREWOLF SHAPE
+The wolf form grants the shapeshifter the greater value between +2 and base 20 to their Strength and Dexterity, a base Armor Class of 2, two attacks per round, 2d4+1 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and inflict bleeding damage on their attacks, dealing one point of unmitigated piercing damage per round for three rounds unless a Save vs. Death is made. Targets without blood are immune to bleeding damage.
+
+The attributes of the werewolf form improve with level.
+  5th level: +2 bonus to Movement Rate.
+  6th level: +10% Magic Resistance.
+  7th level: Bleed deals 2 damage per round and attacks strike as a +2 weapon.
+  8th level: Base Armor Class improves to -1.
+  9th level: Saving Throw modifier on bleed becomes -2.
+  10th level: Movement rate bonus increased to +4. Magic Resistance improves to +20%.
+  11th level: Base Armor Class improves to -4. Gains +15% resistance to Piercing, Slashing, Crushing and Missile damage.
+  12th level: Bleed deals 3 damage per round and attacks strike as a +3 weapon. Gains +40% resistance to Fire, Cold, Electricity and Acid damage.
+  13th level: Gains an additional attack per round.
+  14th level: Immunity to weapons of +1 enchantment and below. Magic Resistance improves to +50%.
+  15th level: Bleed deals 5 damage per round and attacks strike as a +4 weapon. Saving Throw modifier on bleed becomes -4.~
+
+COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-FH.spl~ ~override~
 SAY NAME1 ~Shapeshift: Werewolf~
 SAY UNIDENTIFIED_DESC ~WEREWOLF SHAPE
 The wolf form grants the shapeshifter the greater value between +2 and base 20 to their Strength and Dexterity, a base Armor Class of 2, two attacks per round, 2d4+1 piercing or slashing damage (whichever is greater) striking as a +1 weapon, and inflict bleeding damage on their attacks, dealing one point of unmitigated piercing damage per round for three rounds unless a Save vs. Death is made. Targets without blood are immune to bleeding damage.
@@ -117,6 +142,10 @@ COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-H.spl~ ~override~
   END
 
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-H2.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SS-HWL
+END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -134,7 +163,7 @@ The wolf form grants the shapeshifter the greater value between +1 and base 18 t
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL1.spl~ ~override~
 SAY NAME1 ~Shared Gift~
 SAY UNIDENTIFIED_DESC ~Shared Gift
-The shapeshifter may, for a single use in their lifetime, impart the gift of lycanthropy to a trusted ally. This permanently grants the chosen ally a single use of shapeshift into the werewolf form, as well as permanent Infravision and regeneration at a rate of one hit point per 3 rounds. Due to the shapeshifter's influence, the ally has full control over their form. The target must be a party member, and must not be another shapeshifter or have received Shared Gift from another shapeshifter.~
+The shapeshifter may, for a single use in their lifetime, impart the gift of lycanthropy to a trusted ally. This permanently grants the chosen ally a single use per day of shapeshift into the werewolf form, as well as permanent Infravision and regeneration at a rate of one hit point per 3 rounds. Due to the shapeshifter's influence, the ally has full control over their form. The target must be a party member, and must not be another shapeshifter or have received Shared Gift from another shapeshifter.~
 
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLA.spl~ ~override~
   LPF ALTER_EFFECT
@@ -148,7 +177,7 @@ COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLA.spl~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HL2.spl~ ~override~
 SAY NAME1 ~Wolf Pack~
 SAY UNIDENTIFIED_DESC ~Wolf Pack
-The shapeshifter passively grants all other allies in their werewolf form, whether they are a shapeshifter or bearer of the Shared Gift, within a 15-ft. radius a +2 bonus to hit and damage. This bonus is cumulative with other shapeshifters that have chosen the same ability.
+The shapeshifter passively grants all other allies in their werewolf form, whether they are a shapeshifter or bearer of the Shared Gift, within a 15-ft. radius a +2 bonus to hit and damage.
 
 Requires: Shared Gift~
 
@@ -157,11 +186,35 @@ SAY NAME1 ~Elemental Fury~
 SAY UNIDENTIFIED_DESC ~Elemental Fury
 With this ability, the shapeshifter may choose one element (fire, cold, electrical, acid) once per day. Once chosen, the shapeshifter becomes permanently immune to that element while shapeshifted into their werewolf form, and deal an additional 2d6 damage on each hit. Elemental Fury may be used again to change the chosen element to another option.~
 
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fury: Firefang~) STR_VAR bam_file = C0SS-FII RET C0SS-FII = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fury: Frostbite~) STR_VAR bam_file = C0SS-COI RET C0SS-COI = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fury: Acidhide~) STR_VAR bam_file = C0SS-ACI RET C0SS-ACI = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fury: Stormclaw~) STR_VAR bam_file = C0SS-ELI RET C0SS-ELI = icon END
+
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLE.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0SS-FII END
 SAY NAME1 ~Fury: Firefang~
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLF.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0SS-COI END
 SAY NAME1 ~Fury: Frostbite~
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLG.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0SS-ACI END
 SAY NAME1 ~Fury: Acidhide~
 COPY ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HLH.spl~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0SS-ELI END
 SAY NAME1 ~Fury: Stormclaw~
