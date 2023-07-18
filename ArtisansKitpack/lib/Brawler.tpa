@@ -7,6 +7,8 @@ END
 
 ADD_KIT ~C0_BRAWLER~
 
+COPY_EXISTING ~LUFI0.2DA~ ~OVERRIDE/LUC0BRWL.2DA~
+
  // appended to CLASWEAP.2da
  ~C0_BRAWLER		1           1           1           1           1           1           1           1~
 
@@ -52,7 +54,7 @@ ADD_KIT ~C0_BRAWLER~
  ~0x00004000     20~
 
  // HLA table to use; see LUABBR.2da
- ~FI0~
+ ~C0BRWL~
 
  // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
  ~* * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
