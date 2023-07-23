@@ -5,9 +5,9 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~K_MN_HO.2DA~ THEN BEGIN
 COPY ~%MOD_FOLDER%/MonkRevision/K_MN_HO~ OVERRIDE
 END
 
-ADD_KIT ~C0_BRAWLER~
-
 COPY_EXISTING ~LUFI0.2DA~ ~OVERRIDE/LUC0BRWL.2DA~
+
+ADD_KIT ~C0_BRAWLER~
 
  // appended to CLASWEAP.2da
  ~C0_BRAWLER		1           1           1           1           1           1           1           1~

@@ -105,7 +105,7 @@ STRING_SET_EVALUATE kit_strref ~WIZARD SLAYER: This warrior has been specially t
 
 Advantages:
 – Each successful hit made by the Wizard Slayer bestows a cumulative chance of spell failure on the target equal to their 10% + 1% per level for 15 rounds.
-– The Wizard Slayer's critical hits cast Breach on the target, even if they are immune to the attack.
+– The Wizard Slayer's critical hits cast Breach on the target.
 – Gains Magic Resistance equal to 10% + 1% per level.
 – 4th level: May use the Spellslayer Strike ability twice per day, gaining an additional use every two levels thereafter.
 
