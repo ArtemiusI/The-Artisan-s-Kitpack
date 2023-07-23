@@ -102,6 +102,7 @@ SAY UNIDENTIFIED_DESC ~Expertise
 The Fighter focuses on defense at the expense of accuracy, sacrificing 3 points of THAC0 to increase their Armor Class by 3. The Fighter must have 15 or greater Intelligence to activate this ability.~
 
 COPY_EXISTING ~SPDWD02.SPL~ OVERRIDE
+SAY NAME1 ~Defensive Stance~
 SAY UNIDENTIFIED_DESC ~Defensive Stance
 DEFENSIVE STANCE: The user assumes a defensive position, prepared to endure all attacks in their direction, gaining various bonuses based on their level for 1 turn. From 1st level, the user gains +2 to Armor Class and Saving Throws, 20% resistance to all damage, their effective personal space is doubled, preventing creatures from passing them in a larger radius, but their movement rate are halved and they are unable to make critical hits during the stance. Additional bonuses with level are as follows:
   5th level: Armor Class and Saving Throw bonus increased to +3.
