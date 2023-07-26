@@ -61,14 +61,15 @@ ADD_KIT ~C0ELEM~
 Advantages:
 – +20% resistance to acid, cold, electrical and fire damage.
 – +20% to acid, cold, electrical and fire damage dealt.
-– Two arcane spells per spell level are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
-  1st level: Burning Hands, Shocking Grasp
-  2nd level: Agannazar's Scorcher, Melf's Acid Arrow
-  3rd level: Fireball, Lightning Bolt
-  4th level: Fire Shield (Red), Ice Storm
-  5th level: Cone of Cold, Sunfire
-  6th level: Chain Lightning, Death Fog
-  7th level: Protection from the Elements, Acid Storm
+– May cast the arcane version of Protection from Fire, Cold, Electricity, Acid, and the Elements with casting time reduced to 1.
+– Three arcane spells per spell level are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
+  1st level: Burning Hands, Chill Touch, Shocking Grasp
+  2nd level: Agannazar's Scorcher, Melf's Acid Arrow, Snilloc's Snowball Swarm
+  3rd level: Fireball, Icelance, Lightning Bolt
+  4th level: Fire Shield (Red), Ice Storm, Vitriolic Sphere
+  5th level: Cone of Cold, Protection from Acid, Sunfire
+  6th level: Chain Lightning, Death Fog, Otiluke's Freezing Sphere
+  7th level: Acid Storm, Delayed Blast Fireball, Protection from the Elements
 
 Disadvantages:
 – May not wear any armor.
@@ -85,6 +86,8 @@ COPY_EXISTING ~SPWI103.spl~ ~override/C0EL103.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI115.spl~ ~override/C0EL115.spl~
 WRITE_SHORT 0x1C 2 
+COPY_EXISTING ~SPWI117.spl~ ~override/C0EL117.spl~
+WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI211.spl~ ~override/C0EL211.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI217.spl~ ~override/C0EL217.spl~
@@ -93,11 +96,35 @@ COPY_EXISTING ~SPWI304.spl~ ~override/C0EL304.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI308.spl~ ~override/C0EL308.spl~
 WRITE_SHORT 0x1C 2 
+COPY_EXISTING ~SPWI319.spl~ ~override/C0EL319.spl~
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+WRITE_SHORT 0x1C 2 
+COPY_EXISTING ~SPWI320.spl~ ~override/C0EL320.spl~
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI404.spl~ ~override/C0EL404.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI418.spl~ ~override/C0EL418.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI503.spl~ ~override/C0EL503.spl~
+WRITE_SHORT 0x1C 2 
+COPY_EXISTING ~SPWI512.spl~ ~override/C0EL512.spl~
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+WRITE_SHORT 0x1C 2 
+WRITE_SHORT 0x34 4 
+SAY UNIDENTIFIED_DESC ~Protection From Electricity
+(Abjuration)
+
+Level: 4
+Range: Touch
+Duration: 1 turn/level
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: None
+
+When the spell is cast, it confers complete invulnerability to all electrical attacks, whether magical or non-magical, such as Lightning Bolt or certain breath weapons. This effect lasts for the duration of the spell or until dispelled.~
+COPY_EXISTING ~SPWI517.spl~ ~override/C0EL517.spl~
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI523.spl~ ~override/C0EL523.spl~
 WRITE_SHORT 0x1C 2 
@@ -106,12 +133,128 @@ WRITE_SHORT 0x1C 2
 COPY_EXISTING ~SPWI615.spl~ ~override/C0EL615.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI702.spl~ ~override/C0EL702.spl~
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+WRITE_SHORT 0x1C 2 
+COPY_EXISTING ~SPWI712.spl~ ~override/C0EL712.spl~
 WRITE_SHORT 0x1C 2 
 
-COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astorma.bam~ ~override~
-COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/astormx.bam~ ~override~
-ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/IDPRO211.PRO~
-COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724.spl~ ~override/C0EL724.SPL~
+// SNILLOC'S SNOWBALL SWARM
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI204.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/snilloc~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/snilloc/IDPRO217.PRO~
+COPY_EXISTING ~C0EL204.SPL~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO217 END
+WRITE_SHORT 0x1C 2 
+SAY NAME1 ~Snilloc's Snowball Swarm~
+SAY UNIDENTIFIED_DESC ~Snilloc's Snowball Swarm
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 2
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2
+
+This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI204.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI204.spl~ ~override/C0EL204.spl~
+WRITE_SHORT 0x1C 2 
+END
+
+// ICELANCE
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI327.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/icelance~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/icelance/IDPRO251.PRO~
+COPY_EXISTING ~C0EL327.SPL~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO251 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Stunned~) END
+WRITE_SHORT 0x1C 2 
+SAY NAME1 ~Icelance~
+SAY UNIDENTIFIED_DESC ~Icelance
+(Evocation)
+
+Level: 3
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI327.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI327.spl~ ~override/C0EL327.spl~
+WRITE_SHORT 0x1C 2 
+END
+
+// VITRIOLIC SPHERE
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI432.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/vitriolic~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/vitriolic/IDPRO316.PRO~
+COPY_EXISTING ~C0EL432.SPL~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO316 END
+WRITE_SHORT 0x1C 2 
+SAY NAME1 ~Vitriolic Sphere~
+SAY UNIDENTIFIED_DESC ~Vitriolic Sphere
+(Conjuration)
+
+Level: 4
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 4
+Area of Effect: 5-ft. radius
+Saving Throw: Special
+
+This spell conjures a sphere of glowing emerald acid that the caster can direct to strike any target within range. When it reaches its target, the sphere explodes and drenches the victim in potent acid. The victim suffers 1d4 points of acid damage per caster level, to a maximum of 12d4 points of damage. After the initial damage, the victim must save vs. Spell to avoid more damage. If unsuccessful, the victim continues to suffer acid damage in the following rounds, sustaining two less dice of damage each round. For example, an 8th-level wizard inflicts 8d4 damage with this spell on the first round, 6d4 on the second round, 4d4 on the third round, 2d4 on the fourth round, and the spell ends on the fifth round. Each round after the first, the victim is entitled to a Save vs. Spell to avoid further damage.
+
+The vitriolic sphere also splashes acid in a 5-ft. radius around the primary target. Any creatures within the splash radius must save vs. Petrification/Polymorph or suffer a splash hit that inflicts 1d4 points of damage per every five levels of the caster. Splash hits do not cause continuing damage.~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI432.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI432.spl~ ~override/C0EL432.spl~
+WRITE_SHORT 0x1C 2 
+END
+
+// OTILUKE'S FREEZING SPHERE
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI628.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/otiluke~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/otiluke/IDPRO269.PRO~
+COPY_EXISTING ~C0EL628.SPL~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO269 END
+WRITE_SHORT 0x1C 2 
+SAY NAME1 ~Otiluke's Freezing Sphere~
+SAY UNIDENTIFIED_DESC ~Otiluke's Freezing Sphere
+(Alteration, Evocation)
+
+Level: 6
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 6
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This spell fires an orb of cold at a creature that inflicts 1d4+2 points of cold damage per level of the caster. If the target makes its Save vs. Spell, however, they have dodged the orb and avoided all damage.~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI628.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI628.spl~ ~override/C0EL628.spl~
+WRITE_SHORT 0x1C 2 
+END
+
+// ACID STORM
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/acidstorm~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Elementalist/iwdspells/acidstorm/IDPRO211.PRO~
+COPY_EXISTING ~C0EL724.SPL~ ~override~
 LPF ALTER_SPELL_HEADER INT_VAR projectile = IDPRO211 END
 WRITE_SHORT 0x1C 2 
 SAY NAME1 ~Acid Storm~
@@ -126,5 +269,9 @@ Area of Effect: 12-ft. radius
 Saving Throw: 1/2
 
 This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
-COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724b.bam~ ~override~
-COPY ~%MOD_FOLDER%/Druid/Elementalist/acidstorm/spwi724c.bam~ ~override~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI724.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI724.spl~ ~override/C0EL724.spl~
+WRITE_SHORT 0x1C 2 
+END

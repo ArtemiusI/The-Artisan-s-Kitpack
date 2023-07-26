@@ -86,7 +86,7 @@ COPY_EXISTING ~C0PAL01.SPL~ OVERRIDE
 COPY_EXISTING ~C0PAL02.SPL~ OVERRIDE
 SAY NAME1 ~Smite Evil~
 SAY UNIDENTIFIED_DESC ~Smite Evil
-The paladin's next successful attack to deal 1d6 + 1d6 additional damage for every 3 levels of the paladin to an evil-aligned creature.~
+The paladin's next successful attack deals 1d6 + 1d6 additional damage for every 3 levels of the paladin to an evil-aligned creature.~
 	
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~#PALDISE.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Paladin/Spells/iwdee/#PALDISE.SPL~ OVERRIDE

@@ -53,9 +53,9 @@ KI CRITICAL: +2 bonus to critical hit rate. Gains an additional +2 at 10th level
 
 KI FOCUS: All successful attacks within the next 12 seconds will never miss and deal 20% increased physical damage.
 
-– From 3rd level onwards, may use the Defensive Fighting ability at will.
+– From 3rd level onwards, may use the Defensive Fighting modal ability.
 
-DEFENSIVE FIGHTING: The Kensai sets their base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus.
+DEFENSIVE FIGHTING: The Kensai sets their base Armor Class to a value equal to 4 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus.
 
 – From 5th level onwards, may use the Ki Strike ability once per round.
 
@@ -63,7 +63,7 @@ KI STRIKE: The Kensai's next attack within one round of casting the ability has 
 
 – From 10th level onwards, gains the Perfect Defense innate.
 
-PERFECT DEFENSE: When Defensive Fighting is active, the Kensai becomes immune to backstabs. Additionally, the Kensai gains a cumulative +1 bonus to Armor Class for each enemy within a 15-ft. range.
+PERFECT DEFENSE: When Defensive Fighting is active, the Kensai becomes immune to backstabs, and blocks the first instance of damage they take each round. Additionally, the Kensai gains a cumulative +1 bonus to Armor Class for each enemy within a 15-ft. range.
 
 – From 15th level onwards, gains the Perfect Offense innate.
 
@@ -91,6 +91,11 @@ SAY UNIDENTIFIED_DESC ~KI FOCUS
 All successful attacks within the next 12 seconds will never miss and deal 20% increased physical damage.~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03.SPL~ ~OVERRIDE~
+SAY NAME1 ~Defensive Fighting~
+SAY UNIDENTIFIED_DESC ~DEFENSIVE FIGHTING
+The Kensai sets <PRO_HISHER> base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus. When deactivated, the Kensai must wait one turn before Defensive Fighting may be reactivated.~
+
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03x.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -109,9 +114,12 @@ END
 	STR_VAR
 	  match_resource = c0kn#04
 END
-SAY NAME1 ~Defensive Fighting~
-SAY UNIDENTIFIED_DESC ~DEFENSIVE FIGHTING
-The Kensai sets <PRO_HISHER> base Armor Class to a value equal to 6 - (level/2 rounded up). This ability lasts indefinitely until deactivated. However, while Defensive Fighting is active, the Kensai loses his Ki Critical modifier, becomes unable to critically strike, and is unable to use Ki Strike or Ki Focus. When deactivated, the Kensai must wait one turn before Defensive Fighting may be reactivated.~
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03z.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Defensive Fighting Deactivated~) END
+
+
+COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03e.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Incoming damage negated~) END
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#04.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT

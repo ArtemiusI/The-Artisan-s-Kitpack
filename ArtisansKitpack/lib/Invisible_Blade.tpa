@@ -83,11 +83,11 @@ Advantages:
   17th+: 8 damage per round, 10 rounds
   Targets without blood are immune to Bleeding Wound, though they take regular backstab damage.
   
-– May use Feint once per round. This ability does not take up an action.
+– May use the Feint modal ability.
 
-FEINT: The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is used, the Invisible Blade halves their attacks per round for that round to make their next melee attack force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Feint has no effect on non-intelligent creatures such as golems and slimes.
+FEINT: The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is active, the Invisible Blade halves their attacks per round for that round to make their melee attacks force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Only one Feint attempt may be made on each individual target per round. Feint has no effect on non-intelligent creatures such as golems and slimes.
   
-– 12th level: Feint Mastery: The Invisible Blade's attack when Feinting is always counted as a backstab, applying an additional Bleeding Wound stack.
+– 12th level: Feint Mastery: The Invisible Blade's first attack each round while Feinting is always counted as a backstab, applying an additional Bleeding Wound stack.
 
 Disadvantages:
 – Backstab modifier does not improve beyond x2.
@@ -148,14 +148,15 @@ LPF ALTER_EFFECT INT_VAR header = 4 match_opcode = 139 parameter1 = RESOLVE_STR_
 COPY_EXISTING ~C0IVB02.SPL~ OVERRIDE
 SAY NAME1 ~Feint~
 SAY UNIDENTIFIED_DESC ~Feint
-The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is used, the Invisible Blade halves their attacks per round for that round to make their next melee attack force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Feint has no effect on non-intelligent creatures such as golems and slimes.~
+The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is active, the Invisible Blade halves their attacks per round for that round to make their melee attacks force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Only one Feint attempt may be made on each individual target per round. Feint has no effect on non-intelligent creatures such as golems and slimes.~
 
 COPY_EXISTING ~C0IVB02a.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0ivb02i END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Feint Activated~) END
 COPY_EXISTING ~C0IVB02b.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Feint Succeeeded~) END
-COPY_EXISTING ~C0IVB02z.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Feint Ready~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Feint Succeeded~) END
+COPY_EXISTING ~C0IVB02y.SPL~ OVERRIDE
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Feint Deactivated~) END
 
 COPY_EXISTING ~C0IVP202.EFF~ ~OVERRIDE/C0IVP203.EFF~
 	WRITE_BYTE 0x1C 2

@@ -1,8 +1,8 @@
 2DA V1.0
 *
            ABILITY     ICON       STRREF     MIN_LEV    MAX_LEVEL  NUM_ALLOWED PREREQUISITE EXCLUDED_BY ALIGNMENT_RESTRICT 
-1          GA_SPCL900  *          *          1          99         16         GA_SPCL900  *          *          
-2          GA_SPCL901  *          *          1          99         1          *           *          *          
+1          GA_SPCL900  *          *          1          99         16         *           *          *          
+2          GA_SPCL901  *          *          1          99         1          GA_SPCL900  *          *          
 3          GA_SPCL905  *          *          1          99         1          *           *          *          
 4          GA_SPCL913  *          *          1          99         16         *           *          *          
 5          GA_SPCL914  *          *          1          99         16         GA_SPCL913  *          *          
