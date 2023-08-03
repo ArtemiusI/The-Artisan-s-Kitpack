@@ -86,7 +86,7 @@ STRING_SET_EVALUATE kit_strref ~STALKER: Stalkers serve as covert intelligence-g
 
 Advantages:
 – +25% bonus to Hide in Shadows and Move Silently.
-– Stealth Caster: The stalker's spells cast while hiding or invisible have their casting time reduced to 1, if higher. 
+– Fleet of Foot: The stalker moves at 30% increased movement rate while stealthed or invisible.
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
   Level 1-8: x2
   Level 9-16: x3
