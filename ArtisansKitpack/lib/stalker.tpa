@@ -39,12 +39,19 @@ COPY_EXISTING ~splprot.2da~ ~override~
 COPY_EXISTING ~c0stk00.eff~ ~override~
 	WRITE_SHORT 0x20 C0_OUTDOORS_CHECK
 
+  
 COPY_EXISTING ~C0STK01.SPL~ OVERRIDE
 SAY NAME1 ~Tracking~
 SAY UNIDENTIFIED_DESC ~Tracking
-With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war for 3 rounds. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war.
 
-The stalker may use this ability in any area.~
+This ability only works while outdoors.~
+  
+COPY_EXISTING ~C0STK01A.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = SPCL922I END
+
+COPY_EXISTING ~C0STK01C.SPL~ OVERRIDE
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Deactivated~) END
 
 COPY_EXISTING ~thiefscl.2da~ ~override~
   REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
@@ -86,7 +93,7 @@ STRING_SET_EVALUATE kit_strref ~STALKER: Stalkers serve as covert intelligence-g
 
 Advantages:
 – +25% bonus to Hide in Shadows and Move Silently.
-– Fleet of Foot: The stalker moves at 30% increased movement rate while stealthed or invisible.
+– Stealth Caster: The stalker's spells cast while hiding or invisible have their casting time reduced to 1, if higher. 
 – May use Backstab ability, although for a lower damage multiplier than Thieves:
   Level 1-8: x2
   Level 9-16: x3

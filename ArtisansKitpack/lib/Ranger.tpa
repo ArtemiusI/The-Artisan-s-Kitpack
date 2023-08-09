@@ -63,9 +63,9 @@ SET SNARE: Set a trap in the chosen location when no hostile creatures are in si
   16th level: Deals 3d8+5 missile damage and 4d8+2 fire damage.
   21st level: Deals 3d8+5 missile damage and 20 poison damage with no save; slays target if a Save vs. Death with a +4 bonus is failed.
   
-– May use the Tracking ability at will while outdoors.
+– May use the Tracking modal ability while outdoors.
 
-TRACKING: With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war for 3 rounds. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.
+TRACKING: With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war.
   
 – May cast druidic spells starting at level 8.
 – Alignment restricted to good.
@@ -94,6 +94,7 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
 END
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Woodland Stride~) STR_VAR bam_file = C0RNG00I RET C0RNG00I = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Tracking~) STR_VAR bam_file = SPCL922I RET SPCL922I = icon END
 
 APPEND ~splprot.2da~ ~C0_OUTDOORS_CHECK%TAB%0x106%TAB%1%TAB%8~ UNLESS ~C0_OUTDOORS_CHECK~
 COPY_EXISTING ~splprot.2da~ ~override~
@@ -155,8 +156,18 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
   BUT_ONLY
   
 COPY_EXISTING ~SPCL922.SPL~ OVERRIDE
+	LPF ALTER_EFFECT INT_VAR match_opcode = 318 parameter2 = C0_NOT_OUTDOORS_CHECK END
 SAY NAME1 ~Tracking~
 SAY UNIDENTIFIED_DESC ~Tracking
-With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war for 3 rounds. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war.
 
 This ability only works while outdoors.~
+  
+COPY_EXISTING ~SPCL922a.eff~ OVERRIDE
+  WRITE_SHORT 0x20 ~C0_OUTDOORS_CHECK~
+
+COPY_EXISTING ~SPCL922a.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = SPCL922I END
+
+COPY_EXISTING ~SPCL922c.SPL~ OVERRIDE
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Deactivated~) END
