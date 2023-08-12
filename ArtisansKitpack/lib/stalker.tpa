@@ -47,6 +47,23 @@ With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that l
 
 This ability only works while outdoors.~
   
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Tracking~) STR_VAR bam_file = SPCL922I RET SPCL922I = icon END
+
 COPY_EXISTING ~C0STK01A.SPL~ OVERRIDE
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = SPCL922I END
 
