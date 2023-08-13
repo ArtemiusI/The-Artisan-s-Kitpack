@@ -1,3 +1,73 @@
+//If your mod wants to look through a list of all the spells in the game, but won't add any new spells with this tool, call this function before looking through the MEPR/MEWI files.
+DEFINE_ACTION_FUNCTION INITIALIZE_SPELL_LISTS
+BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~MEWI1.txt~) BEGIN
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI1.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI2.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI3.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI4.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI5.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI6.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI7.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI8.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEWI9.txt~ ~override~
+
+	OUTER_FOR (i = 1; i <= 8; ++i) BEGIN
+		OUTER_FOR (j = 0; j <= 3; ++j) BEGIN
+			OUTER_FOR (k = 0; k <= 9; ++k) BEGIN
+				ACTION_IF (FILE_EXISTS_IN_GAME ~SPWI%i%%j%%k%.spl~) BEGIN
+					APPEND ~MEWI%i%.txt~ ~SPWI%i%%j%%k%~
+				END
+			END
+		END
+	END
+
+	OUTER_FOR (j = 0; j <= 2; ++j) BEGIN
+		OUTER_FOR (k = 0; k <= 9; ++k) BEGIN
+			ACTION_IF (FILE_EXISTS_IN_GAME ~SPWI9%j%%k%.spl~) AND (j <= 1 OR k <= 5) BEGIN
+				APPEND ~MEWI9.txt~ ~SPWI9%j%%k%~
+			END
+		END
+	END
+
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR1.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR2.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR3.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR4.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR5.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR6.txt~ ~override~
+	COPY ~%MOD_FOLDER%/no_overwrite/MEPR7.txt~ ~override~
+
+	OUTER_FOR (i = 1; i <= 7; ++i) BEGIN
+		OUTER_FOR (j = 0; j <= 5; ++j) BEGIN
+			OUTER_FOR (k = 0; k <= 9; ++k) BEGIN
+				ACTION_IF (FILE_EXISTS_IN_GAME ~SPPR%i%%j%%k%.spl~) BEGIN
+					APPEND ~MEPR%i%.txt~ ~SPPR%i%%j%%k%~
+				END
+			END
+		END
+	END
+
+	COPY_EXISTING ~MEPR7.txt~ ~override~
+		REPLACE_TEXTUALLY ~[%WNL%%LNL%%MNL%]+SPPR731~ ~~
+		REPLACE_TEXTUALLY ~[%WNL%%LNL%%MNL%]+SPPR732~ ~~
+
+	APPEND ~MEPR1.txt~ ~SPDR101
+SPRA304~
+	APPEND ~MEPR2.txt~ ~SPDR201
+SPRA305~
+	APPEND ~MEPR3.txt~ ~SPDR301
+SPRA301
+SPRA302
+SPRA303
+SPRA306~
+	APPEND ~MEPR4.txt~ ~SPDR401~
+	APPEND ~MEPR5.txt~ ~SPDR501~
+	APPEND ~MEPR6.txt~ ~SPDR601~
+END
+END
+
 //Here's an example of the ADD_CLASS_SPELL function in use:
 
 //LAF ADD_CLASS_SPELL STR_VAR resref=~SPWI299~ scroll=~SCRLZZ~ class_include=~{'MAGE_ALL', 'SORCERER'}~ kit_include=~{'JESTER'}~ kit_exclude=~{'DRAGON_DISCIPLE'}~ END
@@ -26,6 +96,8 @@ DEFINE_ACTION_FUNCTION ADD_CLASS_SPELL
 		excludeAllNormalWizardSpellsFromThisKit=~~ //This kit can only learn wizard spells that have the kit under "kit_include", regardless of what "class_include" says.
 BEGIN
 
+LAF INITIALIZE_SPELL_LISTS END
+
 ACTION_IF !(FILE_EXISTS_IN_GAME ~MECS0.spl~) BEGIN
 	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.spl~ ~override~
 	COPY ~%MOD_FOLDER%/no_overwrite/MECS0.eff~ ~override~
@@ -52,7 +124,27 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~M_MEEXSP.lua~) BEGIN
 		INSERT_2DA_ROW numrows numcolumns ~SPPR749    0          0          1~
 		UNLESS ~SPPR749    0          0          1~
 
-ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
+	COPY_EXISTING ~kitlist.2da~ ~override~
+		COUNT_2DA_ROWS 10 numrows
+		FOR (i = 1; i < numrows; ++i) BEGIN
+			READ_2DA_ENTRY i 8 10 class_of_kit
+			PATCH_IF class_of_kit=3 OR class_of_kit=6 OR class_of_kit=11 OR class_of_kit=12 BEGIN
+				READ_2DA_ENTRY i 5 10 abilities_of_kit
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~%abilities_of_kit%.2da~ ~override~
+						COUNT_2DA_ROWS 1 numrows
+						INSERT_2DA_ROW numrows 1 ~MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   ~
+						UNLESS ~MENO49~
+				END
+			END
+		END
+
+	COPY_EXISTING ~clabdr01.2da~ ~override~ ~clabpa01.2da~ ~override~ ~clabpr01.2da~ ~override~ ~clabrn01.2da~ ~override~
+		COUNT_2DA_ROWS 1 numrows
+		INSERT_2DA_ROW numrows 1 ~MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   AP_MENO49   ~
+		UNLESS ~MENO49~
+
+//ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
 
 OUTER_TEXT_SPRINT get_class_from_inventory ~~~~~local me_realClass = -1
 	local me_realKit = -1
@@ -75,7 +167,7 @@ OUTER_TEXT_SPRINT get_class_from_record ~~~~~local me_realClass = -1
 	if me_alignmentTextID[Infinity_FetchString(characters[currentID].alignment)] ~= nil then
 		me_realAlignment = me_alignmentTextID[Infinity_FetchString(characters[currentID].alignment)]
 	end~~~~~
-
+/*
 END ELSE BEGIN
 
 OUTER_TEXT_SPRINT get_class_from_inventory ~local me_realClass = EEex_GetActorClass(id)
@@ -87,12 +179,21 @@ OUTER_TEXT_SPRINT get_class_from_record ~local me_realClass = EEex_GetActorClass
 	local me_realAlignment = EEex_GetActorAlignment(currentID)~
 
 END
-
+*/
 COPY_EXISTING ~ui.menu~ ~override~
 	REPLACE_TEXTUALLY CASE_INSENSITIVE ~--reload language~ ~~~~~--reload language
 function me_canLearnSpell()
-	if id <= 0 then return end
-	%get_class_from_inventory%
+	if id <= 0 or itemDescRightButtonText() ~= Infinity_FetchString(17104) then return itemDescRightButtonEnabled() end
+	local me_realClass = -1
+	local me_realKit = -1
+	local me_realAlignment = 0
+	if me_classTextID[characters[id].class] ~= nil then
+		me_realClass = me_classTextID[characters[id].class][1]
+		me_realKit = me_classTextID[characters[id].class][2]
+	end
+	if me_alignmentTextID[Infinity_FetchString(characters[id].alignment)] ~= nil then
+		me_realAlignment = me_alignmentTextID[Infinity_FetchString(characters[id].alignment)]
+	end
 	local foundSpell = false
 	local canLearnSpell = false
 	if me_excludeAllNormalWizardSpellsFromTheseKits[me_realKit] then
@@ -148,7 +249,7 @@ COPY_EXISTING ~splautop.2da~ ~override~ ~splautos.2da~ ~override~
 	END
 	IF_EXISTS
 
-ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
+//ACTION_IF !(MOD_IS_INSTALLED ~EEex.tp2~ ~0~) BEGIN
 
 ACTION_GET_STRREF 1102 stringlawfulgood
 ACTION_GET_STRREF 1103 stringlawfulevil
@@ -172,7 +273,7 @@ me_alignmentTextID = {["%stringlawfulgood%"] = 0x11, ["%stringlawfulneutral%"] =
 ~
 	END
 
-END
+//END
 
 COPY_EXISTING ~ui.menu~ ~override~
 	REPLACE_TEXTUALLY CASE_INSENSITIVE ~enabled[ %TAB%]*\"\([^\"]*\)itemDescRightButtonEnabled()\([\"]*\)\"~ ~enabled "\1me_canLearnSpell()\2"~
@@ -198,6 +299,7 @@ COPY_EXISTING ~ui.menu~ ~override~
 		local me_isAlreadyAvailable = false
 		local me_isKnown = false
 		local kit_include_resrefs = {}
+		local specialResref = 'SPPR' .. chargen.currentSpellLevelChoice .. '49'
 		for k, v in ipairs(me_addSpellChoice) do
 			doAddSpell = false
 			me_isAlreadyAvailable = false
@@ -279,7 +381,11 @@ COPY_EXISTING ~ui.menu~ ~override~
 				i = i + 1
 			end
 		end
-
+		for k, v in ipairs(chargen.choose_spell) do
+			if v.key == specialResref then
+				table.remove(chargen.choose_spell, k)
+			end
+		end
 table.sort(chargen.choose_spell, sortBySpellName)~~~~~
 
 	REPLACE_TEXTUALLY CASE_INSENSITIVE ~table.sort(chargen.choose_spell, sortByPriestSpellName)~ ~~~~~
@@ -425,6 +531,12 @@ COPY_EXISTING ~%resref%.spl~ ~override~
 
 	IF_EXISTS
 	BUT_ONLY_IF_IT_CHANGES
+
+ACTION_IF type = 1 AND level >= 1 AND level <= 9 AND NOT FILE_CONTAINS_EVALUATED (~MEWI%level%.txt~ ~%resref%~) BEGIN
+	APPEND ~MEWI%level%.txt~ ~%resref%~
+END ELSE ACTION_IF type = 2 AND level >= 1 AND level <= 7 AND NOT FILE_CONTAINS_EVALUATED (~MEPR%level%.txt~ ~%resref%~) BEGIN
+	APPEND ~MEPR%level%.txt~ ~%resref%~
+END
 
 ACTION_IF NOT ~%excludeAllNormalWizardSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ OR NOT ~%excludeAllNormalPriestSpellsFromThisKit%~ STRING_EQUAL_CASE ~~ BEGIN
 

@@ -2,66 +2,36 @@ COPY ~%MOD_FOLDER%/Ranger/DarkHunter/2da~ ~override~
 COPY ~%MOD_FOLDER%/Ranger/DarkHunter/bams~ ~override~
 COPY ~%MOD_FOLDER%/Ranger/DarkHunter/spells~ ~override~
 
-// Minsc
-
-ADD_KIT ~C0DHUNT~
-
- // appended to CLASWEAP.2da
- ~C0DHUNT		1           1           1           1           1           1           1           1~
-
- // appended column-wise to WEAPPROF.2da
-//11                                T   S           F   Q             S S
-//10                                W   C           L   U             W I
-//9                         B L S   O   I   W       A   A             O N
-//8                         A O H   H   M   A       I   R C   S       R G
-//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
- ~C0DHUNT		2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-    
- // appended to ABCLASRQ.2da
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~C0DHUNT           13  13  14  0   14   0~
-
- // appended to ABCLSMOD.2da
- ~C0DHUNT				0	0	0	0	0	0~
-
- // appended to ABDCDSRQ.2da
- ~C0DHUNT                		0       0       0       0       0       0~
-
- // appended to ABDCSCRQ.2da
- ~C0DHUNT                 	0       0       0       0       0	0~
-
- // appended to ALIGNMNT.2da
- ~C0DHUNT                  	1       1       1       1       1	1       1       1       1~
-
- // appended to DUALCLAS.2da
- ~C0DHUNT                  	0       0       0       0       0       0~
-
- // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Ranger/DarkHunter/2da/C0DHUNT.2da~
-
- // PC races and classes allowed to use this kit, from KITTABLE.2da
- ~K_R_H K_R_E K_R_HE K_R_G K_R_HL K_R_D K_R_HO~
-
- // usability flags, added to the end of the KITLIST.2da entry
- ~0x00010000     12~
-
- // HLA table to use; see LUABBR.2da
- ~RA0~
-
- // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
- ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-
- // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~dark hunter~
-  SAY ~Dark Hunter~
-  SAY ~DARK HUNTER: Dark Hunters use their skills in stealth and survival for the purposes of infiltration, espionage, and manhunting, though they are no less capable in direct combat when necessary. While regarded as rangers in name only by typical woodsmen, Dark Hunters tend to be more welcome in guilds and groups of power as assassins and intelligence gatherers.
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 12
+	
+    mixed         = RESOLVE_STR_REF(~Dark Hunter~)
+	
+    lower         = RESOLVE_STR_REF(~dark hunter~)
+	
+    help          = RESOLVE_STR_REF(~DARK HUNTER: Dark Hunters use their skills in stealth and survival for the purposes of infiltration, espionage, and manhunting, though they are no less capable in direct combat when necessary. While regarded as rangers in name only by typical woodsmen, Dark Hunters tend to be more welcome in guilds and groups of power as assassins and intelligence gatherers.
 
 Dark Hunters, unlike typical rangers, may be of any alignment and, as their skills are not bestowed by a deity like typical rangers, will never fall.
 
@@ -70,7 +40,11 @@ Advantages:
   Level 1-8: x2
   Level 9-16: x3
   Level 17+: x4
-– +3 to hit and damage against humanoids.
+– +2 to hit and damage against humanoids.
+– May memorize a small selection of Mage spells:
+  Level 1: Charm Person, Infravision, Monster Summoning I, Reflected Image
+  Level 2: Blur, Invisibility, Knock, Monster Summoning II
+  Level 3: Detect Illusion, Ghost Armor, Hold Person, Monster Summoning III
 – May use the Poison Weapon ability once per day. Gains an additional use every 5 levels.
 
 POISON WEAPON: The dark hunter is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
@@ -85,19 +59,174 @@ POISON WEAPON: The dark hunter is capable of coating <PRO_HISHER> weapon for the
 SET MANHUNTER SNARE: The Manhunter is a powerful trap intended for crippling and tracking marks. This trap deals 10d10+20 missile damage and paralyzes the target on a failed Save vs. Death (-1 modifier penalty per 8 levels), or else greatly reduces the victim's movement rate, as well as causing them to bleed uncontrollably, dealing an additional 24 damage over 4 rounds. Additionally, the target is revealed for the bleed duration, remaining visible outside of allies' vision range and are unable to enter stealth or become invisible. The Manhunter's secondary effects do not apply against undead, elementals and non-corporeal beings.
 
 Disadvantages:
-– May not cast priest spells.
+– May not cast any druidic spells.
 – May not Dual-Class.
 – May not wear armor heavier than studded leather.
-– May not use the Charm Animal ability.~
-
-LAF fl#add_kit_ee
+– May not use the Charm Animal ability.~)
+	
+    briefdesc     = RESOLVE_STR_REF(~DARK HUNTER: Dark Hunters use their skills in stealth and survival for the purposes of infiltration, espionage, and manhunting, though they are no less capable in direct combat when necessary. While regarded as rangers in name only by typical woodsmen, Dark Hunters tend to be more welcome in guilds and groups of power as assassins and intelligence gatherers.~)
+	
+	fallen = 0
+	
   STR_VAR
-    kit_name = C0DHUNT
-	hpclass = ~HPWAR~
-	clasiskl = ~0 0 0 25 25 0 50~
+    kit_name      = ~C0DHUNT~
+	
+    unusable      = ~0x00010000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    // weapprof      = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1~
+	
+    // abclasrq      = ~0 15 0 14 0 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~1 1 1 1 1 1 1 1 1~
+	
+    dualclas      = ~0 0 0 0 0 0~
+	
+    // luabbr        = ~FI0~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0DHUNT.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    // hpclass       = ~HPPRS~
+	
+    // numwslot      = ~4~
+	
 	clascolr = ~182 182 136 184 142~
+	
+	clasiskl = ~0 0 0 25 25 0 50~
+	
+	// clasthac = ~0~
+	
 	thiefscl = ~0 0 0 100 100 0 100 0~
+	
+	backstab = ~1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	sneakatt = ~1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
+	
+	crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
 END
+
+//CHARM PERSON
+COPY_EXISTING ~SPWI104.SPL~ ~OVERRIDE/C0DH101.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+
+//INFRAVISION
+COPY_EXISTING ~SPWI111.SPL~ ~OVERRIDE/C0DH102.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+
+//REFLECTED IMAGE
+COPY_EXISTING ~SPWI120.SPL~ ~OVERRIDE/C0DH103.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+
+//MONSTER SUMMONING I
+COPY_EXISTING ~SPWI309.SPL~ ~OVERRIDE/C0DH104.SPL~
+WRITE_SHORT 0X34 1
+WRITE_SHORT 0X1C 2
+
+//BLUR
+COPY_EXISTING ~SPWI201.SPL~ ~OVERRIDE/C0DH201.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+
+//INVISIBILITY
+COPY_EXISTING ~SPWI206.SPL~ ~OVERRIDE/C0DH202.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+
+//KNOCK
+COPY_EXISTING ~SPWI207.SPL~ ~OVERRIDE/C0DH203.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+
+//MONSTER SUMMONING II
+COPY_EXISTING ~SPWI407.SPL~ ~OVERRIDE/C0DH204.SPL~
+WRITE_SHORT 0X34 2
+WRITE_SHORT 0X1C 2
+
+//HOLD PERSON
+COPY_EXISTING ~SPWI306.SPL~ ~OVERRIDE/C0DH301.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+
+//GHOST ARMOR
+COPY_EXISTING ~SPWI317.SPL~ ~OVERRIDE/C0DH302.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+
+//DETECT ILLUSION
+COPY_EXISTING ~SPWI322.SPL~ ~OVERRIDE/C0DH303.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+
+//MONSTER SUMMONING III
+COPY_EXISTING ~SPWI504.SPL~ ~OVERRIDE/C0DH304.SPL~
+WRITE_SHORT 0X34 3
+WRITE_SHORT 0X1C 2
+
+LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalPriestSpellsFromThisKit=~C0DHUNT~ END
+
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH101~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH102~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH103~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH104~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH201~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH202~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH203~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH204~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH301~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH302~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH303~ kit_include=~{'C0DHUNT', }~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~C0DH304~ kit_include=~{'C0DHUNT', }~ END
 
 COPY_EXISTING ~c0as#p01.spl~ ~override~
   LPF ALTER_EFFECT
@@ -116,11 +245,6 @@ The user is capable of coating <PRO_HISHER> weapon for the next eight hours with
 11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
 16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
 21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4.~
-
-APPEND ~backstab.2da~ ~C0DHUNT 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
-APPEND ~sneakatt.2da~ ~C0DHUNT 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
-APPEND ~crippstr.2da~ ~C0DHUNT 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
-APPEND ~fallen.2da~ ~C0DHUNT 0~
 
 COPY_EXISTING ~C0DH#002.SPL~ ~OVERRIDE~
 SAY NAME1 ~Set Manhunter Snare~

@@ -61,55 +61,124 @@ Disadvantages:
 – May cast one fewer spell per level per day.~
 END
 
-ADD_KIT ~C0WSHAM~
-  // Appended to CLASWEAP.2da
-  ~C0WSHAM                1           0           1           1           0           0           0           1~
-
-  // Appended column-wise to WEAPPROF.2da
-  //11                              T   S           F   Q             S S
-  //10                              W   C           L   U             W I
-  //9                       B L S   O   I   W       A   A             O N
-  //8                       A O H   H   M   A       I   R C   S       R G
-  //7       L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-  //6       _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-  //5       S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-  //4       W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-  //3       O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-  //2       R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-  //1       D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-  ~C0WSHAM	0 2 2 2 2 0 2 2 0 0 0 2 0 0 0 2 0 2 2 0 0 0 2 0 0 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-  // Appended to ABCLASRQ.2da
-  ~C0WSHAM                0       0       12       0       12      0~
-
-  // Appended to ABCLSMOD.2da
-  ~C0WSHAM                0       0       0      0       0       0~
-
-  // Appended to ABDCDSRQ.2da
-  ~C0WSHAM                0 0 0 0 0 0~
-
-  // Appended to ABDCSCRQ.2da
-  ~C0WSHAM                0 0 0 0 0 0~
-
-  // Appended to ALIGNMNT.2da
-  ~C0WSHAM                0       0       0       1       1       1       1       1       1~
-
-  // Appended to DUALCLAS.2da
-  ~C0WSHAM                0       0       0       0       0       0~
-  ~%MOD_FOLDER%/Shaman/WarShaman/2da/C0WSHAM.2da~
-  // PC races and classes allowed to use this kit, from KITTABLE.2da
-  ~K_SH_H K_SH_E K_SH_HE K_SH_HL K_SH_G K_SH_D K_SH_HO~
-  ~0x00004000        21~
-  ~SH0~
-  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-  SAY ~Warhorn Shaman~
-  SAY ~Warhorn Shaman~
-  SAY ~%warhorn_rage_desc%~
-
-LAF fl#add_kit_ee
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 21
+	
+    mixed         = RESOLVE_STR_REF(~Warhorn Shaman~)
+	
+    lower         = RESOLVE_STR_REF(~warhorn shaman~)
+	
+    help          = RESOLVE_STR_REF(~%warhorn_rage_desc%~)
+	
+    briefdesc     = RESOLVE_STR_REF(~WARHORN SHAMAN: Northern shamans who are also skilled warriors, Warhorn Shamans are capable of calling upon spirits of warriors from planes such as Valhalla or Warrior's Rest. Many of these shamans worship Tempus, the Lord of Battles, and often are just as capable in battle as they are in shamanic magic.~)
+	
+	// fallen = 0
+	
   STR_VAR
-    hpclass = HPWAR
-    kit_name = C0WSHAM
+    kit_name      = ~C0WSHAM~
+	
+    unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~0 2 2 2 2 0 2 2 0 0 0 2 0 0 0 2 0 2 2 0 0 0 2 0 0 2 2 2 2 2 2 3~
+	
+    abclasrq      = ~0 0 12 0 12 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    // alignmnt      = ~0 1 1 0 1 1 0 1 1~
+	
+    // dualclas      = ~0 1 1 1 1 0~
+	
+    // luabbr        = ~FI0~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0WSHAM.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPWAR~
+	
+    // numwslot      = ~4~
+	
+    // clascolr = ~27 136 119 21 187~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
 	thiefscl = ~0 0 0 0 0 50 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN

@@ -28,15 +28,11 @@ STRING_SET_EVALUATE kit_strref ~BLACKGUARD: The Blackguard epitomizes evil and i
 Advantages
 – Immune to level drain and fear.
 – May turn undead as a Paladin of the same level.
-– May use Backstab ability, although for a lower damage multiplier than Thieves:
-Level 1-10: x2
-Level 11+: x3
-
 – May memorize a small selection of Mage spells:
-Level 1: Blindness, Larloch's Minor Drain
-Level 2: Horror, Invisibility
-Level 3: Vampiric Touch, Hold Undead
-Level 4: Improved Invisibility, Contagion
+  Level 1: Blindness, Larloch's Minor Drain
+  Level 2: Horror, Invisibility
+  Level 3: Vampiric Touch, Hold Undead
+  Level 4: Improved Invisibility, Contagion
 
 – May use the Life Drain ability once per day. An extra use is gained at levels 8 and 12.
 
@@ -60,22 +56,26 @@ AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting ne
   17th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
   24th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
 
+– 11th level: May use Backstab at x2 modifier.
 – 12th level: May use the Fiendish Reckoning ability once per day.
 
 FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
 
+– 16th level: Backstab modifier improves to x3.
+
 Disadvantages:
 – Incurs a -2 penalty to Reputation.
 – Alignment restricted to evil.
+– May not cast most spells of the Healing or Protection spheres.
 – May not cast Detect Evil.
 – May not use Smite Evil.
 – May not cast Protection From Evil as an innate ability.
 – May not use the Lay on Hands ability.~
 
 // backstab
-APPEND ~backstab.2da~ ~BLACKGUARD 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
-APPEND ~sneakatt.2da~ ~BLACKGUARD 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
-APPEND ~crippstr.2da~ ~BLACKGUARD 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+APPEND ~backstab.2da~ ~BLACKGUARD 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
+APPEND ~sneakatt.2da~ ~BLACKGUARD 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
+APPEND ~crippstr.2da~ ~BLACKGUARD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
 
 // REPUTATION
 ACTION_IF FILE_EXISTS_IN_GAME ~CLABPA06.2da~ THEN BEGIN

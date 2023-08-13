@@ -19,31 +19,43 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 BUT_ONLY_IF_IT_CHANGES
 */
 
-ADD_KIT ~c0mf~
-  ~c0mf                1           1           1           1           1           1           1           1~
-  ~c0mf 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-  ~c0mf                9       0       9       9       13      17~
-  ~c0mf                0       0       0       0       0       0~
-  ~c0mf                0       0       0       0       0       0~
-  ~c0mf                0       0       0       0       0       0~
-  ~c0mf                1       0       0       0       0       0       0       0       0~
-  ~c0mf                0       0       0       0       0       0~
-  ~%MOD_FOLDER%/Paladin/MysticFire/2da/c0mf.2da~
-  ~K_P_H K_P_E K_P_HE K_P_HL K_P_G K_P_D K_P_HO~
-  ~0x00004000     6~
-  ~mf~
-  ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-  SAY ~mystic fire~
-  SAY ~Mystic Fire~
-  SAY ~MYSTIC FIRE: Knights of the Mystic Fire are paladins dedicated to the church of Mystra, goddess of magic. They are proficient in martial combat as well as arcane magic. Aside from traditional virtues of paladinhood, Mystic Fire Knights devote part of their lives in the discovery and study of ancient magic.
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 6
+	
+    mixed         = RESOLVE_STR_REF(~Mystic Fire~)
+	
+    lower         = RESOLVE_STR_REF(~mystic fire~)
+	
+    help          = RESOLVE_STR_REF(~MYSTIC FIRE: Knights of the Mystic Fire are paladins dedicated to the church of Mystra, goddess of magic. They are proficient in martial combat as well as arcane magic. Aside from traditional virtues of paladinhood, Mystic Fire Knights devote part of their lives in the discovery and study of ancient magic.
 
 Advantages:
 – +2 bonus to Lore per level.
 – May cast two additional spells per level.
 – +1 to Saving Throws vs. Spells. Gains an additional +1 at level 5 and every 5 levels gained thereafter.
 – The Mystic Fire's spells are cast as though <PRO_HESHE> were a cleric of the same level.
-– May cast the following spells as priest spells:
-
+– May memorize a small selection of Mage spells:
  Level 1: Magic Missile, Shocking Grasp, Shield, Find Familiar
  Level 2: Mirror Image, Web, Melf's Acid Arrow, Invisibility
  Level 3: Fireball, Lightning Bolt, Haste, Minor Spell Deflection
@@ -64,15 +76,95 @@ Disadvantages:
 – May not use Smite Evil.
 – May not use Protection From Evil.
 – May not Turn Undead.
-– May not use Lay on Hands.~
-
-LAF fl#add_kit_ee
+– May not use Lay on Hands.~)
+	
+    briefdesc     = RESOLVE_STR_REF(~MYSTIC FIRE: Knights of the Mystic Fire are paladins dedicated to the church of Mystra, goddess of magic. They are proficient in martial combat as well as arcane magic. Aside from traditional virtues of paladinhood, Mystic Fire Knights devote part of their lives in the discovery and study of ancient magic.~)
+	
+	// fallen = 1
+	
   STR_VAR
-    kit_name = C0MF
-    clswpbon = ~1 0 3~
-	hpclass = ~HPPRS~
-	clascolr = ~64 127 18 96 27~
-    numwslot = 3
+    kit_name      = ~C0MF~
+	
+    unusable      = ~0x00000008~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    // weapprof      = ~2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 0 0 2 2 2 3~
+	
+    abclasrq      = ~9 0 9 13 13 17~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    // alignmnt      = ~0 1 1 0 1 1 0 1 1~
+	
+    // dualclas      = ~0 1 1 1 1 0~
+	
+    luabbr        = ~MF~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0MF.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~hpprs~
+	
+    // numwslot      = ~4~
+	
+    clascolr = ~64 127 18 96 27~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
 END
 
 COPY_EXISTING ~SPWI112.SPL~ ~OVERRIDE/C0MF101.SPL~

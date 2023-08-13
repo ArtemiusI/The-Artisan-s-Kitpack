@@ -1,68 +1,40 @@
 COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/2da~ ~override~
 COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells~ ~override~
 
-INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
-
 // Minsc
 
-ADD_KIT ~c0tbm~
-
- // appended to CLASWEAP.2da
- ~c0tbm		1           1           1           1           1           1           1           1~
-
- // appended column-wise to WEAPPROF.2da
-//11                                T   S           F   Q             S S
-//10                                W   C           L   U             W I
-//9                         B L S   O   I   W       A   A             O N
-//8                         A O H   H   M   A       I   R C   S       R G
-//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
- ~c0tbm		3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-    
- // appended to ABCLASRQ.2da
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~c0tbm           13  13  14  0   0   0~
-
- // appended to ABCLSMOD.2da
- ~c0tbm				0	0	0	0	0	0~
-
- // appended to ABDCDSRQ.2da
- ~c0tbm                		0       0       0       0       0       0~
-
- // appended to ABDCSCRQ.2da
- ~c0tbm                 	0       0       0       0       0	0~
-
- // appended to ALIGNMNT.2da
- ~c0tbm                  	0       0       0       1       0	0       1       0       0~
-
- // appended to DUALCLAS.2da
- ~c0tbm                  	0       0       0       0       0       0~
-
- // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/Ranger/BerserkerMinsc/2da/c0tbm.2da~
-
- // PC races and classes allowed to use this kit, from KITTABLE.2da
- ~~
-
- // usability flags, added to the end of the KITLIST.2da entry
- ~0x40000000     12~
-
- // HLA table to use; see LUABBR.2da
- ~RA0~
-
- // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
- ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-
- // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~rashemi berserker~
-  SAY ~Rashemi Berserker~
-  SAY ~RASHEMI BERSERKER: The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 12
+	
+	visible = 0
+	
+    mixed         = RESOLVE_STR_REF(~Rashemi Berserker~)
+	
+    lower         = RESOLVE_STR_REF(~rashemi berserker~)
+	
+    help          = RESOLVE_STR_REF(~RASHEMI BERSERKER: The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.
   
 Advantages:
 – Hit Die: d12
@@ -99,14 +71,97 @@ Disadvantages:
 – May not wear heavier armor than splint mail.
 – May cast one less priest spell per level.
 – May not Set Traps.
-– May not Specialize in ranged weapons.~
-
-LAF fl#add_kit_ee
+– May not Specialize in ranged weapons.~)
+	
+    briefdesc     = RESOLVE_STR_REF(~RASHEMI BERSERKER: The distant land of Rashemen has a strong tradition of berserker warriors. The berserkers of Rashemen are organized into lodges named after local creatures, such as the Ice Dragon Berserker Lodge. True to their names, Rashemi berserkers are famed for their mighty rage, but also for their prowess in battle, sense of honor, and fierce loyalty to their land and rulers, the wychlaran. Newly inducted berserkers undertake a coming-of-age tradition known as 'dajemma', a journey far from their homeland to see and understand the world. Often, they travel alongside a wychlaran to whom they are sworn to defend with their lives. The berserkers of Rashemen are the mortal enemies of the Red Wizards of Thay, who they have been at war with for centuries.~)
+	
+	// fallen = 0
+	
   STR_VAR
-    kit_name = c0tbm
-	hpclass = ~HPBARB~
+    kit_name      = ~C0TBM~
+	
+    unusable      = ~0x40000000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 2 2 2 3~
+	
+    abclasrq      = ~13 13 14 0 0 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    // alignmnt      = ~0 1 1 0 1 1 0 1 1~
+	
+    // dualclas      = ~0 1 1 1 1 0~
+	
+    // luabbr        = ~FI0~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0TBM.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPBARB~
+	
+    // numwslot      = ~4~
+	
+    // clascolr = ~27 136 119 21 187~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
 END
-  
+
 // Spells
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0FIG01.SPL~ BEGIN
@@ -192,7 +247,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc.cre~ THEN BEGIN
     COPY_EXISTING ~minsc.cre~ ~override~
 	WRITE_SHORT 0x24 12
 	WRITE_SHORT 0x26 12
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 END
 
@@ -200,7 +255,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc2.cre~ THEN BEGIN
     COPY_EXISTING ~minsc2.cre~ ~override~
 	WRITE_SHORT 0x24 24
 	WRITE_SHORT 0x26 24
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 END
 
@@ -208,7 +263,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc4.cre~ THEN BEGIN
     COPY_EXISTING ~minsc4.cre~ ~override~
 	WRITE_SHORT 0x24 48
 	WRITE_SHORT 0x26 48
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -219,7 +274,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc6.cre~ THEN BEGIN
     COPY_EXISTING ~minsc6.cre~ ~override~
 	WRITE_SHORT 0x24 72
 	WRITE_SHORT 0x26 72
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -230,7 +285,7 @@ ACTION_IF GAME_IS ~BGEE~ AND FILE_EXISTS_IN_GAME ~minsc7.cre~ THEN BEGIN
     COPY_EXISTING ~minsc7.cre~ ~override~
 	WRITE_SHORT 0x24 72
 	WRITE_SHORT 0x26 72
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -241,7 +296,7 @@ ACTION_IF GAME_IS ~BG2EE~ AND FILE_EXISTS_IN_GAME ~minsc7.cre~ THEN BEGIN
     COPY_EXISTING ~minsc7.cre~ ~override~
 	WRITE_SHORT 0x24 84
 	WRITE_SHORT 0x26 84
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
 		BUT_ONLY
@@ -251,7 +306,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc8.cre~ THEN BEGIN
     COPY_EXISTING ~minsc8.cre~ ~override~
 	WRITE_SHORT 0x24 96
 	WRITE_SHORT 0x26 96
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -262,7 +317,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc9.cre~ THEN BEGIN
     COPY_EXISTING ~minsc9.cre~ ~override~
 	WRITE_SHORT 0x24 108
 	WRITE_SHORT 0x26 108
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -273,7 +328,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc10.cre~ THEN BEGIN
     COPY_EXISTING ~minsc10.cre~ ~override~
 	WRITE_SHORT 0x24 111
 	WRITE_SHORT 0x26 111
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -284,7 +339,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc12.cre~ THEN BEGIN
     COPY_EXISTING ~minsc12.cre~ ~override~
 	WRITE_SHORT 0x24 117
 	WRITE_SHORT 0x26 117
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
@@ -295,7 +350,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~minsc14.cre~ THEN BEGIN
     COPY_EXISTING ~minsc14.cre~ ~override~
 	WRITE_SHORT 0x24 123
 	WRITE_SHORT 0x26 123
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 	REMOVE_KNOWN_SPELLS
 	ADD_CRE_ITEM ~chan05~ #0 #0 #0 ~IDENTIFIED~ ~ARMOR~
 		SET_BG2_PROFICIENCY 104 1
@@ -307,7 +362,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ttminsc.cre~ THEN BEGIN
     COPY_EXISTING ~ttminsc.cre~ ~override~
 	WRITE_SHORT 0x24 72
 	WRITE_SHORT 0x26 72
-	WRITE_SHORT 0x246 0x4000 + ~%c0tbm%~
+	WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TBM~))
 		SET_BG2_PROFICIENCY 104 1
 		SET_BG2_PROFICIENCY 93 3
 		BUT_ONLY
