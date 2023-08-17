@@ -85,7 +85,7 @@ Disadvantages:
   STR_VAR
     kit_name      = ~C0MF~
 	
-    unusable      = ~0x00000008~
+    unusable      = ~0x00000000~
     // clasweap      = ~1 1 1 1 1 1 1 1~
 	//                                       T   S           F   Q             S S
 	//                                       W   C           L   U             W I

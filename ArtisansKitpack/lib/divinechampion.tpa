@@ -25,9 +25,9 @@ LAF ADD_KIT_EX
 	// Shaman = 21
     kit_class     = 6
 	
-    mixed         = RESOLVE_STR_REF(~divine champion~)
+    mixed         = RESOLVE_STR_REF(~Divine Champion~)
 	
-    lower         = RESOLVE_STR_REF(~Divine Champion~)
+    lower         = RESOLVE_STR_REF(~divine champion~)
 	
     help          = RESOLVE_STR_REF(~DIVINE CHAMPION: The divine champion is the strong right arm of their deity. They serve as a guardian of holy sites, a protector of pilgrims and a leader of crusades. Though paladins fill these roles in many good-aligned churches, a divine champion can take up the banner of any deity, regardless of alignment or ethos. These holy warriors are loved by their patron's worshipers and hated by the church's enemies in equal measure.
   

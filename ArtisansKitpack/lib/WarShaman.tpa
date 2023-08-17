@@ -185,6 +185,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
 
 	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0WSHAM~ clabfile = ~C0WSHAM~ END
 
+PRINT ~Deities of Faerun installed: adding spheres to kit!~
 END
 
 ACTION_IF NOT GAME_IS ~IWDEE~ THEN BEGIN
@@ -398,10 +399,3 @@ Area of Effect: The caster
 Saving Throw: None 
 
 With this spell, the caster becomes empowered with a frenzy of such great strength that <PRO_HESHE> is unable to be killed for the duration. Additionally, <PRO_HESHE> deals 50% increased physical damage for the duration of the spell. However, after the effects of the spell have worn off, the caster becomes greatly fatigued, suffering a -6 penalty to Armor Class and halved movement rate for 3 rounds. During this time, the shaman cannot benefit from the effects of Undying Fervor again.~
-
-ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
-
-	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0WSHAM~ clabfile = ~C0WSHAM~ END
-
-PRINT ~Deities of Faerun installed: adding spheres to kit!~
-END
