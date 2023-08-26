@@ -78,6 +78,21 @@ COPY_EXISTING ~hpclass.2da~ OVERRIDE
 REPLACE_TEXTUALLY CASE_INSENSITIVE ~ARCHER              HPWAR~ ~FERALAN              HPARCH~
 REPLACE_TEXTUALLY CASE_INSENSITIVE ~FERALAN              HPWAR~ ~FERALAN              HPARCH~
   
+// ARCHER - HLA
+COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~FERALAN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~RA1~
+	  END
+	END
+	
+COPY_EXISTING ~LURA2.2da~ ~override~
+  REPLACE_TEXTUALLY ~SPCL907~ ~C0ARCH01~
+	
 // ARCHER - PROFICIENCIES
 ACTION_CLEAR_ARRAY weapprof_cols_archer
         
@@ -151,3 +166,8 @@ LPF ALTER_EFFECT INT_VAR header = 3 match_opcode = 139 parameter1 = RESOLVE_STR_
 LPF ALTER_EFFECT INT_VAR header = 4 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 6~) END
 COPY_EXISTING C0ARC04z.SPL OVERRIDE
 LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot Ready~) END
+
+COPY_EXISTING C0ARCH01.SPL OVERRIDE
+SAY NAME1 ~Greater Called Shot~
+SAY UNIDENTIFIED_DESC ~Greater Called Shot
+All successful ranged attacks within the next 10 seconds have all the cumulative effects of a normal Called Shot. Additionally, each attack also stuns the target for 2 seconds.~
