@@ -48,10 +48,9 @@ MARTYRDOM: The martyr takes on a defensive stance to protect their comrades. For
 – 3rd level: Gains Aura of Protection.
 
 AURA OF PROTECTION: The martyr exudes a protective aura which shields their companions, granting all nearby allied creatures with in a 15-ft. radius bonuses to Armor Class and resistance to crushing, piercing, slashing and missile damage.
-  3rd - +1 to Armor Class and +5% resistance.
-  10th - +2 to Armor Class and +10% resistance.
-  17th - +2 to Armor Class and +15% resistance.
-  24th - +3 to Armor Class and +20% resistance.
+  3rd - +1 to Armor Class.
+  11th - +2 to Armor Class and +5% resistance.
+  19th - +3 to Armor Class and +10% resistance.
 
 – 8th level: Gains the Final Breath passive effect.
 
@@ -68,6 +67,8 @@ ILMATER'S GRACE: The martyr may call upon a second wind in battle, instantly hea
 – Hit Die: d12
 
 Disadvantages:
+– Does not gain Charisma-based Divine Grace bonuses.
+– Does not gain Aura of Courage.
 – Incurs a -1 penalty to damage.
 – May not cast Protection from Evil.
 – May not use Smite Evil.

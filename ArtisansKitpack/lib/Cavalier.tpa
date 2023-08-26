@@ -38,16 +38,17 @@ CHALLENGE: The cavalier marks a targeted creature with a Challenge, reducing bot
 – 3rd level: Gains Aura of Chivalry.
 
 AURA OF CHIVALRY: The cavalier exudes an aura which inspires their allies to fight at the best of their ability. All allies within visual range of the cavalier become immune to fear and morale failure and gain bonuses in combat.
-  3rd - +1 to Hit and Damage.
-  10th - +2 to Hit and Damage.
-  17th - +2 to Hit and Damage, +1 Luck Modifier
-  24th - +3 to Hit and Damage, +2 Luck Modifier
+  3rd - +1 to THAC0.
+  11th - +1 to THAC0 and Damage.
+  19th - +2 to THAC0 and Damage, +1 to Luck
 
 – 9th level: Gains Heroic Inspiration.
 
 HEROIC INSPIRATION: When the cavalier's maximum hit points falls below 50%, all allies (except the cavalier) within visual range gain an additional +1 bonus to hit, damage and saving throws.
 
 Disadvantages:
+– Does not gain Charisma-based Divine Grace bonuses.
+– Does not gain Aura of Courage.
 – May not Turn Undead.
 – May not use ranged weapons and incurs a -4 penalty to hit if wielding a melee/ranged weapon in ranged mode.~
 

@@ -31,9 +31,8 @@ Advantages:
 AURA OF NEGATION: The Inquisitor has innate Magic Resistance and grants half the amount to all allies within a 20-ft. radius, while slowing the casting speed of all enemies within the same radius. The magnitude of effects are as follows:
 
   3rd - 10% magic resistance, -1 casting speed
-  10th - 14% magic resistance, -1 casting speed
-  17th - 18% magic resistance, -2 casting speed
-  24th - 22% magic resistance, -2 casting speed
+  11th - 16% magic resistance, -1 casting speed
+  19th - 32% magic resistance, -2 casting speed
 
 – Gains the Eyes of Truth passive ability.
 
@@ -48,6 +47,8 @@ SMITE MAGIC: The inquisitor's next successful attack inflicts a 100% chance of s
 – 15th level: Gains two additional uses of Smite Magic.
 
 Disadvantages:
+– Does not gain Charisma-based Divine Grace bonuses.
+– Does not gain Aura of Courage.
 – May not Turn Undead.
 – May not use the Lay On Hands ability. 
 – May not use the Smite Evil ability. 

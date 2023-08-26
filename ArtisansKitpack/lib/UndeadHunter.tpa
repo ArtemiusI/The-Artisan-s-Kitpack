@@ -35,9 +35,8 @@ SMITE UNDEAD: The undead hunter's next successful attack on an undead creature f
 
 AURA OF SANCTITY: The undead hunter exudes an aura which protects their allies from undead and necromantic magic. All allies within visual range of the undead hunter gain a +2 bonus to Armor Class and Saving Throws vs. undead, in addition to scaling bonuses to hit and damage vs. undead and bonuses to saving throws vs. necromancy.
   3rd - +3 to hit and damage vs. undead and save vs. necromancy.
-  10th - +3 to hit and damage vs. undead and save vs. necromancy. Allies become immune to hold.
-  17th - +3 to hit and damage vs. undead and save vs. necromancy. Allies become immune to hold and level drain.
-  24th - +3 to hit and damage vs. undead and save vs. necromancy. Allies become immune to hold, level drain and death magic.
+  11th - +3 to hit and damage vs. undead and save vs. necromancy. Allies become immune to hold.
+  19th - +3 to hit and damage vs. undead and save vs. necromancy. Allies become immune to hold and level drain.
 
 – 5rd level: Smite Undead's save modifier reduced to -1.
 – 9th level: Smite Undead's save modifier reduced to -2.
@@ -46,6 +45,8 @@ AURA OF SANCTITY: The undead hunter exudes an aura which protects their allies f
 – 17th level: Smite Undead's save modifier reduced to -4.
 
 Disadvantages:
+– Does not gain Charisma-based Divine Grace bonuses.
+– Does not gain Aura of Courage.
 – May not use Lay on Hands.
 – May not use Smite Evil.~
 

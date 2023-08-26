@@ -52,9 +52,8 @@ POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the 
 
 AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.	
   3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -5% penalty to all damage dealt.
-  10th - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
-  17th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -15% penalty to all damage dealt.
-  24th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  11th - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
+  19th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
 
 – 11th level: May use Backstab at x2 modifier.
 – 12th level: May use the Fiendish Reckoning ability once per day.
@@ -67,6 +66,7 @@ Disadvantages:
 – Incurs a -2 penalty to Reputation.
 – Alignment restricted to evil.
 – May not cast most spells of the Healing or Protection spheres.
+– Does not gain Aura of Courage.
 – May not cast Detect Evil.
 – May not use Smite Evil.
 – May not cast Protection From Evil as an innate ability.
@@ -221,4 +221,20 @@ WRITE_SHORT 0X1C 2
 		REMOVE_MEMORIZED_SPELL ~SPCL102~ ~SPCL423~ ~SPCL103~
 		BUT_ONLY
 END
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~C0PAL00.SPL~ THEN BEGIN
+
+COPY_EXISTING ~C0PAL00.SPL~ ~OVERRIDE/C0BG#04.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR resource = C0BG#04A END
+LPF DELETE_EFFECT INT_VAR match_opcode = 142 END
+
+COPY_EXISTING ~C0PAL01.EFF~ ~OVERRIDE/C0BG#04A.SPL~
+WRITE_ASCII 0x30 ~C0BG#04B~
+
+COPY_EXISTING ~C0PAL01.SPL~ ~OVERRIDE/C0BG#04B.SPL~
+LPF DELETE_EFFECT STR_VAR match_resource = C0PAL04A END
+LPF DELETE_EFFECT STR_VAR match_resource = C0PAL04B END
+LPF DELETE_EFFECT STR_VAR match_resource = C0PAL04C END
+
 END
