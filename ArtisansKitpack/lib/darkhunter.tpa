@@ -41,6 +41,7 @@ Advantages:
   Level 9-16: x3
   Level 17+: x4
 – +2 to hit and damage against humanoids.
+– May set up to 6 traps per area.
 – May memorize a small selection of Mage spells:
   Level 1: Charm Person, Infravision, Monster Summoning I, Reflected Image
   Level 2: Blur, Invisibility, Knock, Monster Summoning II
@@ -146,7 +147,7 @@ Disadvantages:
 	
 	// thiefskl = ~0 0~
 	
-	// traplimt = ~6~
+	traplimt = ~6~
 	
     // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
   RET

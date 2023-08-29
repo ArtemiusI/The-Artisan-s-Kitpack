@@ -79,19 +79,20 @@ REPLACE_TEXTUALLY CASE_INSENSITIVE ~ARCHER              HPWAR~ ~FERALAN         
 REPLACE_TEXTUALLY CASE_INSENSITIVE ~FERALAN              HPWAR~ ~FERALAN              HPARCH~
   
 // ARCHER - HLA
-COPY_EXISTING ~luabbr.2da~ ~override~
+  COPY_EXISTING ~luabbr.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
 	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~FERALAN~ BEGIN
 	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 1 cols ~RA1~
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~C0RA1~
 	  END
 	END
-	
-COPY_EXISTING ~LURA2.2da~ ~override~
-  REPLACE_TEXTUALLY ~SPCL907~ ~C0ARCH01~
+
+COPY_EXISTING ~LURA0.2da~ ~override/LUC0RA1.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
+LPF patch_add_hla STR_VAR ability = ~GA_C0ARCH01~ num_allowed = 20 END
 	
 // ARCHER - PROFICIENCIES
 ACTION_CLEAR_ARRAY weapprof_cols_archer

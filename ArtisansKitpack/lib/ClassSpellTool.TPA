@@ -115,14 +115,14 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~M_MEEXSP.lua~) BEGIN
 	COPY_EXISTING ~hidespl.2da~ ~override~
 		COUNT_2DA_COLS numcolumns
 		COUNT_2DA_ROWS numcolumns numrows
-		INSERT_2DA_ROW numrows numcolumns ~SPPR149    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR249    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR349    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR449    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR549    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR649    0          0          1~
-		INSERT_2DA_ROW numrows numcolumns ~SPPR749    0          0          1~
-		UNLESS ~SPPR749    0          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR149    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR249    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR349    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR449    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR549    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR649    1          0          1~
+		INSERT_2DA_ROW numrows numcolumns ~SPPR749    1          0          1~
+		UNLESS ~SPPR749    1          0          1~
 
 	COPY_EXISTING ~kitlist.2da~ ~override~
 		COUNT_2DA_ROWS 10 numrows

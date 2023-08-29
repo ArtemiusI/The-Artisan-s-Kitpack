@@ -152,5 +152,65 @@ Disadvantages:
     kit_id
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI01.2DA~ BEGIN
+COPY_EXISTING ~CLABFI01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 21 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 22 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 23 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 24 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 25 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 26 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 27 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 28 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 29 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 30 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 31 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 32 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 33 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 34 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 35 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 36 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 37 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 38 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 39 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 40 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 41 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 42 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 43 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 44 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 45 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 46 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 47 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 48 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 49 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 50 f_MaxLevel = 50 STR_VAR f_Entry = AP_C0AAZX END
+  PRETTY_PRINT_2DA
+BUT_ONLY
+END
+
+COPY_EXISTING ~C0AAZX.SPL~ ~OVERRIDE~
+ LPF ALTER_EFFECT INT_VAR match_opcode = 177 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0AA2~) END
+
 COPY_EXISTING ~C0AAIN0.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Arcane Archer~) END

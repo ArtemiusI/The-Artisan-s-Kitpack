@@ -147,7 +147,9 @@ SAY UNIDENTIFIED_DESC ~Use this ability to deactivate Defensive Fighting.~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#07.SPL~ ~OVERRIDE~
 SAY NAME1 ~Improved Ki Critical~
-SAY UNIDENTIFIED_DESC ~The Kensai gains a permanent +2 bonus to their critical hit modifier.
+SAY UNIDENTIFIED_DESC ~The Kensai gains a permanent +4 bonus to their melee critical hit modifier.
+
+This skill qualifies as learning the Critical Strike ability in terms of other prerequisites.
 
 Requires: Power Attack~
 
@@ -165,4 +167,4 @@ COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#10.SPL~ ~OVERRIDE~
 SAY NAME1 ~Devastating Critical~
 SAY UNIDENTIFIED_DESC ~The Kensai's critical hits kill the target instantly on a failed Saving Throw vs. Death. Creatures with 8 or lower HD die with no save.
 
-Requires: Devastating Critical~
+Requires: Second Wind~

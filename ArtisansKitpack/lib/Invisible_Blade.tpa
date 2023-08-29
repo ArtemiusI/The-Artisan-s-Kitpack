@@ -245,3 +245,15 @@ COPY_EXISTING ~C0IVP202.EFF~ ~OVERRIDE/C0IVP220.EFF~
 	WRITE_BYTE 0x1C  19
 COPY_EXISTING ~C0IVP202.EFF~ ~OVERRIDE/C0IVP221.EFF~
 	WRITE_BYTE 0x1C  20
+	
+COPY_EXISTING ~LUTH0.2da~ ~override~
+  REPLACE_TEXTUALLY ~GA_SPCL910     *          *         1         99         16           *            *             *~
+					~GA_SPCL900     *          *         1         99         16           *            *             *~
+  REPLACE_TEXTUALLY ~GA_SPCL911     *          *         1         99         16           *            *             *~
+					~GA_SPCL901     *          *         1         99         16           GA_SPCL900   *             *~
+  REPLACE_TEXTUALLY ~GA_SPCL912     *          *         1         99         16           *            *             *~
+					~GA_C0IVBH1     *          *         1         99         1            *            *             *~
+	
+COPY_EXISTING ~C0IVBH1.SPL~ OVERRIDE
+SAY NAME1 ~Dagger Mastery~
+SAY UNIDENTIFIED_DESC ~The invisible blade's precision with their weapon of choice grants them a +4 bonus modifier to critical hit chance when attacking in melee with a dagger.~

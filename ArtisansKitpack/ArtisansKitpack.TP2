@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~4.2~
+VERSION ~4.3~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
@@ -9,6 +9,7 @@ ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/RA_SPHERE_COMPAT.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
+  INCLUDE ~%MOD_FOLDER%/lib/hla_actions.tpa~
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 
@@ -912,7 +913,7 @@ INCLUDE ~%MOD_FOLDER%/lib/adventurer.tpa~
 BEGIN ~Artisan's Kitpack: Give Imoen the Rogue Archer Kit~ DESIGNATED 7101
 GROUP ~Thief Kits~
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Rogue Archer Kit must be installed.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
 FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7102~ ~Imoen is already installed as a Trickster.~
  ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
