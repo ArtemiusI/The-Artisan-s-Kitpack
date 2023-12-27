@@ -76,7 +76,6 @@ Disadvantages:
 – Alignment restricted to any non-chaotic.~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/clabfi04.2da~ ~override~
-COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/luc0kn.2da~ ~override~
 
 ACTION_IF NOT MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 COPY_EXISTING ~CLABFI04.2DA~ OVERRIDE
@@ -84,6 +83,16 @@ REPLACE_TEXTUALLY ~GA_C0FIG01~ ~****     ~
 REPLACE_TEXTUALLY ~GA_C0FIG02~ ~****     ~
 REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
 END
+
+COPY_EXISTING ~LUFI0.2da~ ~override/LUC0KN.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL904~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL905~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL908~ END
+LPF patch_add_hla STR_VAR ability = ~AP_C0KN#07~ num_allowed = 1 prerequisite = ~GA_SPCL906~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0KN#08~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0KN#09~ num_allowed = 1 prerequisite = ~AP_C0KN#08~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0KN#10~ num_allowed = 1 prerequisite = ~AP_C0KN#09~ END	
 
 COPY_EXISTING ~SPCL144.SPL~ ~OVERRIDE~
 SAY NAME1 ~Ki Focus~

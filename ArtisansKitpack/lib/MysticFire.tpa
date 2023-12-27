@@ -114,7 +114,7 @@ Disadvantages:
 	
     // dualclas      = ~0 1 1 1 1 0~
 	
-    luabbr        = ~MF~
+    luabbr        = ~C0MF~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -166,6 +166,20 @@ Disadvantages:
   RET
     kit_id
 END
+
+COPY_EXISTING ~LUPA0.2da~ ~override/LUC0MF.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL901~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL903~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL909~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL923~ END
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL2~ num_allowed = 1 prerequisite = ~AP_C0MFHL1~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL3~ num_allowed = 1 prerequisite = ~AP_C0MFHL2~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL4~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL5~ num_allowed = 1 prerequisite = ~AP_C0MFHL4~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL6~ num_allowed = 1 prerequisite = ~AP_C0MFHL5~ END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL7~ num_allowed = 1 prerequisite = ~AP_C0MFHL6~ END	
 
 COPY_EXISTING ~SPWI112.SPL~ ~OVERRIDE/C0MF101.SPL~
 WRITE_SHORT 0X1C 2

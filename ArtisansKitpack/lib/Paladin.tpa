@@ -14,8 +14,9 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 	
-ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
-  COPY_EXISTING ~clastext.2da~ ~override~
+ACTION_FOR_EACH CLASSTEXT IN BGCLATXT CLASTEXT SODCLTXT BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
+  COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
@@ -49,6 +50,7 @@ AURA OF COURAGE: The paladin permanently becomes immune to fear effects and pass
 	  END
 	END
   BUT_ONLY
+	END
 	END
 	
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon

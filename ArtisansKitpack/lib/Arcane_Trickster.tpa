@@ -33,14 +33,23 @@ LAF ADD_KIT_EX
     help          = RESOLVE_STR_REF(~ARCANE TRICKSTER: Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief. With an extensive knowledge of arcane arts to complement their skills in thievery, they are among the most adaptable of adventurers.
 
 Advantages:
+– May cast one additional spell per spell level.
 – +10% bonus to Pick Pockets and Detect Illusions.
 – Stealth Caster: The arcane trickster's spells cast while hiding or invisible have their casting time reduced to 1, if higher.
-– Impromptu Sneak Attack: The arcane trickster's backstabs reduce the target's Dexterity by 4 points and Saving Throws by 2 points for 1 hour. This effect is non-cumulative on the same target.
+  
 – May use Pilfer Magic once per day.
 
 PILFER MAGIC: The arcane trickster may steal the magical power of a targeted mage or bard, removing one memorized arcane spell of the highest level from the target and restoring one of the arcane trickster's own.
 
 – 5th level: Gains an extra use of Pilfer Magic.
+– 5th level: May make Impromptu Sneak Attacks.
+
+IMPROMPTU SNEAK ATTACK: The arcane trickster's backstabs reduce the target's Dexterity and Saving Throws vs. Spells for 1 hour, with effects becoming more powerful as the arcane trickster's Thief level increases. This effect is non-cumulative on the same target.
+
+  Level 1-8: Dexterity reduced by 4, Saving Throws reduced by 1
+  Level 9-12: Dexterity reduced by 6, Saving Throws reduced by 2
+  Level 13+: Dexterity reduced by 8, Saving Throws reduced by 3
+
 – 9th level: Gains an extra use of Pilfer Magic.
 – 10th level: Pilfer Magic removes one spell protection from the target of up to 5th level.
 – 13th level: Gains an extra use of Pilfer Magic.
@@ -51,9 +60,9 @@ PILFER MAGIC: The arcane trickster may steal the magical power of a targeted mag
 Disadvantages:
 – Must be of non-lawful alignment.
 – Backstab advances more slowly compared to an unkitted Thief:
-  Level 1-8: x2
+  Level 1-4: x1 (no multiplier)
+  Level 5-8: x2
   Level 9-12: x3
-  Level 13+: x4
 – May only distribute 20 skill points per level among thieving skills.~)
 	
     briefdesc     = RESOLVE_STR_REF(~ARCANE TRICKSTER: Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief. With an extensive knowledge of arcane arts to complement their skills in thievery, they are among the most adaptable of adventurers.~)
@@ -130,11 +139,13 @@ Disadvantages:
 	
 	// thiefscl = ~0 0 0 0 0 0 0 0~
 	
-	backstab = ~2 2 2 2 2 2 2 2 2 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	//								1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5
+	//			0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 
+	//backstab = ~2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
 	
-	sneakatt = ~1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	//sneakatt = ~1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
 	
-	crippstr = ~1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	//crippstr = ~1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
 	
 	thiefskl = ~40 20~
 	

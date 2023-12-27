@@ -35,7 +35,7 @@ LAF ADD_KIT_EX
 Advantages:
 – +20% resistance to acid, cold, electrical and fire damage.
 – +20% to acid, cold, electrical and fire damage dealt.
-– May cast the arcane version of Protection from Fire, Cold, Electricity, Acid, and the Elements with casting time reduced to 1.
+– May cast the arcane version of Protection from Fire, Cold, Electricity, Acid, and the Elements with increased casting range and casting time reduced to 1.
 – Three arcane spells per spell level are added to <PRO_HISHER> repertoire, all the way up to the 7th level. These are listed below:
   1st level: Burning Hands, Chill Touch, Shocking Grasp
   2nd level: Agannazar's Scorcher, Melf's Acid Arrow, Snilloc's Snowball Swarm
@@ -154,10 +154,10 @@ WRITE_SHORT 0x1C 2
 COPY_EXISTING ~SPWI308.spl~ ~override/C0EL308.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI319.spl~ ~override/C0EL319.spl~
-LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 range = 30 END
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI320.spl~ ~override/C0EL320.spl~
-LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 range = 30 END
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI404.spl~ ~override/C0EL404.spl~
 WRITE_SHORT 0x1C 2 
@@ -166,7 +166,7 @@ WRITE_SHORT 0x1C 2
 COPY_EXISTING ~SPWI503.spl~ ~override/C0EL503.spl~
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI512.spl~ ~override/C0EL512.spl~
-LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 range = 30 END
 WRITE_SHORT 0x1C 2 
 WRITE_SHORT 0x34 4 
 SAY UNIDENTIFIED_DESC ~Protection From Electricity
@@ -181,7 +181,7 @@ Saving Throw: None
 
 When the spell is cast, it confers complete invulnerability to all electrical attacks, whether magical or non-magical, such as Lightning Bolt or certain breath weapons. This effect lasts for the duration of the spell or until dispelled.~
 COPY_EXISTING ~SPWI517.spl~ ~override/C0EL517.spl~
-LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+LPF ALTER_SPELL_HEADER INT_VAR speed = 1 range = 30 END
 WRITE_SHORT 0x1C 2 
 COPY_EXISTING ~SPWI523.spl~ ~override/C0EL523.spl~
 WRITE_SHORT 0x1C 2 

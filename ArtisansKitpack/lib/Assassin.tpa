@@ -77,6 +77,14 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Lethal~) ST
 	  END
 	END
 	
+COPY_EXISTING ~LUTH0.2da~ ~override/LUC0HIVE.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL910~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL911~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL912~ END
+LPF patch_add_hla STR_VAR ability = ~GA_C0ASHLA1~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0ASHLA2~ num_allowed = 1 prerequisite = ~GA_C0ASHLA1~ END	
+LPF patch_add_hla STR_VAR ability = ~GA_C0ASHLA3~ num_allowed = 1 prerequisite = ~AP_C0ASHLA2~ END	
+
 COPY_EXISTING ~clasiskl.2da~ ~override~
 SET_2DA_ENTRY 6 36 1 ~10~
 SET_2DA_ENTRY 7 36 1 ~10~
@@ -225,7 +233,7 @@ COPY_EXISTING ~backstab.2da~ ~override~
 		SET_2DA_ENTRY (%patch_row%) 42 cols 7
 		SET_2DA_ENTRY (%patch_row%) 43 cols 7
 		SET_2DA_ENTRY (%patch_row%) 44 cols 7
-		SET_2DA_ENTRY (%patch_row%) 45 cols 7
+		SET_2DA_ENTRY (%patch_row%) 45 cols f
 		SET_2DA_ENTRY (%patch_row%) 46 cols 7
 		SET_2DA_ENTRY (%patch_row%) 47 cols 7
 		SET_2DA_ENTRY (%patch_row%) 48 cols 7

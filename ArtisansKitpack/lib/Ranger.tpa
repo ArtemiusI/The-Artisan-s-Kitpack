@@ -32,7 +32,7 @@ SETSNARE    GA_SPCL412  ****        ****        ****        ****        GA_SPCL4
 SETTRAPS    ****        AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ~
 END
 
-ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
+ACTION_FOR_EACH CLASSTEXT IN BGCLATXT CLASTEXT SODCLTXT BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
   COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns

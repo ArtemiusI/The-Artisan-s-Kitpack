@@ -118,6 +118,7 @@ FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damag
 Disadvantages:
 – Incurs a -3 penalty to Charisma.
 – Does not gain Elemental Resistance with levels.
+– May not cast Animal Summoning spells.
 – May not cast Elemental Summoning spells.
 – May not wear heavier armor than leather.
 – May not shapeshift into default animal forms.~)
@@ -158,7 +159,7 @@ Disadvantages:
 	
     // dualclas      = ~0 1 1 1 1 0~
 	
-    // luabbr        = ~FI0~
+    luabbr        = ~C0HIVE~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -299,6 +300,12 @@ From 15th level onwards, all spider forms gain +4 additional Strength and Dexter
 
 COPY_EXISTING ~C0PHIVE4.ITM~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = (IDS_OF_SYMBOL (~animate~ ~C0_ICE_SPIDER~)) END		
+
+COPY_EXISTING ~LUDR0.2da~ ~override/LUC0HIVE.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR723~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR724~ END
+LPF patch_add_hla STR_VAR ability = ~AP_C0HIVEH1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR ability = ~GA_C0HIVEH2~ num_allowed = 1 END	
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEH1.spl~ ~override~
 SAY NAME1 ~Insect Shroud~

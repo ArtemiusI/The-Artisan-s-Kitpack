@@ -27,14 +27,14 @@ LAF ADD_KIT_EX
 	// Shaman = 21
     kit_class     = 2
 	
-    mixed         = RESOLVE_STR_REF(~dreadnought~)
+    mixed         = RESOLVE_STR_REF(~Dreadnought~)
 	
-    lower         = RESOLVE_STR_REF(~Dreadnought~)
+    lower         = RESOLVE_STR_REF(~dreadnought~)
 	
     help          = RESOLVE_STR_REF(~DREADNOUGHT: The dreadnought is a truly fearsome warrior that eschews finesse in favor of power and stamina, specializing in placing the entirety of their weight into their attacks, capable of felling even the strongest of opponents in a single blow. Despite their ferocity, however, only a fool would mistake the dreadnought's fighting style as simple brute force—rather, learning how to use their strength to its full potential and inflict the most damage possible is a difficult technique that few others can master.
 
 Advantages:
-– +5 bonus to minimum damage rolls.
+– Gains a +1 bonus to Strength.
 – Gains the Power Strike, Massive Criticals and Unstoppable passive effects.
 
 POWER STRIKE: The dreadnought may only ever make one attack per round outside of using certain abilities. However, they gain twice their Strength modifier for melee damage.
@@ -55,7 +55,7 @@ UNSTOPPABLE: The dreadnought is immune to most movement-affecting effects, inclu
 
 – May use the Heavy Assault Stance ability modal ability.
 
-HEAVY ASSAULT STANCE: The dreadnought reduces their base attacks per round to half per round, but deals an increased +120% slashing, piercing and crushing damage.
+HEAVY ASSAULT STANCE: The dreadnought reduces their base attacks per round to half per round, but deals an increased +50% slashing, piercing and crushing damage and each attack applies Massive Criticals on the target.
 
 – 3rd level: May use the All-Out Offense ability once per day. Gains additional uses every 8th level.
 
@@ -65,13 +65,13 @@ ALL-OUT OFFENSE: The dreadnought puts their full force behind every attack for t
 
 EARTH-SHATTERING STRIKE: The dreadnought unleashes a heavy strike that inflicts damage upon the battlefield itself. For their next attack within three rounds, the dreadnought automatically rolls for a critical hit and applies Massive Critical's effect to secondary targets in a 10-ft. line in front of them and knocking all creatures aside from the attacked target slightly away. Additionally, the impact of the blow leaves a field in a 10-ft. radius for five rounds that halves the Dexterity and movement rate of all creatures except for the dreadnought standing within it.
 
-– 7th level: The dreadnought gains an additional +2 to melee damage.
+– 7th level: The dreadnought gains an additional +2 bonus to melee damage.
 – 9th level: Massive Criticals now inflicts its additional damage and stun to all enemies within a 5-ft. radius centered on the dreadnought.
 – 12th level: Earth-Shattering Strike now applies for the next two attacks.
-– 13th level: The dreadnought gains an additional +2 to melee damage.
-– 15th level: Heavy Assault Stance's damage bonus increases to +150%.
+– 13th level: The dreadnought gains an additional +2 bonus to melee damage.
+– 15th level: Heavy Assault Stance's damage bonus increases to +75%.
 – 16th level: Earth-Shattering Strike now applies for the next three attacks.
-– 20th level: Heavy Assault Stance's damage bonus increases to +200%.
+– 20th level: Heavy Assault Stance's damage bonus increases to +100%.
 
 – Hit Die: 2d10
 
@@ -105,7 +105,7 @@ Disadvantages:
 	
     abclasrq      = ~17 0 16 0 0 0~
 	
-    // abclsmod      = ~0 0 0 0 0 0~
+    abclsmod      = ~1 0 0 0 0 0~
 	
     // abdcdsrq      = ~0 0 0 = 0 =~
 	

@@ -62,6 +62,15 @@ Disadvantages:
 	  END
 	END
 	
+COPY_EXISTING ~LUDR0.2da~ ~override/LUC0-SS.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR723~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR724~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR731~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR732~ END
+LPF patch_add_hla STR_VAR ability = ~GA_C0SS-HL1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR ability = ~AP_C0SS-HL2~ num_allowed = 1 prerequisites = ~GA_C0SS-HL1~ END	
+LPF patch_add_hla STR_VAR ability = ~GA_C0SS-HL3~ num_allowed = 1 END	
+
 ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-INV.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/Druid/Shapeshifter/spells/C0SS-HWL.PRO~
 

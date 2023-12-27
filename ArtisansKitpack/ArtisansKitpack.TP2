@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~4.31~
+VERSION ~4.4~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
@@ -1039,7 +1039,7 @@ BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
 
-BEGIN ~'Unholy' Necromancy Spells Only (Cause Wounds, Disease, Poison, etc.)~
+BEGIN ~'Unholy' Necromancy Spells Only (Cause Wounds, Disease, Poison, etc.)~ DESIGNATED 8101
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
 SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
 GROUP ~Sorcerer Kits~
@@ -1332,7 +1332,7 @@ WRITE_SHORT 0x1C 1
 WRITE_LONG 0x34 6
 END
 
-BEGIN ~All Necromancy Divine Spells (including Cure Wounds, Neutralize Poison, etc.)~
+BEGIN ~All Necromancy Divine Spells (including Cure Wounds, Neutralize Poison, etc.)~ DESIGNATED 8102
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
 SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
 GROUP ~Sorcerer Kits~

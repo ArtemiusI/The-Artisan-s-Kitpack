@@ -246,6 +246,14 @@ COPY_EXISTING ~C0IVP202.EFF~ ~OVERRIDE/C0IVP220.EFF~
 COPY_EXISTING ~C0IVP202.EFF~ ~OVERRIDE/C0IVP221.EFF~
 	WRITE_BYTE 0x1C  20
 	
+COPY_EXISTING ~LUTH0.2da~ ~override/LUC0INVB.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL910~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL911~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL912~ END
+LPF patch_add_hla STR_VAR ability = ~GA_SPCL900~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR ability = ~GA_SPCL901~ num_allowed = 16 prerequisite = ~GA_SPCL900~ END	
+LPF patch_add_hla STR_VAR ability = ~GA_C0IVBH1~ num_allowed = 1 END	
+
 COPY_EXISTING ~LUTH0.2da~ ~override~
   REPLACE_TEXTUALLY ~GA_SPCL910     *          *         1         99         16           *            *             *~
 					~GA_SPCL900     *          *         1         99         16           *            *             *~
