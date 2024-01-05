@@ -17,9 +17,29 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       INNER_ACTION BEGIN
       // Add new abilities to all Fighter kits
       COPY_EXISTING ~%kit_clab%.2DA~ override
+
+      // Added for morpheus562's Kaze no Kama Monk Kit
+      PATCH_IF ("%kit_label%" STRING_EQUAL_CASE "MO_KAZENOKAMA") BEGIN      	
+      	REPLACE_TEXTUALLY ~AP_SPCL813~ ~****~ // Remove Vanilla Movement Speed Increase
+      	REPLACE_TEXTUALLY ~AP_SPCL816~ ~****~ // Remove Attack Speed Factor
+      	REPLACE_TEXTUALLY ~AP_SPCL817~ ~****~ // Remove Vanilla Charm Immunity  
+      	REPLACE_TEXTUALLY ~AP_SPCL818~ ~****~ // Remove Vanilla Charm Immunity
+      	REPLACE_TEXTUALLY ~AP_SPCL822~ ~****~ // Remove Vanilla AC Progression      
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = AP_SPCL813 END // Movement Speed Increase #1
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 50 f_Increment = 5 STR_VAR f_Entry = AP_SPCL813 END // Movement Speed Increase #2
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 50 f_Increment = 3 STR_VAR f_Entry = AP_SPCL816 END // Attack Speed Factor
+        //LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 3 STR_VAR f_Entry = AP_SPCL817 END // Save vs. Enchantment
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 11 STR_VAR f_Entry = AP_SPCL818 END // Resist Poison
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0MN#00 END // WIS Based AC
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0MN#03 END // Saving Throw Bonus #1
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 50 f_Increment = 5 STR_VAR f_Entry = AP_C0MN#03 END // Saving Throw Bonus #2
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 50 f_Increment = 5 STR_VAR f_Entry = AP_C0MN#06 END // Bonus AC
         PRETTY_PRINT_2DA
-	  
+      END ELSE BEGIN
+      	LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
+        PRETTY_PRINT_2DA
+      END
       BUT_ONLY
       END
     END
@@ -54,7 +74,24 @@ ACTION_FOR_EACH description IN
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%brawler_desc%~ ~%brawler_text%~
           END
-		END
+		    END
+
+		    // Add Morpheus562' Kaze no Kama
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "MO_KAZENOKAMA" BEGIN
+          READ_2DA_ENTRY index 4 col_count kaze_desc
+          SPRINT old_kaze_1 ~– May not use the Lay On Hands ability.~
+          SPRINT new_kaze_1 ~– May not use Wholeness of Body.~
+          SPRINT old_kaze_2 ~– Does not gain Magic Resistance starting at level 14.~
+          SPRINT new_kaze_2 ~– Does not gain Still Mind, Diamond Soul, or Empty Body.~
+          GET_STRREF %kaze_desc% kaze_text
+          INNER_PATCH_SAVE kaze_text ~%kaze_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_kaze_1%~ ~%new_kaze_1%~
+            REPLACE_TEXTUALLY ~%old_kaze_2%~ ~%new_kaze_2%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kaze_desc%~ ~%kaze_text%~
+          END
+        END
 		
       END
       BUT_ONLY
