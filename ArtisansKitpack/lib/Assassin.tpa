@@ -77,7 +77,7 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Backstab: Lethal~) ST
 	  END
 	END
 	
-COPY_EXISTING ~LUTH0.2da~ ~override/LUC0HIVE.2DA~
+COPY_EXISTING ~LUTH0.2da~ ~override/LUC0AS.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL910~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL911~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL912~ END

@@ -25,9 +25,9 @@ LAF ADD_KIT_EX
 	// Shaman = 21
     kit_class     = 2
 	
-    mixed         = RESOLVE_STR_REF(~vanguard~)
+    mixed         = RESOLVE_STR_REF(~Vanguard~)
 	
-    lower         = RESOLVE_STR_REF(~Vanguard~)
+    lower         = RESOLVE_STR_REF(~vanguard~)
 	
     help          = RESOLVE_STR_REF(~VANGUARD: The vanguard is a frontline warrior trained to fight in the middle of enemy lines. Tough and durable, a vanguard is a reliable defender capable of holding the line and enduring blows that would fell a lesser man.
 
