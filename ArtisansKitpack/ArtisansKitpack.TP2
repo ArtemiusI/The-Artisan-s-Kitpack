@@ -205,6 +205,765 @@ COPY_EXISTING ~clsrcreq.2da~ ~override~
   PRETTY_PRINT_2DA
   BUT_ONLY
 
+BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
+GROUP ~Sorcerer Kits~
+INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
+
+BEGIN ~'Unholy' Necromancy Spells Only (Cause Wounds, Disease, Poison, etc.)~ DESIGNATED 8101
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
+SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
+GROUP ~Sorcerer Kits~
+
+//__________________________________________________________________________________
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+
+ACTION_FOR_EACH description IN 
+    clastext
+	sodcltxt
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "PaleMaster" BEGIN
+          READ_2DA_ENTRY index 4 col_count pale_master_desc
+          SPRINT old_pale_master ~Advantages:~
+          SPRINT new_pale_master ~Advantages:
+– May cast some divine spells from the Necromancy school of the prerequisite spell level.~
+          GET_STRREF %pale_master_desc% pale_master_text
+          INNER_PATCH_SAVE pale_master_text ~%pale_master_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_pale_master%~ ~%new_pale_master%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%pale_master_desc%~ ~%pale_master_text%~
+          END
+		END
+      END
+      BUT_ONLY
+    END
+  END
+  
+//CAUSE LIGHT WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR114.spl~ ~override/C0PM114.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 1
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_light_wounds~  ~override~
+COPY_EXISTING ~C0PM114.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 1
+SAY NAME1 ~Cause Light Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Light Wounds
+(Necromancy)
+
+Level: 1
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+  
+//CAUSE MODERATE WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR220.spl~ ~override/C0PM220.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_moderate_wounds~  ~override~
+COPY_EXISTING ~C0PM220.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+SAY NAME1 ~Cause Moderate Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Moderate Wounds
+(Necromancy)
+
+Level: 2
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 11 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+
+//ANIMATE DEAD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR301.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR301.spl~ ~override/C0PM301.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+
+//UNHOLY BLIGHT
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR314.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR314.spl~ ~override/C0PM314.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+
+//CAUSE DISEASE
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR320.spl~ ~override/C0PM320.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_disease~  ~override~
+COPY_EXISTING ~C0PM320.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Cause Disease~
+SAY UNIDENTIFIED_DESC ~Cause Disease
+(Necromancy)
+
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This spell afflicts one creature the priest touches with a disease that saps the target of 5d4 points of Strength. A successful Save vs. Spell negates the effects. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+
+//CIRCLE OF BONES
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR323.spl~ ~override/C0PM323.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/circle_of_bones~  ~override~
+COPY_EXISTING ~C0PM323.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Circle of Bones~
+SAY UNIDENTIFIED_DESC ~Circle of Bones
+(Necromancy)
+
+Level: 3
+Sphere: Guardian, Creation
+Range: 0
+Duration: 3 rounds
+Casting Time: 3
+Area of Effect: 3-ft. radius
+Saving Throw: None
+
+This spell conjures forth a barrier of floating bones that spin rapidly around the caster, who cannot move for the duration of the spell. Anyone entering the path of the bones takes 1d6 crushing damage and 1d6 slashing damage per round. Circle of Bones cannot be cast by good-aligned characters.~
+END
+
+//CAUSE MEDIUM WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR330.spl~ ~override/C0PM330.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_medium_wounds~  ~override~
+COPY_EXISTING ~C0PM330.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Cause Medium Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Medium Wounds
+(Necromancy)
+
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 14 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. Cause Medium Wounds cannot be cast by good-aligned characters.~
+END
+
+//DEATH WARD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR409.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR409.spl~ ~override/C0PM409.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//POISON
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR411.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR411.spl~ ~override/C0PM411.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//CAUSE SERIOUS WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR414.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR414.spl~ ~override/C0PM414.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//CAUSE CRITICAL WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR510.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR510.spl~ ~override/C0PM510.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//SLAY LIVING
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR511.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR511.spl~ ~override/C0PM511.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//UNDEAD WARD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR521.spl~ ~override/C0PM521.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
+ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward/uward.PRO~ ~Undead Ward~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward~  ~override~
+COPY_EXISTING ~C0PM521.SPL~ ~OVERRIDE~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = uward
+END
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+SAY NAME1 ~Undead Ward~
+SAY UNIDENTIFIED_DESC ~Undead Ward
+(Necromancy)
+
+Level: 5
+Sphere: Wards
+Range: 0
+Duration: 1 turn
+Casting Time: 7
+Area of Effect: 10-ft. radius
+Saving Throw: None
+
+This spell amplifies the influence a priest has over undead, though it is tied to the area surrounding the priest at the moment of its casting and does not move. Any undead creature entering the area of effect is affected as if turned by the priest that cast this spell. If the turning fails, the undead creature is immune to further turning attempts by the spell unless it leaves and reenters the area of effect.~
+END
+
+//MASS CAUSE LIGHT WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR523.spl~ ~override/C0PM523.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
+ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds/IDPRO241.PRO~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds~  ~override~
+COPY_EXISTING ~C0PM523.SPL~ ~OVERRIDE~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = IDPRO241
+END
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+SAY NAME1 ~Mass Cause Light Wounds~
+SAY UNIDENTIFIED_DESC ~Mass Cause Light Wounds
+(Necromancy)
+
+Level: 5
+Sphere: Healing
+Range: 0
+Duration: Instant
+Casting Time: 5
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2
+
+By casting this spell, the priest deals 1d8 + 1/level points of damage to nearby enemies. A successful Save vs. Spell halves the damage. This spell has no effect on undead, constructs, or extraplanar creatures. It can only be cast by evil-aligned characters.~
+END
+
+//HARM
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR608.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR608.spl~ ~override/C0PM608.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 6
+END
+
+//DOLOROUS DECAY
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR610.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR610.spl~ ~override/C0PM610.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 6
+END
+
+BEGIN ~All Necromancy Divine Spells (including Cure Wounds, Neutralize Poison, etc.)~ DESIGNATED 8102
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
+SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
+GROUP ~Sorcerer Kits~
+  
+//CURE LIGHT WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR103.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR103.spl~ ~override/C0PM103.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 1
+END
+  
+//CAUSE LIGHT WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR114.spl~ ~override/C0PM114.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 1
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_light_wounds~  ~override~
+COPY_EXISTING ~C0PM114.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 1
+SAY NAME1 ~Cause Light Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Light Wounds
+(Necromancy)
+
+Level: 1
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+  
+//SLOW POISON
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR212.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR212.spl~ ~override/C0PM212.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+END
+
+//CURE MODERATE WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR217.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR217.spl~ ~override/C0PM217.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR217.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cure_moderate_wounds~  ~override~
+COPY_EXISTING ~C0PM217.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+SAY NAME1 ~Cure Moderate Wounds~
+SAY UNIDENTIFIED_DESC ~Cure Moderate Wounds
+(Necromancy)
+
+Level: 2
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: None
+
+A stronger version of the 1st-level priest spell Cure Light Wounds, Cure Moderate Wounds heals 11 Hit Points and cures intoxication. This spell has no effect on undead, constructs, or extraplanar creatures.~
+END
+
+//CAUSE MODERATE WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR220.spl~ ~override/C0PM220.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_moderate_wounds~  ~override~
+COPY_EXISTING ~C0PM220.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 2
+SAY NAME1 ~Cause Moderate Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Moderate Wounds
+(Necromancy)
+
+Level: 2
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 11 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+
+//ANIMATE DEAD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR301.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR301.spl~ ~override/C0PM301.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+
+//UNHOLY BLIGHT
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR314.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR314.spl~ ~override/C0PM314.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+
+//CURE MEDIUM WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR315.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR315.spl~ ~override/C0PM315.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+
+//CAUSE DISEASE
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR320.spl~ ~override/C0PM320.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_disease~  ~override~
+COPY_EXISTING ~C0PM320.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Cause Disease~
+SAY UNIDENTIFIED_DESC ~Cause Disease
+(Necromancy)
+
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This spell afflicts one creature the priest touches with a disease that saps the target of 5d4 points of Strength. A successful Save vs. Spell negates the effects. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+END
+
+//CIRCLE OF BONES
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR323.spl~ ~override/C0PM323.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/circle_of_bones~  ~override~
+COPY_EXISTING ~C0PM323.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Circle of Bones~
+SAY UNIDENTIFIED_DESC ~Circle of Bones
+(Necromancy)
+
+Level: 3
+Sphere: Guardian, Creation
+Range: 0
+Duration: 3 rounds
+Casting Time: 3
+Area of Effect: 3-ft. radius
+Saving Throw: None
+
+This spell conjures forth a barrier of floating bones that spin rapidly around the caster, who cannot move for the duration of the spell. Anyone entering the path of the bones takes 1d6 crushing damage and 1d6 slashing damage per round. Circle of Bones cannot be cast by good-aligned characters.~
+END
+
+//CAUSE MEDIUM WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR330.spl~ ~override/C0PM330.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_medium_wounds~  ~override~
+COPY_EXISTING ~C0PM330.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 3
+SAY NAME1 ~Cause Medium Wounds~
+SAY UNIDENTIFIED_DESC ~Cause Medium Wounds
+(Necromancy)
+
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+By casting this spell and touching a creature, the priest deals 14 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. Cause Medium Wounds cannot be cast by good-aligned characters.~
+END
+
+//CURE SERIOUS WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR401.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR401.spl~ ~override/C0PM401.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//NEUTRALIZE POISON
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR404.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR404.spl~ ~override/C0PM404.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//DEATH WARD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR409.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR409.spl~ ~override/C0PM409.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//POISON
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR411.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR411.spl~ ~override/C0PM411.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//CAUSE SERIOUS WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR414.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR414.spl~ ~override/C0PM414.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//LESSER RESTORATION
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR417.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR417.spl~ ~override/C0PM417.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+
+//UNFAILING ENDURANCE
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR424.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR424.spl~ ~override/C0PM424.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR424.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/unfailing_endurance~  ~override~
+COPY_EXISTING ~C0PM424.SPL~ ~OVERRIDE~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 4
+SAY NAME1 ~Unfailing Endurance~
+SAY UNIDENTIFIED_DESC ~Unfailing Endurance
+(Necromancy)
+
+Level: 4
+Sphere: Necromantic
+Range: Touch
+Duration: Instant
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell restores the stamina of the creature touched, eliminating any fatigue.~
+END
+
+//CURE CRITICAL WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR502.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR502.spl~ ~override/C0PM502.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//RAISE DEAD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR504.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR504.spl~ ~override/C0PM504.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//CAUSE CRITICAL WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR510.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR510.spl~ ~override/C0PM510.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//SLAY LIVING
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR511.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR511.spl~ ~override/C0PM511.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//MASS CURE
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR514.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR514.spl~ ~override/C0PM514.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+
+//UNDEAD WARD
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR521.spl~ ~override/C0PM521.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
+ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward/uward.PRO~ ~Undead Ward~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward~  ~override~
+COPY_EXISTING ~C0PM521.SPL~ ~OVERRIDE~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = uward
+END
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+SAY NAME1 ~Undead Ward~
+SAY UNIDENTIFIED_DESC ~Undead Ward
+(Necromancy)
+
+Level: 5
+Sphere: Wards
+Range: 0
+Duration: 1 turn
+Casting Time: 7
+Area of Effect: 10-ft. radius
+Saving Throw: None
+
+This spell amplifies the influence a priest has over undead, though it is tied to the area surrounding the priest at the moment of its casting and does not move. Any undead creature entering the area of effect is affected as if turned by the priest that cast this spell. If the turning fails, the undead creature is immune to further turning attempts by the spell unless it leaves and reenters the area of effect.~
+END
+
+
+//MASS CAUSE LIGHT WOUNDS
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR523.spl~ ~override/C0PM523.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+END
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
+ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds/IDPRO241.PRO~
+COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds~  ~override~
+COPY_EXISTING ~C0PM523.SPL~ ~OVERRIDE~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = IDPRO241
+END
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 5
+SAY NAME1 ~Mass Cause Light Wounds~
+SAY UNIDENTIFIED_DESC ~Mass Cause Light Wounds
+(Necromancy)
+
+Level: 5
+Sphere: Healing
+Range: 0
+Duration: Instant
+Casting Time: 5
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2
+
+By casting this spell, the priest deals 1d8 + 1/level points of damage to nearby enemies. A successful Save vs. Spell halves the damage. This spell has no effect on undead, constructs, or extraplanar creatures. It can only be cast by evil-aligned characters.~
+END
+
+//HEAL
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR607.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR607.spl~ ~override/C0PM607.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 6
+END
+
+//HARM
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR608.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR608.spl~ ~override/C0PM608.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 6
+END
+
+//DOLOROUS DECAY
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR610.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR610.spl~ ~override/C0PM610.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 6
+END
+
+//REGENERATION
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR711.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR711.spl~ ~override/C0PM711.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 7
+END
+
+//RESURRECTION
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR712.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR712.spl~ ~override/C0PM712.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 7
+END
+
+//GREATER RESTORATION
+ACTION_IF FILE_EXISTS_IN_GAME ~SPPR713.SPL~ THEN BEGIN
+COPY_EXISTING ~SPPR713.spl~ ~override/C0PM713.spl~
+WRITE_SHORT 0x1C 1
+WRITE_LONG 0x34 7
+END
+
+//__________________________________________________________________________________
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+
+ACTION_FOR_EACH description IN 
+    clastext
+	sodcltxt
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "PaleMaster" BEGIN
+          READ_2DA_ENTRY index 4 col_count pale_master_desc
+          SPRINT old_pale_master ~Advantages:~
+          SPRINT new_pale_master ~Advantages:
+– May cast most divine spells from the Necromancy school of the prerequisite spell level.~
+          GET_STRREF %pale_master_desc% pale_master_text
+          INNER_PATCH_SAVE pale_master_text ~%pale_master_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_pale_master%~ ~%new_pale_master%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%pale_master_desc%~ ~%pale_master_text%~
+          END
+		END
+      END
+      BUT_ONLY
+    END
+  END
+  
+BEGIN ~Original Stat Bonuses~ DESIGNATED 8002
+SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+GROUP ~Sorcerer Kits~
+OUTER_SET dd = 1
+INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
+
+BEGIN ~Nerfed stat bonuses (net +2 to STR)~ DESIGNATED 8003
+SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
+GROUP ~Sorcerer Kits~
+OUTER_SET dd = 2
+INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
+
+BEGIN ~Artisan's Kitpack: Brawler Kit~ DESIGNATED 10002
+GROUP ~Monk Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Brawler.tpa~
+
+BEGIN ~Artisan's Kitpack: Monk Revisions~ DESIGNATED 10001
+GROUP ~Monk Kits~
+INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~
+
+BEGIN ~Artisan's Kitpack: Sacred Fist (Cleric) and Enlightened Fist (Sorcerer) Kits—EEEx required~ DESIGNATED 10003
+GROUP ~Monk Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+INCLUDE ~%MOD_FOLDER%/lib/MonkRevision-Mystic.tpa~
 
 BEGIN ~Artisan's Kitpack: Berserker Overhaul~ DESIGNATED 1003
 GROUP ~Fighter Kits~
@@ -1036,752 +1795,6 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7005~ ~The Invisible Blade Kit mu
 		END
 END
 
-BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
-GROUP ~Sorcerer Kits~
-INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
-
-BEGIN ~'Unholy' Necromancy Spells Only (Cause Wounds, Disease, Poison, etc.)~ DESIGNATED 8101
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
-SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
-GROUP ~Sorcerer Kits~
-
-//__________________________________________________________________________________
-///////////////////////////////////////////////////////////////////////////
-// Update Kit Descriptions                                               //
-///////////////////////////////////////////////////////////////////////////
-
-ACTION_FOR_EACH description IN 
-    clastext
-	sodcltxt
-  BEGIN
-    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
-      COPY_EXISTING ~%description%.2DA~ ~override~
-      COUNT_2DA_COLS col_count
-      COUNT_2DA_ROWS col_count rows
-      FOR (index = 0; index < rows; ++index) BEGIN
-        READ_2DA_ENTRY index 0 col_count row_name
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "PaleMaster" BEGIN
-          READ_2DA_ENTRY index 4 col_count pale_master_desc
-          SPRINT old_pale_master ~Advantages:~
-          SPRINT new_pale_master ~Advantages:
-– May cast some divine spells from the Necromancy school of the prerequisite spell level.~
-          GET_STRREF %pale_master_desc% pale_master_text
-          INNER_PATCH_SAVE pale_master_text ~%pale_master_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_pale_master%~ ~%new_pale_master%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%pale_master_desc%~ ~%pale_master_text%~
-          END
-		END
-      END
-      BUT_ONLY
-    END
-  END
-  
-//CAUSE LIGHT WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR114.spl~ ~override/C0PM114.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 1
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_light_wounds~  ~override~
-COPY_EXISTING ~C0PM114.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 1
-SAY NAME1 ~Cause Light Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Light Wounds
-(Necromancy)
-
-Level: 1
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-  
-//CAUSE MODERATE WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR220.spl~ ~override/C0PM220.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_moderate_wounds~  ~override~
-COPY_EXISTING ~C0PM220.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-SAY NAME1 ~Cause Moderate Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Moderate Wounds
-(Necromancy)
-
-Level: 2
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 11 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-
-//ANIMATE DEAD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR301.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR301.spl~ ~override/C0PM301.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-
-//UNHOLY BLIGHT
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR314.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR314.spl~ ~override/C0PM314.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-
-//CAUSE DISEASE
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR320.spl~ ~override/C0PM320.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_disease~  ~override~
-COPY_EXISTING ~C0PM320.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Cause Disease~
-SAY UNIDENTIFIED_DESC ~Cause Disease
-(Necromancy)
-
-Level: 3
-Sphere: Healing
-Range: Touch
-Duration: 8 hours
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-This spell afflicts one creature the priest touches with a disease that saps the target of 5d4 points of Strength. A successful Save vs. Spell negates the effects. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-
-//CIRCLE OF BONES
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR323.spl~ ~override/C0PM323.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/circle_of_bones~  ~override~
-COPY_EXISTING ~C0PM323.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Circle of Bones~
-SAY UNIDENTIFIED_DESC ~Circle of Bones
-(Necromancy)
-
-Level: 3
-Sphere: Guardian, Creation
-Range: 0
-Duration: 3 rounds
-Casting Time: 3
-Area of Effect: 3-ft. radius
-Saving Throw: None
-
-This spell conjures forth a barrier of floating bones that spin rapidly around the caster, who cannot move for the duration of the spell. Anyone entering the path of the bones takes 1d6 crushing damage and 1d6 slashing damage per round. Circle of Bones cannot be cast by good-aligned characters.~
-END
-
-//CAUSE MEDIUM WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR330.spl~ ~override/C0PM330.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_medium_wounds~  ~override~
-COPY_EXISTING ~C0PM330.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Cause Medium Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Medium Wounds
-(Necromancy)
-
-Level: 3
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 14 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. Cause Medium Wounds cannot be cast by good-aligned characters.~
-END
-
-//DEATH WARD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR409.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR409.spl~ ~override/C0PM409.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//POISON
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR411.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR411.spl~ ~override/C0PM411.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//CAUSE SERIOUS WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR414.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR414.spl~ ~override/C0PM414.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//CAUSE CRITICAL WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR510.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR510.spl~ ~override/C0PM510.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//SLAY LIVING
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR511.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR511.spl~ ~override/C0PM511.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//UNDEAD WARD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR521.spl~ ~override/C0PM521.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
-ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward/uward.PRO~ ~Undead Ward~
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward~  ~override~
-COPY_EXISTING ~C0PM521.SPL~ ~OVERRIDE~
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-		projectile = uward
-END
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-SAY NAME1 ~Undead Ward~
-SAY UNIDENTIFIED_DESC ~Undead Ward
-(Necromancy)
-
-Level: 5
-Sphere: Wards
-Range: 0
-Duration: 1 turn
-Casting Time: 7
-Area of Effect: 10-ft. radius
-Saving Throw: None
-
-This spell amplifies the influence a priest has over undead, though it is tied to the area surrounding the priest at the moment of its casting and does not move. Any undead creature entering the area of effect is affected as if turned by the priest that cast this spell. If the turning fails, the undead creature is immune to further turning attempts by the spell unless it leaves and reenters the area of effect.~
-END
-
-//MASS CAUSE LIGHT WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR523.spl~ ~override/C0PM523.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
-ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds/IDPRO241.PRO~
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds~  ~override~
-COPY_EXISTING ~C0PM523.SPL~ ~OVERRIDE~
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-		projectile = IDPRO241
-END
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-SAY NAME1 ~Mass Cause Light Wounds~
-SAY UNIDENTIFIED_DESC ~Mass Cause Light Wounds
-(Necromancy)
-
-Level: 5
-Sphere: Healing
-Range: 0
-Duration: Instant
-Casting Time: 5
-Area of Effect: 15-ft. radius
-Saving Throw: 1/2
-
-By casting this spell, the priest deals 1d8 + 1/level points of damage to nearby enemies. A successful Save vs. Spell halves the damage. This spell has no effect on undead, constructs, or extraplanar creatures. It can only be cast by evil-aligned characters.~
-END
-
-//HARM
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR608.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR608.spl~ ~override/C0PM608.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 6
-END
-
-//DOLOROUS DECAY
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR610.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR610.spl~ ~override/C0PM610.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 6
-END
-
-BEGIN ~All Necromancy Divine Spells (including Cure Wounds, Neutralize Poison, etc.)~ DESIGNATED 8102
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8001~ ~The Pale Master Sorcerer Kit must be installed.~
-SUBCOMPONENT ~Artisan's Kitpack: Pale Master Spells~
-GROUP ~Sorcerer Kits~
-  
-//CURE LIGHT WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR103.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR103.spl~ ~override/C0PM103.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 1
-END
-  
-//CAUSE LIGHT WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR114.spl~ ~override/C0PM114.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 1
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR114.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_light_wounds~  ~override~
-COPY_EXISTING ~C0PM114.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 1
-SAY NAME1 ~Cause Light Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Light Wounds
-(Necromancy)
-
-Level: 1
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-  
-//SLOW POISON
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR212.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR212.spl~ ~override/C0PM212.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-END
-
-//CURE MODERATE WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR217.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR217.spl~ ~override/C0PM217.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR217.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cure_moderate_wounds~  ~override~
-COPY_EXISTING ~C0PM217.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-SAY NAME1 ~Cure Moderate Wounds~
-SAY UNIDENTIFIED_DESC ~Cure Moderate Wounds
-(Necromancy)
-
-Level: 2
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: None
-
-A stronger version of the 1st-level priest spell Cure Light Wounds, Cure Moderate Wounds heals 11 Hit Points and cures intoxication. This spell has no effect on undead, constructs, or extraplanar creatures.~
-END
-
-//CAUSE MODERATE WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR220.spl~ ~override/C0PM220.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR220.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_moderate_wounds~  ~override~
-COPY_EXISTING ~C0PM220.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 2
-SAY NAME1 ~Cause Moderate Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Moderate Wounds
-(Necromancy)
-
-Level: 2
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 11 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-
-//ANIMATE DEAD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR301.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR301.spl~ ~override/C0PM301.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-
-//UNHOLY BLIGHT
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR314.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR314.spl~ ~override/C0PM314.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-
-//CURE MEDIUM WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR315.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR315.spl~ ~override/C0PM315.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-
-//CAUSE DISEASE
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR320.spl~ ~override/C0PM320.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR320.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_disease~  ~override~
-COPY_EXISTING ~C0PM320.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Cause Disease~
-SAY UNIDENTIFIED_DESC ~Cause Disease
-(Necromancy)
-
-Level: 3
-Sphere: Healing
-Range: Touch
-Duration: 8 hours
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-This spell afflicts one creature the priest touches with a disease that saps the target of 5d4 points of Strength. A successful Save vs. Spell negates the effects. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
-END
-
-//CIRCLE OF BONES
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR323.spl~ ~override/C0PM323.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR323.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/circle_of_bones~  ~override~
-COPY_EXISTING ~C0PM323.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Circle of Bones~
-SAY UNIDENTIFIED_DESC ~Circle of Bones
-(Necromancy)
-
-Level: 3
-Sphere: Guardian, Creation
-Range: 0
-Duration: 3 rounds
-Casting Time: 3
-Area of Effect: 3-ft. radius
-Saving Throw: None
-
-This spell conjures forth a barrier of floating bones that spin rapidly around the caster, who cannot move for the duration of the spell. Anyone entering the path of the bones takes 1d6 crushing damage and 1d6 slashing damage per round. Circle of Bones cannot be cast by good-aligned characters.~
-END
-
-//CAUSE MEDIUM WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR330.spl~ ~override/C0PM330.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR330.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/cause_medium_wounds~  ~override~
-COPY_EXISTING ~C0PM330.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 3
-SAY NAME1 ~Cause Medium Wounds~
-SAY UNIDENTIFIED_DESC ~Cause Medium Wounds
-(Necromancy)
-
-Level: 3
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 14 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. Cause Medium Wounds cannot be cast by good-aligned characters.~
-END
-
-//CURE SERIOUS WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR401.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR401.spl~ ~override/C0PM401.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//NEUTRALIZE POISON
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR404.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR404.spl~ ~override/C0PM404.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//DEATH WARD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR409.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR409.spl~ ~override/C0PM409.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//POISON
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR411.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR411.spl~ ~override/C0PM411.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//CAUSE SERIOUS WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR414.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR414.spl~ ~override/C0PM414.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//LESSER RESTORATION
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR417.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR417.spl~ ~override/C0PM417.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-
-//UNFAILING ENDURANCE
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR424.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR424.spl~ ~override/C0PM424.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR424.SPL~ THEN BEGIN
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/unfailing_endurance~  ~override~
-COPY_EXISTING ~C0PM424.SPL~ ~OVERRIDE~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 4
-SAY NAME1 ~Unfailing Endurance~
-SAY UNIDENTIFIED_DESC ~Unfailing Endurance
-(Necromancy)
-
-Level: 4
-Sphere: Necromantic
-Range: Touch
-Duration: Instant
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: None
-
-This spell restores the stamina of the creature touched, eliminating any fatigue.~
-END
-
-//CURE CRITICAL WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR502.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR502.spl~ ~override/C0PM502.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//RAISE DEAD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR504.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR504.spl~ ~override/C0PM504.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//CAUSE CRITICAL WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR510.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR510.spl~ ~override/C0PM510.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//SLAY LIVING
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR511.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR511.spl~ ~override/C0PM511.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//MASS CURE
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR514.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR514.spl~ ~override/C0PM514.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-
-//UNDEAD WARD
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR521.spl~ ~override/C0PM521.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR521.SPL~ THEN BEGIN
-ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward/uward.PRO~ ~Undead Ward~
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/undead_ward~  ~override~
-COPY_EXISTING ~C0PM521.SPL~ ~OVERRIDE~
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-		projectile = uward
-END
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-SAY NAME1 ~Undead Ward~
-SAY UNIDENTIFIED_DESC ~Undead Ward
-(Necromancy)
-
-Level: 5
-Sphere: Wards
-Range: 0
-Duration: 1 turn
-Casting Time: 7
-Area of Effect: 10-ft. radius
-Saving Throw: None
-
-This spell amplifies the influence a priest has over undead, though it is tied to the area surrounding the priest at the moment of its casting and does not move. Any undead creature entering the area of effect is affected as if turned by the priest that cast this spell. If the turning fails, the undead creature is immune to further turning attempts by the spell unless it leaves and reenters the area of effect.~
-END
-
-
-//MASS CAUSE LIGHT WOUNDS
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR523.spl~ ~override/C0PM523.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-END
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR523.SPL~ THEN BEGIN
-ADD_PROJECTILE ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds/IDPRO241.PRO~
-COPY ~%MOD_FOLDER%/Sorcerer/PaleMaster/iwdspells/mass_cause_light_wounds~  ~override~
-COPY_EXISTING ~C0PM523.SPL~ ~OVERRIDE~
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-		projectile = IDPRO241
-END
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 5
-SAY NAME1 ~Mass Cause Light Wounds~
-SAY UNIDENTIFIED_DESC ~Mass Cause Light Wounds
-(Necromancy)
-
-Level: 5
-Sphere: Healing
-Range: 0
-Duration: Instant
-Casting Time: 5
-Area of Effect: 15-ft. radius
-Saving Throw: 1/2
-
-By casting this spell, the priest deals 1d8 + 1/level points of damage to nearby enemies. A successful Save vs. Spell halves the damage. This spell has no effect on undead, constructs, or extraplanar creatures. It can only be cast by evil-aligned characters.~
-END
-
-//HEAL
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR607.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR607.spl~ ~override/C0PM607.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 6
-END
-
-//HARM
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR608.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR608.spl~ ~override/C0PM608.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 6
-END
-
-//DOLOROUS DECAY
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR610.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR610.spl~ ~override/C0PM610.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 6
-END
-
-//REGENERATION
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR711.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR711.spl~ ~override/C0PM711.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 7
-END
-
-//RESURRECTION
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR712.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR712.spl~ ~override/C0PM712.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 7
-END
-
-//GREATER RESTORATION
-ACTION_IF FILE_EXISTS_IN_GAME ~SPPR713.SPL~ THEN BEGIN
-COPY_EXISTING ~SPPR713.spl~ ~override/C0PM713.spl~
-WRITE_SHORT 0x1C 1
-WRITE_LONG 0x34 7
-END
-
-//__________________________________________________________________________________
-///////////////////////////////////////////////////////////////////////////
-// Update Kit Descriptions                                               //
-///////////////////////////////////////////////////////////////////////////
-
-ACTION_FOR_EACH description IN 
-    clastext
-	sodcltxt
-  BEGIN
-    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
-      COPY_EXISTING ~%description%.2DA~ ~override~
-      COUNT_2DA_COLS col_count
-      COUNT_2DA_ROWS col_count rows
-      FOR (index = 0; index < rows; ++index) BEGIN
-        READ_2DA_ENTRY index 0 col_count row_name
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "PaleMaster" BEGIN
-          READ_2DA_ENTRY index 4 col_count pale_master_desc
-          SPRINT old_pale_master ~Advantages:~
-          SPRINT new_pale_master ~Advantages:
-– May cast most divine spells from the Necromancy school of the prerequisite spell level.~
-          GET_STRREF %pale_master_desc% pale_master_text
-          INNER_PATCH_SAVE pale_master_text ~%pale_master_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_pale_master%~ ~%new_pale_master%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%pale_master_desc%~ ~%pale_master_text%~
-          END
-		END
-      END
-      BUT_ONLY
-    END
-  END
-  
-BEGIN ~Original Stat Bonuses~ DESIGNATED 8002
-SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
-GROUP ~Sorcerer Kits~
-OUTER_SET dd = 1
-INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
-
-BEGIN ~Nerfed stat bonuses (net +2 to STR)~ DESIGNATED 8003
-SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
-GROUP ~Sorcerer Kits~
-OUTER_SET dd = 2
-INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
-
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~ DESIGNATED 9001
 GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
@@ -1796,20 +1809,6 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~9001~ ~The Warhorn Shaman Kit mus
 	  WRITE_BYTE 0x26 90
 	  SET_BG2_PROFICIENCY 92 2
 	  SET_BG2_PROFICIENCY 102 0
-
-BEGIN ~Artisan's Kitpack: Brawler Kit~ DESIGNATED 10002
-GROUP ~Monk Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Brawler.tpa~
-
-BEGIN ~Artisan's Kitpack: Monk Revisions~ DESIGNATED 10001
-GROUP ~Monk Kits~
-INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~
-
-BEGIN ~Artisan's Kitpack: Sacred Fist (Cleric) and Enlightened Fist (Sorcerer) Kits—EEEx required~ DESIGNATED 10003
-GROUP ~Monk Kits~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
-INCLUDE ~%MOD_FOLDER%/lib/MonkRevision-Mystic.tpa~
 
 BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
 GROUP ~Multi-Class Kits~
