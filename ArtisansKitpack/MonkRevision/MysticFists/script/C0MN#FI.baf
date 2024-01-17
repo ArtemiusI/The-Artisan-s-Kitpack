@@ -1,0 +1,28 @@
+// Dialog
+
+IF
+  OnCreation()
+THEN
+  RESPONSE #100
+	XEquipItem("C0MFIST1",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST2",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST3",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST4",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST5",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST6",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST7",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST8",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFIST9",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFISTA",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFISTB",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFISTC",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	XEquipItem("C0MFISTD",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
+	Continue()
+END
+
+IF
+  ActionListEmpty()
+THEN
+  RESPONSE #100
+	DestroySelf()
+END

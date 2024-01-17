@@ -1,0 +1,112 @@
+COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/2DA~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/BAM~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/EFF~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/FISTS~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/SPELLS~ ~OVERRIDE~
+
+
+COPY_EXISTING ~C0MN#FI.CRE~ OVERRIDE
+WRITE_ASCII 0x2cc ~C0MN#FI~ #8  // dialogue
+WRITE_ASCII 0x248 ~C0MN#FI~ #8  // override
+WRITE_ASCII 0x280 ~C0MN#FI~ #32 // death variable
+
+COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~
+
+COPY_EXISTING ~C0MFIST1.ITM~ OVERRIDE
+SAY NAME2 ~Fist~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d4 crushing damage.~
+
+COPY_EXISTING ~C0MFIST2.ITM~ OVERRIDE
+SAY NAME2 ~Fist +1~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d4+1 crushing damage and strike as a +1 weapon.~
+
+COPY_EXISTING ~C0MFIST3.ITM~ OVERRIDE
+SAY NAME2 ~Fist +1~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d6+1 crushing damage and strike as a +1 weapon.~
+
+COPY_EXISTING ~C0MFIST4.ITM~ OVERRIDE
+SAY NAME2 ~Fist +1~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d6+1 crushing damage and strike as a +1 silver weapon.~
+
+COPY_EXISTING ~C0MFIST5.ITM~ OVERRIDE
+SAY NAME2 ~Fist +2~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d6+2 crushing damage and strike as a +2 silver weapon.~
+
+COPY_EXISTING ~C0MFIST6.ITM~ OVERRIDE
+SAY NAME2 ~Fist +2~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d8+2 crushing damage and strike as a +2 silver weapon.~
+
+COPY_EXISTING ~C0MFIST7.ITM~ OVERRIDE
+SAY NAME2 ~Fist +3~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d8+3 crushing damage and strike as a +3 silver weapon.~
+
+COPY_EXISTING ~C0MFIST8.ITM~ OVERRIDE
+SAY NAME2 ~Fist +3~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d10+3 crushing damage and strike as a +3 silver weapon.~
+
+COPY_EXISTING ~C0MFIST9.ITM~ OVERRIDE
+SAY NAME2 ~Fist +4~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d10+4 crushing damage and strike as a +4 silver weapon.~
+
+COPY_EXISTING ~C0MFISTA.ITM~ OVERRIDE
+SAY NAME2 ~Fist +4~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d12+4 crushing damage and strike as a +4 silver weapon.~
+
+COPY_EXISTING ~C0MFISTB.ITM~ OVERRIDE
+SAY NAME2 ~Fist +4~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d12+4 crushing damage and strike as a +4 silver weapon.~
+
+COPY_EXISTING ~C0MFISTC.ITM~ OVERRIDE
+SAY NAME2 ~Fist +5~
+SAY UNIDENTIFIED_DESC ~These fists deal 1d12+5 crushing damage and strike as a +5 silver weapon.~
+
+COPY_EXISTING ~C0MFISTD.ITM~ OVERRIDE
+SAY NAME2 ~Fist +5~
+SAY UNIDENTIFIED_DESC ~These fists deal 2d8+5 crushing damage and strike as a +5 silver weapon.~
+
+INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
+INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
+INCLUDE ~%MOD_FOLDER%/lib/EnlightenedFist.tpa~
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x21 monk //reads the byte containing the fighter usability flag
+    PATCH_IF ((monk BAND 0b00100000) = 0b00100000) BEGIN // if it is usable by fighters
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 7) OR (type = 12) BEGIN // if it is a staff
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 319
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+		END
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x18 flags //reads the byte containing the fighter usability flag
+    PATCH_IF ((flags BAND 0b00000010) = 0b00000010) BEGIN // if it is usable by fighters
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 319
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~)
+				parameter2 = 9
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 319
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+		END
+      END
+    END
+BUT_ONLY_IF_IT_CHANGES

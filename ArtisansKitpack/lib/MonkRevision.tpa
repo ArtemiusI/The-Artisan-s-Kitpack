@@ -233,15 +233,15 @@ CLASS FEATURES:
 – Receives a +1 bonus to all Saving Throws. An additional +1 is gained at 5th level and every 5 levels thereafter.
 – The monk gains a +1 bonus to base Armor Class per point of Wisdom above 12. They gain an additional +1 to AC at 5th level and every 5 levels thereafter.
 – Deflect Missiles: The monk receives a +1 bonus to AC vs. missile attacks every 3 levels.
-– May use the Stunning Fist ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+– May use the Stunning Blow ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 
-STUNNING FIST: The monk sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.
+STUNNING BLOW: The monk sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.
 
 – 3rd level: Still Mind: The monk receives a +2 bonus to Saving Throws vs. Enchantment spells.
 – 5th level: Purity of Body: The monk gains permanent Free Action and immunity to all diseases.
 – 7th level: May use Wholeness of Body once per day.
 
-WHOLENESS OF BODY: The monk instantly heals themself for two hit points per monk level.
+WHOLENESS OF BODY: The monk instantly heals themself for three hit points per monk level.
 
 – 8th level: Greater Flurry: The monk now makes an extra full attack per round while Flurry of Blows is active.
 – 11th level: Diamond Body: The monk permanently becomes immune to poison.
@@ -955,4 +955,105 @@ COPY_EXISTING BD5300.are override
     fj_name           = Black Hand
     fj_cre_resref     = c0mnev01
   END
+END
+
+//// DARK MOON MONK SPELLCASTING
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
+
+COPY ~%MOD_FOLDER%/lua/m_c0dmm1.lua~      ~override~
+
+COPY_EXISTING ~SPWI106.spl~ ~override/C0DM101.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI112.spl~ ~override/C0DM102.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI120.spl~ ~override/C0DM103.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI125.spl~ ~override/C0DM104.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI201.spl~ ~override/C0DM201.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI205.spl~ ~override/C0DM202.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI212.spl~ ~override/C0DM203.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI223.spl~ ~override/C0DM204.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI307.spl~ ~override/C0DM301.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI308.spl~ ~override/C0DM302.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI314.spl~ ~override/C0DM303.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI315.spl~ ~override/C0DM304.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI403.spl~ ~override/C0DM401.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI405.spl~ ~override/C0DM402.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI409.spl~ ~override/C0DM403.spl~
+WRITE_SHORT 0x1C 3 
+COPY_EXISTING ~SPWI414.spl~ ~override/C0DM404.spl~
+WRITE_SHORT 0x1C 3 
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//dark_moon
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "DARK_MOON" BEGIN
+          READ_2DA_ENTRY index 4 col_count dark_moon_desc
+          SPRINT old_dark_moon ~SORCEROUS LINEAGE: Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability. This ability allows the Dark Moon Monk to cast a level 1 Invocation, Illusion or Necromancy spell of choice once per day. As the Dark Moon Monk gains in levels, stronger spells may be chosen, gaining level 2 spells at 5th level, level 3 spells at 9th level, level 4 spells at 13th level and level 5 spells at 17th level.~
+          SPRINT new_dark_moon ~SORCEROUS LINEAGE: Disciples of the Order of the Dark Moon must display some sort of sorcerous power during their initiation. As such, All Dark Moon Monks have a minor level of magical ability, giving them the ability to cast a limited selection of spells of the Invocation, Illusion and Necromancy schools as a mage would. The Dark Moon Monk gains more powerful spells as they level up, gaining level 2 spells at 5th level, level 3 spells at 9th level and level 4 spells at 13th level. The spells learned are as follows:
+  Level 1: Blindness, Magic Missile, Reflected Image, Spook
+  Level 2: Blur, Mirror Image, Horror, Deafness
+  Level 3: Invisibility 10' Radius, Lightning Bolt, Vampiric Touch, Wraithform
+  Level 4: Fireshield (Blue), Improved Invisibility, Contagion, Spirit Armor~
+          GET_STRREF %dark_moon_desc% dark_moon_text
+          INNER_PATCH_SAVE dark_moon_text ~%dark_moon_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_dark_moon%~ ~%new_dark_moon%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%dark_moon_desc%~ ~%dark_moon_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABMO02.2DA~ BEGIN
+COPY_EXISTING ~CLABMO02.2DA~ ~OVERRIDE~
+  REPLACE_TEXTUALLY ~GA_C0DMM01~ ~****      ~
+COPY_EXISTING ~CLABMO02.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM101 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM102 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM103 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM104 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM201 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM202 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM203 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM204 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM301 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM302 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM303 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM304 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 13 STR_VAR f_Entry = GA_C0DM401 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 13 STR_VAR f_Entry = GA_C0DM402 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 13 STR_VAR f_Entry = GA_C0DM403 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 13 STR_VAR f_Entry = GA_C0DM404 END
+  PRETTY_PRINT_2DA
+BUT_ONLY
+END
 END

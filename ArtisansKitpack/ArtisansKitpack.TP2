@@ -1,6 +1,6 @@
 BACKUP ~ArtisansKitpack/backup~
 AUTHOR ~Artemius_I~
-VERSION ~4.4~
+VERSION ~4.5~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
@@ -10,6 +10,7 @@ ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
   INCLUDE ~%MOD_FOLDER%/lib/hla_actions.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 
@@ -1803,6 +1804,12 @@ INCLUDE ~%MOD_FOLDER%/lib/Brawler.tpa~
 BEGIN ~Artisan's Kitpack: Monk Revisions~ DESIGNATED 10001
 GROUP ~Monk Kits~
 INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~
+
+BEGIN ~Artisan's Kitpack: Sacred Fist (Cleric) and Enlightened Fist (Sorcerer) Kits—EEEx required~ DESIGNATED 10003
+GROUP ~Monk Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+INCLUDE ~%MOD_FOLDER%/lib/MonkRevision-Mystic.tpa~
 
 BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
 GROUP ~Multi-Class Kits~

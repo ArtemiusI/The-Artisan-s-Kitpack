@@ -1,0 +1,262 @@
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 19
+	
+    mixed         = RESOLVE_STR_REF(~Enlightened Fist~)
+	
+    lower         = RESOLVE_STR_REF(~enlightened fist~)
+	
+    help          = RESOLVE_STR_REF(~ENLIGHTENED FIST: Not all monks pursue metaphysical perfection to the exclusion of all other study. Some monks combine a rigorous discipline of academic study with martial arts and development of the body. For these monks, that study includes the practice of magic and the implementation of certain arcane tricks into their unarmed combat styles. These enlightened fists master the use of touch spells, creating new forms of combat where their fists strike with blinding speed, phenomenal power, and magical energy.
+
+Advantages:
+– THAC0 progresses as a Cleric of the same level.
+– Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
+– May make 2 unarmed attacks per round. Gains an additional half attack per round at 9th and 18th level.
+– The Enlightened Fist's empowered fists deal crushing damage and deal increase damage with level as follows:
+  Level 1-4: 1d4
+  Level 5-8: 1d6
+  Level 9-12: 1d8
+  Level 13-16: 1d10
+  Level 17-20: 1d12
+  Level 21+: 2d8
+  
+– Ki: The Enlightened Fists's unarmed attacks are empowered with ki, which allows them to be treated as magical weapons of +1 enchantment at 4th level, +2 at 8th level, +3 at 12th level, +4 at 16th level and +5 at 20th level. From 7th level, they are treated as silver weapons.
+– The Enlightened Fist gains a +1 bonus to base Armor Class per point of Wisdom above 12. They gain an additional +1 to AC at 7th level and every 7 levels thereafter.
+– May use Find Traps and Hide in Shadows abilities.
+– Gains the Arcane Fist passive effect.
+
+ARCANE FIST: The Enlightened Fist's mastery of touch-based spells allows them to apply the benefits of any arcane spells that use a touch-based weapon, such as Chill Touch or Shocking Grasp, on their regular melee attack.
+
+– May use the Stunning Blow ability once per day. Gains one use at level 1 and an additional use every 6 levels thereafter.
+
+STUNNING BLOW: The Enlightened Fist sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.
+
+– 5th level: May use the Fist of Energy ability.
+
+FIST OF ENERGY: The Enlightened Fist may choose to expend one of their uses of Stunning Fist to instead deal 1d8 electrical and 1d8 magic fire damage for the next 10 seconds. Damage increases to 2d8 of each damage type at 10th level and 3d8 at 18th level.
+
+– 10th level: May use Wholeness of Body once per day.
+
+WHOLENESS OF BODY: The Enlightened Fist instantly heals themself for three hit points per level.
+
+– 14th level: Diamond Soul: The Enlightened Fist gains base 10% + 2% Magic Resistance per level up to a maximum of 50% at 20th level.
+– 18th level: Inner Eye: The Enlightened Fist becomes immune to critical hits while unarmed.
+– Hit Die: d6
+
+Disadvantages:
+– May cast one fewer spell per level per day.
+– May only be of any Lawful alignment.
+– May not use two-handed weapons.
+– May only be human.
+– Suffers a -6 penalty to THAC0 when wielding any weapon.~)
+	
+    briefdesc     = RESOLVE_STR_REF(~ENLIGHTENED FIST: Not all monks pursue metaphysical perfection to the exclusion of all other study. Some monks combine a rigorous discipline of academic study with martial arts and development of the body. For these monks, that study includes the practice of magic and the implementation of certain arcane tricks into their unarmed combat styles. These enlightened fists master the use of touch spells, creating new forms of combat where their fists strike with blinding speed, phenomenal power, and magical energy.~)
+  STR_VAR
+    kit_name      = ~C0_ENLIGHTENED_FIST~
+	
+    // unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0~
+	
+    abclasrq      = ~0 9 0 9 12 9~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 0 0 0~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~1 1 1 0 0 0 0 0 0~
+	
+    dualclas      = ~0 0 0 0 0 0~
+	
+    // luabbr        = ~FM0~
+	
+    // stweap        = ~CLCK13 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0EFN.2da~
+	
+    kittable      = ~K_S_H~
+	
+	// base_class = F
+	
+	// clab_base_f = ~C0AA~
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPROG~
+	
+    numwslot      = ~3~
+	
+	// METAL, MINOR, MAJOR, LEATHER, ARMOR
+	clascolr = ~192 63 142 83 110~ 
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	thiefscl = ~0 0 100 100 100 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CLCK12 * * * RING06 * * * * BRAC02 BELT04 * BULL02,40 * POTN08,5 POTN17,3 POTN24,1 SLNG02 DAGG05,40 STAF02~
+  RET
+    kit_id
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Arcane Fist~) STR_VAR bam_file = C0EFNSI RET C0EFNSI = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Fist of Energy~) STR_VAR bam_file = C0EFN2I RET C0EFN2I = icon END
+
+// WISDOM
+APPEND ~splprot.2da~ ~C0HTWIS 39 -1 1~ UNLESS ~C0HTWIS~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0HTWIS~ BEGIN
+	    SET C0HTWIS = %row%
+	  END
+	END
+	
+COPY_EXISTING ~C0EFN1.SPL~ OVERRIDE
+SAY NAME1 ~Stunning Blow~
+SAY UNIDENTIFIED_DESC ~Stunning Blow
+The Enlightened Fist sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.~
+	LPF ALTER_EFFECT
+		INT_VAR
+			match_opcode = 326
+			match_special = 1000
+			parameter2 = C0HTWIS
+			silent = 1
+	END
+
+COPY_EXISTING ~C0EFN2.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0EFN2I END
+SAY NAME1 ~Fist of Energy~
+SAY UNIDENTIFIED_DESC ~Fist of Energy
+The Enlightened Fist may choose to expend one of their uses of Stunning Fist to instead deal 1d8 electrical and 1d8 magic fire damage for the next 10 seconds. Damage increases to 2d8 of each damage type at 10th level and 3d8 at 18th level.~
+
+/// CHILL TOUCH
+
+COPY_EXISTING ~SPWI117.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0EFNS1 END
+
+COPY_EXISTING ~C0EFNS1.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0EFNSI END
+
+/// SHOCKING GRASP
+
+COPY_EXISTING ~SPWI115.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0EFNS2 END
+
+COPY_EXISTING ~C0EFNS2.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0EFNSI END
+
+/// GHOUL TOUCH
+
+COPY_EXISTING ~SPWI218.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0EFNS3 END
+
+COPY_EXISTING ~C0EFNS3.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0EFNSI END
+
+/// LICH TOUCH
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWI626.SPL~ THEN BEGIN
+COPY_EXISTING ~SPWI626.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0EFNS4 END
+END
+
+// SIMULACRUM
+
+COPY_EXISTING ~SIMULACR.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0MN#FI END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter2 = 109 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) STR_VAR resource = C0MN#AN END
+
+COPY_EXISTING ~C0EFNS4.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0EFNSI END
+
+OUTER_SET enlightened_fist_ids = IDS_OF_SYMBOL (~kit~ ~C0_ENLIGHTENED_FIST~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0mnk2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%enlightened_fist_ids%~~~~~ //"
+  END
