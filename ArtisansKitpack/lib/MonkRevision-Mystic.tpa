@@ -65,8 +65,8 @@ SAY NAME2 ~Fist +5~
 SAY UNIDENTIFIED_DESC ~These fists deal 2d8+5 crushing damage and strike as a +5 silver weapon.~
 
 INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
-INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/EnlightenedFist.tpa~
+INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items

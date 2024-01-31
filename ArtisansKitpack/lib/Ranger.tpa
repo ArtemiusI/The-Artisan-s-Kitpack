@@ -65,7 +65,7 @@ SET SNARE: Set a trap in the chosen location when no hostile creatures are in si
   
 – May use the Tracking modal ability while outdoors.
 
-TRACKING: With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war.
+TRACKING: With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 50 feet radius of the ranger will be revealed from within the fog of war. Tracking's range increases by an additional 25 feet radius at 9th and 18th level.
   
 – May cast druidic spells starting at level 8.
 – Alignment restricted to good.
@@ -168,15 +168,46 @@ COPY_EXISTING ~SPCL922.SPL~ OVERRIDE
 	LPF ALTER_EFFECT INT_VAR match_opcode = 318 parameter2 = C0_NOT_OUTDOORS_CHECK END
 SAY NAME1 ~Tracking~
 SAY UNIDENTIFIED_DESC ~Tracking
-With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 100-ft. radius of the ranger will be revealed from within the explored fog of war.
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a ranger can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. All enemies within a 50 feet radius of the ranger will be revealed from within the fog of war. Tracking's range increases by an additional 25 feet radius at 9th and 18th level.
 
 This ability only works while outdoors.~
-  
-COPY_EXISTING ~SPCL922a.eff~ OVERRIDE
-  WRITE_SHORT 0x20 ~C0_OUTDOORS_CHECK~
 
 COPY_EXISTING ~SPCL922a.SPL~ OVERRIDE
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Activated~) END
   LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = SPCL922I END
+
+COPY ~%MOD_FOLDER%/Ranger/spells/projectile/C0TRKP01.PRO~ ~OVERRIDE/C0TRKP01.PRO~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Ranger/spells/projectile/C0TRKP01.PRO~ ~C0 Tracking 800~
+COPY_EXISTING ~C0TRKP01.PRO~ ~OVERRIDE/C0TRKP02.PRO~
+  WRITE_SHORT 0x204 1200
+  WRITE_SHORT 0x206 1200
+ADD_PROJECTILE ~OVERRIDE/C0TRKP02.PRO~ ~C0 Tracking 1200~
+COPY_EXISTING ~C0TRKP01.PRO~ ~OVERRIDE/C0TRKP03.PRO~
+  WRITE_SHORT 0x204 1600
+  WRITE_SHORT 0x206 1600
+ADD_PROJECTILE ~OVERRIDE/C0TRKP03.PRO~ ~C0 Tracking 1600~
+
+COPY_EXISTING ~SPCL922B.SPL~ OVERRIDE
+	LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = C0_OUTDOORS_CHECK END
+
+COPY_EXISTING ~SPCL922F.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0TRKP01
+END
+
+COPY_EXISTING ~SPCL922G.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0TRKP02
+END
+
+COPY_EXISTING ~SPCL922H.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0TRKP03
+END
 
 COPY_EXISTING ~SPCL922c.SPL~ OVERRIDE
 	LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Deactivated~) END
