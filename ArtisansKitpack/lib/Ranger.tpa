@@ -211,3 +211,162 @@ END
 
 COPY_EXISTING ~SPCL922c.SPL~ OVERRIDE
 	LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Deactivated~) END
+
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/lua/m_c0ran1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN01.2DA~ BEGIN
+COPY_EXISTING ~CLABRN01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  PRETTY_PRINT_2DA
+BUT_ONLY
+///////////////////////////////////////////////////////////////////////////
+// Set Abilities for all Fighter Kits                                    //
+// This allows all previously installed fighter kits to receive the      //
+// benefits of your overhaul                                             //
+///////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+  PATCH_IF (%kit_class% = 12) BEGIN
+    // Set New Fighter Abilities
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      // Add new abilities to all Fighter kits
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "C0TBM")
+														 ) BEGIN
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+        PRETTY_PRINT_2DA
+      END
+      BUT_ONLY
+      END
+    END
+  END
+  END
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF (
+				("%kit%" STRING_EQUAL_CASE "RANGER") OR
+				("%kit%" STRING_EQUAL_CASE "FERALAN") OR
+				("%kit%" STRING_EQUAL_CASE "STALKER") OR
+				("%kit%" STRING_EQUAL_CASE "BEASTMASTER")
+														 ) BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 100
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF (
+				("%kit%" STRING_EQUAL_CASE "RANGER") OR
+				("%kit%" STRING_EQUAL_CASE "FERALAN") OR
+				("%kit%" STRING_EQUAL_CASE "STALKER") OR
+				("%kit%" STRING_EQUAL_CASE "BEASTMASTER")
+														 ) BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 20
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 20
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//RANGER
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "RANGER" BEGIN
+          READ_2DA_ENTRY index 4 col_count ranger_desc
+          SPRINT old_ranger ~– May use the Hide In Shadows ability while wearing no armor, leather armor, or studded leather armor.~
+          SPRINT new_ranger ~– May Detect Traps and Illusions.
+– May use the Hide In Shadows ability while wearing no armor, leather armor, or studded leather armor.~
+          GET_STRREF %ranger_desc% ranger_text
+          INNER_PATCH_SAVE ranger_text ~%ranger_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_ranger%~ ~%new_ranger%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%ranger_desc%~ ~%ranger_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  END
+  

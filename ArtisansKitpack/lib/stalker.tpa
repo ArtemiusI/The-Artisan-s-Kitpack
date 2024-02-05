@@ -24,6 +24,7 @@ ANALYZE: With this ability, the user carefully observes the target and identifie
 
 Disadvantages:
 – Hit Die: d8
+– Does not gain Woodland Stride.
 – May not wear armor heavier than studded leather.~
 
 APPEND ~splprot.2da~ ~C0_OUTDOORS_CHECK%TAB%0x106%TAB%1%TAB%8~ UNLESS ~C0_OUTDOORS_CHECK~
@@ -70,7 +71,6 @@ COPY_EXISTING ~SPCL922A.SPL~ ~OVERRIDE/C0STK01A.SPL~
   LPF ALTER_EFFECT STR_VAR match_resource = SPCL922A resource = C0STK01A END
   
 COPY_EXISTING ~SPCL922A.EFF~ ~OVERRIDE/C0STK01A.EFF~
-  WRITE_BYTE 0x20 0
 
 COPY_EXISTING ~SPCL922C.SPL~ ~OVERRIDE/C0STK01C.SPL~
 	LPF ALTER_EFFECT STR_VAR match_resource = SPCL922A resource = C0STK01A END
@@ -197,3 +197,71 @@ ACTION_IF FILE_EXISTS_IN_GAME ~valyg14.cre~ THEN BEGIN
 	WRITE_SHORT 0x26 92
 END
 
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~M_C0RAN1.lua~ THEN BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN03.2DA~ BEGIN
+COPY_EXISTING ~CLABRN03.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "STALKER") BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 100
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "STALKER") BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 20
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 20
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+END
+END
+END

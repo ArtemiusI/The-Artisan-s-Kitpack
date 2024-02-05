@@ -446,3 +446,97 @@ ACTION_IF FILE_EXISTS_IN_GAME ~shop03.sto~ THEN BEGIN
 COPY_EXISTING ~shop03.sto~ ~override~
 ADD_STORE_ITEM ~c0mleat~ LAST #0 #0 #0 ~IDENTIFIED~ #1
 END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~M_C0RAN1.lua~ THEN BEGIN
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "C0TBM" = 0) BEGIN
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "C0TBM" = 0) BEGIN
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 10
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~C0TBM.2DA~ BEGIN
+COPY_EXISTING ~C0TBM.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TBMS END // FIND TRAP/ILLUSION POINTS
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//MINSC
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0TBM" BEGIN
+          READ_2DA_ENTRY index 4 col_count minsc_desc
+          SPRINT old_minsc ~Disadvantages:~
+          SPRINT new_minsc ~Disadvantages:
+– Only has one half the normal Find Traps score.
+– Detect Illusions does not improve with level.~
+          GET_STRREF %minsc_desc% minsc_text
+          INNER_PATCH_SAVE minsc_text ~%minsc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_minsc%~ ~%new_minsc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%minsc_desc%~ ~%minsc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  END

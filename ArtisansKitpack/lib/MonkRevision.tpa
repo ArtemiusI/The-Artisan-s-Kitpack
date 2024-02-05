@@ -278,7 +278,7 @@ SORCEROUS LINEAGE: Disciples of the Order of the Dark Moon must display some sor
 
 – 5th level: May cast Chilling Palm once per day.
 
-CHILLING PALM: The Dark Moon Monk channels unearthly energy into their unarmed attacks, granting their fists an additional 1d4 cold damage (+1 per point of Wisdom above 14) for 1 round per 5 levels.
+CHILLING PALM: The Dark Moon Monk channels unearthly energy into their unarmed attacks, granting their fists an additional 1d4 magical cold damage (+1 per point of Wisdom above 14) for 1 round per 5 levels.
 
 – 8th level: May cast Viperous Strike once per day. 
 
@@ -314,15 +314,15 @@ Advantages:
 – Immune to Blindness and Level Drain.
 – May cast Radiant Sunbolts once per day. Gains an extra use at 5th level and every 5 levels thereafter.
 
-RADIANT SUNBOLTS: The Sun Soul Monk can create bolts of energy that flare with radiant light. These bolts can be thrown as a projectile with a +5 bonus to attack rolls. Each bolt deals 1d4+1 points of magical damage and 3 extra points of fire damage (10 against undead) and strike as +4 weapons. The Sun Soul Monk produces 5 missiles (+1 additional bolt per 5 monk levels) and may hurl up to five missiles per round.
+RADIANT SUNBOLTS: The Sun Soul Monk can create bolts of energy that flare with radiant light. These bolts can be thrown as a projectile with a +5 bonus to attack rolls. Each bolt deals 1d4+1 points of magical damage and 3 extra points of magical fire damage (10 against undead) and strike as +4 weapons. The Sun Soul Monk produces 5 missiles (+1 additional bolt per 5 monk levels) and may hurl up to five missiles per round.
 
 – 5th level: May cast Blazing Fists once per day.
 
-BLAZING FISTS: The Sun Soul Monk channels their inner light into their unarmed attacks, turning their fists into flaming weapons that deal an additional 1d4 fire damage (+1 per point of Wisdom above 14) for 1 round per 5 levels.
+BLAZING FISTS: The Sun Soul Monk channels their inner light into their unarmed attacks, turning their fists into flaming weapons that deal an additional 1d4 magical fire damage (+1 per point of Wisdom above 14) for 1 round per 5 levels.
 
 – 8th level: May cast Searing Arc Strike once per day.
 
-SEARING ARC STRIKE: The Sun Soul Monk gathers ki within their fists and shapes them into searing waves of white-hot flames. The monk's next successful melee attack unleashes a 90-degree cone of flame which deals 5d6 fire damage and severely burns all targets, reducing their Armor Class, THAC0 and Damage by 4 points and dealing an additional 1d6 fire damage per round for one turn unless a successful Save vs. Spells is made. Additionally, all invisible targets lose their invisibility with no save.
+SEARING ARC STRIKE: The Sun Soul Monk gathers ki within their fists and shapes them into searing waves of white-hot flames. The monk's next successful melee attack unleashes a 90-degree cone of flame which deals 5d6 magical fire damage and severely burns all targets, reducing their Armor Class, THAC0 and Damage by 4 points and dealing an additional 1d6 magical fire damage per round for one turn unless a successful Save vs. Spells is made. Additionally, all invisible targets lose their invisibility with no save.
 
 – 13th level: May cast Searing Sunburst once per day.
 
@@ -330,9 +330,9 @@ SEARING SUNBURST: The Sun Soul Monk unleashes their ki in a massive pillar of li
 
 – 17th level: May cast Solar Shield once per day.
 
-SOLAR SHIELD: The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of fire damage and must make a save vs. spells or take an additional 1d8 fire damage and be blinded for one round.
+SOLAR SHIELD: The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of magical fire damage and must make a save vs. spells or take an additional 1d8 magical fire damage and be blinded for one round.
 
-– 20th level: Avatar of the Sun: After casting Searing Sunburst, the Sun Soul monk continues to radiate light for three rounds. All enemies within 15-ft. of the Sun Soul monk take 1d6 magical damage each round and must make a save vs. spells at -2 or be blinded for one round.
+– 20th level: Avatar of the Sun: After casting Searing Sunburst, the Sun Soul monk continues to radiate light for three rounds, gaining a +6 bonus to Armor Class and +30% bonus to resistance to slashing, piercing, crushing and missile damage. All enemies within 15-ft. of the Sun Soul monk take 1d6 magical damage each round and must make a save vs. spells at -2 or be blinded for one round.
 
 Disadvantages:
 – Alignment restricted to lawful good.
@@ -598,7 +598,7 @@ The Dark Moon Monk becomes wreathed in a cold shroud for one turn, gaining immun
 COPY_EXISTING ~C0SSM01.SPL~ OVERRIDE
 SAY NAME1 ~Radiant Sunbolts~
 SAY UNIDENTIFIED_DESC ~Radiant Sunbolts
-The Sun Soul Monk can create bolts of energy that flare with radiant light. These bolts can be thrown as a projectile with a +5 bonus to attack rolls. Each bolt deals 1d4+1 points of magical damage and 3 extra points of fire damage (10 against undead) and strike as +4 weapons. The Sun Soul Monk produces 5 missiles (+1 additional bolt per 5 monk levels) and may hurl up to five missiles per round.~
+The Sun Soul Monk can create bolts of energy that flare with radiant light. These bolts can be thrown as a projectile with a +5 bonus to attack rolls. Each bolt deals 1d4+1 points of magical damage and 3 extra points of magic fire damage (10 against undead) and strike as +4 weapons. The Sun Soul Monk produces 5 missiles (+1 additional bolt per 5 monk levels) and may hurl up to five missiles per round.~
 
 COPY_EXISTING ~C0SSMBO1.SPL~ OVERRIDE
 SAY NAME1 ~Radiant Sunbolts~
@@ -612,7 +612,7 @@ The Sun Soul Monk channels their inner light into their unarmed attacks, turning
 COPY_EXISTING ~C0SSM03.SPL~ OVERRIDE
 SAY NAME1 ~Searing Arc Strike~
 SAY UNIDENTIFIED_DESC ~Searing Arc Strike
-The Sun Soul Monk gathers ki within their fists and shapes them into searing waves of white-hot flames. The monk's next successful melee attack unleashes a 140-degree cone of flame which deals 5d6 fire damage and severely burns all targets, reducing their Armor Class, THAC0 and Damage by 4 points and dealing an additional 1d6 fire damage per round for one turn unless a successful Save vs. Spells is made. Additionally, all invisible targets lose their invisibility with no save.~
+The Sun Soul Monk gathers ki within their fists and shapes them into searing waves of white-hot flames. The monk's next successful melee attack unleashes a 140-degree cone of flame which deals 5d6 magical fire damage and severely burns all targets, reducing their Armor Class, THAC0 and Damage by 4 points and dealing an additional 1d6 fire damage per round for one turn unless a successful Save vs. Spells is made. Additionally, all invisible targets lose their invisibility with no save.~
 
 ADD_PROJECTILE ~%MOD_FOLDER%/MonkRevision/projectiles/c0ssm04p.PRO~
 COPY_EXISTING ~C0SSM04.SPL~ OVERRIDE
@@ -624,7 +624,7 @@ The Sun Soul Monk unleashes their ki in a massive pillar of light, dealing 10d6 
 COPY_EXISTING ~C0SSM05.SPL~ OVERRIDE
 SAY NAME1 ~Solar Shield~
 SAY UNIDENTIFIED_DESC ~Solar Shield
-The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of fire damage and must make a save vs. spells or take an additional 1d8 fire damage and be blinded for one round.~
+The Sun Soul Monk becomes wreathed in a luminous mantle, gaining immunity to fire damage and dealing 30% increased fire damage from all sources for 1 turn. Any opponent who hits the Sun Soul Monk with any weapons or spells within this radius suffers 1d8+1 points of magical fire damage and must make a save vs. spells or take an additional 1d8 magical fire damage and be blinded for one round.~
 
 
 COPY_EXISTING ~c0as#p01.SPL~ OVERRIDE
@@ -764,7 +764,7 @@ SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
 STATISTICS:
 
 Weight: 4~
-SAY DESC ~These bulky robe are worn by followers of Ilmater, god of endurance and martyrdom. Monks of the Order of the Broken Ones follow a code of selflessness, raising their fists to defend the innocents rather than deal harm to others. These robes are reflective of their pacifistic ideology, designed to protect its wearer from danger.
+SAY DESC ~These bulky robes are worn by followers of Ilmater, god of endurance and martyrdom. Monks of the Order of the Broken Ones follow a code of selflessness, raising their fists to defend the innocents rather than deal harm to others. These robes are reflective of their pacifistic ideology, designed to protect its wearer from danger.
 
 Equipped abilities:
 – Armor Class: +4
@@ -772,6 +772,22 @@ Equipped abilities:
 – Maximum Hit Points: +30
 – THAC0: -2
 – Immunity to Poison
+
+Weight: 4~
+
+COPY_EXISTING ~C0MNRO08.ITM~ OVERRIDE
+SAY NAME1 ~Monk Robes~
+SAY NAME2 ~Robes of the Inner Eye~
+SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
+
+STATISTICS:
+
+Weight: 4~
+SAY DESC ~Yang Xun, a Shou martial artist, was a gifted student of the Heavenly Dragon school whose talent led him to be scouted for a respected position in the Emperor's personal guard. Unfortunately, his sibling students, envious of his potential, conspired to cut his future short by poisoning his wine with a toxin that rendered him nearly blind and unable to continue his training. His master, unwilling to see his talented pupil's life wasted, brought him to a monastery to be cared for by the esteemed abbot, his closest friend. Five years later, Yang made the journey back to his school to visit his former master where his rivals, fearful of retribution, attempted to ambush him en route under the cover of darkness, only for a blindfolded Yang to effortlessly dodge their blades, spears and knives as though possessing a sixth sense, until all his opponents lay broken and defeated, without a single stain or tear on Yang's initiate robes.
+
+Equipped abilities:
+– Armor Class: +2 vs. slashing and piercing attacks
+– Protects against critical hits
 
 Weight: 4~
 
@@ -909,6 +925,11 @@ ADD_STORE_ITEM ~c0mnro01~ #0 #0 #0 ~IDENTIFIED~ #1
 ADD_STORE_ITEM ~c0mnro02~ #0 #0 #0 ~IDENTIFIED~ #1
 ADD_STORE_ITEM ~c0mnro03~ #0 #0 #0 ~IDENTIFIED~ #1
 ADD_STORE_ITEM ~c0mnbr01~ #0 #0 #0 ~IDENTIFIED~ #1
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~taerum.sto~ THEN BEGIN
+COPY_EXISTING ~taerum.sto~ ~override~
+ADD_STORE_ITEM ~c0mnro09~ #0 #0 #0 ~IDENTIFIED~ #1
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~bdkazzre.sto~ THEN BEGIN
