@@ -600,3 +600,4 @@ COPY_EXISTING C0ARC03z.SPL OVERRIDE
 LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
 LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
 END
+END
