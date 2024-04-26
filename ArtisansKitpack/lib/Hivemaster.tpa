@@ -1,3 +1,54 @@
+ACTION_IF FILE_EXISTS_IN_GAME ~C0HIVECL.2DA~ THEN BEGIN
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~C0HIVE~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~HIVEMASTER: The Hivemaster is a druid that focuses on fostering and protecting insects and arachnids, including giant versions thereof. Most commonly stylise themselves after either communal insects, such as ants or bees (hence the name), or predators like spiders, scorpions and dragonflies.
+
+Advantages:
+– Immunity to all poisons and the following spells: Web, Summon Insects, Insect Plague, Creeping Doom
+– Verminfriend: Grants +2 to Armor Class, hit and damage to all allied spiders and insectoid creatures. From 10th level, all affected creatures deal double poison damage. From 14th level, all affected creatures are Hasted.
+– Chitinous Shell: Base Armor Class of 8. This improves by one point on every even-numbered level up to 14th level.
+– Six arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 6th level. These are listed below:
+  1st level: Blindness.
+  2nd level: Web.
+  3rd level: Spiderskin.
+  4th level: Spider Spawn.
+  5th level: Cloudkill.
+  6th level: Carrion Summons.
+– May use the Poison Weapon ability once per day. Gains another use at levels 7 and 14.
+
+POISON WEAPON: The hivemaster is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target’s Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 7th level: May Shapeshift into the form of a small spider, a phase spider, or a sword spider once per day.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+– 10th level: The hivemaster's transformations no longer take up their action per round.
+– 12th level: The hivemaster may transform into their spider forms at will.
+– 14th level: Natural Spell: The hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+– 14th level: The hivemaster may transform into a frost spider.
+
+FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+– 15th level: The hivemaster regenerates for 1 hit point per round. All spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.
+– 18th level: The hivemaster becomes immune to mind-affecting effects.
+
+Disadvantages:
+– Incurs a -3 penalty to Charisma.
+– Does not gain Elemental Resistance with levels.
+– May not cast Animal Summoning spells.
+– May not cast Elemental Summoning spells.
+– May not wear heavier armor than leather.
+– May not shapeshift into default animal forms.~
+END
+
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/2da~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/animations~ ~override~
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells~ ~override~
@@ -128,7 +179,7 @@ Disadvantages:
 	// fallen = 0
 	
   STR_VAR
-    kit_name      = ~C0HIVE2~
+    kit_name      = ~C0HIVE~
 	
     unusable      = ~0x20000000~
     // clasweap      = ~1 1 1 1 1 1 1 1~

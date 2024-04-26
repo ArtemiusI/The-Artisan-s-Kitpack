@@ -1,3 +1,48 @@
+ACTION_IF FILE_EXISTS_IN_GAME ~C0ILMCL.2DA~ THEN BEGIN
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~C0ILM~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~MARTYR: Martyrs are worshippers of Ilmater, the good god of suffering, endurance and perseverance. Paladins of Ilmater's order are compassionate and train themselves to become protectors of their allies and to alleviate the suffering of others.
+
+Advantages:
+– May use Lay on Hands three times per day.
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– May use the Sacrifice ability once per day. Gains an additional use at 5th level and every 5 levels thereafter.
+
+SACRIFICE: The martyr transfers 10 hit points plus 2 per level to the target, up to a maximum of 50 hit points at 20th level. The martyr cannot be killed by the sacrifice—if their hit points would go below 1, they are knocked unconscious instead.
+
+– May use the Martyrdom ability once per day starting at level 5. Gains an additional use at 10th level and every 10 levels thereafter.
+
+MARTYRDOM: The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr temporarily doubles their maximum hit points, gains +4 to Armor Class, +20% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.
+
+– 3rd level: Gains Aura of Protection.
+
+AURA OF PROTECTION: The martyr exudes a protective aura which shields their companions, granting all nearby allied creatures with in a 15-ft. radius bonuses to Armor Class and resistance to crushing, piercing, slashing and missile damage.
+  3rd - +1 to Armor Class.
+  11th - +2 to Armor Class and +5% resistance.
+  19th - +3 to Armor Class and +10% resistance.
+
+– 8th level: Gains the Final Breath passive effect.
+
+FINAL BREATH: The martyr's dauntless heroism and endurance keeps their allies motivated and safe, even in death. If the martyr is slain, all allies are healed for 50% of their maximum hit points and gain +4 to hit, damage and saving throws for two turns.
+
+– 10th level: The martyr becomes immune to fatigue.
+– 15th level: May use the Ilmater's Grace ability once per day.
+
+ILMATER'S GRACE: The martyr may call upon a second wind in battle, instantly healing half of their maximum hit points. The martyr gradually regenerates an additional half of their maximum hit points over the next five rounds.
+
+– 20th level: Tribulations: The martyr permanently gains a 5% chance to negate incoming damage. If damage is negated, the martyr and the closest ally regenerate for 2 hit points per second for 5 seconds.
+
+– Hit Die: d12
+
+Disadvantages:
+– Does not gain Charisma-based Divine Grace bonuses.
+– Does not gain Aura of Courage.
+– Incurs a -1 penalty to damage.
+– May not cast Protection from Evil.
+– May not use Smite Evil.
+– May not Turn Undead.
+– May not use ranged weapons.~
+END
+
 COPY ~%MOD_FOLDER%/Paladin/Martyr/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Paladin/Martyr/spells~ ~OVERRIDE~
 
@@ -43,7 +88,7 @@ SACRIFICE: The martyr transfers 10 hit points plus 2 per level to the target, up
 
 – May use the Martyrdom ability once per day starting at level 5. Gains an additional use at 10th level and every 10 levels thereafter.
 
-MARTYRDOM: The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr gains a temporary +6 bonus to Armor Class, +30% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.
+MARTYRDOM: The martyr takes on a defensive stance to protect their comrades. For one turn, the martyr temporarily doubles their maximum hit points, gains +4 to Armor Class, +20% resistance to all damage and immunity to all displacement effects. The martyr's damage and movement rate are halved while in this stance, but their effective personal space is greatly increased, preventing creatures from passing them in a 5-ft. radius. At the end of the duration, the martyr is greatly fatigued. This ability may not be used in conjuction with Hardiness.
 
 – 3rd level: Gains Aura of Protection.
 
@@ -80,7 +125,7 @@ Disadvantages:
 	// fallen = 1
 	
   STR_VAR
-    kit_name      = ~COILM~
+    kit_name      = ~C0ILM~
 	
     unusable      = ~0x00000008~
     // clasweap      = ~1 1 1 1 1 1 1 1~
