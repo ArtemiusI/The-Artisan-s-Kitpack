@@ -78,7 +78,7 @@ Advantages:
 
 ELDRITCH STRIKE: The Eldritch Knight empowers <PRO_HISHER> next successful attack to weaken their opponent's resistance to their spells, reducing their Saving Throws by 2 and Magic Resistance by 25% for three rounds. This effect is non-cumulative on the same target.
 
-– 5th level: Extend Spell: The Eldritch Knight's arcane spells have an increased duration of 20%.
+– 5th level: Extend Spell: The Eldritch Knight's arcane spells have an increased duration of 50%.
 – 6th level: Eldritch Strike reduces Saving Throws by 3 and Magic Resistance by 50%.
 – 8th level: May cast Dimension Door twice per day.
 
@@ -87,11 +87,12 @@ DIMENSION DOOR: This spell transports the caster to any place within the visual 
 – 10th level: Battle Caster: The Eldritch Knight may cast spells while wearing any armor.
 – 12th level: Eldritch Strike reduces Saving Throws by 4 and Magic Resistance by 100%.
 – 14th level: Improved Combat Casting: Bonus to casting speed increased to 4.
-– 16th level: Persistent Spell: The Eldritch Knight's arcane spells have an increased duration of 40%, replacing the Extend Spell bonus.
+– 18th level: Persistent Spell: The Eldritch Knight's arcane spells have an increased duration of 100%, replacing the Extend Spell bonus.
 
 Disadvantages:
 – May only be proficient in any ranged weapon.
-– The Eldritch Knight learns the first spell of each spell level from 2nd level onwards by one level later than a regular Mage.~)
+– Mage spell level modifier does not increase at 2nd, 5th, 8th, 11th, 14th levels.
+– Learns the first spell of each spell level from 2nd level onwards by one level later than a regular Mage.~)
 	
     briefdesc     = RESOLVE_STR_REF(~ELDRITCH KNIGHT: Studying the martial and arcane arts to equal degree, the eldritch knight is a versatile combatant who can cast fireball on their foes or charge them with sword drawn. The eldritch knight takes pride in their ability to use the right technique for the job: spells against physically tough foes and force of arms against spellcasting enemies. Eldritch knights split their time between physical training to become better soldiers and arcane study to learn more powerful spells. They tend to be driven individuals, because simultaneously perfecting their spellcasting and combat prowess requires immense time and effort.~)
 	

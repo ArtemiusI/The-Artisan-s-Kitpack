@@ -141,6 +141,8 @@ Disadvantages:
     kit_id
 END
 
+APPEND ~fallen.2da~ ~C0DC 0~
+
 ACTION_IF FILE_EXISTS_IN_GAME ~C0FIG01.SPL~ BEGIN
 COPY_EXISTING ~C0DC.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing

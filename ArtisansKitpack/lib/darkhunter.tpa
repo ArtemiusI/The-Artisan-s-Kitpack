@@ -67,7 +67,7 @@ Disadvantages:
 	
     briefdesc     = RESOLVE_STR_REF(~DARK HUNTER: Dark Hunters use their skills in stealth and survival for the purposes of infiltration, espionage, and manhunting, though they are no less capable in direct combat when necessary. While regarded as rangers in name only by typical woodsmen, Dark Hunters tend to be more welcome in guilds and groups of power as assassins and intelligence gatherers.~)
 	
-	fallen = 0
+	// fallen = 0
 	
   STR_VAR
     kit_name      = ~C0DHUNT~
@@ -153,6 +153,8 @@ Disadvantages:
   RET
     kit_id
 END
+
+APPEND ~fallen.2da~ ~C0DHUNT 0~
 
 //CHARM PERSON
 COPY_EXISTING ~SPWI104.SPL~ ~OVERRIDE/C0DH101.SPL~
