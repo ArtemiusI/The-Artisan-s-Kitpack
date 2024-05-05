@@ -236,8 +236,4 @@ Casting Time: 1
 Area of Effect: The caster
 Saving Throw: None
 
-This spell transports the caster to any place within the visual range of the caster. When the spell is cast, a dimensional portal opens up in front of the caster, who immediately steps through it. Upon passing through the portal, the caster finds <PRO_HIMHER>self at <PRO_HISHER> chosen destination.~
-
-COPY ~%MOD_FOLDER%/MultiKit/Eldritch_Knight/spells/c0ek4.spl~ ~override~
-LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Gained Passive Ability: Extend Spell~) END
-LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Passive Ability: Persistent Spell~) END
+This spell transports the caster to any place within the visual range of the caster. When the spell is cast, a dimensional portal opens up in front of the caster, who immediately steps through it. Upon passing through the portal, the caster finds <PRO_HIMHER>self at <PRO_HISHER> chosen destination.
