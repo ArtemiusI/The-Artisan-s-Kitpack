@@ -233,7 +233,7 @@ COPY_EXISTING ~backstab.2da~ ~override~
 		SET_2DA_ENTRY (%patch_row%) 42 cols 7
 		SET_2DA_ENTRY (%patch_row%) 43 cols 7
 		SET_2DA_ENTRY (%patch_row%) 44 cols 7
-		SET_2DA_ENTRY (%patch_row%) 45 cols f
+		SET_2DA_ENTRY (%patch_row%) 45 cols 7
 		SET_2DA_ENTRY (%patch_row%) 46 cols 7
 		SET_2DA_ENTRY (%patch_row%) 47 cols 7
 		SET_2DA_ENTRY (%patch_row%) 48 cols 7
