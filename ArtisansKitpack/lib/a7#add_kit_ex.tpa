@@ -1,6 +1,7 @@
 /*
  * ADD_KIT_EX - A full ADD_KIT replacement that is compatible with both classic and Enhanced Edition games.
  * GET_KIT_EX - A function for retrieving attributes of any given kit.
+ * Requirements: WeiDU version 247 or later
  * Author: Argent77 
  * Multiclass kit code: based on "qd_multiclass" by Aquadrizzt and Subtledoctor
  * Licence: public domain
@@ -285,7 +286,7 @@ BEGIN
       PATCH_IF (NOT FILE_CONTAINS_EVALUATED(~%resref%.2da~ ~[ %TAB%%WNL%]%kit_name%[ %TAB%%WNL%]~)) BEGIN
         // assembling table row
         PATCH_IF (~%resref%~ STR_EQ ~kitlist~) BEGIN SET $EVAL ~%array%~(~0~) = table - 3 END
-        PATCH_IF (NOT $EVAL ~%array%~(~%kit_column%~) STR_EQ ~%kit_name%~) BEGIN
+        PATCH_IF (array_items <= kit_column + 1 || NOT $EVAL ~%array%~(~%kit_column%~) STR_EQ ~%kit_name%~) BEGIN
           TEXT_SPRINT insert ~%kit_name%~
           SET extra_item = 1
         END ELSE BEGIN
