@@ -104,7 +104,7 @@ Disadvantages:
 	
     dualclas      = ~0 0 0 0 0 0~
 	
-    // luabbr        = ~FM0~
+    luabbr        = ~C0EFN~
 	
     // stweap        = ~CLCK13 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -157,6 +157,14 @@ Disadvantages:
   RET
     kit_id
 END
+
+COPY_EXISTING ~LUMA0.2da~ ~override/LUC0EFM.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL928~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL929~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL930~ END
+LPF patch_add_hla STR_VAR ability = ~C0MN#H07~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR ability = ~C0MN#H05~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR ability = ~C0MN#H15~ num_allowed = 1 END	
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
