@@ -11,6 +11,7 @@ ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
   INCLUDE ~%MOD_FOLDER%/lib/hla_actions.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/x_force.tph~
 END
 AUTO_TRA ~%MOD_FOLDER%/tra/%s~
 

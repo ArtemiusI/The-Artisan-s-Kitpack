@@ -1,6 +1,5 @@
-BACKUP ~ArtisansKitpack/npc/backup~
-AUTHOR ~Artemius_I~
-VERSION ~4.8~
+BACKUP ~ArtisansKitpack/backup/tweak~
+AUTHOR ~The Artisan~
 ALWAYS
   INCLUDE ~ArtisansKitpack/lib/alter_script.tpa~
   INCLUDE ~ArtisansKitpack/lib/ClassSpellTool.tpa~
@@ -11,6 +10,7 @@ ALWAYS
   INCLUDE ~ArtisansKitpack/lib/functions.tph~
   INCLUDE ~ArtisansKitpack/lib/hla_actions.tpa~
   INCLUDE ~ArtisansKitpack/lib/replace_multiline.tpa~
+  INCLUDE ~ArtisansKitpack/lib/x_force.tph~
 END
 AUTO_TRA ~ArtisansKitpack/tra/%s~
 

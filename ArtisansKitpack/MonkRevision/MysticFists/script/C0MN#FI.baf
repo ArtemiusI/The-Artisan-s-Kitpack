@@ -2,6 +2,8 @@
 
 IF
   OnCreation()
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
   Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
 THEN
   RESPONSE #100

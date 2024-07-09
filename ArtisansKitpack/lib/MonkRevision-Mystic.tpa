@@ -10,8 +10,6 @@ WRITE_ASCII 0x2cc ~C0MN#FI~ #8  // dialogue
 WRITE_ASCII 0x248 ~C0MN#FI~ #8  // override
 WRITE_ASCII 0x280 ~C0MN#FI~ #32 // death variable
 
-COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~
-
 COPY_EXISTING ~C0MFIST1.ITM~ OVERRIDE
 SAY NAME2 ~Fist~
 SAY UNIDENTIFIED_DESC ~These fists deal 1d4 crushing damage.~
@@ -110,3 +108,5 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
       END
     END
 BUT_ONLY_IF_IT_CHANGES
+
+COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~
