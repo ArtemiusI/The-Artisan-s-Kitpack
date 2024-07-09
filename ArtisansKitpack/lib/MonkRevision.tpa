@@ -775,7 +775,7 @@ Equipped abilities:
 
 Weight: 4~
 
-COPY_EXISTING ~C0MNRO08.ITM~ OVERRIDE
+COPY_EXISTING ~C0MNRO09.ITM~ OVERRIDE
 SAY NAME1 ~Monk Robes~
 SAY NAME2 ~Robes of the Inner Eye~
 SAY UNIDENTIFIED_DESC ~Robes worn by monks of various monastic orders.
