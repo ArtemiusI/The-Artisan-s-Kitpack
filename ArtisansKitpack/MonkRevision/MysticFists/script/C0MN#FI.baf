@@ -2,6 +2,7 @@
 
 IF
   OnCreation()
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
 THEN
   RESPONSE #100
 	XEquipItem("C0MFIST1",LastSummonerOf(),SLOT_WEAPON2,EQUIP)
