@@ -17,27 +17,13 @@ AUTO_TRA ~ArtisansKitpack/tra/%s~
 BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1002~ OR MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1007~) ~The Vanguard Kit must be installed.~
-
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID2.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid2.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID4.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid4.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID6.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid6.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
-		ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN
-	  COPY_EXISTING ~khalid7.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
-		END
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~KHALID~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+      	// do things here
+      END
+      BUT_ONLY
 
 BEGIN ~Arcane Archer~ DESIGNATED 1102
 SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
@@ -530,32 +516,24 @@ INCLUDE ~ArtisansKitpack/lib/berserkerminsc.tpa~
 BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~ DESIGNATED 3101
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit must be installed.~
-ACTION_IF FILE_EXISTS_IN_GAME ~ajanti.cre~ THEN BEGIN
-    COPY_EXISTING ~ajanti.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
-		BUT_ONLY
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~ajanti4.cre~ THEN BEGIN
-    COPY_EXISTING ~ajanti4.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
-		BUT_ONLY
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~ajanti6.cre~ THEN BEGIN
-    COPY_EXISTING ~ajanti6.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
-		BUT_ONLY
-END
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~AJANTIS~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+      	// do things here
+      END
+      BUT_ONLY
 
 BEGIN ~Artisan's Kitpack: Give Cernd the Elementalist Kit~ DESIGNATED 5101
   REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Elementalist Kit must be installed.~
- ACTION_FOR_EACH cernd IN CERND10 CERND12 CERND13 CERND13B CERND14 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%cernd%.cre~ THEN BEGIN
-    COPY_EXISTING ~%cernd%.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ELEM~))
-		BUT_ONLY
-END
-END
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~CERND~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ELEM~))
+      	// do things here
+      END
+      BUT_ONLY
 
 BEGIN ~Artisan's Kitpack: Red Wizard Mage Kit for Edwin~
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
@@ -565,33 +543,33 @@ BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 COPY ~ArtisansKitpack/THIEF/ASSASSIN/MONTARON~ ~OVERRIDE~
 
-BEGIN ~Artisan's Kitpack: Give Imoen the Rogue Archer Kit~ DESIGNATED 7101
+BEGIN ~Rogue Archer~ DESIGNATED 7101
+SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
-FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7102~ ~Imoen is already installed as a Trickster.~
- ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
-    COPY_EXISTING ~%imoen%.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
-		SET_BG2_PROFICIENCY 102 0
-		SET_BG2_PROFICIENCY 105 2
-		BUT_ONLY
-END
-END
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
+		    SET_BG2_PROFICIENCY 102 0
+		    SET_BG2_PROFICIENCY 105 2
+      	// do things here
+      END
+      BUT_ONLY
 
-BEGIN ~Artisan's Kitpack: Give Imoen the Trickster Kit~ DESIGNATED 7102
+BEGIN ~Trickster~ DESIGNATED 7102
+SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Rogue Archer Kit must be installed.~
-FORBID_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7101~ ~Imoen is already installed as a Rogue Archer.~
- ACTION_FOR_EACH imoen IN imoen1 imoen2 imoen4 imoen6 imoen10 imoen15 imoen211 imoen213 ttimoen c#im_010 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%imoen%.cre~ THEN BEGIN
-    COPY_EXISTING ~%imoen%.cre~ ~override~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
 		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRICKS~))
 		ADD_MEMORIZED_SPELL ~C0TR#29Z~ #0 ~innate~
 		LPF ADD_CRE_EFFECT INT_VAR opcode = 206 timing = 9 target = 2 STR_VAR resource = C0TR#04 END
-		BUT_ONLY
-END
-END
+      	// do things here
+      END
+      BUT_ONLY
 
 BEGIN ~Artisan's Kitpack: Give Hexxat the Invisible Blade Kit~ DESIGNATED 7104
   REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
@@ -673,13 +651,13 @@ END
 BEGIN ~Artisan's Kitpack: Give Jan the Arcane Trickster Kit~ DESIGNATED 21001
   REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20001~ ~The Elementalist Kit must be installed.~
- ACTION_FOR_EACH jan IN jan8 jan10 jan11 jan12 jan15 BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%jan%.cre~ THEN BEGIN
-    COPY_EXISTING ~%jan%.cre~ ~override~
-		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ATR~))
-		BUT_ONLY
-END
-END
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~JAN~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ATR~))
+      	// do things here
+      END
+      BUT_ONLY
 
 BEGIN ~Artisan's Kitpack: Give M'khiin the Warhorn Shaman Kit~ DESIGNATED 9101
 REQUIRE_PREDICATE (GAME_INCLUDES ~sod~) ~This component requires Siege of Dragonspear.~

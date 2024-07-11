@@ -277,7 +277,7 @@ END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
 
-	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE2~ clabfile = ~C0HIVECL~ END
+	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE~ clabfile = ~C0HIVECL~ END
 
 COPY_EXISTING ~C0HIVECL.2da~ ~override/C0HIVECL.2da~
 SET_2DA_ENTRY 3 1 50 ~****      ~
@@ -452,7 +452,7 @@ The user is capable of coating <PRO_HISHER> weapon for the next eight hours with
 
 ACTION_IF FILE_EXISTS_IN_GAME ~RASPHERE.marker~ BEGIN
 
-	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE2~ clabfile = ~C0HIVECL~ END
+	LAF RA_SPHERE_COMPAT STR_VAR kitname = ~C0HIVE~ clabfile = ~C0HIVECL~ END
 	
 PRINT ~Deities of Faerun installed: adding spheres to kit!~
 COPY_EXISTING ~C0HIVECL.2da~ ~override/C0HIVECL.2da~
