@@ -1030,7 +1030,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~rasaad12.cre~ THEN BEGIN
 END
 
 BEGIN ~Artisan's Kitpack: Make Xan an Eldritch Knight~ DESIGNATED 20002
-  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20000~ ~The Eldritch Knight Kit must be installed.~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~XAN.cre~ THEN BEGIN
