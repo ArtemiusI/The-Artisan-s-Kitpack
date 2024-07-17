@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/Mage/RedWizard/2das~ ~override~
-COPY ~%MOD_FOLDER%/Mage/RedWizard/spells~ ~override~
+COPY ~ArtisansKitpack/Mage/RedWizard/2das~ ~override~
+COPY ~ArtisansKitpack/Mage/RedWizard/spells~ ~override~
 
 LAF ADD_KIT_EX
   INT_VAR
@@ -134,7 +134,7 @@ Disadvantages:
     kit_id
 END
 
-COPY ~%MOD_FOLDER%/Mage/RedWizard/items/misc89.itm~ ~override~
+COPY ~ArtisansKitpack/Mage/RedWizard/items/misc89.itm~ ~override~
 SAY NAME1 ~Edwin's Amulet~
 SAY DESC ~This is Edwin's birthright, inlaid with his family stone.
 

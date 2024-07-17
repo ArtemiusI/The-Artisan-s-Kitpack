@@ -1,5 +1,5 @@
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/2da~ ~override~
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/2da~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells~ ~override~
 
 // Minsc
 
@@ -165,7 +165,7 @@ END
 // Spells
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0FIG01.SPL~ BEGIN
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/fighter~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells/fighter~ ~override~
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
   STR_VAR bam_file = "****"
@@ -203,7 +203,7 @@ COPY_EXISTING ~C0FIG01c.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
 END
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/spin117.spl~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells/spin117.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 139 // display string
@@ -225,7 +225,7 @@ Once the duration has ended, the Rashemi berserker becomes winded, reducing his 
 
 18th level: The Rashemi berserker's rage is so great that it allows him to temporarily stave off death. From 18th level onwards, the Rashemi berserker is unable to die by any means within the first five rounds of entering rage.~
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/c0tbm3.spl~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells/c0tbm3.spl~ ~override~
 SAY NAME1 ~Fatigue~
 SAY NAME2 ~Fatigue~
   LPF ALTER_EFFECT
@@ -235,7 +235,7 @@ SAY NAME2 ~Fatigue~
  parameter1 = RESOLVE_STR_REF (~The berserker is too fatigued to enter a rage.~)
 END
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/spells/c0tbm4.spl~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells/c0tbm4.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 206
@@ -395,43 +395,43 @@ ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN
 
 // CREATURES
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/creatures/c0mbear.cre~ ~override~
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/creatures/c0mbear.cre~ ~override~
 SAY NAME1 ~Great Red Bear~
 SAY NAME2 ~Great Red Bear~
 
 // DIALOGUES
 
-COMPILE ~%MOD_FOLDER%/Ranger/BerserkerMinsc/dialogue/minscj.d~
-COMPILE ~%MOD_FOLDER%/Ranger/BerserkerMinsc/dialogue/taerom.d~
+COMPILE ~ArtisansKitpack/Ranger/BerserkerMinsc/dialogue/minscj.d~
+COMPILE ~ArtisansKitpack/Ranger/BerserkerMinsc/dialogue/taerom.d~
 END
 
 // SCRIPTS
 
 ACTION_IF GAME_IS ~bgee~
 THEN BEGIN
-EXTEND_TOP ~minsc.bcs~ ~%MOD_FOLDER%/Ranger/BerserkerMinsc/scripts/minsc.baf~
+EXTEND_TOP ~minsc.bcs~ ~ArtisansKitpack/Ranger/BerserkerMinsc/scripts/minsc.baf~
 END
 
 ACTION_IF GAME_IS ~eet~
 THEN BEGIN
-EXTEND_TOP ~minsc_.bcs~ ~%MOD_FOLDER%/Ranger/BerserkerMinsc/scripts/minsc.baf~
+EXTEND_TOP ~minsc_.bcs~ ~ArtisansKitpack/Ranger/BerserkerMinsc/scripts/minsc.baf~
 END
 
 ACTION_IF GAME_IS ~bgee~
 THEN BEGIN
-EXTEND_BOTTOM ~ar5101.bcs~ ~%MOD_FOLDER%/Ranger/BerserkerMinsc/scripts/ar5101.baf~
+EXTEND_BOTTOM ~ar5101.bcs~ ~ArtisansKitpack/Ranger/BerserkerMinsc/scripts/ar5101.baf~
 END
 
 ACTION_IF GAME_IS ~eet~
 THEN BEGIN
-EXTEND_BOTTOM ~bg5101.bcs~ ~%MOD_FOLDER%/Ranger/BerserkerMinsc/scripts/ar5101.baf~
+EXTEND_BOTTOM ~bg5101.bcs~ ~ArtisansKitpack/Ranger/BerserkerMinsc/scripts/ar5101.baf~
 END
 
 // ITEMS
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0min01.bam~ ~override~ 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0min02.bam~ ~override~ 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0mskin.itm~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0min01.bam~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0min02.bam~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0mskin.itm~ ~override~ 
 SAY NAME1 ~Red Bearskin~
 SAY NAME2 ~Red Bearskin~
 SAY DESC ~The thick hide is from an enormous bear, with an unusual reddish tint. It may make a serviceable suit of armor.
@@ -440,9 +440,9 @@ STATISTICS:
 
 Weight: 10~
 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0mleat1.eff~ ~override~ 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0mleat1.spl~ ~override~ 
-COPY ~%MOD_FOLDER%/Ranger/BerserkerMinsc/items/c0mleat.itm~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0mleat1.eff~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0mleat1.spl~ ~override~ 
+COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/items/c0mleat.itm~ ~override~ 
 SAY NAME1 ~Hide Armor~
 SAY NAME2 ~Red Bearskin Mail~
 SAY DESC ~This thick suit of armor is made from the skin of a giant bear. The reddish color of the bear's hide has somewhat faded from the process of tanning and shaping it into armor, but its toughness is close to the beast itself. The design of the armor resembles those worm by berserkers of the land of Rashemen.

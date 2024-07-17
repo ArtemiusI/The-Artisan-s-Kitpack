@@ -209,3 +209,32 @@ SAY UNIDENTIFIED_DESC ~Divine Wrath
 The divine champion channels a portion of their deity’s power, gaining a +4 bonus to hit, damage and Saving Throws, +25% to all resistances, and an additional +2 bonus to Armor Class and Saving Throws against all creatures of a different moral alignment (good, neutral, evil) to their own. This ability lasts for one turn plus an additional round for each level gained.~
 
 COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc04.spl~ ~override~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY_EXISTING ~numwslot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~C0DC~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols 4
+	  END
+	END
+
+OUTER_SET divine_champion_ids = IDS_OF_SYMBOL (~kit~ ~C0DC~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0dc1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%divine_champion_ids%~~~~~ //"
+  END
+END

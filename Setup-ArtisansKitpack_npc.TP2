@@ -1,4 +1,4 @@
-BACKUP ~ArtisansKitpack/backup/npc~
+BACKUP ~weidu_external/backup/ArtisansKitpack/npcs~
 AUTHOR ~The Artisan~
 ALWAYS
   INCLUDE ~ArtisansKitpack/lib/alter_script.tpa~
@@ -524,6 +524,50 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit mu
       END
       BUT_ONLY
 
+BEGIN ~Artisan's Kitpack: Make Mazzy a Divine Champion~ DESIGNATED 3102
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~NPBOW.ITM~ THEN BEGIN
+COPY_EXISTING ~NPBOW.ITM~ ~OVERRIDE~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+      READ_SHORT    0x1C type //reads the byte containing item type
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~NPSW01.ITM~ THEN BEGIN
+COPY_EXISTING ~NPSW01.ITM~ ~OVERRIDE~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+      READ_SHORT    0x1C type //reads the byte containing item type
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
+    END
+
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~MAZZY~) BEGIN
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~PALADIN~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+    REMOVE_MEMORIZED_SPELL ~SPIN827~
+    REMOVE_KNOWN_SPELL ~SPIN827~
+      END
+		BUT_ONLY
+
 BEGIN ~Artisan's Kitpack: Give Cernd the Elementalist Kit~ DESIGNATED 5101
   REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Elementalist Kit must be installed.~
@@ -983,4 +1027,43 @@ ACTION_IF FILE_EXISTS_IN_GAME ~rasaad12.cre~ THEN BEGIN
     LPF DELETE_EFFECT_EX INT_VAR match_savebonus = "-2" END
 		BUT_ONLY
 
+END
+
+BEGIN ~Artisan's Kitpack: Make Xan an Eldritch Knight~ DESIGNATED 20002
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20000~ ~The Eldritch Knight Kit must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~XAN.cre~ THEN BEGIN
+        COPY_EXISTING ~XAN.cre~ ~override~
+    WRITE_SHORT 0x18 5000
+    WRITE_BYTE 0x24 12
+    WRITE_BYTE 0x26 14
+    WRITE_BYTE 0x52 19
+    WRITE_BYTE 0x234 2
+    WRITE_BYTE 0x235 2
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~FIGHTER_MAGE~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0EK~))
+		SET_BG2_PROFICIENCY 90 2 // longsword
+		SET_BG2_PROFICIENCY 113 1 // longsword
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SW1H13.ITM~ THEN BEGIN
+COPY_EXISTING ~SW1H13.ITM~ ~OVERRIDE~
+SAY DESC ~This potent weapon was created by the smiths of ancient Myth Drannor. Moonblades are used in the long process of selecting a ruler for the isle of Evermeet. A moonblade chooses its owner, and in the case of this sword it has chosen the elf, Xan. Only Xan can use this blade; anyone else who tries will find themselves unable to lift it. This particular moonblade gives resistance to fire and a bonus to the user's Armor Class.
+
+STATISTICS:
+
+Equipped abilities:
+– Armor Class: +1
+– Fire Resistance: +50%
+
+THAC0: +3
+Damage: 1d8+3 (slashing)
+Speed Factor: 2
+Proficiency Type: Long Sword
+Type: One-handed
+
+Weight: 3~
+WRITE_BYTE 0x1C 20
+WRITE_BYTE 0x31 90
 END
