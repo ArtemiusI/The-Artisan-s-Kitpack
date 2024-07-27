@@ -1,4 +1,4 @@
-BACKUP ~ArtisansKitpack/backup/tweak~
+BACKUP ~weidu_external/backup/ArtisansKitpack/tweaks~
 AUTHOR ~The Artisan~
 ALWAYS
   INCLUDE ~ArtisansKitpack/lib/alter_script.tpa~
