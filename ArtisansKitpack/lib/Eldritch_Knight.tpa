@@ -11,8 +11,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				match_opcode = 145
 				opcode = 177
 				target = 1
-				parameter1 = 202
-				parameter2 = 5
+				parameter1 = 0
+				parameter2 = 2
 				timing = 2
 			STR_VAR
 				resource = C0ARCAS1
