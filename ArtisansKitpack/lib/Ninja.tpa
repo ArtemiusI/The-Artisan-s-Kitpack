@@ -1,0 +1,276 @@
+COPY ~%MOD_FOLDER%/MonkRevision/Ninja/2da~ ~override~
+COPY ~%MOD_FOLDER%/MonkRevision/Ninja/spl~ ~override~
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 20
+	
+    mixed         = RESOLVE_STR_REF(~Ninja~)
+	
+    lower         = RESOLVE_STR_REF(~ninja~)
+	
+    help          = RESOLVE_STR_REF(~NINJA: The ninja is a stealthy, acrobatic warrior who moves through the shadows to strike down their unwary foes. Trained in the use of weapons, martial arts, and thievery, ninjas originate from the eastern lands and serve as loyal enforcers of their clans, serving as warriors, assassins and spies.
+	
+CLASS FEATURES:
+
+– May not wear any armor.
+– May only use weapons available to the Thief class.
+– May only use the following weapons: long sword, short sword, katana, scimitar, dagger, club, shortbow, dart, sling.
+– May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
+– May distribute 20 points per level (30 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Move Silently, Hide In Shadows, Detect Illusion
+– Starts with base scores of 5% in Open Locks, 5% in Find Traps, 5% in Pick Pockets, 15% in Move Silently, and 15% in Hide in Shadows.
+– Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
+– May make 2 unarmed attacks per round.
+– May backstab for increased damage:
+  Level 1-6: x2
+  Level 7-12: x3
+  Level 13+: x4
+– The ninja's fists deal crushing damage and deal increase damage with level as follows:
+  Level 1-2: 1d4
+  Level 3-4: 1d6
+  Level 5-6: 1d8
+  Level 7-9: 1d10
+  Level 10-14: 1d12
+  Level 15-19: 2d8
+  Level 20-24: 2d10
+  Level 25+: 2d12
+– Ki: The ninja's unarmed attacks are empowered with ki, which allows them to be treated as magical weapons of +1 enchantment at 4th level, +2 at 8th level, +3 at 12th level, +4 at 16th level and +5 at 20th level. From 7th level, they are treated as silver weapons.
+– Receives a +1 bonus to all Saving Throws. An additional +1 is gained at 5th level and every 5 levels thereafter.
+– The ninja gains a +1 bonus to base Armor Class per point of Wisdom above 12. They gain an additional +1 to AC at 5th level and every 5 levels thereafter.
+– Deflect Missiles: The ninja receives a +1 bonus to AC vs. missile attacks every 3 levels.
+– May use the Smoke Bomb and Poison Weapon abilities once per day. Gains one use at level 1 and an additional use every 6 levels thereafter.
+
+SMOKE BOMB: Creates a Smoke Cloud at the targeted location, blinding and halving the movement rate of all creatures within the area for as long as they remain within the cloud. The ninja is immune to the blindness effect of their own Smoke Cloud and are invisible so long as they remain within it. The cloud lasts for 2 rounds + 1 round per 6 levels.
+
+POISON WEAPON: The ninja is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 6th level: The ninja may now throw two Smoke Bombs per use of the ability.
+– 11th level: Diamond Body: The ninja permanently becomes immune to poison.
+– 12th level: The ninja may now throw three Smoke Bombs per use of the ability.
+– 14th level: May use Empty Body twice per day.
+
+EMPTY BODY: The ninja gains the ability to fade from sight, granting them partial invisibility for one round per level. Attacks against the ninja suffer a -4 penalty to attack rolls, and the ninja's Saving Throws are made with a +4 bonus. The ninja also cannot be targeted by spells from creatures unless they can see through invisibility.
+
+– 15th level: Inner Eye: The ninja becomes immune to critical hits while unarmed.
+– 18th level: The ninja moves at twice their movement rate whilst within their Smoke Cloud.
+– 22nd level: The ninja gains a x1 additional bonus to their Backstab multiplier, increased to x2 whilst within their Smoke Cloud.
+
+– Hit Die: d6~)
+	
+    briefdesc     = RESOLVE_STR_REF(~NINJA: The ninja is a stealthy, acrobatic warrior who moves through the shadows to strike down their unwary foes. Trained in the use of weapons, martial arts, and thievery, ninjas originate from the eastern lands and serve as loyal enforcers of their clans, serving as warriors, assassins and spies.~)
+  STR_VAR
+    kit_name      = ~C0_NINJA~
+	
+    unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                          T   S           F   Q             S S
+	//                                          W   C           L   U             W I
+	//                                  B L S   O   I   W       A   A             O N
+	//                                  A O H   H   M   A       I   R C   S       R G
+	//                  L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//                  _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//                  S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//                  W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//                  O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//                  R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//                  D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+       weapprof      = ~2 2 2 0 2 0 0 2 0 2 2 0 0 2 2 2 0 0 0 0 0 0 0 0 0 2 2 2 0 0 2 3~
+	
+    abclasrq      = ~0 14 0 0 12 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~1 1 1 1 1 1 1 1 1~
+	
+    // dualclas      = ~0 1 1 1 1 0~
+	
+    luabbr        = ~C0NINJ~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0NINJA.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPROG~
+	
+    // numwslot      = ~4~
+	
+    clascolr = ~192 182 136 93 142~ // METAL MINOR MAJOR LEATHER ARMOR
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	thiefscl = ~100 100 100 100 100 100 0 0~
+	
+	backstab = ~2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	sneakatt = ~2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	thiefskl = ~30 20~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+
+ADD_PROJECTILE ~%MOD_FOLDER%/MonkRevision/Ninja/pro/C0NINJP1.PRO~
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP2.PRO~
+WRITE_BYTE 0x216 18
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP3.PRO~
+WRITE_BYTE 0x216 24
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP4.PRO~
+WRITE_BYTE 0x216 30
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP5.PRO~
+WRITE_BYTE 0x216 36
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP6.PRO~
+WRITE_BYTE 0x216 42
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP7.PRO~
+WRITE_BYTE 0x216 48
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP8.PRO~
+WRITE_BYTE 0x216 54
+COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP9.PRO~
+WRITE_BYTE 0x216 60
+
+ADD_PROJECTILE ~override/C0NINJP2.PRO~
+ADD_PROJECTILE ~override/C0NINJP3.PRO~
+ADD_PROJECTILE ~override/C0NINJP4.PRO~
+ADD_PROJECTILE ~override/C0NINJP5.PRO~
+ADD_PROJECTILE ~override/C0NINJP6.PRO~
+ADD_PROJECTILE ~override/C0NINJP7.PRO~
+ADD_PROJECTILE ~override/C0NINJP8.PRO~
+ADD_PROJECTILE ~override/C0NINJP9.PRO~
+
+COPY_EXISTING ~C0NINJ1.SPL~ ~OVERRIDE~
+LPF ALTER_SPELL_HEADER INT_VAR header = 1 projectile = C0NINJP1 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 2 projectile = C0NINJP2 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 3 projectile = C0NINJP3 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 4 projectile = C0NINJP4 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 5 projectile = C0NINJP5 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 6 projectile = C0NINJP6 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 7 projectile = C0NINJP7 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 8 projectile = C0NINJP8 END
+LPF ALTER_SPELL_HEADER INT_VAR header = 9 projectile = C0NINJP9 END
+SAY NAME1 ~Smoke Bomb~
+SAY UNIDENTIFIED_DESC ~Smoke Bomb
+Creates a smoke cloud at the targeted location, halving the visual range and movement rate of all creatures within the area for as long as they remain within the cloud. The ninja is immune to the negative effects of their own smoke cloud and are invisible so long as they remain within it. The cloud lasts for 2 rounds + 1 round per 6 levels.~
+
+COPY_EXISTING ~C0NINJ2.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Elite Ninja~) END
+
+COPY_EXISTING ~C0NINJ3.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Master Ninja~) END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0AS#P1.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/spells/poison_weapon~ ~override~
+COPY_EXISTING ~c0as#p01.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 139 // display string
+	  parameter1 = RESOLVE_STR_REF (~Poison~)
+  END
+COPY_EXISTING ~c0as#p1.spl~ ~override~
+SAY NAME1 ~Poison Weapon~
+SAY UNIDENTIFIED_DESC ~Poison Weapon
+The user is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution every round. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution every round. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4.~
+COPY_EXISTING ~c0as#p01.spl~ ~override/spcl423.spl~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+
+OUTER_SET ninja_ids = IDS_OF_SYMBOL (~kit~ ~C0_NINJA~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%ninja_ids%~~~~~ //"
+  END
+
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 thief //reads the byte containing the fighter usability flag
+    PATCH_IF ((thief BAND 0b01000000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x21 monk //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 15) BEGIN // if it is a staff
+        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+//__________________________________________________________________________________
