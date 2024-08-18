@@ -148,7 +148,7 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
 	
     clascolr = ~192 182 136 93 142~ // METAL MINOR MAJOR LEATHER ARMOR
 	
-	// clasiskl = ~0 0 0 0 0 0 0~
+	clasiskl = ~-10 -5 0 5 10 0 0~
 	
 	// clasthac = ~0~
 	
