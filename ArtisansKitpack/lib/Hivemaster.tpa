@@ -302,6 +302,22 @@ SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexter
 At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
 From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
 
+COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEV.spl~ ~override~
+SAY NAME1 ~Shapeshift: Spider Form~
+SAY UNIDENTIFIED_DESC ~Shapeshift: Spider Form
+This ability allows the hivemaster to shapeshift into a small spider, a phase spider or a sword spider. From 14th level, the hivemaster may shapeshift into a frost spider.
+
+SMALL SPIDER: The small spider is invisible upon transformation, has 10 Strength and 18 Dexterity, and strikes twice per round for 1d2 piercing damage. Targets must make a save vs. death or be poisoned for 5 damage per second for 5 rounds.
+
+PHASE SPIDER: The phase spider may teleport to a targeted creature once per round, has 14 Strength and 18 Dexterity, and strikes twice per round for 1d6 piercing damage. Targets must make a save vs. death or be poisoned for 2 damage per second for 3 rounds.
+
+SWORD SPIDER: The sword spider is permanently Hasted, has 18 Strength and Dexterity, and strikes three times per round, not including Haste, for 1d10 slashing damage.
+
+14th level: FROST SPIDER: The frost spider is immune to non-enchanted weapons and cold damage, has 19 Strength and 20 Dexterity, and strikes twice per round for 2d8 piercing damage and 1d10 cold damage. Targets must make a save vs. death at -2 or become slowed and lose one point of Strength for 1 turn. Enemies that damage the frost spider in melee range suffer 2d6 cold damage.
+
+At 14th level, the hivemaster may cast priest spells while in spider form, though at a -2 casting speed penalty.
+From 15th level onwards, all spider forms gain +4 additional Strength and Dexterity and no longer have a casting speed penalty.~
+
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVES.spl~ ~override~
 SAY NAME1 ~Shapeshift: Spider Form~
 SAY UNIDENTIFIED_DESC ~Shapeshift: Spider Form
