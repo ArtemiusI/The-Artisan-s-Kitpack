@@ -105,11 +105,10 @@ STRING_SET_EVALUATE kit_strref ~WIZARD SLAYER: This warrior has been specially t
 
 Advantages:
 – Each successful hit made by the Wizard Slayer bestows a cumulative chance of spell failure on the target equal to their 10% + 1% per level for 15 rounds.
-– The Wizard Slayer's critical hits cast Breach on the target.
 – Gains Magic Resistance equal to 10% + 1% per level.
 – 4th level: May use the Spellslayer Strike ability twice per day, gaining an additional use every two levels thereafter.
 
-SPELLSLAYER STRIKE: The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase the hit and damage rolls of their next successful attack by the same amount. The Wizard Slayer regains their Magic Resistance after two turns have passed.
+SPELLSLAYER STRIKE: The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase their THAC0 and deal bonus unmitigated damage equal to the same amount while also removing combat protection effects from the target. The Wizard Slayer regains their Magic Resistance after two turns have passed.
 
 – 8th level: May use the Antimagic Field ability once per day. Gains an additional use at levels 10 and 12.
 
@@ -167,7 +166,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 5 parameter2 = MRES_
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 6 parameter2 = MRES_DMG_ARRAY_50_128 END
 SAY NAME1 ~Spellslayer Strike~
 SAY UNIDENTIFIED_DESC ~Spellslayer Strike
-The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase the hit and damage rolls of their next successful attack by the same amount. The Wizard Slayer regains their Magic Resistance after two turns have passed.~
+The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase their THAC0 and deal bonus unmitigated damage equal to the same amount while also removing combat protection effects from the target. The Wizard Slayer regains their Magic Resistance after two turns have passed.~
 
 COPY_EXISTING ~C0WSL011.SPL~ OVERRIDE
 SAY NAME1 ~Spellslayer Strike—10% Magic Resistance~

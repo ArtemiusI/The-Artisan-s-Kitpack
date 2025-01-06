@@ -60,7 +60,8 @@ QUIVERING PALM: The most advanced of the monk's techniques. When used, the monk'
 
 Disadvantages:
 – May only be of any Lawful alignment.
-– May not wear any armor, helmets or shields.
+– May not wear armor heavier than studded leather.
+– May not use shields.
 – May not use two-handed weapons.
 – May only be human.
 – May not dual-class.
@@ -70,7 +71,7 @@ Disadvantages:
   STR_VAR
     kit_name      = ~C0_SACRED_FIST~
 	
-    unusable      = ~0x10004000~
+    unusable      = ~0x00014000~
     // clasweap      = ~1 1 1 1 1 1 1 1~
 	//                                       T   S           F   Q             S S
 	//                                       W   C           L   U             W I

@@ -71,7 +71,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     READ_BYTE    0x21 monk //reads the byte containing the fighter usability flag
     PATCH_IF ((monk BAND 0b00100000) = 0b00100000) BEGIN // if it is usable by fighters
       READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 7) OR (type = 12) BEGIN // if it is a staff
+      PATCH_IF (type = 12) BEGIN // if it is a shield
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				opcode = 319
@@ -84,6 +84,23 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     END
   END
 BUT_ONLY_IF_IT_CHANGES
+
+ACTION_FOR_EACH monk_avatar IN 6500 6510 6505 6515 BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%monk_avatar%.ini~ THEN BEGIN
+COPY_EXISTING ~%monk_avatar%.ini~   ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~equip_helmet=1~~~~~
+    string = EVAL ~~~~~equip_helmet=0~~~~~ //"
+  END
+  END
+END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items

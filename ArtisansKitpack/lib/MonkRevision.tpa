@@ -1062,10 +1062,10 @@ COPY_EXISTING ~CLABMO02.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM102 END
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM103 END
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0DM104 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM201 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM202 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM203 END
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 4 STR_VAR f_Entry = GA_C0DM204 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0DM201 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0DM202 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0DM203 END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0DM204 END
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM301 END
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM302 END
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = GA_C0DM303 END
