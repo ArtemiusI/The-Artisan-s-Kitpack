@@ -1,0 +1,214 @@
+ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_staff_anims_6xxx BEGIN
+    ~female_staff~ => ~MONK_FEMALE_HUMAN_STAFF~
+    ~male_staff~ => ~MONK_MALE_HUMAN_STAFF~
+    ~female_ho_staff~ => ~MONK_FEMALE_HALFORC_STAFF~
+    ~male_ho_staff~ => ~MONK_MALE_HALFORC_STAFF~
+  END
+  ACTION_PHP_EACH monk_staff_anims_6xxx AS folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\staff/%folder%\6xxx.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
+    PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x21 monk //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 26) BEGIN // if it is a staff
+        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = 1
+				parameter2 = 7
+			STR_VAR
+				resource = C0MQANI1
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = 2
+				parameter2 = 7
+			STR_VAR
+				resource = C0MQANI2
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = 1
+				parameter2 = 7
+			STR_VAR
+				resource = C0MQANI3
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = 2
+				parameter2 = 7
+			STR_VAR
+				resource = C0MQANI4
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 318
+				target = 1
+				timing = 2
+				parameter1 = 1
+				parameter2 = 114
+			STR_VAR
+				resource = C0MQANI1
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 318
+				target = 1
+				timing = 2
+				parameter1 = 1
+				parameter2 = 114
+			STR_VAR
+				resource = C0MQANI2
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 318
+				target = 1
+				timing = 2
+				parameter1 = 7
+				parameter2 = 114
+			STR_VAR
+				resource = C0MQANI3
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 318
+				target = 1
+				timing = 2
+				parameter1 = 7
+				parameter2 = 114
+			STR_VAR
+				resource = C0MQANI4
+		END
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override~
+WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_MALE_HUMAN_STAFF~))
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~c0mqani1~
+COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani2.eff~
+WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_FEMALE_HUMAN_STAFF~))
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~c0mqani2~
+COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani3.eff~
+WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_MALE_HALFORC_STAFF~))
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~c0mqani3~
+COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani4.eff~
+WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_FEMALE_HALFORC_STAFF~))
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~c0mqani4~
+
+//AMEND WEAPPROF.2da_______________________________________________________________
+//
+COPY_EXISTING ~weapprof.2da~ ~override~
+	SET_2DA_ENTRY_LATER ~#weapprof~ 25 51 5   // monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 51 2   // monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 25 58 5   // dark moon monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 58 2   // dark moon monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 25 59 5   // sun soul monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 59 2   // sun soul monk
+//__________________________________________________________________________________
+
+//QUARTERSTAFF PROF FOR OTHER MONKS_________________________________________________
+//
+DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
+	OUTER_SET count = 0
+
+	ACTION_FOR_EACH class IN
+                  monk
+
+	BEGIN
+		OUTER_SPRINT $monks("%count%") "%class%"
+		OUTER_SET ++count
+	END
+
+	COPY_EXISTING kitlist.2da override
+		READ_2DA_ENTRIES_NOW kitlist 3
+		FOR (row = 2; row < kitlist; ++row) BEGIN // Skip past the vanilla kits
+			READ_2DA_ENTRY_FORMER kitlist row 1 label
+			READ_2DA_ENTRY_FORMER kitlist row 8 class
+			PATCH_IF class = 20 BEGIN // monk
+				SPRINT $monks("%count%") "%label%"
+				++count
+			END
+		END
+	BUT_ONLY
+
+	COPY_EXISTING ~WEAPPROF.2DA~ override
+		READ_2DA_ENTRIES_NOW weapprof 3
+		COUNT_2DA_COLS cols
+		PHP_EACH monks AS _ => name BEGIN
+			FOR (col = 0; col < cols - 1; ++col) BEGIN
+				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
+				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
+					SET_2DA_ENTRY_LATER wweapprof 25 (col + 1) 5
+					SET_2DA_ENTRY_LATER wweapprof 31 (col + 1) 2
+				END
+			END
+		END
+		SET_2DA_ENTRIES_NOW wweapprof 1
+		PRETTY_PRINT_2DA
+	BUT_ONLY
+END
+
+LAF mod_monk_profs END
+//__________________________________________________________________________________
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+
+ACTION_FOR_EACH description IN 
+    clastext
+	sodcltxt
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//MONK
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "MONK" BEGIN
+          READ_2DA_ENTRY index 4 col_count monk_desc
+          SPRINT old_monk ~– May only use weapons available to the Thief class (except two-handed).~
+          SPRINT new_monk ~– May only use weapons available to the Thief class (except bows and crossbows).~
+          GET_STRREF %monk_desc% monk_text
+          INNER_PATCH_SAVE monk_text ~%monk_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_monk%~ ~%new_monk%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%monk_desc%~ ~%monk_text%~
+          END
+		END
+      END
+      BUT_ONLY
+    END
+  END
+  

@@ -546,40 +546,40 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Expertise~) STR_VAR b
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Expertise~) STR_VAR bam_file = C0FIG02J RET C0FIG02J = icon END
 
 COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
 COPY_EXISTING ~C0FIG01.SPL~ OVERRIDE
 SAY NAME1 ~Power Attack~
 SAY UNIDENTIFIED_DESC ~Power Attack
 The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.~
 	
 COPY_EXISTING ~C0FIG01a.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01I END
 
 COPY_EXISTING ~C0FIG01b.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01J END
 
 COPY_EXISTING ~C0FIG01c.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
 
 COPY_EXISTING ~C0FIG02X.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise—Inadequate Intelligence~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Expertise—Inadequate Intelligence~) END
 COPY_EXISTING ~C0FIG02.SPL~ OVERRIDE
 SAY NAME1 ~Expertise~
 SAY UNIDENTIFIED_DESC ~Expertise
 The Fighter focuses on defense at the expense of accuracy, sacrificing 3 points of THAC0 to increase their Armor Class by 3. The Fighter must have 15 or greater Intelligence to activate this ability.~
 
 COPY_EXISTING ~C0FIG02a.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Expertise Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG02I END
 
 COPY_EXISTING ~C0FIG02b.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Expertise Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Expertise Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG02J END
 
 COPY_EXISTING ~C0FIG02c.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Expertise Inactive~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Expertise Inactive~) END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
@@ -592,13 +592,13 @@ SAY UNIDENTIFIED_DESC ~Rapid Shot
 The user may make an additional ranged attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
 
 COPY_EXISTING C0ARC03b.SPL OVERRIDE
-LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END
-LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
 
 COPY_EXISTING C0ARC03z.SPL OVERRIDE
-LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
-LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
+LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
 END
 END
 

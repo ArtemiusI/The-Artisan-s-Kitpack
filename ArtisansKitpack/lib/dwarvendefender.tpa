@@ -120,16 +120,16 @@ The user reduces their attacks per round by 1/2 and melee damage by 2 points whi
 
 COPY_EXISTING ~C0DWD03a.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0dwd03i END
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Shield Bash Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Shield Bash Active~) END
 
 COPY_EXISTING ~C0DWD03b.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Shield Bash Successful~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Shield Bash Successful~) END
 
 COPY_EXISTING ~C0DWD03c.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Dazed~) END
 
 COPY_EXISTING ~C0DWD03z.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Shield Bash Inactive~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Shield Bash Inactive~) END
 
 COPY_EXISTING ~C0DWD04b.spl~ ~override~
   LPF ALTER_EFFECT

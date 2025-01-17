@@ -185,22 +185,22 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Power Attack~) STR_VA
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Power Attack~) STR_VAR bam_file = C0FIG01J RET C0FIG01J = icon END
 
 COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
 COPY_EXISTING ~C0FIG01.SPL~ OVERRIDE
 SAY NAME1 ~Power Attack~
 SAY UNIDENTIFIED_DESC ~Power Attack
 The Fighter forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Fighter must have 17 or greater Strength to activate this ability.~
 	
 COPY_EXISTING ~C0FIG01a.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01I END
 
 COPY_EXISTING ~C0FIG01b.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Power Attack Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 272 special = C0FIG01J END
 
 COPY_EXISTING ~C0FIG01c.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack Inactive~) END
 END
 
 COPY ~ArtisansKitpack/Ranger/BerserkerMinsc/spells/spin117.spl~ ~override~

@@ -1,6 +1,7 @@
 COPY ~%MOD_FOLDER%/MonkRevision/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/audio~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/bam~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/MonkRevision/bmp~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/eff~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/fists~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/items~ ~OVERRIDE~
@@ -82,7 +83,6 @@ APPEND ~K_MN_HO.2DA~ ~2    36
 3    37~ UNLESS ~2    36~
 END
 
-
 ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
     ~female~ => ~MONK_FEMALE_HALFORC~
     ~male~ => ~MONK_MALE_HALFORC~
@@ -99,24 +99,25 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
     APPEND ~ANIMATE.IDS~ ~0x6505 MONK_MALE_HALFORC~
     APPEND ~ANIMATE.IDS~ ~0x6515 MONK_FEMALE_HALFORC~
 END
-/*
-ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_staff_anims_6xxx BEGIN
-    ~female_staff~ => ~MONK_FEMALE_HUMAN_STAFF~
-    ~male_staff~ => ~MONK_MALE_HUMAN_STAFF~
-    ~female_ho_staff~ => ~MONK_FEMALE_HALFORC_STAFF~
-    ~male_ho_staff~ => ~MONK_MALE_HALFORC_STAFF~
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_anims_6xxx BEGIN
+    ~6500~ => ~MONK_MALE_HUMAN_1~
+    ~6500a~ => ~MONK_MALE_HUMAN_2~
+    ~6505~ => ~MONK_MALE_HALFORC_1~
+    ~6505a~ => ~MONK_MALE_HALFORC_2~
+    ~6510~ => ~MONK_FEMALE_HUMAN_1~
+    ~6510a~ => ~MONK_FEMALE_HUMAN_2~
+    ~6515~ => ~MONK_FEMALE_HALFORC_1~
+    ~6515a~ => ~MONK_FEMALE_HALFORC_2~
   END
-  ACTION_PHP_EACH monk_staff_anims_6xxx AS folder => symbol BEGIN
-    ACTION_BASH_FOR ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bam~ ~%MOD_FOLDER%/MonkRevision\animations\staff\%folder%~ ~.+\.bmp~ BEGIN
-      COPY ~%BASH_FOR_FILESPEC%~ ~override~
-    END
+  ACTION_PHP_EACH monk_anims_6xxx AS animation => symbol BEGIN
     LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
     LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
-    COPY ~%MOD_FOLDER%/MonkRevision\animations\staff/%folder%\6xxx.ini~ ~override/%hexNumber%.ini~
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\%animation%.ini~ ~override/%hexNumber%.ini~
     OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
     APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
 END
-*/
+
 // WISDOM
 APPEND ~splprot.2da~ ~C0HTWIS 39 -1 1~ UNLESS ~C0HTWIS~
 COPY_EXISTING ~splprot.2da~ ~override~
@@ -136,20 +137,7 @@ COPY ~%MOD_FOLDER%/MonkRevision/spells~ ~OVERRIDE~
 			parameter2 = C0HTWIS
 			silent = 1
 	END
-	/*
-COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-    READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
-    PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) BEGIN // if it is usable by fighters
-      READ_BYTE    0x21 monk //reads the byte containing monks usability flag
-      READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 26) BEGIN // if it is a staff
-        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
-      END
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-*/
+
 DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 	OUTER_SET count = 0
 
@@ -181,8 +169,6 @@ DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
 				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
 					SET_2DA_ENTRY_LATER wweapprof 34 (col + 1) 1
-					//SET_2DA_ENTRY_LATER wweapprof 25 (col + 1) 1
-					//SET_2DA_ENTRY_LATER wweapprof 31 (col + 1) 1
 					SET_2DA_ENTRY_LATER wweapprof 34 58 3
 					SET_2DA_ENTRY_LATER wweapprof 18 58 3
 				END
@@ -194,7 +180,9 @@ DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 END
 
 LAF mod_monk_profs END
-	
+
+INCLUDE ~%MOD_FOLDER%/lib/monk_staves.tpa~
+
 ACTION_FOR_EACH CLASSTEXT IN CLASTEXT SODCLTXT BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
   COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
@@ -210,6 +198,8 @@ CLASS FEATURES:
 
 – May not wear any armor.
 – May only use weapons available to the Thief class.
+– May achieve Grandmastery (five slots) in Quarterstaves.
+– May Specialize in Two-Handed Weapon Style.
 – May only become Proficient (one slot) in any weapon class.
 – May become Proficient (one slot) in Single-Weapon Style and Two-Weapon Style.
 – May use the Hide In Shadows and Find Trap abilities (but may not disarm traps)
@@ -217,7 +207,7 @@ CLASS FEATURES:
 – May make 2 unarmed attacks per round.
 – -1 to Speed Factor per 3 levels.
 
-– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
+– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -2 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
 
 – The monk's fists deal crushing damage and deal increase damage with level as follows:
   Level 1-2: 1d4
@@ -243,7 +233,7 @@ STUNNING BLOW: The monk sacrifices four points of THAC0 and damage for their nex
 
 WHOLENESS OF BODY: The monk instantly heals themself for three hit points per monk level.
 
-– 8th level: Greater Flurry: The monk now makes an extra full attack per round while Flurry of Blows is active.
+– 8th level: Greater Flurry: The monk now makes an additional second attack per round while Flurry of Blows is active.
 – 11th level: Diamond Body: The monk permanently becomes immune to poison.
 – 12th level: Diamond Soul: The monk gains base 10% + 2% Magic Resistance per monk level up to a maximum of 70% at 30th level.
 – 13th level: May use the Quivering Palm ability once per day.
@@ -417,19 +407,61 @@ COPY_EXISTING ~MFIST12.ITM~ OVERRIDE
 SAY NAME1 ~Fist +5~
 SAY NAME2 ~Fist +5~
 
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HUMAN_1~)
+WRITE_BYTE 0x54 0
+WRITE_BYTE 0x58 7
+WRITE_BYTE 0x90 1
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#042.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HUMAN_2~)
+WRITE_BYTE 0x54 8
+WRITE_BYTE 0x58 0
+WRITE_ASCII 0x94 ~C0MN#042~
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#043.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HUMAN_1~)
+WRITE_BYTE 0x54 0
+WRITE_BYTE 0x58 7
+WRITE_ASCII 0x94 ~C0MN#043~
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#044.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HUMAN_2~)
+WRITE_BYTE 0x54 8
+WRITE_BYTE 0x58 0
+WRITE_ASCII 0x94 ~C0MN#044~
+
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#045.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HALFORC_1~)
+WRITE_BYTE 0x54 0
+WRITE_BYTE 0x58 7
+WRITE_ASCII 0x94 ~C0MN#045~
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#046.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HALFORC_2~)
+WRITE_BYTE 0x54 8
+WRITE_BYTE 0x58 0
+WRITE_ASCII 0x94 ~C0MN#046~
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#047.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HALFORC_1~)
+WRITE_BYTE 0x54 0
+WRITE_BYTE 0x58 7
+WRITE_ASCII 0x94 ~C0MN#047~
+COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#048.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HALFORC_2~)
+WRITE_BYTE 0x54 8
+WRITE_BYTE 0x58 0
+WRITE_ASCII 0x94 ~C0MN#048~
+
 COPY_EXISTING ~C0MN#04.SPL~ OVERRIDE
 SAY NAME1 ~Flurry of Blows~
 SAY UNIDENTIFIED_DESC ~Flurry of Blows
-The monk, while unarmed or wielding daggers, short swords or ninja-to, may make an extra half attack per round at the cost of a -2 penalty to THAC0. This may be toggled at will.
+The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -2 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
 
-Upon reaching 8th level, the bonus increases to one full attack per round. At 10th level, THAC0 penalty decreases to -1.~
+Upon reaching 8th level, the monk now makes an additional second attack per round while Flurry of Blows is active. At 10th level, THAC0 penalty decreases to -1.~
 
 COPY_EXISTING ~C0MN#04B.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Active~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 330 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Active~) END
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0MN#04I END
 
 COPY_EXISTING ~C0MN#04Z.SPL~ OVERRIDE
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Inactive~) END
+LPF ALTER_EFFECT INT_VAR match_opcode = 330 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Inactive~) END
 
 COPY_EXISTING ~C0MN#05.SPL~ OVERRIDE
 SAY NAME1 ~Empty Body~
