@@ -1,39 +1,82 @@
 COPY ~%MOD_FOLDER%/Ranger/Archer/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Ranger/Archer/bmp~ ~OVERRIDE~
+
+APPEND ~splprot.2da~ ~C0_KIT_CHECK_NOT 152 -1 5~ UNLESS ~C0_KIT_CHECK_NOT~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_KIT_CHECK_NOT~ BEGIN
+	    SET C0_KIT_CHECK_NOT = %row%
+	  END
+	END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY archer_anims_6xxx BEGIN
+    ~6100~ => ~ARCHER_MALE_HUMAN_1~
+    ~6100a~ => ~ARCHER_MALE_HUMAN_2~
+    ~6101~ => ~ARCHER_MALE_ELF_1~
+    ~6101a~ => ~ARCHER_MALE_ELF_2~
+    ~6102~ => ~ARCHER_MALE_DWARF_1~
+    ~6102a~ => ~ARCHER_MALE_DWARF_2~
+    ~6103~ => ~ARCHER_MALE_HALFLING_1~
+    ~6103a~ => ~ARCHER_MALE_HALFLING_2~
+    ~6104~ => ~ARCHER_MALE_GNOME_1~
+    ~6104a~ => ~ARCHER_MALE_GNOME_2~
+    ~6105~ => ~ARCHER_MALE_HALFORC_1~
+    ~6105a~ => ~ARCHER_MALE_HALFORC_2~
+    ~6110~ => ~ARCHER_FEMALE_HUMAN_1~
+    ~6110a~ => ~ARCHER_FEMALE_HUMAN_2~
+    ~6111~ => ~ARCHER_FEMALE_ELF_1~
+    ~6111a~ => ~ARCHER_FEMALE_ELF_2~
+    ~6112~ => ~ARCHER_FEMALE_DWARF_1~
+    ~6112a~ => ~ARCHER_FEMALE_DWARF_2~
+    ~6113~ => ~ARCHER_FEMALE_HALFLING_1~
+    ~6113a~ => ~ARCHER_FEMALE_HALFLING_2~
+    ~6114~ => ~ARCHER_FEMALE_GNOME_1~
+    ~6114a~ => ~ARCHER_FEMALE_GNOME_2~
+    ~6115~ => ~ARCHER_FEMALE_HALFORC_1~
+    ~6115a~ => ~ARCHER_FEMALE_HALFORC_2~
+  END
+  ACTION_PHP_EACH archer_anims_6xxx AS animation => symbol BEGIN
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/Ranger/archer/animations/%animation%.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
 
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~FERALAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with ranged weapons—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. Whether as a harrier launching a one-man fusillade of arrows or a sharpshooter hiding in the shadows waiting for the perfect shot, the archer is a master of all forms of marksmanship. To become so skilled with their art, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
 
 Advantages:
-– +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
-– +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
-– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows and darts.
-– Eagle Eye: The archer's visual range is increased while stealthed or invisible.
+– +1 to hit rolls with ranged weapons. Gains an additional point at every 3rd level.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows and crossbows.
+– Farsighted: The archer's visual range is slightly greater than normal, and is further increased if stealthed or invisible.
 – May use the Rapid Shot modal ability.
 
 RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
 
-– May use the Called Shot ability once per day. Gains an additional use at every 4th level.
+– 4th level: May use the Called Shot ability once per day. Gains an additional use at every 4th level.
 
-CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Archer:
- 4th level: -1 penalty to target's THAC0.
- 8th level: -1 penalty to target's Saving Throws vs. Spell.
- 12th level: -1 penalty to the target's Strength score.
- 16th level: +2 bonus to damage roll.
- 
-– 3rd level: May use the Tracking Shot ability once per round. This ability counts as a free action.
+CALLED SHOT: The archer makes a debilitating shot targeted at their opponent's limbs and vitals. All successful ranged attacks within the next 10 seconds have the following non-cumulative effects besides normal damage, lasting for one round per upgrade, according to the level of the Archer:
+ 4th level: Target's dexterity stat is halved
+ 8th level: Target's movement rate is reduced to 25%
+ 12th level: Target loses one attack per round
+ 16th level: +2 bonus unmitigated missile damage on each hit.
 
-TRACKING SHOT: The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.
-
+– 7th level: Manyshot: The first attack the archer makes each round with a bow or crossbow launches two projectiles instead of one, with each arrow rolling individually to hit.
 – 12th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
 – 16th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
+– 20th level: Manyshot now applies for the first two attacks of each round.
 
 Disadvantages:
 – Hit Die: d8
 – THAC0 penalty of -3 while wielding melee weapons.
 – May only become Proficient (one slot) with melee weapons.
-– May only Specialize (two slots) in Two-Weapon Style.
+– May not gain Proficiency in Two-Weapon Style.
 – May not Set Traps.
 – May not use the Charm Animal ability.~
 END
@@ -42,34 +85,32 @@ LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~FERALAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~ARCHER: The Archer is the epitome of skill with ranged weapons—the ultimate marks<PRO_MANWOMAN>, able to make almost any shot, no matter how difficult. Whether as a harrier launching a one-man fusillade of arrows or a sharpshooter hiding in the shadows waiting for the perfect shot, the archer is a master of all forms of marksmanship. To become so skilled with their art, the Archer has had to sacrifice some of <PRO_HISHER> proficiency with melee weapons and armor.
 
 Advantages:
-– +1 to hit rolls with ranged weapons. Gains an additional point at every 4th level.
-– +5% to all missile damage dealt per level up to a maximum of 100% at 20th level.
-– May achieve Grand Mastery (5 slots) in longbows, shortbows, crossbows and darts.
-– Eagle Eye: The archer's visual range is increased while stealthed or invisible.
+– +1 to hit rolls with ranged weapons. Gains an additional point at every 3rd level.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows and crossbows.
+– Farsighted: The archer's visual range is slightly greater than normal, and is further increased if stealthed or invisible.
 – May use the Rapid Shot modal ability.
 
 RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
 
-– May use the Called Shot ability once per day. Gains an additional use at every 4th level.
+– 4th level: May use the Called Shot ability once per day. Gains an additional use at every 4th level.
 
-CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Archer:
- 4th level: -1 penalty to target's THAC0.
- 8th level: -1 penalty to target's Saving Throws vs. Spell.
- 12th level: -1 penalty to the target's Strength score.
- 16th level: +2 bonus to damage roll.
- 
-– 3rd level: May use the Tracking Shot ability once per round. This ability counts as a free action.
+CALLED SHOT: The archer makes a debilitating shot targeted at their opponent's limbs and vitals. All successful ranged attacks within the next 10 seconds have the following non-cumulative effects besides normal damage, lasting for one round per upgrade, according to the level of the Archer:
+ 4th level: Target's dexterity stat is halved
+ 8th level: Target's movement rate is reduced to 25%
+ 12th level: Target loses one attack per round
+ 16th level: +2 bonus unmitigated missile damage on each hit.
 
-TRACKING SHOT: The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.
-
+– 7th level: Manyshot: The first attack the archer makes each round with a bow or crossbow launches two projectiles instead of one, with each arrow rolling individually to hit.
 – 12th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 13th level: Manyshot now applies for the first two attacks of each round.
 – 16th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
+– 20th level: Manyshot now applies for the first three attacks of each round.
 
 Disadvantages:
 – Hit Die: d8
 – THAC0 penalty of -3 while wielding melee weapons.
 – May only become Proficient (one slot) with melee weapons.
-– May only Specialize (two slots) in Two-Weapon Style.
+– May not gain Proficiency in Two-Weapon Style.
 – May not use the Charm Animal ability.~
 END
 	
@@ -111,8 +152,7 @@ COPY_EXISTING ~weapprof.2da~  ~override~
     FOR (row = 8; row < 32; ++row) BEGIN
       READ_2DA_ENTRY row column col_count stars
       PATCH_IF (stars < 5) BEGIN
-        SET_2DA_ENTRY 26 column col_count 5
-        SET_2DA_ENTRY 31 column col_count 2
+        SET_2DA_ENTRY 31 column col_count 0
       END
     END
   END
@@ -134,6 +174,15 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
 
 END
 
+COPY_EXISTING SPCL121.SPL OVERRIDE
+SAY NAME1 ~Called Shot~
+SAY UNIDENTIFIED_DESC ~Called Shot
+The archer makes a debilitating shot targeted at their opponent's limbs and vitals. All successful ranged attacks within the next 10 seconds have the following non-cumulative effects besides normal damage, lasting for 1 turn, according to the level of the Archer:
+ 4th level: Target's dexterity stat is halved
+ 8th level: Target's movement rate is reduced to 25%
+ 12th level: Target loses one attack per round
+ 16th level: +2 bonus unmitigated missile damage on each hit.~
+
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
 
@@ -154,24 +203,10 @@ LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_
 LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
 END
 
-COPY_EXISTING C0ARC04.SPL OVERRIDE
-SAY NAME1 ~Tracking Shot~
-SAY UNIDENTIFIED_DESC ~Tracking Shot
-The archer may reduce the damage of their next ranged attack by 2 to reduce the target’s armor class vs. ranged weapons by 2 points for two rounds. The penalty increases by one point for every 3 levels of the archer up to a maximum of -6 at level 15. The effect is non-cumulative on the same target.~
-
-COPY_EXISTING C0ARC04a.SPL OVERRIDE
-LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 2~) END
-LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 3~) END
-LPF ALTER_EFFECT INT_VAR header = 2 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 4~) END
-LPF ALTER_EFFECT INT_VAR header = 3 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 5~) END
-LPF ALTER_EFFECT INT_VAR header = 4 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot—Armor Class vs. Missiles reduced by 6~) END
-COPY_EXISTING C0ARC04z.SPL OVERRIDE
-LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Tracking Shot Ready~) END
-
 COPY_EXISTING C0ARCH01.SPL OVERRIDE
 SAY NAME1 ~Greater Called Shot~
 SAY UNIDENTIFIED_DESC ~Greater Called Shot
-All successful ranged attacks within the next 10 seconds have all the cumulative effects of a normal Called Shot. Additionally, each attack also stuns the target for 2 seconds.~
+All successful ranged attacks within the next 10 seconds have all the cumulative effects of a normal Called Shot. Additionally, each attack also deals maximum damage and stuns the target for 3 seconds.~
 
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
 
@@ -240,3 +275,1066 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
 END
 END
 END
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HUMAN_1~)
+WRITE_BYTE 0x90 1
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP02.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HUMAN_2~)
+WRITE_ASCII 0x94 C0ARCP02
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP03.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HUMAN_1~)
+WRITE_ASCII 0x94 C0ARCP03
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP04.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HUMAN_2~)
+WRITE_ASCII 0x94 C0ARCP04
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP05.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_ELF_1~)
+WRITE_ASCII 0x94 C0ARCP05
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP06.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_ELF_2~)
+WRITE_ASCII 0x94 C0ARCP06
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP07.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_ELF_1~)
+WRITE_ASCII 0x94 C0ARCP07
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP08.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_ELF_2~)
+WRITE_ASCII 0x94 C0ARCP08
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP09.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HALFORC_1~)
+WRITE_ASCII 0x94 C0ARCP09
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP10.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HALFORC_2~)
+WRITE_ASCII 0x94 C0ARCP10
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP11.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HALFORC_1~)
+WRITE_ASCII 0x94 C0ARCP11
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP12.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HALFORC_2~)
+WRITE_ASCII 0x94 C0ARCP12
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP13.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_DWARF_1~)
+WRITE_ASCII 0x94 C0ARCP13
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP14.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_DWARF_2~)
+WRITE_ASCII 0x94 C0ARCP14
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP15.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_DWARF_1~)
+WRITE_ASCII 0x94 C0ARCP15
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP16.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_DWARF_2~)
+WRITE_ASCII 0x94 C0ARCP16
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP17.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HALFLING_1~)
+WRITE_ASCII 0x94 C0ARCP17
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP18.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_HALFLING_2~)
+WRITE_ASCII 0x94 C0ARCP18
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP19.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HALFLING_1~)
+WRITE_ASCII 0x94 C0ARCP19
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP20.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_HALFLING_2~)
+WRITE_ASCII 0x94 C0ARCP20
+
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP21.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_GNOME_1~)
+WRITE_ASCII 0x94 C0ARCP21
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP22.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_MALE_GNOME_2~)
+WRITE_ASCII 0x94 C0ARCP22
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP23.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_GNOME_1~)
+WRITE_ASCII 0x94 C0ARCP23
+COPY_EXISTING ~C0ARCP01.EFF~ ~OVERRIDE/C0ARCP24.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~ARCHER_FEMALE_GNOME_2~)
+WRITE_ASCII 0x94 C0ARCP24
+
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_SHORT    0x1C type //reads the byte containing item type
+	  READ_SHORT    0x22 appearance //reads the byte containing item appearance
+      PATCH_IF (type = 15) OR (type = 27) BEGIN // if it is leather armor
+// human
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP03
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP03
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+// halfelf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+// elf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP08
+		END
+
+// halforc
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP12
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP12
+		END
+
+// dwarf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP16
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP16
+		END
+
+// halfling
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP20
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP20
+		END
+
+// gnome
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP24
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP24
+		END
+
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP03 
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP12
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP16
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP20
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP24
+		END
+    
+      END
+    END
+BUT_ONLY_IF_IT_CHANGES

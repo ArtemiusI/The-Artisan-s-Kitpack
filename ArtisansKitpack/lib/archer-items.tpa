@@ -1,0 +1,1092 @@
+
+APPEND ~splprot.2da~ ~C0_KIT_CHECK_NOT 152 -1 5~ UNLESS ~C0_KIT_CHECK_NOT~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_KIT_CHECK_NOT~ BEGIN
+	    SET C0_KIT_CHECK_NOT = %row%
+	  END
+	END
+
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_SHORT    0x1C type //reads the byte containing item type
+	  READ_SHORT    0x22 appearance //reads the byte containing item appearance
+      PATCH_IF (type = 15) OR (type = 27) BEGIN // if it is leather armor
+// human
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP01
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP02
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP03
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP04
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP05
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP06
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP07
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP08
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP09
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP10
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP11
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP12
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP13
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP14
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP15
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP16
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP17
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP18
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP19
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP20
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP21
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP22
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP23
+		END
+		LPF DELETE_EFFECT
+			STR_VAR
+				match_resource = C0ARCP24
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP03
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 1
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP03
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+// halfelf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 3
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+// elf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 2
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP08
+		END
+
+// halforc
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 7
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP12
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP12
+		END
+
+// dwarf
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 4
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP16
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP16
+		END
+
+// halfling
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 5
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP20
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP20
+		END
+
+// gnome
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 6
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP24
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 117
+				timing = 2
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = 1
+				parameter2 = 107
+				timing = 2
+			STR_VAR
+				resource = C0ARCP24
+		END
+
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP01
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP02
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP03 
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP04
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP09
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP10
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP11
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP12
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP13
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP14
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP15
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP16
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP17
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP18
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP19
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP20
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP21
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP22
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP23
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 318
+				target = 1
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~FERALAN~)
+				parameter2 = C0_KIT_CHECK_NOT
+				timing = 2
+			STR_VAR
+				resource = C0ARCP24
+		END
+    
+      END
+    END
+BUT_ONLY_IF_IT_CHANGES

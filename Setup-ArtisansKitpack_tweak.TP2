@@ -1,4 +1,4 @@
-BACKUP ~weidu_external/backup/ArtisansKitpack/tweaks~
+BACKUP ~weidu_external/backup/ArtisansKitpack/tweak~
 AUTHOR ~The Artisan~
 ALWAYS
   INCLUDE ~ArtisansKitpack/lib/alter_script.tpa~
@@ -14,7 +14,11 @@ ALWAYS
 END
 AUTO_TRA ~ArtisansKitpack/tra/%s~
 
-BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (install this after any mods that add mod axes, daggers, spears, armor, etc.~ DESIGNATED 12012
+BEGIN ~Artisan's Kitpack: Archer - Apply Manyshot to mod-added items (install this after any mods that add mod bows and crossbows)~ DESIGNATED 20101
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2010~ ~The Beastmaster Overhaul must be installed.~
+INCLUDE ~ArtisansKitpack/lib/archer-items.tpa~
+
+BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (install this after any mods that add mod axes, daggers, spears, armor, etc.)~ DESIGNATED 12012
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2012~ ~The Beastmaster Overhaul must be installed.~
 INCLUDE ~ArtisansKitpack/lib/beastmaster-items.tpa~
 
