@@ -150,20 +150,20 @@ BUT_ONLY_IF_IT_CHANGES
 
 COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override~
 WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_MALE_HUMAN_STAFF~))
-WRITE_BYTE 0x90 1
-WRITE_ASCII 0x94 ~c0mqani1~
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~C0MQANI1~
 COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani2.eff~
 WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_FEMALE_HUMAN_STAFF~))
-WRITE_BYTE 0x90 1
-WRITE_ASCII 0x94 ~c0mqani2~
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~C0MQANI1~
 COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani3.eff~
 WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_MALE_HALFORC_STAFF~))
-WRITE_BYTE 0x90 1
-WRITE_ASCII 0x94 ~c0mqani3~
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~C0MQANI1~
 COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override/c0mqani4.eff~
 WRITE_SHORT 0x1C (IDS_OF_SYMBOL (~animate~ ~MONK_FEMALE_HALFORC_STAFF~))
-WRITE_BYTE 0x90 1
-WRITE_ASCII 0x94 ~c0mqani4~
+WRITE_BYTE 0x90 2
+WRITE_ASCII 0x94 ~C0MQANI1~
 
 //AMEND WEAPPROF.2da_______________________________________________________________
 //
