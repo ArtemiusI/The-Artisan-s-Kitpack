@@ -465,6 +465,120 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				resource = C0ARCP04
 		END
     
+// tiefling
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 153
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 153
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 153
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 153
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
+// aasimar
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 185
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP05
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 185
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP06
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 185
+				parameter2 = 4
+				timing = 2
+        dicenumber = 19
+        dicesize = 7
+			STR_VAR
+				resource = C0ARCP07
+		END
+    
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				silent = 1
+				opcode = 177
+				target = 1
+				parameter1 = 185
+				parameter2 = 4
+				timing = 2
+        dicenumber = 0
+        dicesize = 20
+			STR_VAR
+				resource = C0ARCP08
+		END
+    
 // halfelf
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
