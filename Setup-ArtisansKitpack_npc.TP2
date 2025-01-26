@@ -587,10 +587,9 @@ BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 COPY ~ArtisansKitpack/THIEF/ASSASSIN/MONTARON~ ~OVERRIDE~
 
-BEGIN ~Rogue Archer~ DESIGNATED 7101
-SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
+BEGIN ~Artisan's Kitpack: Make Imoen a Rogue Archer~ DESIGNATED 7101
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
+  REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
     COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
       READ_ASCII DEATHVAR "dv" (32) NULL
       PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
@@ -601,10 +600,9 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must 
       END
       BUT_ONLY
 
-BEGIN ~Trickster~ DESIGNATED 7102
-SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
+BEGIN ~Artisan's Kitpack: Make Imoen a Trickster~ DESIGNATED 7102
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
+  REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
     COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
       READ_ASCII DEATHVAR "dv" (32) NULL
       PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
