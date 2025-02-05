@@ -2,6 +2,7 @@ BACKUP ~weidu_external/backup/ArtisansKitpack~
 AUTHOR ~Artemius_I~
 VERSION ~4.8~
 ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/2daHandling.tph~
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/a7#add_kit_ex.tpa~
@@ -951,6 +952,11 @@ SUBCOMPONENT ~Artisan's Kitpack: 3e-accurate Dragon Disciple~
 GROUP ~Sorcerer Kits~
 OUTER_SET dd = 2
 INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
+
+BEGIN ~Artisan's Kitpack: Arcane Trickster Sorcerer Kit—EEEx required~ DESIGNATED 8004
+GROUP ~Sorcerer Kits~
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster_Sorc.tpa~
 
 BEGIN ~Artisan's Kitpack: Brawler Kit~ DESIGNATED 10002
 GROUP ~Monk Kits~

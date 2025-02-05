@@ -1,0 +1,68 @@
+// Never Forget: Comments can "lie", but code not so much ;P
+//----------------------------------------------------------//
+// Contains self defined 2DA files related functionalities  //
+//----------------------------------------------------------//
+
+
+// Purpose: Adds a calculated new item type into the itemtype.2DA
+// --------------------------------------------------------------
+// Parameters:|
+// ============
+// inventorySlotType 	->	Defines which slot type in inventory an item has.This is an integer value.
+//							see: https://github.com/Incrementis/Infinity-Engine-Modding-Wiki-Content-/blob/main/misc/Itemslot%20Types/Itemslot%20types.pdf
+// soundGrab			-> 	Defines the sound file name when the item is grabed. 
+//							This has to be a string value with max 8 characters. 
+//							No file extension is needed(e.g. "mySound" and not "mySound.wav").
+// soundDrop			->  Defines the sound file name when the item is dropped(released). 
+//							This has to be a string value with max 8 characters.
+// 							No file extension is needed(e.g. "mySound" and not "mySound.wav").
+// typeNumber			->	Returns a calculated value of the new type. 
+//							This value is needed to reference the new item type to an item. 
+DEFINE_DIMORPHIC_FUNCTION ~ADD_ITEMTYPE_IN_2DA~
+	INT_VAR
+		inventorySlotType 	= "-1"
+	STR_VAR
+		soundGrab			= ~0~
+		soundDrop			= ~0~
+	RET
+		typeNumber
+BEGIN
+	// Checks if grab sound name has more than 8 characters
+	ACTION_IF (STRING_LENGTH ~%soundGrab%~ > 8) THEN
+	BEGIN
+		OUTER_SET numbers = STRING_LENGTH ~%soundGrab%~
+		FAIL ~DEFINE_DIMORPHIC_FUNCTION ADD_ITEMTYPE_IN_2DA -> The argument '%soundGrab%' for soundGrab is %numbers% characters long. The maximum allowed length for this argument is 8 characters~
+	END
+	// Checks if drop sound name has more than 8 characters
+	ACTION_IF (STRING_LENGTH ~%soundDrop%~ > 8) THEN
+	BEGIN
+		OUTER_SET numbers = STRING_LENGTH ~%soundDrop%~
+		FAIL ~DEFINE_DIMORPHIC_FUNCTION ADD_ITEMTYPE_IN_2DA -> The argument '%soundDrop%' for soundDrop is %numbers% characters long. The maximum allowed length for this argument is 8 characters~
+	END
+	// Checks if inventorySlotType is within 2-byte signed integer value (positive values)
+	ACTION_IF (~%inventorySlotType%~ > 32767) THEN
+	BEGIN
+		FAIL ~DEFINE_DIMORPHIC_FUNCTION ADD_ITEMTYPE_IN_2DA -> The argument '%inventorySlotType%' for inventorySlotType is too large. The maximum allowed number is 32767, due to signed 2 byte size. Please adjust the inventorySlotType value to be within the allowed range.~
+	END
+	// Checks if inventorySlotType is within 2-byte signed integer value (negative values)
+	ACTION_IF (~%inventorySlotType%~ < "-32768") THEN
+	BEGIN
+		FAIL ~DEFINE_DIMORPHIC_FUNCTION ADD_ITEMTYPE_IN_2DA -> The argument '%inventorySlotType%' for inventorySlotType is too small. The minimum allowed number is -32768, due to signed 2 byte size. Please adjust the inventorySlotType value to be within the allowed range.~
+	END
+	
+
+	COPY_EXISTING ~ITEMTYPE.2DA~ ~override~
+		// Gets the number of columns and rows in the file.
+		COUNT_2DA_COLS numCols
+		COUNT_2DA_ROWS ~%numCols%~ numRows
+		// Gets the specific value of a cell. In this case the first cell in last row and first column.
+		READ_2DA_ENTRY (~%numRows%~-1) 0 ~%numCols%~ type
+		// Calculates the new item type by incrementing the existing value.
+		// This works because hex value begins by 0x00.
+		// See: https://gibberlings3.github.io/iesdp/file_formats/ie_formats/itm_v1.htm#Header_ItemType 
+		SET typeNumber = ~%type%~ + 1
+		// Adds a new row to the bottom of the file with the calculated type, sounds, and slot.
+		APPEND ~ITEMTYPE.2DA~ "%typeNumber%         %soundGrab%    %soundDrop%    %inventorySlotType%"
+	BUT_ONLY // End of "COPY_EXISTING"
+
+END // End of "ADD_ITEMTYPE"

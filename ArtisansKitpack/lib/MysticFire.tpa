@@ -1,24 +1,6 @@
 COPY ~%MOD_FOLDER%/Paladin/MysticFire/2da~ ~override~
 COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells~ ~override~
 
-/*
-COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-    READ_BYTE    0x20 mage //reads the byte containing the mage usability flag
-    PATCH_IF ((mage BAND 0b00000100) = 0b00000000) BEGIN // if it is usable by mages
-	PATCH_IF ((mage BAND 0b00010000) = 0b00010000) BEGIN // if it is unusable by paladins
-      READ_SHORT    0x1C type //reads the byte containing item type
-	  READ_BYTE    0x2F kit //reads the byte containing paladin kits
-      PATCH_IF (type = 35) OR (type = 11) BEGIN // if it is a wand or scroll
-        WRITE_BYTE    0x20 (mage BAND 0b11101111)  // makes usable by paladin
-        WRITE_BYTE    0x2F (kit BOR 0b00111000)  // makes unusable by paladin kits
-        END
-      END
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-*/
-
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
