@@ -51,14 +51,14 @@ POISON WEAPON: The blackguard is capable of coating <PRO_HISHER> weapon for the 
 – 3rd level: Gains the Aura of Despair passive ability.
 
 AURA OF DESPAIR: Blackguards perpetually radiate a malignant aura, inflicting negative effects on all enemies within 15 feet of <PRO_HIMHER> based on the Blackguard's level. Non-living beings, such as undead and constructs, are unaffected.	
-  3rd - All enemies suffer a -1 penalty to Saving Throws and Morale and a -5% penalty to all damage dealt.
-  11th - All enemies suffer a -1 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
-  19th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -20% penalty to all damage dealt.
+  3rd - All enemies suffer a -1 penalty to Saving Throws and Morale.
+  11th - All enemies suffer a -1 penalty to Saving Throws and Morale and a -5% penalty to all damage dealt.
+  19th - All enemies suffer a -2 penalty to Saving Throws and Morale and a -10% penalty to all damage dealt.
 
 – 11th level: May use Backstab at x2 modifier.
 – 12th level: May use the Fiendish Reckoning ability once per day.
 
-FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +30% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
+FIENDISH RECKONING: The blackguard draws upon the power of their fiendish host, gaining a +4 bonus to THAC0, +20% damage dealt from all sources, and +20 bonus hit points for 3 rounds. Killing a creature while Fiendish Reckoning is in effect heals the blackguard for 20 hit points and resets the duration. However, if no creature is killed within the initial duration, the blackguard suffers 40 magical damage and incurs a -4 penalty to THAC0 and -50% penalty to all damage dealt for 6 rounds as punishment.
 
 – 16th level: Backstab modifier improves to x3.
 
@@ -238,3 +238,87 @@ LPF DELETE_EFFECT STR_VAR match_resource = C0PAL04B END
 LPF DELETE_EFFECT STR_VAR match_resource = C0PAL04C END
 
 END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/lua/m_c0blk1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABPA06.2DA~ BEGIN
+COPY_EXISTING ~CLABPA06.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 13 STR_VAR f_Entry = AP_C0BLK01 END // STEALTH
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+///////////////////////////////////////////////////////////////////////////
+// Set Abilities for all Fighter Kits                                    //
+// This allows all previously installed fighter kits to receive the      //
+// benefits of your overhaul                                             //
+///////////////////////////////////////////////////////////////////////////
+
+APPEND_COL ~thiefscl.2da~ ~0 0 BLACKGUARD 0 0 0 100 100 0 0 0~ UNLESS ~BLACKGUARD~
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF 	("%kit%" STRING_EQUAL_CASE "BLACKGUARD") BEGIN
+      READ_2DA_ENTRY 4 col col_count val
+      SET_2DA_ENTRY  4 col col_count 15
+      READ_2DA_ENTRY 5 col col_count val
+      SET_2DA_ENTRY  5 col col_count 15
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+//blackguard
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "BLACKGUARD" BEGIN
+          READ_2DA_ENTRY index 4 col_count blackguard_desc
+          SPRINT old_blackguard ~– May turn undead as a Paladin of the same level.~
+          SPRINT new_blackguard ~– May turn undead as a Paladin of the same level.
+– May use Hide in Shadows.~
+          GET_STRREF %blackguard_desc% blackguard_text
+          INNER_PATCH_SAVE blackguard_text ~%blackguard_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_blackguard%~ ~%new_blackguard%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%blackguard_desc%~ ~%blackguard_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  END
+  
