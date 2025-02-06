@@ -68,7 +68,7 @@ Disadvantages:
 – May cast one fewer spell per level per day.
 – May only be of any Lawful alignment.
 – May not use two-handed weapons.
-– May only be human.
+– May only be humans, half-elves or half-orcs.
 – Suffers a -6 penalty to THAC0 when wielding any weapon.~)
 	
     briefdesc     = RESOLVE_STR_REF(~ENLIGHTENED FIST: Not all monks pursue metaphysical perfection to the exclusion of all other study. Some monks combine a rigorous discipline of academic study with martial arts and development of the body. For these monks, that study includes the practice of magic and the implementation of certain arcane tricks into their unarmed combat styles. These enlightened fists master the use of touch spells, creating new forms of combat where their fists strike with blinding speed, phenomenal power, and magical energy.~)
