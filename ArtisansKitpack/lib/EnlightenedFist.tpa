@@ -110,7 +110,7 @@ Disadvantages:
 	
     clab_path     = ~override/C0EFN.2da~
 	
-    kittable      = ~K_S_H~
+    kittable      = ~K_S_H K_S_HE K_S_HO~
 	
 	// base_class = F
 	

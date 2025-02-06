@@ -66,10 +66,13 @@ ACTION_FOR_EACH description IN
 ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
 		SET_2DA_ENTRY 54 1 8 ~1~
+		SET_2DA_ENTRY 54 3 8 ~1~
 		SET_2DA_ENTRY 54 7 8 ~1~
 		SET_2DA_ENTRY 56 1 8 ~1~
+		SET_2DA_ENTRY 56 3 8 ~1~
 		SET_2DA_ENTRY 56 7 8 ~1~
 		SET_2DA_ENTRY 57 1 8 ~1~
+		SET_2DA_ENTRY 57 3 8 ~1~
 		SET_2DA_ENTRY 57 7 8 ~1~
 	BUT_ONLY
 END
@@ -95,8 +98,12 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
     LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
     COPY ~%MOD_FOLDER%/MonkRevision\animations\halforc\female/6515.ini~ ~override/6515.ini~
     COPY ~%MOD_FOLDER%/MonkRevision\animations\halforc\male/6505.ini~ ~override/6505.ini~
+    COPY_EXISTING ~6500.ini~ ~override/6501.ini~
+    COPY_EXISTING ~6510.ini~ ~override/6511.ini~
     OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x6501 MONK_MALE_ELF~
     APPEND ~ANIMATE.IDS~ ~0x6505 MONK_MALE_HALFORC~
+    APPEND ~ANIMATE.IDS~ ~0x6511 MONK_MALE_ELF~
     APPEND ~ANIMATE.IDS~ ~0x6515 MONK_FEMALE_HALFORC~
 END
 

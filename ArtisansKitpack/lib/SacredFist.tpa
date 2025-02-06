@@ -106,7 +106,7 @@ Disadvantages:
 	
     clab_path     = ~override/C0SFF.2da~
 	
-    kittable      = ~K_C_H~
+    kittable      = ~K_C_H K_C_HE K_C_HO~
 	
 	// base_class = F
 	
