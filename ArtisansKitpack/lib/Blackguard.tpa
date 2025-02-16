@@ -268,7 +268,10 @@ BUT_ONLY
 // benefits of your overhaul                                             //
 ///////////////////////////////////////////////////////////////////////////
 
-APPEND_COL ~thiefscl.2da~ ~0 0 BLACKGUARD 0 0 0 100 100 0 0 0~ UNLESS ~BLACKGUARD~
+APPEND_COL ~thiefscl.2da~ ~DELETE_TEXT DELETE_TEXT BLACKGUARD 0 0 0 100 100 0 0 0~ UNLESS ~BLACKGUARD~
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+REPLACE_TEXTUALLY ~DELETE_TEXT~ ~~
   
 COPY_EXISTING ~clasiskl.2da~ ~override~
   REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
