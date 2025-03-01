@@ -974,6 +974,8 @@ INCLUDE ~%MOD_FOLDER%/lib/MonkRevision-Mystic.tpa~
 
 BEGIN ~Artisan's Kitpack: Ninja "Class" (Monk Kit)—EEEx required~ DESIGNATED 10004
 GROUP ~Monk Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
 INCLUDE ~%MOD_FOLDER%/lib/Ninja.tpa~
 
 BEGIN ~Artisan's Kitpack: Berserker Overhaul~ DESIGNATED 1003
