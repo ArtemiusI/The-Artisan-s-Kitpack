@@ -1,36 +1,13 @@
 COPY ~%MOD_FOLDER%/Ranger/spells~ ~OVERRIDE~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN01.2DA~ BEGIN
 COPY_EXISTING ~CLABRN01.2DA~ OVERRIDE
-APPEND ~CLABRN01.2DA~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-CAMOUFLAGE    AP_C0RNG00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-SETSNARE    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****
-SETTRAPS    ****        AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ~
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN02.2DA~ BEGIN
-COPY_EXISTING ~CLABRN02.2DA~ OVERRIDE
-APPEND ~CLABRN02.2DA~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-CAMOUFLAGE    AP_C0RNG00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-SETSNARE    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****
-SETTRAPS    ****        AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ~
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN03.2DA~ BEGIN
-COPY_EXISTING ~CLABRN03.2DA~ OVERRIDE
-APPEND ~CLABRN03.2DA~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-CAMOUFLAGE    AP_C0RNG00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-SETSNARE    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****
-SETTRAPS    ****        AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ~
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN04.2DA~ BEGIN
-COPY_EXISTING ~CLABRN04.2DA~ OVERRIDE
-APPEND ~CLABRN04.2DA~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-CAMOUFLAGE    AP_C0RNG00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****
-SETSNARE    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****    GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****        GA_SPCL412  ****        ****        ****        ****
-SETTRAPS    ****        AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  AP_C0RNG01  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ~
-END
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = GA_SPCL922 END // Tracking
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG00 END // Camouflage
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 5 STR_VAR f_Entry = GA_SPCL412 END // Set Snare
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG01 END // Set Traps
+  PRETTY_PRINT_2DA
+BUT_ONLY
 
 ACTION_FOR_EACH CLASSTEXT IN BGCLATXT CLASTEXT SODCLTXT BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
@@ -134,6 +111,7 @@ COPY_EXISTING ~c0rng00a.spl~ ~override~
 COPY_EXISTING ~c0rng00b.spl~ ~override~
 	LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0RNG00I END
 
+
 COPY_EXISTING ~thiefscl.2da~ ~override~
   REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
   COUNT_2DA_COLS col_count
@@ -163,6 +141,92 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
   REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
   PRETTY_PRINT_2DA
   BUT_ONLY
+  
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "CLERIC_RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "CLERIC_RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count (val+20)
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~ranger_kitlist~ 10
+  FOR (row = 3; row < ranger_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 8 kit_class
+
+  PATCH_IF NOT ~%kit_class%~ STRING_EQUAL_CASE ~*~ BEGIN
+    PATCH_IF (%kit_class% = 12 || %kit_class% = 18) BEGIN
+    
+      INNER_ACTION BEGIN
+        // This gives Ranger kits the Thief snare at the same frequency Thieves get them.
+        COPY_EXISTING ~%kit_clab%.2DA~ override
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = GA_SPCL922 END // Tracking
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG00 END // Camouflage
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 5 STR_VAR f_Entry = GA_SPCL412 END // Set Snare
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG01 END // Set Traps
+          PRETTY_PRINT_2DA
+        BUT_ONLY
+      END
+
+      // Set Max Skills Points in THIEFSCL.2DA
+      INNER_ACTION BEGIN
+      COPY_EXISTING ~THIEFSCL.2DA~ ~override~
+        READ_2DA_ENTRIES_NOW thiefscl 3
+        COUNT_2DA_COLS cols
+        FOR (col = 0; col < cols - 1; ++col) BEGIN
+        READ_2DA_ENTRY_FORMER thiefscl 0 col column_name
+        PATCH_IF "%column_name%" STRING_EQUAL_CASE "%kit_label%" BEGIN
+          SET_2DA_ENTRY 9 (col + 1) 1 ~100~   // SET_TRAPS
+          PRETTY_PRINT_2DA
+        END
+        END
+      BUT_ONLY
+      END
+
+      // Set Max Skills Points in THIEFSCL.2DA
+      INNER_ACTION BEGIN
+      COPY_EXISTING ~CLASISKL.2DA~ ~override~
+        READ_2DA_ENTRIES_NOW CLASISKL 3
+        COUNT_2DA_COLS cols
+        FOR (col = 0; col < cols - 1; ++col) BEGIN
+        READ_2DA_ENTRY_FORMER CLASISKL 0 col column_name
+        PATCH_IF "%column_name%" STRING_EQUAL_CASE "%kit_label%" BEGIN
+          SET_2DA_ENTRY 9 (col + 1) 1 ~20~   // SET_TRAPS
+          PRETTY_PRINT_2DA
+        END
+        END
+      BUT_ONLY
+      END
+
+    END
+  END
+  END
   
 COPY_EXISTING ~SPCL922.SPL~ OVERRIDE
 	LPF ALTER_EFFECT INT_VAR match_opcode = 318 parameter2 = C0_NOT_OUTDOORS_CHECK END
@@ -218,90 +282,26 @@ ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
 COPY ~%MOD_FOLDER%/lua/m_c0ran1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 
 ACTION_IF FILE_EXISTS_IN_GAME ~CLABRN01.2DA~ BEGIN
+
 COPY_EXISTING ~CLABRN01.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
   PRETTY_PRINT_2DA
 BUT_ONLY
+
+END
 ///////////////////////////////////////////////////////////////////////////
 // Set Abilities for all Fighter Kits                                    //
 // This allows all previously installed fighter kits to receive the      //
 // benefits of your overhaul                                             //
 ///////////////////////////////////////////////////////////////////////////
-COPY_EXISTING ~KITLIST.2DA~ ~override~
-  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
-  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
-  
-  PATCH_IF (%kit_class% = 12) BEGIN
-    // Set New Fighter Abilities
-    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
-      INNER_ACTION BEGIN
-      // Add new abilities to all Fighter kits
-      COPY_EXISTING ~%kit_clab%.2DA~ override
-      PATCH_IF !(
-				("%kit_label%" STRING_EQUAL_CASE "C0TBM")
-														 ) BEGIN
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-        PRETTY_PRINT_2DA
-      END
-      BUT_ONLY
-      END
-    END
-  END
-  END
 
 COPY_EXISTING ~thiefscl.2da~ ~override~
   REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
   COUNT_2DA_COLS col_count
   FOR (col = 1 ; col < col_count ; ++col) BEGIN
     READ_2DA_ENTRY 0 col col_count kit
-    PATCH_IF (
-				("%kit%" STRING_EQUAL_CASE "RANGER") OR
-				("%kit%" STRING_EQUAL_CASE "FERALAN") OR
-				("%kit%" STRING_EQUAL_CASE "STALKER") OR
-				("%kit%" STRING_EQUAL_CASE "BEASTMASTER")
-														 ) BEGIN
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "RANGER" = 0) BEGIN
       READ_2DA_ENTRY 6 col col_count val
       SET_2DA_ENTRY  6 col col_count 100
       READ_2DA_ENTRY 3 col col_count val
@@ -318,16 +318,11 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
   COUNT_2DA_COLS col_count
   FOR (col = 1 ; col < col_count ; ++col) BEGIN
     READ_2DA_ENTRY 0 col col_count kit
-    PATCH_IF (
-				("%kit%" STRING_EQUAL_CASE "RANGER") OR
-				("%kit%" STRING_EQUAL_CASE "FERALAN") OR
-				("%kit%" STRING_EQUAL_CASE "STALKER") OR
-				("%kit%" STRING_EQUAL_CASE "BEASTMASTER")
-														 ) BEGIN
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "RANGER" = 0) BEGIN
       READ_2DA_ENTRY 6 col col_count val
-      SET_2DA_ENTRY  6 col col_count 20
+      SET_2DA_ENTRY  6 col col_count (val+20)
       READ_2DA_ENTRY 3 col col_count val
-      SET_2DA_ENTRY  3 col col_count 20
+      SET_2DA_ENTRY  3 col col_count (val+20)
       SET col = col_count // kill loop
     END
   END  
@@ -335,8 +330,98 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
   PRETTY_PRINT_2DA
   BUT_ONLY
   
-END
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "CLERIC_RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 100
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_COMPARE_CASE "CLERIC_RANGER" = 0) BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count (val+20)
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count (val+20)
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~ranger_kitlist~ 10
+  FOR (row = 3; row < ranger_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~ranger_kitlist~ row 8 kit_class
 
+  PATCH_IF NOT ~%kit_class%~ STRING_EQUAL_CASE ~*~ BEGIN
+    PATCH_IF (%kit_class% = 12 || %kit_class% = 18) BEGIN
+    
+      INNER_ACTION BEGIN
+        // This gives Ranger kits the Thief snare at the same frequency Thieves get them.
+        COPY_EXISTING ~%kit_clab%.2DA~ override
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "C0TBM")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+          PRETTY_PRINT_2DA
+        END
+        BUT_ONLY
+      END
+
+      // Set Max Skills Points in THIEFSCL.2DA
+      INNER_ACTION BEGIN
+      COPY_EXISTING ~THIEFSCL.2DA~ ~override~
+        READ_2DA_ENTRIES_NOW thiefscl 3
+        COUNT_2DA_COLS cols
+        FOR (col = 0; col < cols - 1; ++col) BEGIN
+        READ_2DA_ENTRY_FORMER thiefscl 0 col column_name
+        PATCH_IF "%column_name%" STRING_EQUAL_CASE "%kit_label%" BEGIN
+          SET_2DA_ENTRY 5 (col + 1) 1 ~100~   // SET_TRAPS
+          SET_2DA_ENTRY 8 (col + 1) 1 ~100~   // SET_TRAPS
+          PRETTY_PRINT_2DA
+        END
+        END
+      BUT_ONLY
+      END
+
+      // Set Max Skills Points in THIEFSCL.2DA
+      INNER_ACTION BEGIN
+      COPY_EXISTING ~CLASISKL.2DA~ ~override~
+        READ_2DA_ENTRIES_NOW CLASISKL 3
+        COUNT_2DA_COLS cols
+        FOR (col = 0; col < cols - 1; ++col) BEGIN
+        READ_2DA_ENTRY_FORMER CLASISKL 0 col column_name
+        PATCH_IF "%column_name%" STRING_EQUAL_CASE "%kit_label%" BEGIN
+          SET_2DA_ENTRY 5 (col + 1) 1 ~20~   // SET_TRAPS
+          SET_2DA_ENTRY 8 (col + 1) 1 ~20~   // SET_TRAPS
+          PRETTY_PRINT_2DA
+        END
+        END
+      BUT_ONLY
+      END
+
+    END
+  END
+  END
+  
 ///////////////////////////////////////////////////////////////////////////
 // Update Kit Descriptions                                               //
 ///////////////////////////////////////////////////////////////////////////
