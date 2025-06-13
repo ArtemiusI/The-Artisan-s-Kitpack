@@ -34,7 +34,7 @@ LAF ADD_KIT_EX
 
 Advantages:
 – +1 bonus to hit and damage rolls with ranged weapons on every 2nd level.
-– +50% bonus to missile damage dealt, which is increased to +250% if a successful attack has not been made within two rounds.
+– +50% bonus to missile damage dealt with arrows or bolts, which is increased to +250% if a successful attack has not been made within two rounds.
 – Gains the Armor Penetration and Heavy Draw passive effects.
 
 ARMOR PENETRATION: The siegemaster excels at breaking armor and other impenetrable defenses, dealing an additional point of unmitigated piercing damage per point of Armor Class of the target below 10. Additionally, the siegemaster's critical hits penetrate through 50% of the target's missile resistance.
@@ -51,6 +51,7 @@ LONGSHOT: The siegemaster becomes a living artillery weapon. For the next two at
 Disadvantages:
 – May never make more than one attack per round unless Hasted.
 – May not exceed Proficiency (one slot) in weapons other than crossbows and longbows.
+– May not equip any ranged weapons other than bows and crossbows.
 – May not exceed Proficiency (one slot) in any weapon style.~)
 	
     briefdesc     = RESOLVE_STR_REF(~SIEGEMASTER: The siegemaster is a heavily armed and armored warrior who specializes in terrifying long-ranged assaults. Wielding the largest and heaviest of ranged weapons with absolute ease, their lethal shots can penetrate even the most durable armors and heavily fortified castles. To the siegemaster, there is no such thing as an 'impenetrable defense'.~)
@@ -73,7 +74,7 @@ Disadvantages:
 	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
 	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
 	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
-    weapprof      = ~1 1 5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 1 1 1 1 1 1~
+    weapprof      = ~1 1 5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 0 0 1 1 1 1~
 	
     abclasrq      = ~17 12 0 0 0 0~
 	
@@ -296,6 +297,9 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 33 END
 
 COPY_EXISTING ~C0SIED01.SPL~ ~OVERRIDE/C0SIED34.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 34 END
+
+COPY_EXISTING ~C0SIEG0.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 181 special = RESOLVE_STR_REF (~Cannot use item.~) END
 
 COPY_EXISTING ~C0SIEG4.SPL~ ~OVERRIDE~
 SAY NAME1 ~Longshot~
