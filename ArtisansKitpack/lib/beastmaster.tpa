@@ -171,19 +171,6 @@ END
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR522.SPL~ BEGIN
 COPY ~%MOD_FOLDER%/Ranger/Beastmaster/spells/sppr522~ ~override~
 COPY_EXISTING ~SPPR522.spl~ ~override~
-SAY NAME1 ~Animal Rage~
-SAY UNIDENTIFIED_DESC ~Animal Rage
-(Enchantment)
-
-Level: 5
-Sphere: Combat
-Range: Touch
-Duration: 15 rounds
-Casting Time: 8
-Area of Effect: 1 creature
-Saving Throw: None
-
-This spell imbues the target creature with animal ferocity. The target creature gains a Strength score of 19, +20 Hit Points, +20% movement rate, and a +2 bonus to all Saving Throws. The target loses the ability to cast spells while Animal Rage is in effect; when enemies are within sight, <PRO_HESHE> immediately attacks in melee, using whatever is in hand. While this spell is in effect, there is a 5% chance per round that the target will go berserk, attacking friend and foe alike.~
 END
 
 COPY ~%MOD_FOLDER%/Ranger/Beastmaster/spells/sppr522/sppr522.spl~ ~override/C0BMA02.spl~
@@ -200,6 +187,19 @@ BEGIN
 WRITE_SHORT (("%offset_abil%" + 0x02) + (("%num_abil%" - 1) * 0x28)) 4 
 SET "num_abil" = ("%num_abil%" - 1)
 END
+SAY NAME1 ~Animal Rage~
+SAY UNIDENTIFIED_DESC ~Animal Rage
+(Enchantment)
+
+Level: 5
+Sphere: Combat
+Range: Touch
+Duration: 15 rounds
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell imbues the target creature with animal ferocity. The target creature gains a Strength score of 19, +20 Hit Points, +20% movement rate, and a +2 bonus to all Saving Throws. The target loses the ability to cast spells while Animal Rage is in effect; when enemies are within sight, <PRO_HESHE> immediately attacks in melee, using whatever is in hand. While this spell is in effect, there is a 5% chance per round that the target will go berserk, attacking friend and foe alike.~
 
 COPY ~%MOD_FOLDER%/Ranger/Beastmaster/spells/sppr522/SPPR522B.spl~ ~override/C0BMA02a.spl~
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Berserking~) END
