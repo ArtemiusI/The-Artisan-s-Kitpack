@@ -23,6 +23,15 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
       READ_SHORT    0x1C type //reads the byte containing item type
       PATCH_IF (type = 26) BEGIN // if it is a staff
         WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+	READ_BYTE    0x18 flags //reads the byte containing the fighter usability flag
+    PATCH_IF ((flags BAND 0b00000010) = 0b00000010) BEGIN // if it is usable by fighters
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				opcode = 177
@@ -145,7 +154,6 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 		END
       END
     END
-  END
 BUT_ONLY_IF_IT_CHANGES
 
 COPY ~%MOD_FOLDER%/MonkRevision/eff/c0mqani1.eff~ ~override~

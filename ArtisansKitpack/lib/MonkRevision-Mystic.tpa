@@ -84,6 +84,67 @@ COPY_EXISTING ~C0MFISTD.ITM~ OVERRIDE
 SAY NAME2 ~Fist +5~
 SAY UNIDENTIFIED_DESC ~These fists deal 2d8+5 crushing damage and strike as a +5 silver weapon.~
 
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F2.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 4 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST2 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F2 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 4 dicesize = 4 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F3.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 5 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST3 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F3 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 6 dicesize = 5 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F4.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 7 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST4 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F4 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 7 dicesize = 7 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F5.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 8 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST5 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F5 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 8 dicesize = 8 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F6.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 9 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST6 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F6 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 11 dicesize = 9 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F7.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 12 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST7 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F7 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 12 dicesize = 12 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F8.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 13 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST8 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F8 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 15 dicesize = 13 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#F9.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 16 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFIST9 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#F9 END
+LPF ALTER_EFFECT INT_VAR dicenumber = 16 dicesize = 16 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#FA.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 17 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFISTA END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#FA END
+LPF ALTER_EFFECT INT_VAR dicenumber = 17 dicesize = 17 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#FB.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 18 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFISTB END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#FB END
+LPF ALTER_EFFECT INT_VAR dicenumber = 19 dicesize = 18 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#FC.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 20 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFISTC END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#FC END
+LPF ALTER_EFFECT INT_VAR dicenumber = 20 dicesize = 20 END
+COPY_EXISTING ~C0MN#F1.SPL~ ~OVERRIDE/C0MN#FD.SPL~
+LPF ALTER_SPELL_HEADER INT_VAR min_level = 21 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = C0MFISTD END
+LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = C0MN#FD END
+LPF ALTER_EFFECT INT_VAR dicenumber = 0 dicesize = 21 END
+
 INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/EnlightenedFist.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
@@ -157,10 +218,10 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
     PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) BEGIN // if it is usable by fighters
+	READ_BYTE    0x18 flags //reads the byte containing the fighter usability flag
+    PATCH_IF ((flags BAND 0b00000010) = 0b00000010) BEGIN // if it is usable by fighters
       READ_BYTE    0x21 monk //reads the byte containing monks usability flag
       READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 26) BEGIN // if it is a staff
-        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				opcode = 177
