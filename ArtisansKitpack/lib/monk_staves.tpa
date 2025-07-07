@@ -28,8 +28,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 177
 				target = 1
 				timing = 2
-				parameter1 = 1
-				parameter2 = 7
+				parameter1 = 20
+				parameter2 = 5
 			STR_VAR
 				resource = C0MQANI1
 		END
@@ -38,8 +38,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 177
 				target = 1
 				timing = 2
-				parameter1 = 2
-				parameter2 = 7
+				parameter1 = 20
+				parameter2 = 5
 			STR_VAR
 				resource = C0MQANI2
 		END
@@ -48,8 +48,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 177
 				target = 1
 				timing = 2
-				parameter1 = 1
-				parameter2 = 7
+				parameter1 = 20
+				parameter2 = 5
 			STR_VAR
 				resource = C0MQANI3
 		END
@@ -58,8 +58,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 177
 				target = 1
 				timing = 2
-				parameter1 = 2
-				parameter2 = 7
+				parameter1 = 20
+				parameter2 = 5
 			STR_VAR
 				resource = C0MQANI4
 		END
@@ -108,8 +108,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 318
 				target = 1
 				timing = 2
-				parameter1 = 20
-				parameter2 = 115
+				parameter1 = 2
+				parameter2 = 117
 			STR_VAR
 				resource = C0MQANI4
 		END
@@ -118,8 +118,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 318
 				target = 1
 				timing = 2
-				parameter1 = 20
-				parameter2 = 115
+				parameter1 = 1
+				parameter2 = 117
 			STR_VAR
 				resource = C0MQANI3
 		END
@@ -128,8 +128,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 318
 				target = 1
 				timing = 2
-				parameter1 = 20
-				parameter2 = 115
+				parameter1 = 2
+				parameter2 = 117
 			STR_VAR
 				resource = C0MQANI2
 		END
@@ -138,8 +138,8 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				opcode = 318
 				target = 1
 				timing = 2
-				parameter1 = 20
-				parameter2 = 115
+				parameter1 = 1
+				parameter2 = 117
 			STR_VAR
 				resource = C0MQANI1
 		END

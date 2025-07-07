@@ -4,6 +4,20 @@ COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/EFF~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/FISTS~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/MysticFists/SPELLS~ ~OVERRIDE~
 
+APPEND item_use.2da ~C0MFIST1 * -1 4 -1
+C0MFIST2 * -1 4 -1
+C0MFIST3 * -1 4 -1
+C0MFIST4 * -1 4 -1
+C0MFIST5 * -1 4 -1
+C0MFIST6 * -1 4 -1
+C0MFIST7 * -1 4 -1
+C0MFIST8 * -1 4 -1
+C0MFIST9 * -1 4 -1
+C0MFISTA * -1 4 -1
+C0MFISTB * -1 4 -1
+C0MFISTC * -1 4 -1
+C0MFISTD * -1 4 -1~
+
 COPY_EXISTING ~C0MN#AN1.EFF~ ~OVERRIDE/C0MN#AN3.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HALFORC~)
 WRITE_BYTE 0x90 1
@@ -74,6 +88,10 @@ INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/EnlightenedFist.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
 
+COPY_EXISTING ~FIST.ITM~ OVERRIDE
+LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 timing = 1 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~) parameter2 = 9 STR_VAR resource = C0MN#FI END
+LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 timing = 1 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) parameter2 = 9 STR_VAR resource = C0MN#FI END
+
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x21 monk //reads the byte containing the fighter usability flag
@@ -113,7 +131,8 @@ END
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x18 flags //reads the byte containing the fighter usability flag
-    PATCH_IF ((flags BAND 0b00000010) = 0b00000010) BEGIN // if it is usable by fighters
+	READ_SHORT    0x1C type //reads the byte containing item type
+    PATCH_IF ((flags BAND 0b00000010) = 0b00000010) AND NOT (type = 26) BEGIN
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				opcode = 319
@@ -132,6 +151,107 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 		END
       END
     END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
+    PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) BEGIN // if it is usable by fighters
+      READ_BYTE    0x21 monk //reads the byte containing monks usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 26) BEGIN // if it is a staff
+        WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI1
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI2
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI3
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI4
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI1
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI2
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI3
+		END
+		LPF ADD_ITEM_EQEFFECT
+			INT_VAR
+				opcode = 177
+				target = 1
+				timing = 2
+				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~)
+				parameter2 = 9
+				insert_point = (0 - 1)
+			STR_VAR
+				resource = C0MQANI4
+		END
+      END
+    END
+  END
 BUT_ONLY_IF_IT_CHANGES
 
 COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~

@@ -62,9 +62,8 @@ Disadvantages:
 – May only be of any Lawful alignment.
 – May not wear armor heavier than studded leather.
 – May not use shields.
-– May not use two-handed weapons.
 – May only be humans, half-elves or half-orcs.
-– May not dual-class.
+– May only dual-class to Thief or Mage.
 – Suffers a -6 penalty to THAC0 when wielding any weapon.~)
 	
     briefdesc     = RESOLVE_STR_REF(~SACRED FIST: Sacred Fists are independent organizations found within many temples. Their ascetic members have turned their divine magic inward, bringing their bodies and wills into harmony. Sacred Fists have forsworn the use of weapons and heavy armor. They consider their bodies and minds gifts from their deity, and they believe that not developing those gifts to their fullest potential is a sin. Spellcasting does not dishonor them or their deity. Sacred Fists are strong in faith, will and body.~)
@@ -73,18 +72,18 @@ Disadvantages:
 	
     unusable      = ~0x00014000~
     // clasweap      = ~1 1 1 1 1 1 1 1~
-	//                                       T   S           F   Q             S S
-	//                                       W   C           L   U             W I
-	//                               B L S   O   I   W       A   A             O N
-	//                               A O H   H   M   A       I   R C   S       R G
-	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
-	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
-	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
-	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
-	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
-	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
-	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
-    weapprof      = ~0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 1 0 0 1 1~
+	//                                         T   S           F   Q             S S
+	//                                         W   C           L   U             W I
+	//                                 B L S   O   I   W       A   A             O N
+	//                                 A O H   H   M   A       I   R C   S       R G
+	//                 L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//                 _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 0 0 1 1~
 	
     abclasrq      = ~0 9 0 9 12 0~
 	
@@ -98,7 +97,7 @@ Disadvantages:
 	//               G N E G N E G N E
     alignmnt      = ~1 1 1 0 0 0 0 0 0~
 	
-    dualclas      = ~0 0 0 0 0 0~
+    dualclas      = ~0 0 1 1 0 0~
 	
     luabbr        = ~C0SFF~
 	
@@ -153,6 +152,29 @@ Disadvantages:
   RET
     kit_id
 END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~CLABMA01.2DA~ BEGIN
+COPY ~%MOD_FOLDER%/2das/blankclab.2DA~ ~OVERRIDE/CLABMA01.2DA~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABMA01.2DA~ BEGIN
+COPY_EXISTING ~CLABMA01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0MONDC END
+  PRETTY_PRINT_2DA
+BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABTH01.2DA~ BEGIN
+COPY_EXISTING ~CLABTH01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0MONDC END
+  PRETTY_PRINT_2DA
+BUT_ONLY
+END
+
+COPY_EXISTING ~C0MONDC.SPL~ OVERRIDE
+ LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~) END
 
 COPY_EXISTING ~LUCL0.2da~ ~override/LUC0SFF.2DA~
 LPF patch_add_hla STR_VAR ability = ~C0MN#H07~ num_allowed = 16 END	

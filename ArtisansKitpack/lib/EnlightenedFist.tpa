@@ -67,7 +67,6 @@ WHOLENESS OF BODY: The Enlightened Fist instantly heals themself for three hit p
 Disadvantages:
 – May cast one fewer spell per level per day.
 – May only be of any Lawful alignment.
-– May not use two-handed weapons.
 – May only be humans, half-elves or half-orcs.
 – Suffers a -6 penalty to THAC0 when wielding any weapon.~)
 	
@@ -88,7 +87,7 @@ Disadvantages:
 	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
 	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
 	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
-    weapprof      = ~0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0~
+    weapprof      = ~0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0~
 	
     abclasrq      = ~0 9 0 9 12 9~
 	
