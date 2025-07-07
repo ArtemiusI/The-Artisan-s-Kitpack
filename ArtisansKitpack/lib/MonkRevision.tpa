@@ -86,6 +86,41 @@ APPEND ~K_MN_HO.2DA~ ~2    36
 3    37~ UNLESS ~2    36~
 END
 
+ACTION_FOR_EACH monk_avatar IN 6500 6510 6505 6515 BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%monk_avatar%.ini~ THEN BEGIN
+COPY_EXISTING ~%monk_avatar%.ini~   ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~equip_helmet=1~~~~~
+    string = EVAL ~~~~~equip_helmet=0~~~~~ //"
+  END
+  END
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_anims_6xxx BEGIN
+    ~6500~ => ~MONK_MALE_HUMAN_1~
+    ~6500a~ => ~MONK_MALE_HUMAN_2~
+    ~6505~ => ~MONK_MALE_HALFORC_1~
+    ~6505a~ => ~MONK_MALE_HALFORC_2~
+    ~6510~ => ~MONK_FEMALE_HUMAN_1~
+    ~6510a~ => ~MONK_FEMALE_HUMAN_2~
+    ~6515~ => ~MONK_FEMALE_HALFORC_1~
+    ~6515a~ => ~MONK_FEMALE_HALFORC_2~
+  END
+  ACTION_PHP_EACH monk_anims_6xxx AS animation => symbol BEGIN
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/MonkRevision\animations\%animation%.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
+END
+
 ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
     ~female~ => ~MONK_FEMALE_HALFORC~
     ~male~ => ~MONK_MALE_HALFORC~
@@ -105,24 +140,6 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY halforc_monk_anims_6xxx BEGIN
     APPEND ~ANIMATE.IDS~ ~0x6505 MONK_MALE_HALFORC~
     APPEND ~ANIMATE.IDS~ ~0x6511 MONK_MALE_ELF~
     APPEND ~ANIMATE.IDS~ ~0x6515 MONK_FEMALE_HALFORC~
-END
-
-ACTION_DEFINE_ASSOCIATIVE_ARRAY monk_anims_6xxx BEGIN
-    ~6500~ => ~MONK_MALE_HUMAN_1~
-    ~6500a~ => ~MONK_MALE_HUMAN_2~
-    ~6505~ => ~MONK_MALE_HALFORC_1~
-    ~6505a~ => ~MONK_MALE_HALFORC_2~
-    ~6510~ => ~MONK_FEMALE_HUMAN_1~
-    ~6510a~ => ~MONK_FEMALE_HUMAN_2~
-    ~6515~ => ~MONK_FEMALE_HALFORC_1~
-    ~6515a~ => ~MONK_FEMALE_HALFORC_2~
-  END
-  ACTION_PHP_EACH monk_anims_6xxx AS animation => symbol BEGIN
-    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x6000 RET slot END
-    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
-    COPY ~%MOD_FOLDER%/MonkRevision\animations\%animation%.ini~ ~override/%hexNumber%.ini~
-    OUTER_SET EVAL ~slot_%folder%~ = slot   // save animation slot number for later
-    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
 END
 
 // WISDOM

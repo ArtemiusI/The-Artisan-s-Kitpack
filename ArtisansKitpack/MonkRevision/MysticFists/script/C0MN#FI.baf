@@ -25,32 +25,6 @@ THEN
 END
 
 IF
-  OnCreation()
-  OR(13)
-  HasItem("C0MFIST1",LastSummonerOf(Myself))
-  HasItem("C0MFIST2",LastSummonerOf(Myself))
-  HasItem("C0MFIST3",LastSummonerOf(Myself))
-  HasItem("C0MFIST4",LastSummonerOf(Myself))
-  HasItem("C0MFIST5",LastSummonerOf(Myself))
-  HasItem("C0MFIST6",LastSummonerOf(Myself))
-  HasItem("C0MFIST7",LastSummonerOf(Myself))
-  HasItem("C0MFIST8",LastSummonerOf(Myself))
-  HasItem("C0MFIST9",LastSummonerOf(Myself))
-  HasItem("C0MFISTA",LastSummonerOf(Myself))
-  HasItem("C0MFISTB",LastSummonerOf(Myself))
-  HasItem("C0MFISTC",LastSummonerOf(Myself))
-  HasItem("C0MFISTD",LastSummonerOf(Myself))
-  OR(2)
-  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
-  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
-  HasItemEquiped("FIST",LastSummonerOf(Myself))
-THEN
-  RESPONSE #100
-	ActionOverride(LastSummonerOf(Myself),SelectWeaponAbility(SLOT_WEAPON,0))
-	Continue()
-END
-
-IF
   ActionListEmpty()
 THEN
   RESPONSE #100
