@@ -62,7 +62,7 @@ ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow withi
 Disadvantages:
 – THAC0 penalty of 2 when wielding a melee weapon.
 – Race restricted to elf or half–elf.
-– May not exceed proficiency (one slot) in weapons other than longbows and shortbows.
+– May not exceed proficiency (one slot) in weapons other than longbows, shortbows and crossbows.
 – May not exceed proficiency (one slot) in any weapon style.
 – May not wear armor heavier than elven chain mail.~)
 	
@@ -214,3 +214,8 @@ COPY_EXISTING ~C0AAZX.SPL~ ~OVERRIDE~
 
 COPY_EXISTING ~C0AAINN.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Arcane Archer~) END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~C0FIG04.SPL~ ~OVERRIDE~
+COPY_EXISTING ~C0FIG04.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 2 timing = 0 duration = 1 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0AA2~) parameter2 = 109 STR_VAR resource = C0FIG04 END
+END
