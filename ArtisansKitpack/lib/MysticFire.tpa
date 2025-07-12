@@ -251,6 +251,31 @@ COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf01a.spl~ ~override~
 			parameter1 = RESOLVE_STR_REF (~Miscast Magic~)
 		END
  
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY_EXISTING ~c0mf01.spl~ ~override~
+SAY UNIDENTIFIED_DESC ~Shatter Spell
+Knights of the Mystic Fire are able to smite spellcasters and disrupt their defensive spells as well as their ability to cast magic. The next attack made by the Mystic Fire within two rounds will dispel the target's combat protections. Additionally, if the target fails a save vs. spells at -2, they suffer 100% spell failure for two rounds.
+
+The effects of Shatter Spell bypass all weapon protections, even if the attack itself is negated.~
+ 
+OUTER_SET mystic_fire_ids = IDS_OF_SYMBOL (~kit~ ~C0MF~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0pal1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%mystic_fire_ids%~~~~~ //"
+  END
+
+END
+
 COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf02.spl~ ~override~
 SAY NAME1 ~Spellblade~
 SAY NAME2 ~Spellblade~

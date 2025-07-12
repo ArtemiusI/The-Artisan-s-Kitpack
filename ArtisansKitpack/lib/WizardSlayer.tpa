@@ -166,7 +166,19 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 5 parameter2 = MRES_
 LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_special = 6 parameter2 = MRES_DMG_ARRAY_50_128 END
 SAY NAME1 ~Spellslayer Strike~
 SAY UNIDENTIFIED_DESC ~Spellslayer Strike
-The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase their THAC0 and deal bonus unmitigated damage equal to the same amount while also removing combat protection effects from the target. The Wizard Slayer regains their Magic Resistance after two turns have passed.~
+The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase their THAC0 and deal bonus unmitigated damage equal to the same amount while also removing combat protection effects from the target. The Wizard Slayer regains their Magic Resistance after two turns have passed.
+
+The effects of Spellslayer Strike bypass all weapon protections, even if the attack itself is negated.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+COPY_EXISTING ~C0WSL01.spl~ ~override~
+SAY UNIDENTIFIED_DESC ~Spellslayer Strike
+The Wizard Slayer expends some of their anti-magical energy to perform a charged attack, temporarily sacrificing a chosen amount of Magic Resistance to increase their THAC0 and deal bonus unmitigated damage equal to the same amount while also removing combat protection effects from the target. The Wizard Slayer regains their Magic Resistance after two turns have passed.
+
+The effects of Spellslayer Strike bypass all weapon protections, even if the attack itself is negated.~
+ 
+END
 
 COPY_EXISTING ~C0WSL011.SPL~ OVERRIDE
 SAY NAME1 ~Spellslayer Strike—10% Magic Resistance~

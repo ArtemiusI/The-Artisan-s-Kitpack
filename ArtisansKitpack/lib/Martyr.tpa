@@ -298,3 +298,22 @@ COPY_EXISTING ~C0ilms6b.spl~ ~override~
       match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (~Incoming damage negated by Tribulations~)
 END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+OUTER_SET martyr_ids = IDS_OF_SYMBOL (~kit~ ~C0ILM~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0pal3.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%martyr_ids%~~~~~ //"
+  END
+
+END
