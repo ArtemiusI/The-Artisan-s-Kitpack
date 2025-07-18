@@ -207,12 +207,9 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
       READ_SHORT    0x1C type //reads the byte containing item type
 	  READ_SHORT    0x22 appearance //reads the byte containing item appearance
       PATCH_IF (type = 2) AND (appearance = 16690) BEGIN // if it is leather armor
-		LPF DELETE_EFFECT
+		LPF ALTER_EFFECT
 			INT_VAR
 				match_opcode = 145
-		END
-		LPF ADD_ITEM_EQEFFECT
-			INT_VAR
 				silent = 1
 				opcode = 177
 				target = 1
@@ -226,22 +223,19 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				silent = 1
-				opcode = 177
+				opcode = 318
 				target = 1
 				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0EK~)
-				parameter2 = 9
+				parameter2 = 109
 				timing = 2
 			STR_VAR
-				resource = C0ARCAS3
-      END
+				resource = C0ARCAS1
+		END
       END
       PATCH_IF (type = 2) AND (appearance = 16691) OR (appearance = 16692) BEGIN // if it is leather armor
-		LPF DELETE_EFFECT
+		LPF ALTER_EFFECT
 			INT_VAR
 				match_opcode = 145
-		END
-		LPF ADD_ITEM_EQEFFECT
-			INT_VAR
 				silent = 1
 				opcode = 177
 				target = 1
@@ -262,7 +256,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				dicesize = 10
 				timing = 2
 			STR_VAR
-				resource = C0ARCAS4
+				resource = C0ARCAS2
 		END
       END
     END
