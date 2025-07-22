@@ -5,22 +5,259 @@ IF
   OR(2)
   Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
   Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+  !HasItem("C0MFIST1",LastSummonerOf(Myself))
+  !HasItem("C0MFIST2",LastSummonerOf(Myself))
+  !HasItem("C0MFIST3",LastSummonerOf(Myself))
+  !HasItem("C0MFIST4",LastSummonerOf(Myself))
+  !HasItem("C0MFIST5",LastSummonerOf(Myself))
+  !HasItem("C0MFIST6",LastSummonerOf(Myself))
+  !HasItem("C0MFIST7",LastSummonerOf(Myself))
+  !HasItem("C0MFIST8",LastSummonerOf(Myself))
+  !HasItem("C0MFIST9",LastSummonerOf(Myself))
+  !HasItem("C0MFISTA",LastSummonerOf(Myself))
+  !HasItem("C0MFISTB",LastSummonerOf(Myself))
+  !HasItem("C0MFISTC",LastSummonerOf(Myself))
+  !HasItem("C0MFISTD",LastSummonerOf(Myself))
 THEN
   RESPONSE #100
-	XEquipItem("C0MFIST1",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST2",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST3",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST4",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST5",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST6",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST7",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST8",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFIST9",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFISTA",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFISTB",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFISTC",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("C0MFISTD",LastSummonerOf(),SLOT_WEAPON0,EQUIP)
-	XEquipItem("",LastSummonerOf(),SLOT_WEAPON3,EQUIP)
+	ApplySpellRES("C0MN#F1",LastSummonerOf(Myself))
+	SmallWait(1)
+	XEquipItem("C0MFIST1",LastSummonerOf(Myself),SLOT_WEAPON0,EQUIP)
+	XEquipItem("",LastSummonerOf(Myself),SLOT_WEAPON3,EQUIP)
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,3)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,3)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST2"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,4)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,4)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST3"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST3"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,6)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,6)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST4"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST4"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST4"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,7)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,7)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST5"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST5"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST5"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFIST5"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,8)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,8)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST6"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST6"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST6"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFIST6"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFIST6"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,11)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,11)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST7"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST7"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST7"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFIST7"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFIST7"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFIST7"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,12)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,12)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFIST8"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFIST8"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,15)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,15)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFIST9"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST8","C0MFIST9"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,16)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,16)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST8","C0MFISTA"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST9","C0MFISTA"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,17)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,17)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST8","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST9","C0MFISTB"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTA","C0MFISTB"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,19)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,19)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST8","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST9","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTA","C0MFISTC"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTB","C0MFISTC"))
+	Continue()
+END
+
+IF
+  OnCreation()
+  OR(2)
+  ClassLevelGT(LastSummonerOf(Myself),PRIEST,20)
+  ClassLevelGT(LastSummonerOf(Myself),WIZARD,20)
+  OR(2)
+  Kit(LastSummonerOf(Myself),C0_SACRED_FIST)
+  Kit(LastSummonerOf(Myself),C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST1","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST2","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST3","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST4","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST5","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST6","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST7","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST8","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFIST9","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTA","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTB","C0MFISTD"))
+	ActionOverride(LastSummonerOf(Myself),TransformItem("C0MFISTC","C0MFISTD"))
 	Continue()
 END
 
@@ -28,5 +265,6 @@ IF
   ActionListEmpty()
 THEN
   RESPONSE #100
+	ActionOverride(LastSummonerOf(Myself),SelectWeaponAbility(SLOT_WEAPON0,0))
 	DestroySelf()
 END

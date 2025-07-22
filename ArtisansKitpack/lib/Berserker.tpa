@@ -1,5 +1,18 @@
 COPY ~%MOD_FOLDER%/Fighter/Berserker/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Berserker/BAMS~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS~ ~OVERRIDE~
+
+// CURRENT HP CHECK
+APPEND ~splprot.2da~ ~C0CURHP 0 -1 0~ UNLESS ~C0CURHP 0 -1 0~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0CURHP~ BEGIN
+	    SET C0CURHP = %row%
+	  END
+	END
 
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BERSERKER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~BERSERKER: This is a warrior who is in tune with <PRO_HISHER> animalistic side and, during combat, can achieve an ecstatic state of mind that will enable <PRO_HIMHER> to fight longer, harder, and more savagely than any person has a right to. Berserkers tend to be barbarian-like in nature, but not always. Sometimes it is a conscious choice that a warrior in training makes. Regardless, opponents on the battlefield will be unsettled when they see the savage and inhuman elements of the Berserker's personality. This class is common amongst dwarves, known to them as the Battlerager.
@@ -15,11 +28,11 @@ IN EXTREMIS: Berserkers revel in the thrill of carnage to a sadomasochistic degr
 
 – May use the Enrage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 
-ENRAGE: The berserker taps into <PRO_HISHER> frenzy though sheer force of will, instantly gaining the maximum benefits of In Extremis regardless of current hit points for one turn. However, tapping into the berserker's desperate power causes <HIMHER> to suffer 10% of <PRO_HISHER> current hit points in damage each round. A Saving Throw vs. Death at -10 may be made to avoid the damage each round. This damage is non-lethal and will only knock the berserker unconscious.
+ENRAGE: The berserker taps into <PRO_HISHER> frenzy though sheer force of will. For the next two rounds, <PRO_HESHE> gains +15 maximum hit points, loses one hit point per second, and deals an additional +5% slashing, piercing and crushing damage for every 5% of their missing hit points (+100% at one hit point). If the remaining duration of Enrage is less than one round, melee attacks made by the berserker reset Enrage's duration to one round up to a maximum total duration of ten rounds. The hit point loss from Enrage will not reduce the berserker's hit points below one. The berserker cannot cast spells while Enraged.
 
 – From 4th level onwards, may use the Reckless Frenzy ability at will.
 
-RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly reducing <PRO_HISHER> hit points to 20% of <PRO_PRO_HISHER> maximum. This ability has no effect if used while the berserker is already below 25% maximum hit points. Additionally, Reckless Frenzy removes the berserker's winded state.
+RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly reducing <PRO_HISHER> hit points to 70%, 45% or 20% of <PRO_HISHER> maximum. This ability has no effect if used while the berserker is already below the selected value.
 
 – From 7th level onwards, the berserker gains +2/+4/+8 to <PRO_HISHER> movement rate while under the effects of In Extremis.
 
@@ -27,10 +40,10 @@ RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly redu
 
 – From 14th level onwards, the berserker gains +0.5/+1/+2 bonus attacks per round while under the effects of In Extremis.
 
-– From 20th level onwards, the berserker deals 10%/25%/50% additional slashing, piercing and crushing damage from all sources while under the effects of In Extremis.
+– From 20th level onwards, the berserker gains a +1/+3/+5 luck bonus to rolls on damage dealt and received while under the effects of In Extremis.
 
 Disadvantages:
-– Becomes winded for five rounds after using Enrage, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls. Additionally, the berserker is unable to gain the benefits of In Extremis while winded.
+– Becomes winded for five rounds after using Enrage, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls. Additionally, the berserker is unable to Enrage or gain the benefits of In Extremis while winded.
 – May not Specialize in ranged weapons.
 – Alignment restricted to any non-lawful.~
 	
@@ -58,10 +71,9 @@ COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#0X.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Winded~) END
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#00.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 206 parameter1 = RESOLVE_STR_REF (~The berserker is already enraged.~) STR_VAR match_resource = SPCL321 END
-LPF ALTER_EFFECT INT_VAR match_opcode = 206 parameter1 = RESOLVE_STR_REF (~Reckless Frenzy cannot be used when the berserker is enraged.~) STR_VAR match_resource = C0BER#05 END
 SAY NAME1 ~Enrage~
 SAY UNIDENTIFIED_DESC ~Enrage
-The berserker taps into <PRO_HISHER> frenzy though sheer force of will, instantly gaining the maximum benefits of In Extremis regardless of current hit points for one turn. However, tapping into the berserker's desperate power causes <HIMHER> to suffer 10% of <PRO_HISHER> current hit points in damage each round. A Saving Throw vs. Death at -10 may be made to avoid the damage each round. This damage is non-lethal and will only knock the berserker unconscious.~
+The berserker taps into <PRO_HISHER> frenzy though sheer force of will. For the next two rounds, <PRO_HESHE> gains +15 maximum hit points, loses one hit point per second, and deals an additional +5% slashing, piercing and crushing damage for every 5% of their missing hit points (+100% at one hit point). If the remaining duration of Enrage is less than one round, melee attacks made by the berserker reset Enrage's duration to one round up to a maximum total duration of ten rounds. The hit point loss from Enrage will not reduce the berserker's hit points below one. The berserker cannot cast spells while Enraged.~
 
 COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0BER#00.EFF~
 WRITE_LONG 0x1c RESOLVE_STR_REF (~Battlerager~)
@@ -77,12 +89,137 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0ber#ic END
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#03.EFF~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#03.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0ber#ic END
-LPF ALTER_EFFECT INT_VAR match_opcode = 206 parameter1 = RESOLVE_STR_REF (~Reckless Frenzy cannot be used when the berserker has less than 25% maximum hit points.~) END
-COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#04.EFF~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#04.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 parameter2 = C0CURHP END
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#05.SPL~ ~OVERRIDE~
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Maximum Hit Points reduced to 25%~) END
 SAY NAME1 ~Reckless Frenzy~
 SAY UNIDENTIFIED_DESC ~Reckless Frenzy
-The berserker deliberately injures <HIMHER>self, instantly reducing <PRO_HISHER> hit points to 25% of <PRO_PRO_HISHER> maximum. This ability has no effect if used while the berserker is already below 25% maximum hit points. Additionally, Reckless Frenzy removes the berserker's winded state.~
+The berserker deliberately injures <HIMHER>self, instantly reducing <PRO_HISHER> hit points to 70%, 45% or 20% of <PRO_HISHER> maximum. This ability has no effect if used while the berserker is already below the selected value.~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#5A.SPL~ ~OVERRIDE~
+SAY NAME1 ~Reckless Frenzy—70%~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Maximum Hit Points reduced to 70%~) END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#5B.SPL~ ~OVERRIDE~
+SAY NAME1 ~Reckless Frenzy—45%~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Maximum Hit Points reduced to 45%~) END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#5C.SPL~ ~OVERRIDE~
+SAY NAME1 ~Reckless Frenzy—20%~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Maximum Hit Points reduced to 20%~) END
 
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#62.EFF~
+WRITE_ASCII 0x30 ~C0BER#62~
+WRITE_BYTE 0x48 90
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#63.EFF~
+WRITE_BYTE 0x48 86
+WRITE_ASCII 0x30 ~C0BER#63~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#64.EFF~
+WRITE_BYTE 0x48 80
+WRITE_ASCII 0x30 ~C0BER#64~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#65.EFF~
+WRITE_BYTE 0x48 76
+WRITE_ASCII 0x30 ~C0BER#65~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#66.EFF~
+WRITE_BYTE 0x48 70
+WRITE_ASCII 0x30 ~C0BER#66~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#67.EFF~
+WRITE_BYTE 0x48 66
+WRITE_ASCII 0x30 ~C0BER#67~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#68.EFF~
+WRITE_BYTE 0x48 60
+WRITE_ASCII 0x30 ~C0BER#68~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#69.EFF~
+WRITE_BYTE 0x48 56
+WRITE_ASCII 0x30 ~C0BER#69~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#60.EFF~
+WRITE_BYTE 0x48 50
+WRITE_ASCII 0x30 ~C0BER#60~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6a.EFF~
+WRITE_BYTE 0x48 46
+WRITE_ASCII 0x30 ~C0BER#6A~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6b.EFF~
+WRITE_BYTE 0x48 40
+WRITE_ASCII 0x30 ~C0BER#6B~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6c.EFF~
+WRITE_BYTE 0x48 36
+WRITE_ASCII 0x30 ~C0BER#6C~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6d.EFF~
+WRITE_BYTE 0x48 30
+WRITE_ASCII 0x30 ~C0BER#6D~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6e.EFF~
+WRITE_BYTE 0x48 26
+WRITE_ASCII 0x30 ~C0BER#6E~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6f.EFF~
+WRITE_BYTE 0x48 20
+WRITE_ASCII 0x30 ~C0BER#6F~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6g.EFF~
+WRITE_BYTE 0x48 16
+WRITE_ASCII 0x30 ~C0BER#6G~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6h.EFF~
+WRITE_BYTE 0x48 10
+WRITE_ASCII 0x30 ~C0BER#6H~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6i.EFF~
+WRITE_BYTE 0x48 6
+WRITE_ASCII 0x30 ~C0BER#6I~
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.EFF~ ~OVERRIDE/C0BER#6j.EFF~
+WRITE_BYTE 0x20 19
+WRITE_BYTE 0x48 2
+WRITE_ASCII 0x30 ~C0BER#6J~
+
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#62.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#62 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#63.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#63 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#64.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#64 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#65.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#65 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#66.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#66 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#67.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#67 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#68.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#68 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#69.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#69 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#60.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#60 END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6A.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6A END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6B.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6B END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6C.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6C END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6D.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6D END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6E.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6E END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6F.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6F END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6G.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6G END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6H.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6H END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6I.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6I END
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#61.SPL~ ~OVERRIDE/C0BER#6J.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6J END
+
+  COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BERSERKER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~C0BER~
+	  END
+	END
+	
+  
+COPY_EXISTING ~LUFI0.2da~ ~override/LUC0BER.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
+LPF patch_add_hla STR_VAR ability = ~AP_C0BER#H1~ num_allowed = 1 END	
+
+COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#H1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Extend Rage~
+SAY UNIDENTIFIED_DESC ~Extend Rage
+The berserker's proficiency in their wild fighting style allows them to maintain the effects of their rage for longer, permanently extending the maximum total duration of Enrage to 20 rounds.~
