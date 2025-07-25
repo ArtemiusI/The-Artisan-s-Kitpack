@@ -265,7 +265,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     PATCH_IF ((thief BAND 0b01000000) = 0b00000000) BEGIN // if it is usable by fighters
       READ_BYTE    0x21 monk //reads the byte containing monks usability flag
       READ_SHORT    0x1C type //reads the byte containing item type
-      PATCH_IF (type = 15) BEGIN // if it is a staff
+      PATCH_IF (type = 15) OR (type = 5) BEGIN // if it is a staff
         WRITE_BYTE    0x21 (monk BAND 0b11011111)  // makes usable by monks
       END
     END
