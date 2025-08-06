@@ -223,13 +223,13 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 		LPF ADD_ITEM_EQEFFECT
 			INT_VAR
 				silent = 1
-				opcode = 318
+				opcode = 177
 				target = 1
 				parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0EK~)
-				parameter2 = 109
+				parameter2 = 9
 				timing = 2
 			STR_VAR
-				resource = C0ARCAS1
+				resource = C0ARCAS3
 		END
       END
       PATCH_IF (type = 2) AND (appearance = 16691) OR (appearance = 16692) BEGIN // if it is leather armor
@@ -256,7 +256,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 				dicesize = 10
 				timing = 2
 			STR_VAR
-				resource = C0ARCAS2
+				resource = C0ARCAS4
 		END
       END
     END
