@@ -1,0 +1,329 @@
+COPY ~ArtisansKitpack/spells/C0THWAR.SPL~ ~OVERRIDE~
+
+LAF ADD_KIT_EX
+
+  STR_VAR
+    kit_name      = ~C0EK_SORC~
+	
+    source_kit    = ~C0EK_SORC_BASE~ 
+    
+  RET
+    kit_id
+END
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_ELDRITCH_KNIGHT_EQUIPMENT" RET value END
+
+OUTER_SET C0_ELDRITCH_KNIGHT_EQUIPMENT = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~)
+
+APPEND ~splprot.2da~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT %C0_ELDRITCH_KNIGHT_EQUIPMENT% 1 1~ UNLESS ~C0_ELDRITCH_KNIGHT_EQUIPMENT %C0_ELDRITCH_KNIGHT_EQUIPMENT% 1 1~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_ELDRITCH_KNIGHT_EQUIPMENT~ BEGIN
+	    SET C0_ELDRITCH_KNIGHT_EQUIPMENT = %row%
+	  END
+	END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
+    READ_BYTE    0x20 mage //reads the byte containing the fighter usability flag
+    PATCH_IF ((fighter BAND 0b00100000) = 0b00000000) AND ((mage BAND 0b00000100) = 0b00000100) BEGIN 
+      READ_BYTE    0x20 row3
+      READ_SHORT    0x31 proficiency 
+      PATCH_IF (proficiency = 0) BEGIN
+        WRITE_BYTE    0x20 (row3 BAND 0b11111011)
+      END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_ELDRITCH_KNIGHT_EQUIPMENT timing = 2 power = 2 special = RESOLVE_STR_REF (~Mage~) END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK1.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK2.SPL~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
+
+COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 0 parameter2 = 57 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
+COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK.SPL~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END// BASTARD SW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END// LONG SWORD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END// SHORT SWOR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#92 END// AXE
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#93 END// 2H SWORD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#94 END// KATANA
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#95 END // SCIMITAR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#96 END //DAGGER
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#97 END // HAMMER
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#115 END  // CLUB
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END // SPEAR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#99 END // HALBERD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#100 END  // FLAIL
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#101 END // MACE
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#102 END // STAFF
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#103 END // XBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#104 END  // LBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#105 END // SBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#106 END // DART
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#107 END // SLING
+
+COPY_EXISTING ~C0EK3.2DA~ OVERRIDE
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#EK END
+
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPM2.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_MALE_ELF~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPM2~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPM3.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_MALE_DWARF~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPM3~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPM4.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_MALE_GNOME~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPM4~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPM5.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_MALE_HALFLING~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPM5~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPM6.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_MALE_HALFORC~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPM6~
+
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF1.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_HUMAN~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF1~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF2.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_ELF~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF2~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF3.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_DWARF~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF3~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF4.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_GNOME~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF4~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF5.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_HALFLING~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF5~
+COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF6.EFF~
+WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_HALFORC~)
+WRITE_BYTE 0x90 1
+WRITE_ASCII 0x94 ~C0EKPF6~
+///////////////////////////////////////////////////////////////////////////
+// Append to SPLPROT.2DA                                                 //
+///////////////////////////////////////////////////////////////////////////
+// Weapon Profs
+ACTION_FOR_EACH weapon_prof IN
+      89  // BASTARDSWORD
+      90  // LONGSWORD
+      91  // SHORTSWORD
+      92  // AXE
+      93  // TWOHANDEDSWORD
+      94  // KATANA
+      95  // SCIMITAR
+      96  // DAGGER
+      97  // WARHAMMER
+      115 // CLUB
+      98  // SPEAR
+      99  // HALBERD
+      100 // FLAILMORNINGSTAR
+      101 // MACE
+      102 // QUARTERSTAFF
+      103 // CROSSBOW
+      104 // LONGBOW
+      105 // SHORTBOW
+      106 // DART
+      107 // SLING
+      111 // SLING
+      112 // SLING
+      113 // SLING
+      114 // SLING
+    BEGIN
+      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~
+    END
+
+// Update all imported files so they point in the correct direction.
+COPY_EXISTING ~splprot.2da~ ~override~
+    COUNT_2DA_COLS cols
+    READ_2DA_ENTRIES_NOW rows cols
+    FOR (row = 1; row < rows; ++row) BEGIN
+      READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+      
+      // WEAPON PROF ----------------------------------------------------------//
+      // BASTARDSWORD
+      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_89~ BEGIN 
+        SET prof_89 = %row%
+      // LONGSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_90~ BEGIN
+        SET prof_90 = %row%
+      // SHORTSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_91~ BEGIN
+        SET prof_91 = %row%
+      // AXE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_92~ BEGIN
+        SET prof_92 = %row%
+      // TWOHANDEDSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_93~ BEGIN
+        SET prof_93 = %row%
+      // KATANA
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_94~ BEGIN
+        SET prof_94 = %row%
+      // SCIMITAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_95~ BEGIN
+        SET prof_95 = %row%
+      // DAGGER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_96~ BEGIN
+        SET prof_96 = %row%
+      // WARHAMMER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_97~ BEGIN
+        SET prof_97 = %row%
+      // CLUB
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_115~ BEGIN
+        SET prof_115 = %row%
+      // SPEAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_98~ BEGIN
+        SET prof_98 = %row%
+      // HALBERD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_99~ BEGIN
+        SET prof_99 = %row%
+      // FLAILMORNINGSTAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_100~ BEGIN
+        SET prof_100 = %row%
+      // MACE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_101~ BEGIN
+        SET prof_101 = %row%
+      // QUARTERSTAFF
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_102~ BEGIN
+        SET prof_102 = %row%
+      // CROSSBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_103~ BEGIN
+        SET prof_103 = %row%
+      // LONGBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_104~ BEGIN
+        SET prof_104 = %row%
+      // SHORTBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_105~ BEGIN
+        SET prof_105 = %row%
+      // DART
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_106~ BEGIN
+        SET prof_106 = %row%
+    // SLING
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_107~ BEGIN
+        SET prof_107 = %row%
+
+    // WEAPON STYLE ---------------------------------------------------------//
+    // 2HANDED
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_111~ BEGIN
+        SET prof_111 = %row%
+    // SWORDANDSHIELD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_112~ BEGIN
+        SET prof_112 = %row%
+    // SINGLEWEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_113~ BEGIN
+        SET prof_113 = %row%
+    // 2WEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_114~ BEGIN
+        SET prof_114 = %row%
+    END
+    END
+
+// Update Prof Checks
+COPY_EXISTING ~c0ekpro.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% STR_VAR  match_resource = c0fig04a resource = c0ekproa END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_90% STR_VAR  match_resource = c0fig04b resource = c0ekprob END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_91% STR_VAR  match_resource = c0fig04c resource = c0ekproc END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_92% STR_VAR  match_resource = c0fig04d resource = c0ekprod END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_93% STR_VAR  match_resource = c0fig04e resource = c0ekproe END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_94% STR_VAR  match_resource = c0fig04f resource = c0ekprof END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_95% STR_VAR  match_resource = c0fig04g resource = c0ekprog END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_96% STR_VAR  match_resource = c0fig04h resource = c0ekproh END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_97% STR_VAR  match_resource = c0fig04i resource = c0ekproi END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_98% STR_VAR  match_resource = c0fig04j resource = c0ekproj END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_99% STR_VAR  match_resource = c0fig04k resource = c0ekprok END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_100% STR_VAR match_resource = c0fig04l resource = c0ekprol END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_101% STR_VAR match_resource = c0fig04m resource = c0ekprom END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_102% STR_VAR match_resource = c0fig04n resource = c0ekpron END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_103% STR_VAR match_resource = c0fig04o resource = c0ekproo END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_104% STR_VAR match_resource = c0fig04p resource = c0ekprop END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_105% STR_VAR match_resource = c0fig04q resource = c0ekproq END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_106% STR_VAR match_resource = c0fig04r resource = c0ekpror END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_107% STR_VAR match_resource = c0fig04s resource = c0ekpros END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_115% STR_VAR match_resource = c0fig04t resource = c0ekprot END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_111% STR_VAR match_resource = c0fig04U resource = c0ekprou END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_112% STR_VAR match_resource = c0fig04V resource = c0ekprov END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_113% STR_VAR match_resource = c0fig04W resource = c0ekprow END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_114% STR_VAR match_resource = c0fig04X resource = c0ekprox END
+	
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprob.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 90 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproc.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 91 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprod.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 92 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproe.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 93 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprof.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 94 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprog.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 95 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproh.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 96 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproi.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 97 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproj.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 98 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprok.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 99 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprol.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 100 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprom.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 101 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekpron.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 102 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproo.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 103 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprop.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 104 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekproq.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 105 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekpror.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 106 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekpros.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 107 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprot.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 115 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprou.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 111 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprov.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 112 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprow.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 113 END
+COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprox.spl~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 114 END

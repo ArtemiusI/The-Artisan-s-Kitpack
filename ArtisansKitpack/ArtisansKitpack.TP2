@@ -207,6 +207,14 @@ COPY_EXISTING ~clsrcreq.2da~ ~override~
   PRETTY_PRINT_2DA
   BUT_ONLY
 
+BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
+GROUP ~Multi-Class Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
+
+BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20001
+GROUP ~Multi-Class Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster.tpa~
+
 BEGIN ~Artisan's Kitpack: Pale Master Sorcerer Kit~ DESIGNATED 8001
 GROUP ~Sorcerer Kits~
 INCLUDE ~%MOD_FOLDER%/lib/PaleMaster.tpa~
@@ -1142,11 +1150,3 @@ INCLUDE ~%MOD_FOLDER%/lib/Invisible_Blade.tpa~
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~ DESIGNATED 9001
 GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
-
-BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
-GROUP ~Multi-Class Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
-
-BEGIN ~Artisan's Kitpack: Arcane Trickster (Mage / Thief Kit)~ DESIGNATED 20001
-GROUP ~Multi-Class Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster.tpa~

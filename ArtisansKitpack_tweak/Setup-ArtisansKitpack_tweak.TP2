@@ -45,6 +45,12 @@ BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this afte
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
 INCLUDE ~ArtisansKitpack/lib/trickster-mods.tpa~
 
+BEGIN ~Artisan's Kitpack: Eldritch Knight - Sorcerer Kit~ DESIGNATED 20200
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20000~ ~The Eldritch Knight Kit must be installed.~
+REQUIRE_COMPONENT ~HouseTweaks.tp2~ ~0004~ ~House Tweaks's Rebalanced Proficiencies must be installed.~
+REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
+INCLUDE ~ArtisansKitpack/lib/Eldritch_Knight_Sorc.tpa~
+
 BEGIN ~Artisan's Kitpack: Arcane Trickster (Sorcerer) - Enable Thief Equipment~ DESIGNATED 8204
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8004~ ~The Arcane Trickster Sorcerer Kit must be installed.~
 REQUIRE_COMPONENT ~HouseTweaks.tp2~ ~0004~ ~House Tweaks's Rebalanced Proficiencies must be installed.~
