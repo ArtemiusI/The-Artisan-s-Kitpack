@@ -38,6 +38,7 @@ COPY_EXISTING ~weapprof.2da~  ~override~
 ACTION_IF FILE_EXISTS_IN_GAME ~C0ATRSO.2da~ THEN BEGIN
 COPY_EXISTING ~C0ATRSO.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#AT END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#AT2 END
 COPY_EXISTING ~HouseTweaks/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END
@@ -87,8 +88,12 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#AT1 END
 
 COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT1.SPL~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ARCANE_TRICKSTER_SORC~) parameter2 = 109 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#AT1 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT2.SPL~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#AT1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#AT1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
 
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 
@@ -98,3 +103,35 @@ COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
 COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
+
+ACTION_FOR_EACH description IN 
+    BGCLATXT
+    CLASTEXT
+    SODCLTXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_ARCANE_TRICKSTER_SORC" BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion.~
+          SPRINT new_desc ~– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion.
+– May wear armor up to studded leather.
+– May use the following weapons: long sword, short sword, katana, scimitar, dagger, club, quarterstaff, crossbow, shortbow, dart, sling.~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END

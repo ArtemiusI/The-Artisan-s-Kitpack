@@ -33,7 +33,7 @@ LAF ADD_KIT_EX
     help          = RESOLVE_STR_REF(~ARCANE TRICKSTER: Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief. With an extensive knowledge of arcane arts to complement their skills in thievery, they are among the most adaptable of adventurers.
 
 Advantages:
-– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion
+– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion.
 – +10% bonus to Pick Pockets and Detect Illusion.
 – May backstab for increased damage:
   Level 1-9: x2

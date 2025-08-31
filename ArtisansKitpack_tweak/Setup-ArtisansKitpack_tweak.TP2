@@ -36,6 +36,11 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1009~ ~The Dreadnought must be in
 	  END
 	END
 
+BEGIN ~Artisan's Kitpack: Mystic Fire - Allow Wands and Mage Scrolls~ DESIGNATED 3202
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3002~ ~The Mystic Fire Paladin Kit must be installed.~
+REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
+INCLUDE ~ArtisansKitpack_tweak/eeex/mystic_fire_items.tpa~
+
 BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
 INCLUDE ~ArtisansKitpack/lib/trickster-mods.tpa~
