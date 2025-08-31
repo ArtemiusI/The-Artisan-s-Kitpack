@@ -36,10 +36,9 @@ Advantages:
 – Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion
 – +10% bonus to Pick Pockets and Detect Illusion.
 – May backstab for increased damage:
-  Level 1-5: x2
-  Level 6-10: x3
-  Level 11-15: x4
-  Level 16+: x5
+  Level 1-9: x2
+  Level 10-17: x3
+  Level 18+: x4
 – May use Pilfer Magic once per day.
 
 PILFER MAGIC: The arcane trickster may steal the magical power of a targeted mage or bard, removing one memorized arcane spell of the highest level from the target and restoring one of the arcane trickster's own.
@@ -98,7 +97,7 @@ Disadvantages:
 	//   G N E G N E G N E
     alignmnt      = ~0 0 0 1 1 1 1 1 1~
 	
-    // dualclas      = ~0 1 1 1 1 0~
+    dualclas      = ~0 0 0 0 0 0~
 	
     luabbr        = ~C0ATRS~
 	
@@ -130,7 +129,7 @@ Disadvantages:
 	
     // numwslot      = ~4~
 	
-    clascolr = ~57 58 122 1 43~
+    clascolr = ~24 99 169 2 93~
 	
 	clasiskl = ~10 0 0 0 0 10 0~
 	
@@ -140,9 +139,9 @@ Disadvantages:
 	
 	//								1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5
 	//			0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 
-	backstab = ~2 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5~
+	backstab = ~2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
 	
-	sneakatt = ~1 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7 8 8 8 8 9 9 9 9 10 10 10 10 11 11 11 11 12 12 12 12 13 13~
+	sneakatt = ~1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 8 8 8 8 8 8 9 9 9 9~
 	
 	crippstr = ~0 0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9~
 	
