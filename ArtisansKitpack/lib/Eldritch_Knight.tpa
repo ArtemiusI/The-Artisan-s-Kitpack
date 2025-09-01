@@ -359,7 +359,7 @@ Disadvantages:
 	
     dualclas      = ~0 0 0 0 0 0~
 	
-    luabbr        = ~FM0~
+    luabbr        = ~C0EKSO~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -411,3 +411,22 @@ Disadvantages:
   RET
     kit_id
 END
+
+COPY_EXISTING ~lufm0.2da~  ~override/luc0ekso.2da~
+  COUNT_2DA_ROWS 10 rows
+  COUNT_2DA_COLS col_count
+  SET col_check = col_count - 1
+  FOR (column = 0; column < col_check; ++column) BEGIN
+    READ_2DA_ENTRY 0 column col_check name
+    PATCH_IF (("MIN_LEV" STRING_COMPARE_CASE "%name%" = 0)) BEGIN
+      SET column += 1 // row with names has an empty entry for the first column
+      DEFINE_ASSOCIATIVE_ARRAY min_level BEGIN ~%column%~ => ~%column%~ END
+    END
+  END
+  PATCH_PHP_EACH min_level AS column => foo BEGIN
+  	FOR (row = 0 ; row < rows ; ++row) BEGIN
+        SET_2DA_ENTRY row column col_count 1
+      END
+	END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
