@@ -186,3 +186,9 @@ COPY ~%MOD_FOLDER%/lua/m_c0src.lua~      ~override~ // Lua file read by EEex, pr
   END
 
 END
+
+ACTION_IF GAME_IS ~BG2EE EET~ BEGIN
+
+COMPILE ~%MOD_FOLDER%/strongholds/arcane_trickster_sorc.d~
+
+  END

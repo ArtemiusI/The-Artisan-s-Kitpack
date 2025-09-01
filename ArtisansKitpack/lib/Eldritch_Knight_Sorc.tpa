@@ -327,3 +327,9 @@ COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprow.spl~
     LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 113 END
 COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprox.spl~
     LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 114 END
+
+ACTION_IF GAME_IS ~BG2EE EET~ BEGIN
+
+COMPILE ~ArtisansKitpack/strongholds/eldritch_knight_sorc.d~
+
+  END

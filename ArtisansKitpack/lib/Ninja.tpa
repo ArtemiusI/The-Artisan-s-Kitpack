@@ -273,3 +273,9 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 BUT_ONLY_IF_IT_CHANGES
 
 //__________________________________________________________________________________
+
+ACTION_IF GAME_IS ~BG2EE EET~ BEGIN
+
+COMPILE ~ArtisansKitpack/strongholds/ninja.d~
+
+  END

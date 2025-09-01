@@ -1,0 +1,4 @@
+EXTEND_BOTTOM RENAL 48
+IF ~Global("PlayerHasStronghold","GLOBAL",0)
+Kit(Player1,C0_NINJA)~ EXTERN RENAL 60
+END

@@ -1,0 +1,14 @@
+EXTEND_BOTTOM NALIA 82 83
+IF ~Global("PlayerHasStronghold","GLOBAL",0)
+Kit(Player1,C0EK_SORC)~ EXTERN NALIA 84
+END
+
+EXTEND_BOTTOM NALIA 82 83
+IF ~Global("PlayerHasStronghold","GLOBAL",0)
+Kit(Player1,C0EK_SORC)~ EXTERN NALIA 84
+END
+
+EXTEND_BOTTOM NALIA 81
++ ~Global("PlayerHasStronghold","GLOBAL",0)
+Kit(Player1,C0EK_SORC)~ + #40053 EXTERN NALIA 84
+END
