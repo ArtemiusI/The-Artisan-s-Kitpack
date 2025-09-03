@@ -58,7 +58,6 @@ COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 0 parameter2 = 57 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
 COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
