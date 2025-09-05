@@ -1150,3 +1150,17 @@ INCLUDE ~%MOD_FOLDER%/lib/Invisible_Blade.tpa~
 BEGIN ~Artisan's Kitpack: Warhorn Shaman Kit~ DESIGNATED 9001
 GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
+
+BEGIN ~Artisan's Kitpack: Favored Soul (EEex only, under Shaman in chargen)~ DESIGNATED 30001
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+GROUP ~Other~
+
+ACTION_IF !FILE_EXISTS_IN_GAME ~C0PR#CL~ BEGIN
+
+INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
+
+  END ELSE BEGIN
+
+  END
+
+INCLUDE ~%MOD_FOLDER%/lib/FavoredSoul.tpa~

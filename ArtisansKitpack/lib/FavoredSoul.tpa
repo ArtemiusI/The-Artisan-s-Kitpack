@@ -1,0 +1,779 @@
+COPY ~%MOD_FOLDER%/FavoredSoul/2da~ ~override~
+COPY ~%MOD_FOLDER%/FavoredSoul/spells~ ~override~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~K_SH_E.2DA~ THEN BEGIN
+COPY_EXISTING ~K_SH_H.2DA~ ~OVERRIDE/K_SH_E.2DA~
+COPY_EXISTING ~K_SH_H.2DA~ ~OVERRIDE/K_SH_HL.2DA~
+COPY_EXISTING ~K_SH_H.2DA~ ~OVERRIDE/K_SH_G.2DA~
+COPY_EXISTING ~K_SH_H.2DA~ ~OVERRIDE/K_SH_D.2DA~
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 21
+	
+    mixed         = RESOLVE_STR_REF(~Favored Soul~)
+	
+    lower         = RESOLVE_STR_REF(~Favored Soul~)
+	
+    help          = RESOLVE_STR_REF(~FAVORED SOUL: The favored soul follows the path of the cleric but is able to channel divine power with surprising ease. She is able to perform the same tasks as her fellow divine spellcasters but with virtually no study. Favored souls cast their spells naturally, as much through force of personality as through study. Though this gives them extraordinary divine abilities no normal person could ever match, they see their gift as a call to action, and so in some ways may lag behind their more studious colleagues. Favored souls cast divine spells by means of an innate connection rather than through laborious training and prayer, so their divine connection is natural rather than learned. Mortals who perform great services to deities, devoting their lives and work to the cause of their god or goddess, sometimes become the Chosen of that deity.
+	
+CLASS FEATURES:
+
+– May wear helmets.
+– May wear any armor.
+– May only use the following weapons: dagger, club, spear, mace, quarterstaff, crossbow, dart, sling, and their Deity's Favored Weapon.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– May cast priest spells.
+– Does not automatically learn all spells of a given level as Clerics do. Instead, Favored Souls select new spells to learn at each level, which they can cast daily without memorization.
+– Does not gain bonus spells per day from high Wisdom.
+– Deity's Favored Weapon: At level 1, the Favored Soul may select a weapon type. They gain the ability to wield and proficiency in the chosen weapon, if not already applicable, and gain further benefits at higher levels.
+– 5th level: The Favored Soul automatically becomes Specialized in their Deity's Favored Weapon.
+– 8th level: The Favored Soul gains 10% resistance to fire, cold, acid and electrical damage. This bonus increases to 20% at 13th level and 30% at 18th level.
+– 14th level: The Favored Soul automatically Masters their Deity's Favored Weapon.
+– 18th level: The Favored Soul becomes immune to non-enchanted weapons and 30% resistance to crushing, slashing, piercing and missile damage.
+– Hit Die: d8~)
+	
+    briefdesc     = RESOLVE_STR_REF(~FAVORED SOUL: The favored soul follows the path of the cleric but is able to channel divine power with surprising ease. She is able to perform the same tasks as her fellow divine spellcasters but with virtually no study. Favored souls cast their spells naturally, as much through force of personality as through study.~)
+	
+	// fallen = 0
+	
+  STR_VAR
+    kit_name      = ~C0_FAVORED_SOUL~
+	
+    unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 1 1 1 0 0 1 1 1 1 1 1~
+	
+    abclasrq      = ~0 0 0 0 9 13~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~1 1 1 1 1 1 1 1 1~
+	
+    dualclas      = ~0 0 0 0 0 0~
+	
+    luabbr        = ~CL0~
+	
+    stweap        = ~CHAN09 * HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0FAVSO.2da~
+	
+    kittable      = ~K_SH_H K_SH_E K_SH_HE K_SH_G K_SH_D K_SH_HL K_SH_HO~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPPRS~
+	
+    // numwslot      = ~4~
+	
+    clascolr = ~141 5 18 176 100~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 205 STR_VAR idsFile = "stats.ids" identifier = "IS_FAVORED_SOUL" RET value END
+
+OUTER_SET IS_FAVORED_SOUL = IDS_OF_SYMBOL (~STATS~ ~IS_FAVORED_SOUL~)
+
+APPEND ~splprot.2da~ ~IS_FAVORED_SOUL %IS_FAVORED_SOUL% 1 1~ UNLESS ~IS_FAVORED_SOUL %IS_FAVORED_SOUL% 1 1~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~IS_FAVORED_SOUL~ BEGIN
+	    SET IS_FAVORED_SOUL = %row%
+	  END
+	END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1E cleric //reads the byte containing the fighter usability flag
+    READ_BYTE    0x21 druid //reads the byte containing the fighter usability flag
+    PATCH_IF ((cleric BAND 0b10000000) = 0b00000000) AND ((druid BAND 0b01000000) = 0b01000000) BEGIN 
+      READ_SHORT    0x1C type //reads the byte containing item type
+      READ_BYTE    0x21 row4
+      PATCH_IF (type = 2) BEGIN // if it is armor
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = IS_FAVORED_SOUL timing = 2 power = 2 special = RESOLVE_STR_REF (~Druid
+Shaman~) END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#FS1 END
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#FS1.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~IS_FAVORED_SOUL~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
+COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
+
+COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#FS.SPL~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#92 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#95 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#105 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#92 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#95 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~IS_FAVORED_SOUL~) parameter1 = 0 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#96 END //DAGGER
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#115 END  // CLUB
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END // SPEAR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#101 END // MACE
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#102 END // STAFF
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#103 END // XBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#106 END // DART
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#107 END // SLING
+
+INCLUDE ~%MOD_FOLDER%/lib/FavoredSoul_spells.tpa~
+
+OUTER_SET favored_soul = IDS_OF_SYMBOL (~kit~ ~C0_FAVORED_SOUL~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0fs.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%favored_soul%~~~~~ //"
+  END
+
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW1H01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Bastard Sword~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Bastard Sword Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Bastard Sword Mastery~) END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYBASTARDSWORD~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1B.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW1H04 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Long Sword~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Long Sword Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Long Sword Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGSWORD~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1C.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW1H07 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Short Sword~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Short Sword Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Short Sword Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTSWORD~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1D.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IAX1H01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Axe~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Axe Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Axe Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYAXE~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1E.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW2H01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Two-handed Sword~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Two-handed Sword Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Two-handed Sword Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYTWOHANDEDSWORD~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1F.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW1H43 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Katana~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Katana Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Katana Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYKATANA~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1G.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISW1H20 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Scimitar~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Scimitar Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Scimitar Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSCIMITARWAKISASHININJATO~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1H.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IDAGG01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dagger~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dagger Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dagger Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDAGGER~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1I.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IHAMM01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: War Hammer~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: War Hammer Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: War Hammer Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYWARHAMMER~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1J.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IBLUN01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Club~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Club Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Club Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCLUB~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1K.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISPER01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Spear~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Spear Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Spear Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSPEAR~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1L.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IHALB01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Halberd~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Halberd Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Halberd Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYHALBERD~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1M.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IBLUN02 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Flail~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Flail Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Flail Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYFLAILMORNINGSTAR~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1N.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IBLUN04 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Mace~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Mace Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Mace Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYMACE~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1O.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISTAF01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Quarterstaff~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Quarterstaff Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Quarterstaff Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYQUARTERSTAFF~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1P.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IXBOW01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Crossbow~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Crossbow Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Crossbow Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCROSSBOW~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1Q.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IBOW01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Longbow~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Longbow Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Longbow Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGBOW~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1R.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IBOW05 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Shortbow~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Shortbow Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Shortbow Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTBOW~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1S.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = IDART01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dart~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dart Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Dart Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDART~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1T END
+	
+COPY ~%MOD_FOLDER%/FavoredSoul/spells/C0FS#1A.spl~ ~override/C0FS#1T.spl~
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ISLNG01 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 0 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Sling~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 1 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Sling Specialization~) END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 139 header = 2 parameter1 = RESOLVE_STR_REF (~Deity's Favored Weapon: Sling Mastery~) END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSLING~) parameter1 = 1 parameter2 = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1A END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1B END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1C END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1D END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1E END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1F END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1G END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1H END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1I END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1J END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1K END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1L END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1M END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1N END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1O END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1P END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1Q END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1R END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0FS#1S END
+
+	
+ACTION_IF GAME_IS ~BG2EE EET~ BEGIN
+
+COMPILE ~%MOD_FOLDER%/strongholds/favored_soul.d~
+EXTEND_TOP ~AR0900.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul.baf~
+EXTEND_TOP ~AR0902.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul_ar0902.baf~
+EXTEND_TOP ~AR0904.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul_ar0904.baf~
+
+  END

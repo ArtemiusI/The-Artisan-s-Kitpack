@@ -1,0 +1,13 @@
+
+IF
+    Global("YarrylSpawn","GLOBAL",0)
+    Kit(Player1,C0_FAVORED_SOUL)
+    OR(3)
+        Alignment(Player1,CHAOTIC_NEUTRAL)
+        Alignment(Player1,NEUTRAL_EVIL)
+        Alignment(Player1,CHAOTIC_EVIL)
+THEN
+    RESPONSE #100
+        SetGlobal("YarrylSpawn","GLOBAL",1)
+        CreateCreature("SCYARRYL",[341.323],SE)  // Talon Yarryl
+END

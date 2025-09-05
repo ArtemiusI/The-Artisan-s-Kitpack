@@ -1,0 +1,11 @@
+IF
+    Global("SainSpawn","GLOBAL",0)
+    Kit(Player1,C0_FAVORED_SOUL)
+    OR(2)
+    Alignment(Player1,MASK_GOOD)
+    Alignment(Player1,NEUTRAL)
+THEN
+    RESPONSE #100
+        SetGlobal("SainSpawn","GLOBAL",1)
+        CreateCreature("SCSAIN",[642.627],S)  // Dawnbringer Sain
+END

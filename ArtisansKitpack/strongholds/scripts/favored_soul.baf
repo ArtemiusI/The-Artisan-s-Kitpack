@@ -1,0 +1,41 @@
+IF
+    Global("GaalSpoke","AR0900",1)  // Temple District
+    Alignment(Player1,MASK_GOOD)
+    Kit(Player1,C0_FAVORED_SOUL)
+THEN
+    RESPONSE #100
+        Wait(2)
+        CreateCreature("bharval",[3077.1630],SW)  // High Mornmaster Arval
+        SetGlobal("GoodMask","AR0900",1)  // Temple District
+        SetGlobal("GaalSpoke","AR0900",2)  // Temple District
+END
+
+IF
+    Global("GaalSpoke","AR0900",1)  // Temple District
+    OR(3)
+        Alignment(Player1,LAWFUL_NEUTRAL)
+        Alignment(Player1,NEUTRAL)
+        Alignment(Player1,LAWFUL_EVIL)
+    Kit(Player1,C0_FAVORED_SOUL)
+THEN
+    RESPONSE #100
+        Wait(2)
+        CreateCreature("bhoisig",[3077.1630],SW)  // High Watcher Oisig
+        SetGlobal("NeutralMask","AR0900",1)  // Temple District
+        SetGlobal("GaalSpoke","AR0900",2)  // Temple District
+END
+
+IF
+    Global("GaalSpoke","AR0900",1)  // Temple District
+    OR(3)
+        Alignment(Player1,CHAOTIC_NEUTRAL)
+        Alignment(Player1,NEUTRAL_EVIL)
+        Alignment(Player1,CHAOTIC_EVIL)
+    Kit(Player1,C0_FAVORED_SOUL)
+THEN
+    RESPONSE #100
+        Wait(2)
+        CreateCreature("bhnalla",[3077.1630],SW)  // Stormherald Nallabir
+        SetGlobal("EvilMask","AR0900",1)  // Temple District
+        SetGlobal("GaalSpoke","AR0900",2)  // Temple District
+END

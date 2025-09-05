@@ -30,7 +30,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
     READ_BYTE    0x1F fighter //reads the byte containing the fighter usability flag
     READ_BYTE    0x20 mage //reads the byte containing the fighter usability flag
-    PATCH_IF ((fighter BAND 0b00100000) = 0b00000000) AND ((mage BAND 0b00000100) = 0b00000100) BEGIN 
+    PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) AND ((mage BAND 0b00000100) = 0b00000100) BEGIN 
       READ_BYTE    0x20 row3
       READ_SHORT    0x31 proficiency 
       PATCH_IF (proficiency = 0) BEGIN
@@ -59,13 +59,13 @@ COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#EK1 END
 
-COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
-COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
+COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/ArtisansKitpack/temp/CHARBASE.CRE~
+COPY_EXISTING ~weidu_external/backup/ArtisansKitpack/temp~ ~OVERRIDE~
 
 COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK.SPL~
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END// BASTARD SW
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END// LONG SWORD
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END// SHORT SWOR
@@ -165,7 +165,7 @@ ACTION_FOR_EACH weapon_prof IN
       113 // SLING
       114 // SLING
     BEGIN
-      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~
+      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~ UNLESS ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~
     END
 
 // Update all imported files so they point in the correct direction.
