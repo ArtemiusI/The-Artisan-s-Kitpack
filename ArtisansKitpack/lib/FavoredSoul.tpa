@@ -49,11 +49,12 @@ CLASS FEATURES:
 – May cast priest spells.
 – Does not automatically learn all spells of a given level as Clerics do. Instead, Favored Souls select new spells to learn at each level, which they can cast daily without memorization.
 – Does not gain bonus spells per day from high Wisdom.
+– +1 bonus to all Saving Throws. Gains an additional +1 bonus every 5th level.
 – Deity's Favored Weapon: At level 1, the Favored Soul may select a weapon type. They gain the ability to wield and proficiency in the chosen weapon, if not already applicable, and gain further benefits at higher levels.
 – 5th level: The Favored Soul automatically becomes Specialized in their Deity's Favored Weapon.
 – 8th level: The Favored Soul gains 10% resistance to fire, cold, acid and electrical damage. This bonus increases to 20% at 13th level and 30% at 18th level.
 – 14th level: The Favored Soul automatically Masters their Deity's Favored Weapon.
-– 18th level: The Favored Soul becomes immune to non-enchanted weapons and 30% resistance to crushing, slashing, piercing and missile damage.
+– 18th level: The Favored Soul becomes immune to non-enchanted weapons and 25% resistance to crushing, slashing, piercing and missile damage.
 – Hit Die: d8~)
 	
     briefdesc     = RESOLVE_STR_REF(~FAVORED SOUL: The favored soul follows the path of the cleric but is able to channel divine power with surprising ease. She is able to perform the same tasks as her fellow divine spellcasters but with virtually no study. Favored souls cast their spells naturally, as much through force of personality as through study.~)
