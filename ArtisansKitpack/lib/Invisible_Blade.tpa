@@ -65,6 +65,7 @@ FEINT: The Invisible Blade makes a deceptive maneuver in an attempt to make thei
 
 Disadvantages:
 – Backstab modifier does not improve beyond x2.
+– May not wear any armor.
 – May only distribute 15 skill points per level among thieving skills.
 – May not use the Set Snare ability.~)
 	
@@ -75,7 +76,7 @@ Disadvantages:
   STR_VAR
     kit_name      = ~C0_INVISIBLE_BLADE~
 	
-    unusable      = ~0x00004000~
+    unusable      = ~0x10000000~
     // clasweap      = ~1 1 1 1 1 1 1 1~
 	//                                       T   S           F   Q             S S
 	//                                       W   C           L   U             W I
@@ -265,3 +266,24 @@ COPY_EXISTING ~LUTH0.2da~ ~override~
 COPY_EXISTING ~C0IVBH1.SPL~ OVERRIDE
 SAY NAME1 ~Dagger Mastery~
 SAY UNIDENTIFIED_DESC ~The invisible blade's precision with their weapon of choice grants them a +4 bonus modifier to critical hit chance when attacking in melee with a dagger.~
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 mage //reads the byte containing the fighter usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+    PATCH_IF ((mage BAND 0b00000100) = 0b00000100) AND (type = 2) BEGIN 
+		LPF DELETE_EFFECT STR_VAR match_resource = C0IVBP3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_INVISIBLE_BLADE~) parameter2 = 9 timing = 2 STR_VAR resource = c0ivbp3 END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_SHORT    0x1C type //reads the byte containing item type
+    PATCH_IF (type = 2) BEGIN 
+		LPF DELETE_EFFECT STR_VAR match_resource = C0IVBP3 END
+        LPF CLONE_EFFECT INT_VAR match_opcode = 319 opcode = 177 target = 1 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_INVISIBLE_BLADE~) parameter2 = 9 timing = 2 silent = 1 STR_VAR match_resource = C0EKARM_ resource = c0ivbp3 END
+    END
+  END
+BUT_ONLY

@@ -68,7 +68,6 @@ DEATHLESS FRENZY: The Rashemi berserker's rage is so great that it allows him to
 
 Disadvantages:
 – Alignment restricted to any non-lawful.
-– May not wear heavier armor than splint mail.
 – May cast one less priest spell per level.
 – May not Set Traps.
 – May not Specialize in ranged weapons.~)
@@ -80,7 +79,7 @@ Disadvantages:
   STR_VAR
     kit_name      = ~C0TBM~
 	
-    unusable      = ~0x40000000~
+    unusable      = ~0x00004000~
     // clasweap      = ~1 1 1 1 1 1 1 1~
 	//                                       T   S           F   Q             S S
 	//                                       W   C           L   U             W I
