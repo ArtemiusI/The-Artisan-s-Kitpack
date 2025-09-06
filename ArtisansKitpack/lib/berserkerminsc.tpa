@@ -453,9 +453,9 @@ Equipped abilities:
 – Find Traps: -10%
 – Pick Pockets: -10%
 – Move Silently: -20%
-– Melee Damage Resistance: +5% (+20% while enraged)
-– Missile Damage Resistance: +25% (+50% while enraged)
-– Regenerate one hit point per two rounds
+– Melee Damage Resistance: +5% (+10% while enraged)
+– Missile Damage Resistance: +20% (+40% while enraged)
+– Regenerate one hit point per three rounds
 – While enraged, wearer moves at double their normal movement rate
 
 Armor Class: 4 (6 vs. piercing and missile)
