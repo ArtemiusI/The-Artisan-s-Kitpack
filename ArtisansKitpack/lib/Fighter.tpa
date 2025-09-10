@@ -107,7 +107,9 @@ BUT_ONLY
 // Update Kit Descriptions                                               //
 ///////////////////////////////////////////////////////////////////////////
 ACTION_FOR_EACH description IN 
+    BGCLATXT  
     clastext  
+    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~
@@ -344,6 +346,10 @@ Prime Requisites For Dual-Classing: Strength~)
 // Append to SPLPROT.2DA                                                 //
 ///////////////////////////////////////////////////////////////////////////
 // Weapon Profs
+///////////////////////////////////////////////////////////////////////////
+// Append to SPLPROT.2DA                                                 //
+///////////////////////////////////////////////////////////////////////////
+// Weapon Profs
 ACTION_FOR_EACH weapon_prof IN
       89  // BASTARDSWORD
       90  // LONGSWORD
@@ -365,15 +371,13 @@ ACTION_FOR_EACH weapon_prof IN
       105 // SHORTBOW
       106 // DART
       107 // SLING
+      111 // SLING
+      112 // SLING
+      113 // SLING
+      114 // SLING
     BEGIN
-      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%2%TAB%2~
+      APPEND ~splprot.2da~ ~prof_lt_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%2~ UNLESS ~prof_lt_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%2~
     END
-
-// Weapon Style Profs
-APPEND ~splprot.2da~ ~prof_111%TAB%111%TAB%2%TAB%2~ // 2HANDED
-APPEND ~splprot.2da~ ~prof_112%TAB%112%TAB%2%TAB%2~ // SWORDANDSHIELD
-APPEND ~splprot.2da~ ~prof_113%TAB%113%TAB%2%TAB%2~ // SINGLEWEAPON
-APPEND ~splprot.2da~ ~prof_114%TAB%114%TAB%3%TAB%2~ // SINGLEWEAPON
 
 // Update all imported files so they point in the correct direction.
 COPY_EXISTING ~splprot.2da~ ~override~
@@ -384,105 +388,105 @@ COPY_EXISTING ~splprot.2da~ ~override~
       
       // WEAPON PROF ----------------------------------------------------------//
       // BASTARDSWORD
-      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_89~ BEGIN 
-        SET prof_89 = %row%
+      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_89~ BEGIN 
+        SET prof_lt_89 = %row%
       // LONGSWORD
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_90~ BEGIN
-        SET prof_90 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_90~ BEGIN
+        SET prof_lt_90 = %row%
       // SHORTSWORD
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_91~ BEGIN
-        SET prof_91 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_91~ BEGIN
+        SET prof_lt_91 = %row%
       // AXE
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_92~ BEGIN
-        SET prof_92 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_92~ BEGIN
+        SET prof_lt_92 = %row%
       // TWOHANDEDSWORD
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_93~ BEGIN
-        SET prof_93 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_93~ BEGIN
+        SET prof_lt_93 = %row%
       // KATANA
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_94~ BEGIN
-        SET prof_94 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_94~ BEGIN
+        SET prof_lt_94 = %row%
       // SCIMITAR
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_95~ BEGIN
-        SET prof_95 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_95~ BEGIN
+        SET prof_lt_95 = %row%
       // DAGGER
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_96~ BEGIN
-        SET prof_96 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_96~ BEGIN
+        SET prof_lt_96 = %row%
       // WARHAMMER
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_97~ BEGIN
-        SET prof_97 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_97~ BEGIN
+        SET prof_lt_97 = %row%
       // CLUB
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_115~ BEGIN
-        SET prof_115 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_115~ BEGIN
+        SET prof_lt_115 = %row%
       // SPEAR
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_98~ BEGIN
-        SET prof_98 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_98~ BEGIN
+        SET prof_lt_98 = %row%
       // HALBERD
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_99~ BEGIN
-        SET prof_99 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_99~ BEGIN
+        SET prof_lt_99 = %row%
       // FLAILMORNINGSTAR
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_100~ BEGIN
-        SET prof_100 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_100~ BEGIN
+        SET prof_lt_100 = %row%
       // MACE
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_101~ BEGIN
-        SET prof_101 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_101~ BEGIN
+        SET prof_lt_101 = %row%
       // QUARTERSTAFF
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_102~ BEGIN
-        SET prof_102 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_102~ BEGIN
+        SET prof_lt_102 = %row%
       // CROSSBOW
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_103~ BEGIN
-        SET prof_103 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_103~ BEGIN
+        SET prof_lt_103 = %row%
       // LONGBOW
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_104~ BEGIN
-        SET prof_104 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_104~ BEGIN
+        SET prof_lt_104 = %row%
       // SHORTBOW
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_105~ BEGIN
-        SET prof_105 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_105~ BEGIN
+        SET prof_lt_105 = %row%
       // DART
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_106~ BEGIN
-        SET prof_106 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_106~ BEGIN
+        SET prof_lt_106 = %row%
     // SLING
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_107~ BEGIN
-        SET prof_107 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_107~ BEGIN
+        SET prof_lt_107 = %row%
 
     // WEAPON STYLE ---------------------------------------------------------//
     // 2HANDED
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_111~ BEGIN
-        SET prof_111 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_111~ BEGIN
+        SET prof_lt_111 = %row%
     // SWORDANDSHIELD
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_112~ BEGIN
-        SET prof_112 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_112~ BEGIN
+        SET prof_lt_112 = %row%
     // SINGLEWEAPON
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_113~ BEGIN
-        SET prof_113 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_113~ BEGIN
+        SET prof_lt_113 = %row%
     // 2WEAPON
-      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_114~ BEGIN
-        SET prof_114 = %row%
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_lt_114~ BEGIN
+        SET prof_lt_114 = %row%
     END
     END
     END
 
 // Update Prof Checks
 COPY_EXISTING ~c0fig04.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% STR_VAR match_resource = c0fig04a END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_90% STR_VAR match_resource = c0fig04b END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_91% STR_VAR match_resource = c0fig04c END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_92% STR_VAR match_resource = c0fig04d END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_93% STR_VAR match_resource = c0fig04e END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_94% STR_VAR match_resource = c0fig04f END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_95% STR_VAR match_resource = c0fig04g END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_96% STR_VAR match_resource = c0fig04h END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_97% STR_VAR match_resource = c0fig04i END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_98% STR_VAR match_resource = c0fig04j END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_99% STR_VAR match_resource = c0fig04k END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_100% STR_VAR match_resource = c0fig04l  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_101% STR_VAR match_resource = c0fig04m  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_102% STR_VAR match_resource = c0fig04n  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_103% STR_VAR match_resource = c0fig04o  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_104% STR_VAR match_resource = c0fig04p  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_105% STR_VAR match_resource = c0fig04q  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_106% STR_VAR match_resource = c0fig04r  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_107% STR_VAR match_resource = c0fig04s  END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_115% STR_VAR match_resource = c0fig04t  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_89% STR_VAR match_resource = c0fig04a END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_90% STR_VAR match_resource = c0fig04b END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_91% STR_VAR match_resource = c0fig04c END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_92% STR_VAR match_resource = c0fig04d END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_93% STR_VAR match_resource = c0fig04e END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_94% STR_VAR match_resource = c0fig04f END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_95% STR_VAR match_resource = c0fig04g END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_96% STR_VAR match_resource = c0fig04h END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_97% STR_VAR match_resource = c0fig04i END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_98% STR_VAR match_resource = c0fig04j END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_99% STR_VAR match_resource = c0fig04k END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_100% STR_VAR match_resource = c0fig04l  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_101% STR_VAR match_resource = c0fig04m  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_102% STR_VAR match_resource = c0fig04n  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_103% STR_VAR match_resource = c0fig04o  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_104% STR_VAR match_resource = c0fig04p  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_105% STR_VAR match_resource = c0fig04q  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_106% STR_VAR match_resource = c0fig04r  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_107% STR_VAR match_resource = c0fig04s  END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 2 parameter2 = %prof_lt_115% STR_VAR match_resource = c0fig04t  END
 	
 COPY_EXISTING ~c0fig04a.spl~ ~override/c0fig04b.spl~
     LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 90 END

@@ -233,8 +233,9 @@ LAF mod_monk_profs END
 ///////////////////////////////////////////////////////////////////////////
 
 ACTION_FOR_EACH description IN 
-    clastext
-	sodcltxt
+    BGCLATXT  
+    clastext  
+    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~

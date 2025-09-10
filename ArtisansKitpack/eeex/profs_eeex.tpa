@@ -1,3 +1,124 @@
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0PR#CL.SPL~ BEGIN
+
+///////////////////////////////////////////////////////////////////////////
+// Append to SPLPROT.2DA                                                 //
+///////////////////////////////////////////////////////////////////////////
+// Weapon Profs
+ACTION_FOR_EACH weapon_prof IN
+      89  // BASTARDSWORD
+      90  // LONGSWORD
+      91  // SHORTSWORD
+      92  // AXE
+      93  // TWOHANDEDSWORD
+      94  // KATANA
+      95  // SCIMITAR
+      96  // DAGGER
+      97  // WARHAMMER
+      115 // CLUB
+      98  // SPEAR
+      99  // HALBERD
+      100 // FLAILMORNINGSTAR
+      101 // MACE
+      102 // QUARTERSTAFF
+      103 // CROSSBOW
+      104 // LONGBOW
+      105 // SHORTBOW
+      106 // DART
+      107 // SLING
+      111 // SLING
+      112 // SLING
+      113 // SLING
+      114 // SLING
+    BEGIN
+      APPEND ~splprot.2da~ ~prof_gt_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%3~ UNLESS ~prof_gt_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%3~
+    END
+
+// Update all imported files so they point in the correct direction.
+COPY_EXISTING ~splprot.2da~ ~override~
+    COUNT_2DA_COLS cols
+    READ_2DA_ENTRIES_NOW rows cols
+    FOR (row = 1; row < rows; ++row) BEGIN
+      READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+      
+      // WEAPON PROF ----------------------------------------------------------//
+      // BASTARDSWORD
+      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_89~ BEGIN 
+        SET prof_gt_89 = %row%
+      // LONGSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_90~ BEGIN
+        SET prof_gt_90 = %row%
+      // SHORTSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_91~ BEGIN
+        SET prof_gt_91 = %row%
+      // AXE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_92~ BEGIN
+        SET prof_gt_92 = %row%
+      // TWOHANDEDSWORD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_93~ BEGIN
+        SET prof_gt_93 = %row%
+      // KATANA
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_94~ BEGIN
+        SET prof_gt_94 = %row%
+      // SCIMITAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_95~ BEGIN
+        SET prof_gt_95 = %row%
+      // DAGGER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_96~ BEGIN
+        SET prof_gt_96 = %row%
+      // WARHAMMER
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_97~ BEGIN
+        SET prof_gt_97 = %row%
+      // CLUB
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_115~ BEGIN
+        SET prof_gt_115 = %row%
+      // SPEAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_98~ BEGIN
+        SET prof_gt_98 = %row%
+      // HALBERD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_99~ BEGIN
+        SET prof_gt_99 = %row%
+      // FLAILMORNINGSTAR
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_100~ BEGIN
+        SET prof_gt_100 = %row%
+      // MACE
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_101~ BEGIN
+        SET prof_gt_101 = %row%
+      // QUARTERSTAFF
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_102~ BEGIN
+        SET prof_gt_102 = %row%
+      // CROSSBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_103~ BEGIN
+        SET prof_gt_103 = %row%
+      // LONGBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_104~ BEGIN
+        SET prof_gt_104 = %row%
+      // SHORTBOW
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_105~ BEGIN
+        SET prof_gt_105 = %row%
+      // DART
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_106~ BEGIN
+        SET prof_gt_106 = %row%
+    // SLING
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_107~ BEGIN
+        SET prof_gt_107 = %row%
+
+    // WEAPON STYLE ---------------------------------------------------------//
+    // 2HANDED
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_111~ BEGIN
+        SET prof_gt_111 = %row%
+    // SWORDANDSHIELD
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_112~ BEGIN
+        SET prof_gt_112 = %row%
+    // SINGLEWEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_113~ BEGIN
+        SET prof_gt_113 = %row%
+    // 2WEAPON
+      END ELSE PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~prof_gt_114~ BEGIN
+        SET prof_gt_114 = %row%
+    END
+    END
+
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYBASTARDSWORD" RET value END
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYLONGSWORD" RET value END
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYSHORTSWORD" RET value END
@@ -242,6 +363,31 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	END
 
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_89% STR_VAR  match_resource = c0fig04a resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_90% STR_VAR  match_resource = c0fig04b resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_91% STR_VAR  match_resource = c0fig04c resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_92% STR_VAR  match_resource = c0fig04d resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_93% STR_VAR  match_resource = c0fig04e resource = C0PR#93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_94% STR_VAR  match_resource = c0fig04f resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_95% STR_VAR  match_resource = c0fig04g resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_96% STR_VAR  match_resource = c0fig04h resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_97% STR_VAR  match_resource = c0fig04i resource = C0PR#97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_98% STR_VAR  match_resource = c0fig04j resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_99% STR_VAR  match_resource = c0fig04k resource = C0PR#99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_100% STR_VAR match_resource = c0fig04l resource = C0PR#100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_101% STR_VAR match_resource = c0fig04m resource = C0PR#101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_102% STR_VAR match_resource = c0fig04n resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_103% STR_VAR match_resource = c0fig04o resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_104% STR_VAR match_resource = c0fig04p resource = C0PR#104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_105% STR_VAR match_resource = c0fig04q resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_106% STR_VAR match_resource = c0fig04r resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_107% STR_VAR match_resource = c0fig04s resource = C0PR#107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_115% STR_VAR match_resource = c0fig04t resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_111% STR_VAR match_resource = c0fig04U resource = C0PR#111 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_112% STR_VAR match_resource = c0fig04V resource = C0PR#112 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_113% STR_VAR match_resource = c0fig04W resource = C0PR#113 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_114% STR_VAR match_resource = c0fig04X resource = C0PR#114 END
+
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#89 END// BASTARD SW
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#90 END// LONG SWORD
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#91 END// SHORT SWOR
@@ -590,11 +736,185 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
       READ_BYTE    0x21 row4
       READ_SHORT    0x1C type //reads the byte containing item type
       READ_SHORT    0x31 proficiency 
-      PATCH_IF ((proficiency = 92) OR (proficiency = 89) OR (proficiency = 115) OR (proficiency = 103) OR (proficiency = 96) OR (proficiency = 106) OR (proficiency = 100) OR (proficiency = 99) OR (proficiency = 94) OR (proficiency = 104) OR (proficiency = 90) OR (proficiency = 101) OR (proficiency = 102) OR (proficiency = 95) OR (proficiency = 105) OR (proficiency = 91) OR (proficiency = 93) OR (proficiency = 97) OR (proficiency = 98) OR (type = 31) OR (type = 5) OR (type = 14)) BEGIN
+      PATCH_IF (proficiency = 89) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                      ) BEGIN // bastard sword
         WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
         WRITE_BYTE    0x1F (row2 BAND 0b00000000)
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYBASTARDSWORD END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYBASTARDSWORD timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 90) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                      ) BEGIN // longsword
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYLONGSWORD END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGSWORD timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 91) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                      ) BEGIN // short sword
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSHORTSWORD END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTSWORD timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 92) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // axe
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYAXE END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYAXE timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 93) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // two handed sword
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYTWOHANDEDSWORD END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYTWOHANDEDSWORD timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 94) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // katana
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYKATANA END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYKATANA timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 95) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // scimitar
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 96) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // dagger
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYDAGGER END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDAGGER timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 97) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // warhammer
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYWARHAMMER END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYWARHAMMER timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 98) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b01000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // spear
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSPEAR END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSPEAR timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 99) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // halberd
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYHALBERD END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYHALBERD timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 100) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // flail
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 101) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // mace
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYMACE END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYMACE timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 102) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // staff
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYQUARTERSTAFF END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYQUARTERSTAFF timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 103) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // crossbow
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYCROSSBOW END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCROSSBOW timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 104) AND (((row1 BAND 0b00000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // longbow
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYLONGBOW END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGBOW timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 105) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // shortbow
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSHORTBOW END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTBOW timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 106) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // dart
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYDART END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDART timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 107) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // sling
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSLING END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSLING timing = 2 power = 3 END
+      END
+      PATCH_IF (proficiency = 115) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // club
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYCLUB END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCLUB timing = 2 power = 3 END
       END
 		LPF DELETE_EFFECT
 			INT_VAR
@@ -610,73 +930,6 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 		END
     END
   END
-
-PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-      READ_SHORT    0x31 proficiency 
-
-      PATCH_IF (proficiency = 89) BEGIN // bastard sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYBASTARDSWORD timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 90) BEGIN // longsword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGSWORD timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 91) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTSWORD timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 92) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYAXE timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 93) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYTWOHANDEDSWORD timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 94) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYKATANA timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 95) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 96) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDAGGER timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 97) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYWARHAMMER timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 98) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSPEAR timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 99) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYHALBERD timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 100) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 101) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYMACE timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 102) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYQUARTERSTAFF timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 103) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCROSSBOW timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 104) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGBOW timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 105) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTBOW timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 106) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDART timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 107) BEGIN // short sword
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSLING timing = 2 power = 3 END
-      END
-      PATCH_IF (proficiency = 115) BEGIN // club
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCLUB timing = 2 power = 3 END
-      END
-
-END
-
 BUT_ONLY
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
@@ -689,3 +942,5 @@ COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/ArtisansKitpack/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/ArtisansKitpack/temp~ ~OVERRIDE~
+
+END

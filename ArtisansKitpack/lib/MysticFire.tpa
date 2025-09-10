@@ -51,6 +51,8 @@ SHATTER SPELL: Knights of the Mystic Fire are able to smite spellcasters and dis
 
 SPELLBLADE: The Mystic Fire Knight enchants <PRO_HISHER> weapon for the next hour, giving it a +3 enchantment level and dealing 1d4 magic damage (+1d4 per five caster levels up to level 20) and reducing targets' magic resistance by 5% per hit for two turns. Enchantment bonus increases to +4 at 12th level and +5 at 18th level.
 
+– 12th level: Combat Casting: The Mystic Fire is skilled at casting spells in the midst of combat. If there is an enemy within 5-ft. of the Mystic Fire, they gain an increased casting speed of 2.
+
 Disadvantages:
 – Hit Die: d8
 – May not learn the following High Level Abilities: Greater Whirlwind Attack, Greater Deathblow, Smite, Hardiness
@@ -148,6 +150,13 @@ Disadvantages:
   RET
     kit_id
 END
+
+INCLUDE ~%MOD_FOLDER%/effects/combat_casting.tpa~
+
+COPY_EXISTING ~C0MF.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0EKCC END // COMBAT CASTING
+  PRETTY_PRINT_2DA
 
 COPY_EXISTING ~LUPA0.2da~ ~override/LUC0MF.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL901~ END

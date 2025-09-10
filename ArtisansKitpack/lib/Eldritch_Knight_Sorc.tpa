@@ -1,5 +1,7 @@
 COPY ~ArtisansKitpack/spells/C0THWAR.SPL~ ~OVERRIDE~
 
+INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -148,6 +150,18 @@ Disadvantages:
     kit_id
 END
 
+COPY_EXISTING ~C0EKCC1A.SPL~ OVERRIDE
+  LPF CLONE_EFFECT INT_VAR match_opcode = 189 opcode = 177 parameter2 = 9 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0EK_SORC~) STR_VAR resource = C0EKCC3 END
+
+COPY_EXISTING ~C0EKCC1B.SPL~ OVERRIDE
+  LPF CLONE_EFFECT INT_VAR match_opcode = 189 opcode = 177 parameter2 = 9 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0EK_SORC~) STR_VAR resource = C0EKCC3 END
+
+COPY_EXISTING ~C0EK3.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0EKCC END // COMBAT CASTING
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0EKCC2 END // IMPROVED COMBAT CASTING
+  PRETTY_PRINT_2DA
+
 COPY_EXISTING ~lufm0.2da~  ~override/luc0ekso.2da~
   COUNT_2DA_ROWS 10 rows
   COUNT_2DA_COLS col_count
@@ -198,16 +212,15 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 BUT_ONLY
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
+    READ_BYTE    0x273 class
+	 PATCH_IF (class = 1) OR (class = 19) BEGIN
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
+   END
+BUT_ONLY
 
 COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK1.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
-
-COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK2.SPL~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
 
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 
@@ -321,7 +334,7 @@ ACTION_FOR_EACH weapon_prof IN
       113 // SLING
       114 // SLING
     BEGIN
-      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~ UNLESS ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%1%TAB%1~
+      APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%1~ UNLESS ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%1~
     END
 
 // Update all imported files so they point in the correct direction.
@@ -411,30 +424,30 @@ COPY_EXISTING ~splprot.2da~ ~override~
 
 // Update Prof Checks
 COPY_EXISTING ~c0ekpro.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_89% STR_VAR  match_resource = c0fig04a resource = c0ekproa END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_90% STR_VAR  match_resource = c0fig04b resource = c0ekprob END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_91% STR_VAR  match_resource = c0fig04c resource = c0ekproc END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_92% STR_VAR  match_resource = c0fig04d resource = c0ekprod END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_93% STR_VAR  match_resource = c0fig04e resource = c0ekproe END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_94% STR_VAR  match_resource = c0fig04f resource = c0ekprof END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_95% STR_VAR  match_resource = c0fig04g resource = c0ekprog END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_96% STR_VAR  match_resource = c0fig04h resource = c0ekproh END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_97% STR_VAR  match_resource = c0fig04i resource = c0ekproi END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_98% STR_VAR  match_resource = c0fig04j resource = c0ekproj END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_99% STR_VAR  match_resource = c0fig04k resource = c0ekprok END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_100% STR_VAR match_resource = c0fig04l resource = c0ekprol END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_101% STR_VAR match_resource = c0fig04m resource = c0ekprom END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_102% STR_VAR match_resource = c0fig04n resource = c0ekpron END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_103% STR_VAR match_resource = c0fig04o resource = c0ekproo END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_104% STR_VAR match_resource = c0fig04p resource = c0ekprop END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_105% STR_VAR match_resource = c0fig04q resource = c0ekproq END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_106% STR_VAR match_resource = c0fig04r resource = c0ekpror END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_107% STR_VAR match_resource = c0fig04s resource = c0ekpros END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_115% STR_VAR match_resource = c0fig04t resource = c0ekprot END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_111% STR_VAR match_resource = c0fig04U resource = c0ekprou END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_112% STR_VAR match_resource = c0fig04V resource = c0ekprov END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_113% STR_VAR match_resource = c0fig04W resource = c0ekprow END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter2 = %prof_114% STR_VAR match_resource = c0fig04X resource = c0ekprox END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_89% STR_VAR  match_resource = c0fig04a resource = c0ekproa END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_90% STR_VAR  match_resource = c0fig04b resource = c0ekprob END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_91% STR_VAR  match_resource = c0fig04c resource = c0ekproc END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_92% STR_VAR  match_resource = c0fig04d resource = c0ekprod END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_93% STR_VAR  match_resource = c0fig04e resource = c0ekproe END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_94% STR_VAR  match_resource = c0fig04f resource = c0ekprof END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_95% STR_VAR  match_resource = c0fig04g resource = c0ekprog END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_96% STR_VAR  match_resource = c0fig04h resource = c0ekproh END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_97% STR_VAR  match_resource = c0fig04i resource = c0ekproi END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_98% STR_VAR  match_resource = c0fig04j resource = c0ekproj END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_99% STR_VAR  match_resource = c0fig04k resource = c0ekprok END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_100% STR_VAR match_resource = c0fig04l resource = c0ekprol END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_101% STR_VAR match_resource = c0fig04m resource = c0ekprom END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_102% STR_VAR match_resource = c0fig04n resource = c0ekpron END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_103% STR_VAR match_resource = c0fig04o resource = c0ekproo END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_104% STR_VAR match_resource = c0fig04p resource = c0ekprop END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_105% STR_VAR match_resource = c0fig04q resource = c0ekproq END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_106% STR_VAR match_resource = c0fig04r resource = c0ekpror END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_107% STR_VAR match_resource = c0fig04s resource = c0ekpros END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_115% STR_VAR match_resource = c0fig04t resource = c0ekprot END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_111% STR_VAR match_resource = c0fig04U resource = c0ekprou END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_112% STR_VAR match_resource = c0fig04V resource = c0ekprov END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_113% STR_VAR match_resource = c0fig04W resource = c0ekprow END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 326 parameter1 = 1 parameter2 = %prof_114% STR_VAR match_resource = c0fig04X resource = c0ekprox END
 	
 COPY_EXISTING ~c0ekproa.spl~ ~override/c0ekprob.spl~
     LPF ALTER_EFFECT INT_VAR match_opcode = 233 parameter2 = 90 END
