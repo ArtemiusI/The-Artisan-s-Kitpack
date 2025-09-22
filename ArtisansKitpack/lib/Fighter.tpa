@@ -95,7 +95,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
   END
   END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI06.2DA~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABFI01.2DA~ BEGIN
 COPY_EXISTING ~CLABFI06.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0DWD01 END // POWER ATTACK
@@ -107,9 +107,7 @@ BUT_ONLY
 // Update Kit Descriptions                                               //
 ///////////////////////////////////////////////////////////////////////////
 ACTION_FOR_EACH description IN 
-    BGCLATXT  
     clastext  
-    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~

@@ -182,9 +182,7 @@ COPY_EXISTING ~C0TRICKS.2DA~ OVERRIDE
 BUT_ONLY
 
 ACTION_FOR_EACH description IN 
-    BGCLATXT  
     clastext  
-    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~

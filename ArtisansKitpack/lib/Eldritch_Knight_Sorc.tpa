@@ -219,7 +219,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
    END
 BUT_ONLY
 
-COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK1.SPL~
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK1.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
 
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
@@ -231,7 +231,7 @@ COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/%MOD_FOLDER%/temp~ ~OVERRIDE~
 
-COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK.SPL~
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK.SPL~
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
