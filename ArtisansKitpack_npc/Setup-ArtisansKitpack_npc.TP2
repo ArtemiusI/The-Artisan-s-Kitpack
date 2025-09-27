@@ -1078,7 +1078,7 @@ WRITE_BYTE 0x1C 20
 WRITE_BYTE 0x31 90
 END
 
-BEGIN ~Artisan's Kitpack: Make Nalia an Arcane Trickster (Sorcerer)~ DESIGNATED 10004
+BEGIN ~Artisan's Kitpack: Make Nalia an Arcane Trickster (Sorcerer)~ DESIGNATED 200010
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8004~ ~The Arcane Trickster Sorcerer Kit must be installed.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack_tweak.tp2~ ~8204~ ~The Arcane Trickster Thief Usability Tweaks must be installed.~
   REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on Baldur's Gate 2.~
