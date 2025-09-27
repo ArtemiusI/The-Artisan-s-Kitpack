@@ -33,10 +33,10 @@ COPY_EXISTING ~C0MF.2DA~ OVERRIDE
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 6 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#MF1 END
 
-COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#MF1.SPL~
+COPY_EXISTING ~ArtisansKitpack/eeex/profs/C0PR#CL.spl~ ~override/C0PR#MF1.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_MYSTIC_FIRE_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
 
-COPY_EXISTING ~HOUSETWEAKS/eeex/profs/C0PR#CL.spl~ ~override/C0PR#MF2.SPL~
+COPY_EXISTING ~ArtisansKitpack/eeex/profs/C0PR#CL.spl~ ~override/C0PR#MF2.SPL~
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#MF1 END
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#MF1 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_MYSTIC_FIRE_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
@@ -46,8 +46,8 @@ COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 6 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#MF1 END
 
-COPY_EXISTING ~CHARBASE1.CRE~ ~HOUSETWEAKS/TEMP/CHARBASE.CRE~
-COPY_EXISTING ~HOUSETWEAKS/TEMP~ ~OVERRIDE~
+COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~
+COPY_EXISTING ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~ ~OVERRIDE~
 
 ACTION_FOR_EACH description IN 
     BGCLATXT
