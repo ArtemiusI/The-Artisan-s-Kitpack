@@ -5,6 +5,7 @@ COPY ~%MOD_FOLDER%/MonkRevision/bmp~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/eff~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/fists~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/MonkRevision/items~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/spells/strength_exceptional~ ~OVERRIDE~
 COPY_EXISTING ~KITLIST.2DA~ ~override~
   READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
   FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
@@ -19,6 +20,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       // Add new abilities to all Fighter kits
       COPY_EXISTING ~%kit_clab%.2DA~ override
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0AK#EX END // FLURRY OF BLOWS
         PRETTY_PRINT_2DA
 	  
       BUT_ONLY
@@ -225,12 +227,11 @@ CLASS FEATURES:
 – May not wear any armor.
 – May only use weapons available to the Thief class.
 – May achieve Grandmastery (five slots) in Quarterstaves.
-– May Specialize in Two-Handed Weapon Style.
 – May only become Proficient (one slot) in any weapon class.
-– May become Proficient (one slot) in Single-Weapon Style and Two-Weapon Style.
+– May become Proficient (one slot) in Two-Handed Weapon Style, Single-Weapon Style and Two-Weapon Style.
 – May use the Hide In Shadows and Find Trap abilities (but may not disarm traps)
 – Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
-– May make 2 unarmed attacks per round.
+– May make 2 attacks per round while unarmed or when wielding a quarterstaff.
 – -1 to Speed Factor per 3 levels.
 
 – Flurry of Blows: The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -5 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -2 at 13th level.

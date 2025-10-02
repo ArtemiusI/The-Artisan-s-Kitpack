@@ -177,11 +177,11 @@ WRITE_ASCII 0x94 ~C0MQANI4~
 //
 COPY_EXISTING ~weapprof.2da~ ~override~
 	SET_2DA_ENTRY_LATER ~#weapprof~ 25 51 5   // monk
-	SET_2DA_ENTRY_LATER ~#weapprof~ 31 51 2   // monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 51 1   // monk
 	SET_2DA_ENTRY_LATER ~#weapprof~ 25 58 5   // dark moon monk
-	SET_2DA_ENTRY_LATER ~#weapprof~ 31 58 2   // dark moon monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 58 1   // dark moon monk
 	SET_2DA_ENTRY_LATER ~#weapprof~ 25 59 5   // sun soul monk
-	SET_2DA_ENTRY_LATER ~#weapprof~ 31 59 2   // sun soul monk
+	SET_2DA_ENTRY_LATER ~#weapprof~ 31 59 1   // sun soul monk
 //__________________________________________________________________________________
 
 //QUARTERSTAFF PROF FOR OTHER MONKS_________________________________________________
@@ -217,7 +217,7 @@ DEFINE_ACTION_FUNCTION mod_monk_profs BEGIN
 				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
 				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
 					SET_2DA_ENTRY_LATER wweapprof 25 (col + 1) 5
-					SET_2DA_ENTRY_LATER wweapprof 31 (col + 1) 2
+					SET_2DA_ENTRY_LATER wweapprof 31 (col + 1) 1
 				END
 			END
 		END
