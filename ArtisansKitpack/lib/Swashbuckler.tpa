@@ -139,7 +139,7 @@ COPY_EXISTING ~C0SB-HL.SPL~ OVERRIDE
 SAY NAME1 ~Wounding Critical~
 SAY UNIDENTIFIED_DESC ~The swashbuckler is capable of landing precise strikes to weaken their opponent and make them more vulnerable. With this ability, the swashbuckler's critical hits passively reduce the target's Luck modifier for dealing and receiving damage by 2 points for 4 rounds.
 '
-This skill qualifies as learning the Critical Strike ability in terms of other prerequisites.~
+This skill qualifies as learning the Power Attack ability in terms of other prerequisites.~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
 
