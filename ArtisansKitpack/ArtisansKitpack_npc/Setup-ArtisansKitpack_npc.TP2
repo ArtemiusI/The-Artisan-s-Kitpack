@@ -1,0 +1,1198 @@
+BACKUP ~weidu_external/backup/ArtisansKitpack/npcs~
+AUTHOR ~The Artisan~
+ALWAYS
+  INCLUDE ~ArtisansKitpack/lib/alter_script.tpa~
+  INCLUDE ~ArtisansKitpack/lib/ClassSpellTool.tpa~
+  INCLUDE ~ArtisansKitpack/lib/a7#add_kit_ex.tpa~
+  INCLUDE ~ArtisansKitpack/lib/kit_strref.tpa~
+  INCLUDE ~ArtisansKitpack/lib/RA_SPHERE_COMPAT.tpa~
+  INCLUDE ~ArtisansKitpack/lib/eet.tph~
+  INCLUDE ~ArtisansKitpack/lib/functions.tph~
+  INCLUDE ~ArtisansKitpack/lib/hla_actions.tpa~
+  INCLUDE ~ArtisansKitpack/lib/replace_multiline.tpa~
+  INCLUDE ~ArtisansKitpack/lib/x_force.tph~
+END
+AUTO_TRA ~ArtisansKitpack/tra/%s~
+
+BEGIN ~Artisan's Kitpack: Give Khalid the Vanguard Kit~ DESIGNATED 1101
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1002~ OR MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1007~) ~The Vanguard Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~KHALID~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0VNGD~))
+      	// do things here
+      END
+      BUT_ONLY
+
+ACTION_IF FILE_EXISTS_IN_GAME ~KHALID.CRE~ THEN BEGIN 
+COPY_EXISTING ~KHALID.CRE~ ~OVERRIDE~
+	WRITE_SHORT 0x24 12
+	WRITE_SHORT 0x26 12
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~KHALID7.CRE~ THEN BEGIN 
+COPY_EXISTING ~KHALID7.CRE~ ~OVERRIDE~
+	WRITE_SHORT 0x24 84
+	WRITE_SHORT 0x26 84
+END
+
+BEGIN ~Arcane Archer~ DESIGNATED 1102
+SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
+REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
+LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
+COPY ~Emily/creatures/X3milyAA.cre~ ~override/X3mily.cre~
+  SAY NAME1 @1 //~Emily~
+  SAY NAME2 @1 //~Emily~
+  WRITE_ASCII 0x248 ~X3mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~I need to fall back.~
+  SAY HAPPY @4 // ~I am quite pleased with how you have lead us. We are actually making a difference.~
+  SAY UNHAPPY_ANNOYED @5 // ~I didn't think things would be like this when I left home.~ [X3Eann]
+  SAY UNHAPPY_SERIOUS @6 // ~You need to seriously consider our actions. I have had just about enough.~ [X3Eser]
+  SAY UNHAPPY_BREAKING_POINT @7 // ~That's it! I have morals and values, and I am done breaking them.~ [X3Ebreak]
+  SAY LEADER @8 // ~Me, leader? Oh this is going to be so *fun*.~
+  SAY TIRED @9 // ~I admit I might be a spoiled noble, but I am *really* tired. Can we rest?~
+  SAY BORED @10 // ~I'm more bored than I was in Lady Liliana's Lady lessons. And they were boring.~
+  SAY BATTLE_CRY1 @11 // ~You've made a grave mistake.~
+  SAY BATTLE_CRY2 @12 // ~I won't miss.~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~My aim will be true.~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~~
+  SAY DYING @17 // ~I'm... so sorry...~
+  SAY HURT @18 // ~I need a healing spell.~
+  SAY AREA_FOREST @19 // ~Back in House Castilla, I only ever got to see the trees. It's so much better to be in the forest.~
+  SAY AREA_CITY @20 // ~It's kind of exciting to be in the city. Maybe we could do some shopping?~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~Today, I feel excited. And a little hungry.~ [X3Eday]
+  SAY AREA_NIGHT @23 // ~I feel so deviant walking around in the night. So much different than my upbringing.~ [X3Edark]
+  SAY SELECT_COMMON1 @24 // ~Emily Castilla, at your service! Or Emilia if you want to be fancy.~
+  SAY SELECT_COMMON2 @25 // ~My quiver is ready.~
+  SAY SELECT_COMMON3 @26 // ~Hey there.~
+  SAY SELECT_COMMON4 @27 // ~Yes, yes?~
+  SAY SELECT_COMMON5 @28 // ~So, what is the order this time?~
+  SAY SELECT_COMMON6 @29 //~I'm here to help.~ 
+  SAY SELECT_ACTION1 @30 // ~On it.~
+  SAY SELECT_ACTION2 @31 // ~Sounds simple enough.~ [Emilaa3]
+  SAY SELECT_ACTION3 @32 // ~Okay.~
+  SAY SELECT_ACTION4 @33 // ~With precision.~ [Emilaa4]
+  SAY SELECT_ACTION5 @34 //~On my way.~ [X3Ea5]
+  SAY SELECT_ACTION6 @35 // ~And I thought you were going to give me something hard to do.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, Maybe later. Ha, Of course I will.~
+  SAY CRITICAL_HIT @37 // ~Bullseye.~
+  SAY CRITICAL_MISS @38 // ~~Come on, *come on*!~~
+  SAY TARGET_IMMUNE @39 // ~This isn't working.~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~I knew I shouldn't have skipped magic theory!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Invisible as the wind.~ [Emilhide]
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY SELECT_RARE1 @45 // ~I do miss Tethyr. Terribly, sometimes.~ [X3ERar1]
+  SAY SELECT_RARE2 @46 // ~If we get a chance, I'd love to get a new pair of cute boots. These are worn out.~ [X3ERar2]
+  SAY REACT_TO_DIE_GENERAL @47 //~Their death won't be in vain. I promise.~ [X3Ereact]
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+  
+ACTION_IF GAME_INCLUDES ~SOD~
+THEN BEGIN
+COPY ~Emily/creatures/SoD/X32milyA.cre~ ~override/X32mily.cre~
+  SAY NAME1 ~Emily~
+  SAY NAME2 ~Emily~
+  WRITE_ASCII 0x248 ~X32mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X32mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~We've got to get out of here.~
+  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
+  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
+  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
+  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
+  SAY LEADER @8 // ~Come with me.~
+  SAY TIRED @9 // ~I need to sit down, just for a bit.~
+  SAY BORED @10 // ~Some excitement would be welcome.~
+  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
+  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~Agh~
+  SAY DYING @17 // ~Not like this...~
+  SAY HURT @18 // ~Damn, I need some healing.~
+  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
+  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
+  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
+  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
+  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
+  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
+  SAY SELECT_COMMON4 @27 // ~Something you need?~
+  SAY SELECT_COMMON5 @28 // ~Well met.~
+  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
+  SAY SELECT_ACTION1 @30 // ~So be it.~
+  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
+  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
+  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
+  SAY SELECT_ACTION5 @34 //~Come with me.~
+  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
+  SAY CRITICAL_HIT @37 // ~Ahaha!~
+  SAY CRITICAL_MISS @38 // ~Oh bugger!~
+  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+END 
+
+LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+BEGIN ~Arcane Archer / Mage~ DESIGNATED 1103
+SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
+REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
+LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
+
+COPY ~Emily/creatures/X3milyAM.cre~ ~override/X3mily.cre~
+  SAY NAME1 @1 //~Emily~
+  SAY NAME2 @1 //~Emily~
+  WRITE_ASCII 0x248 ~X3mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~We've got to get out of here.~
+  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
+  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
+  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
+  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
+  SAY LEADER @8 // ~Come with me.~
+  SAY TIRED @9 // ~I need to sit down, just for a bit.~
+  SAY BORED @10 // ~Some excitement would be welcome.~
+  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
+  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~Agh~
+  SAY DYING @17 // ~Not like this...~
+  SAY HURT @18 // ~Damn, I need some healing.~
+  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
+  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
+  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
+  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
+  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
+  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
+  SAY SELECT_COMMON4 @27 // ~Something you need?~
+  SAY SELECT_COMMON5 @28 // ~Well met.~
+  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
+  SAY SELECT_ACTION1 @30 // ~So be it.~
+  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
+  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
+  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
+  SAY SELECT_ACTION5 @34 //~Come with me.~
+  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
+  SAY CRITICAL_HIT @37 // ~Ahaha!~
+  SAY CRITICAL_MISS @38 // ~Oh bugger!~
+  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+
+ACTION_IF GAME_INCLUDES ~SOD~
+THEN BEGIN
+COPY ~Emily/creatures/SoD/X32milyM.cre~ ~override/X32mily.cre~
+  SAY NAME1 ~Emily~
+  SAY NAME2 ~Emily~
+  WRITE_ASCII 0x248 ~X32mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X32mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~We've got to get out of here.~
+  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
+  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
+  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
+  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
+  SAY LEADER @8 // ~Come with me.~
+  SAY TIRED @9 // ~I need to sit down, just for a bit.~
+  SAY BORED @10 // ~Some excitement would be welcome.~
+  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
+  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~Agh~
+  SAY DYING @17 // ~Not like this...~
+  SAY HURT @18 // ~Damn, I need some healing.~
+  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
+  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
+  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
+  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
+  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
+  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
+  SAY SELECT_COMMON4 @27 // ~Something you need?~
+  SAY SELECT_COMMON5 @28 // ~Well met.~
+  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
+  SAY SELECT_ACTION1 @30 // ~So be it.~
+  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
+  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
+  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
+  SAY SELECT_ACTION5 @34 //~Come with me.~
+  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
+  SAY CRITICAL_HIT @37 // ~Ahaha!~
+  SAY CRITICAL_MISS @38 // ~Oh bugger!~
+  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+END 
+
+LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+BEGIN ~Arcane Archer~ DESIGNATED 1104
+SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
+REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
+LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
+
+COPY ~SkitiaNPCs/cre/X3EmiA.cre~ ~override/X3Emi.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+
+COPY ~SkitiaNPCs/cre/X3EmiA25.cre~ ~override/X3Emi25.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi25~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi25~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa~))  
+
+LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+
+BEGIN ~Arcane Archer / Mage~ DESIGNATED 1105
+SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
+REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
+LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
+
+COPY ~SkitiaNPCs/cre/X3EmiM.cre~ ~override/X3Emi.cre~
+  SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+
+COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
+   SAY NAME1 @522
+  SAY NAME2 @522
+  WRITE_ASCII 0x248 ~X3Emi25~ #8  //override script
+  WRITE_ASCII 0x280 ~X3Emi~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3Emi25~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~X3EmiM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~X3EmiL~ #8   //medium portrait
+  SAY BIO @523
+  SAY MORALE @524
+  SAY HAPPY @525
+  SAY UNHAPPY_ANNOYED @526
+  SAY UNHAPPY_SERIOUS @527
+  SAY UNHAPPY_BREAKING_POINT ~~ // Emily only leaves if approval hits -99.
+  SAY LEADER @529
+  SAY TIRED @530
+  SAY BORED @531
+  SAY BATTLE_CRY1 @532
+  SAY BATTLE_CRY2 @533
+  SAY BATTLE_CRY3 @534
+  SAY BATTLE_CRY4 @535
+  SAY BATTLE_CRY5 @536
+  SAY DAMAGE ~~ [Emildama]
+  SAY DYING @538
+  SAY HURT @539
+  SAY AREA_FOREST @540
+  SAY AREA_CITY @541
+  SAY AREA_DUNGEON @542
+  SAY AREA_DAY @543
+  SAY AREA_NIGHT @544
+  SAY SELECT_COMMON1 @545
+  SAY SELECT_COMMON2 @546
+  SAY SELECT_COMMON3 @547
+  SAY SELECT_COMMON4 @548
+  SAY SELECT_COMMON5 @549
+  SAY SELECT_COMMON6 @550
+  SAY SELECT_ACTION1 @551
+  SAY SELECT_ACTION2 @552
+  SAY SELECT_ACTION3 @553
+  SAY SELECT_ACTION4 @554
+  SAY SELECT_ACTION5 @555
+  SAY SELECT_ACTION6 @556
+  SAY SELECT_ACTION7 @557
+  SAY CRITICAL_HIT @558
+  SAY CRITICAL_MISS @559
+  SAY TARGET_IMMUNE @560
+  SAY INVENTORY_FULL @561 
+  SAY SPELL_DISRUPTED @562
+  SAY SET_A_TRAP ~~ []
+  SAY HIDDEN_IN_SHADOWS @563
+  SAY PICKED_POCKET ~~ []
+  SAY SELECT_RARE1 @633
+  SAY SELECT_RARE2 @634
+  SAY REACT_TO_DIE_GENERAL @564
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+
+LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~ DESIGNATED 2001
+REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
+INCLUDE ~ArtisansKitpack/lib/berserkerminsc.tpa~
+
+BEGIN ~Artisan's Kitpack: Give Ajantis the Divine Champion Kit~ DESIGNATED 3101
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~AJANTIS~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+      	// do things here
+      END
+      BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Make Mazzy a Divine Champion~ DESIGNATED 3102
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3001~ ~The Divine Champion Kit must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~NPBOW.ITM~ THEN BEGIN
+COPY_EXISTING ~NPBOW.ITM~ ~OVERRIDE~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+      READ_SHORT    0x1C type //reads the byte containing item type
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
+    END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~NPSW01.ITM~ THEN BEGIN
+COPY_EXISTING ~NPSW01.ITM~ ~OVERRIDE~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+      READ_SHORT    0x1C type //reads the byte containing item type
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
+    END
+
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~MAZZY~) BEGIN
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~PALADIN~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0DC~))
+    REMOVE_MEMORIZED_SPELL ~SPIN827~
+    REMOVE_KNOWN_SPELL ~SPIN827~
+      END
+		BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Give Cernd the Elementalist Kit~ DESIGNATED 5101
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5001~ ~The Elementalist Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~CERND~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ELEM~))
+      	// do things here
+      END
+      BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Red Wizard Mage Kit for Edwin~
+REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
+INCLUDE ~ArtisansKitpack/lib/redwizard.tpa~
+
+BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+COPY ~ArtisansKitpack/THIEF/ASSASSIN/MONTARON~ ~OVERRIDE~
+
+BEGIN ~Artisan's Kitpack: Make Imoen a Rogue Archer~ DESIGNATED 7101
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
+  REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ADVENT~))
+		    SET_BG2_PROFICIENCY 102 0
+		    SET_BG2_PROFICIENCY 105 2
+      	// do things here
+      END
+      BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Make Imoen a Trickster~ DESIGNATED 7102
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
+  REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF ((~%dv%~ STR_EQ ~IMOEN~) OR (~%dv%~ STR_EQ ~IMOEN2~)) BEGIN
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRICKS~))
+		ADD_MEMORIZED_SPELL ~C0TR#29Z~ #0 ~innate~
+		LPF ADD_CRE_EFFECT INT_VAR opcode = 206 timing = 9 target = 2 STR_VAR resource = C0TR#04 END
+      	// do things here
+      END
+      BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Give Hexxat the Invisible Blade Kit~ DESIGNATED 7104
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7005~ ~The Invisible Blade Kit must be installed.~
+ ACTION_FOR_EACH hexxat IN ohhex8 ohhex9 ohhex10 ohhex11 ohhex13 ohhex15 ohhex25 BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%hexxat%.cre~ THEN BEGIN
+    COPY_EXISTING ~%hexxat%.cre~ ~override~
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_INVISIBLE_BLADE~))
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex8.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex8.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex9.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex9.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex10.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex10.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex11.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex11.cre~ ~override~
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 2 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex13.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex13.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex15.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex15.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+	ACTION_IF FILE_EXISTS_IN_GAME ~ohhex25.cre~ THEN BEGIN
+    COPY_EXISTING ~ohhex25.cre~ ~override~
+		SET_BG2_PROFICIENCY 90 0 // long sword
+		SET_BG2_PROFICIENCY 91 0 // short sword
+		SET_BG2_PROFICIENCY 96 3 // dagger
+		SET_BG2_PROFICIENCY 115 0 // club
+		SET_BG2_PROFICIENCY 113 0 // single weapon
+		SET_BG2_PROFICIENCY 114 2 // two weapon
+		BUT_ONLY
+		END
+END
+
+BEGIN ~Artisan's Kitpack: Give Jan the Arcane Trickster Kit~ DESIGNATED 21001
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on BG2:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20001~ ~The Elementalist Kit must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~JAN~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0ATR~))
+      	// do things here
+      END
+      BUT_ONLY
+
+BEGIN ~Artisan's Kitpack: Give M'khiin the Warhorn Shaman Kit~ DESIGNATED 9101
+REQUIRE_PREDICATE (GAME_INCLUDES ~sod~) ~This component requires Siege of Dragonspear.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~9001~ ~The Warhorn Shaman Kit must be installed.~
+	  COPY_EXISTING ~bdmkhi7.cre~ ~override~
+	  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0WSHAM~))
+	  WRITE_BYTE 0x24 90
+	  WRITE_BYTE 0x26 90
+	  SET_BG2_PROFICIENCY 92 2
+	  SET_BG2_PROFICIENCY 102 0
+
+BEGIN ~Artisan's Kitpack: Make Rasaad a Sacred Fist~ DESIGNATED 10004
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10003~ ~The Sacred Fist Kit must be installed.~
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on either Baldur's Gate.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rasaad.cre~ THEN BEGIN
+    COPY_EXISTING ~rasaad.cre~ ~override~
+		SET_BG2_PROFICIENCY 94 0 // katana
+		SET_BG2_PROFICIENCY 115 1 // club
+		SET_BG2_PROFICIENCY 95 0 // scimitar
+		SET_BG2_PROFICIENCY 107 1 // sling
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~CLERIC~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_SACRED_FIST~))
+    REMOVE_MEMORIZED_SPELL ~SPCL236~ ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    REMOVE_KNOWN_SPELL ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    ADD_MEMORIZED_SPELL ~SPCL236~ #0 ~INNATE~ (1)
+    ADD_KNOWN_SPELL ~SPPR111~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR101~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR102~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR103~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR104~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR113~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR106~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR107~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR108~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR109~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR110~ #0 ~PRIEST~
+    ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~PRIEST~ (1)
+    LPF DELETE_EFFECT_EX INT_VAR match_savebonus = "-2" END
+		BUT_ONLY
+
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rasaad7.cre~ THEN BEGIN
+    COPY_EXISTING ~rasaad7.cre~ ~override~
+		SET_BG2_PROFICIENCY 94 0 // katana
+		SET_BG2_PROFICIENCY 115 1 // club
+		SET_BG2_PROFICIENCY 95 0 // scimitar
+		SET_BG2_PROFICIENCY 113 1 // singleweapon
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~CLERIC~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_SACRED_FIST~))
+    REMOVE_MEMORIZED_SPELL ~SPCL236~ ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    REMOVE_KNOWN_SPELL ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    ADD_MEMORIZED_SPELL ~SPCL236~ #0 ~INNATE~ (1)
+    ADD_KNOWN_SPELL ~SPPR111~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR101~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR102~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR103~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR104~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR113~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR106~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR107~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR108~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR109~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR110~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR201~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR202~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR203~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR214~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR205~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR206~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR208~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR209~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR210~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR211~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR212~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR213~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR301~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR317~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR315~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR303~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR304~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR313~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR309~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR310~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR306~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR307~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR308~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR311~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR312~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR318~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR402~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR414~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR416~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR401~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR409~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR406~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR415~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR403~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR412~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR417~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR405~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR413~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR404~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR411~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR408~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR407~ #3 ~PRIEST~
+    ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR313~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~PRIEST~ (1)
+    LPF DELETE_EFFECT_EX INT_VAR match_savebonus = "-2" END
+		BUT_ONLY
+
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rasaad8.cre~ THEN BEGIN
+    COPY_EXISTING ~rasaad8.cre~ ~override~
+		SET_BG2_PROFICIENCY 94 0 // katana
+		SET_BG2_PROFICIENCY 115 1 // club
+		SET_BG2_PROFICIENCY 95 0 // scimitar
+		SET_BG2_PROFICIENCY 113 1 // singleweapon
+		SET_BG2_PROFICIENCY 106 0 // dart
+		SET_BG2_PROFICIENCY 101 1 // mace
+		SET_BG2_PROFICIENCY 96 0 // dagger
+//		SET_BG2_PROFICIENCY 100 1 // flail
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~CLERIC~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_SACRED_FIST~))
+    REMOVE_MEMORIZED_SPELL ~SPCL236~ ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    REMOVE_KNOWN_SPELL ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    ADD_MEMORIZED_SPELL ~SPCL236~ #0 ~INNATE~ (1)
+    ADD_KNOWN_SPELL ~SPPR111~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR101~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR102~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR103~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR104~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR113~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR106~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR107~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR108~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR109~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR110~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR201~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR202~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR203~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR214~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR205~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR206~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR208~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR209~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR210~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR211~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR212~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR213~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR301~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR317~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR315~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR303~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR304~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR313~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR309~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR310~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR306~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR307~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR308~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR311~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR312~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR318~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR402~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR414~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR416~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR401~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR409~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR406~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR415~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR403~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR412~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR417~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR405~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR413~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR404~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR411~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR408~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR407~ #3 ~PRIEST~
+    ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR313~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR308~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR417~ #3 ~PRIEST~ (1)
+    LPF DELETE_EFFECT_EX INT_VAR match_savebonus = "-2" END
+		BUT_ONLY
+
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rasaad12.cre~ THEN BEGIN
+        COPY_EXISTING ~rasaad12.cre~ ~override~
+		SET_BG2_PROFICIENCY 94 0 // katana
+		SET_BG2_PROFICIENCY 115 1 // club
+		SET_BG2_PROFICIENCY 95 0 // scimitar
+		SET_BG2_PROFICIENCY 113 1 // singleweapon
+		SET_BG2_PROFICIENCY 106 0 // dart
+		SET_BG2_PROFICIENCY 101 1 // mace
+		SET_BG2_PROFICIENCY 96 0 // dagger
+    SET_BG2_PROFICIENCY 100 1 // flail
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~CLERIC~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_SACRED_FIST~))
+    REMOVE_MEMORIZED_SPELL ~SPCL236~ ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    REMOVE_KNOWN_SPELL ~SPCL237~ ~SPCL238~ ~SPCL239~ ~SPCL815~
+    ADD_MEMORIZED_SPELL ~SPCL236~ #0 ~INNATE~ (1)
+    ADD_KNOWN_SPELL ~SPPR111~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR101~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR102~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR103~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR104~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR113~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR106~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR107~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR108~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR109~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR110~ #0 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR201~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR202~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR203~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR214~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR205~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR206~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR208~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR209~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR210~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR211~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR212~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR213~ #1 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR301~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR317~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR315~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR303~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR304~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR313~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR309~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR310~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR306~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR307~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR308~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR311~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR312~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR318~ #2 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR402~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR414~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR416~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR401~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR409~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR406~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR415~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR403~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR412~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR417~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR405~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR413~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR404~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR411~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR408~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR407~ #3 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR501~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR510~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR507~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR508~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR502~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR503~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR512~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR509~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR514~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR504~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR515~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR513~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR511~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR505~ #4 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR601~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR602~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR603~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR612~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR604~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR609~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR608~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR607~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR613~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR614~ #5 ~PRIEST~
+    ADD_KNOWN_SPELL ~SPPR611~ #5 ~PRIEST~
+    ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~PRIEST~ (3)
+    ADD_MEMORIZED_SPELL ~SPPR108~ #0 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR111~ #0 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR214~ #1 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR212~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR208~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR203~ #1 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR315~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR313~ #2 ~PRIEST~ (2)
+    ADD_MEMORIZED_SPELL ~SPPR308~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR304~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR306~ #2 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR412~ #3 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR417~ #3 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR413~ #3 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR408~ #3 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR514~ #4 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR513~ #4 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR612~ #5 ~PRIEST~ (1)
+    ADD_MEMORIZED_SPELL ~SPPR609~ #5 ~PRIEST~ (1)
+    LPF DELETE_EFFECT_EX INT_VAR match_savebonus = "-2" END
+		BUT_ONLY
+
+END
+
+BEGIN ~Artisan's Kitpack: Make Xan an Eldritch Knight~ DESIGNATED 20002
+  REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~20000~ ~The Eldritch Knight Kit must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~XAN.cre~ THEN BEGIN
+        COPY_EXISTING ~XAN.cre~ ~override~
+    WRITE_SHORT 0x18 5000
+    WRITE_BYTE 0x24 12
+    WRITE_BYTE 0x26 14
+    WRITE_BYTE 0x52 19
+    WRITE_BYTE 0x234 2
+    WRITE_BYTE 0x235 2
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~FIGHTER_MAGE~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0EK~))
+		SET_BG2_PROFICIENCY 90 2 // longsword
+		SET_BG2_PROFICIENCY 113 1 // longsword
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~O#XAN09.cre~ THEN BEGIN
+        COPY_EXISTING ~O#XAN09.cre~ ~override~
+      READ_BYTE 0x273 class
+      PATCH_IF (class = 7) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0EK~))
+      END
+      BUT_ONLY
+        COPY_EXISTING ~O#XAN25.cre~ ~override~
+      READ_BYTE 0x273 class
+      PATCH_IF (class = 7) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0EK~))
+      END
+      BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SW1H13.ITM~ THEN BEGIN
+COPY_EXISTING ~SW1H13.ITM~ ~OVERRIDE~
+WRITE_BYTE 0x1C 20
+WRITE_BYTE 0x31 90
+END
+
+BEGIN ~Artisan's Kitpack: Make Nalia an Arcane Trickster (Sorcerer)~ DESIGNATED 10004
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8004~ ~The Arcane Trickster Sorcerer Kit must be installed.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack_tweak.tp2~ ~8204~ ~The Arcane Trickster Thief Usability Tweaks must be installed.~
+  REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) ~This component must be installed on Baldur's Gate 2.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~nalia8.cre~ THEN BEGIN
+    COPY_EXISTING ~nalia8.cre~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 233 END
+		SET_BG2_PROFICIENCY 91 1
+		SET_BG2_PROFICIENCY 105 1
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~SORCERER~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_ARCANE_TRICKSTER_SORC~))
+    REMOVE_MEMORIZED_SPELLS
+    REMOVE_KNOWN_SPELLS
+    ADD_KNOWN_SPELL ~SPWI106~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI112~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI114~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI114~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI118~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI118~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI110~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI110~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI206~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI206~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI212~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI215~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI215~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI217~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI217~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI303~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI303~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI312~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI307~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI307~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI405~ #3 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI405~ #3 ~WIZARD~ (3)
+    ADD_KNOWN_SPELL ~SPWI412~ #3 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI412~ #3 ~WIZARD~ (3)
+    WRITE_BYTE 0x24 36
+    WRITE_BYTE 0x26 36
+    WRITE_BYTE 0x3ee 7
+    WRITE_BYTE 0x3f0 7
+    WRITE_BYTE 0x3fe 7
+    WRITE_BYTE 0x400 7
+    WRITE_BYTE 0x40e 7
+    WRITE_BYTE 0x410 7
+    WRITE_BYTE 0x41e 5
+    WRITE_BYTE 0x420 5
+    WRITE_BYTE 0x235 1
+    WRITE_BYTE 0x67 0
+    WRITE_BYTE 0x69 0
+    WRITE_BYTE 0x6a 0
+		BUT_ONLY
+
+    COPY_EXISTING ~nalia18.cre~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 233 END
+		SET_BG2_PROFICIENCY 91 1
+		SET_BG2_PROFICIENCY 105 1
+		WRITE_SHORT 0x273 (IDS_OF_SYMBOL (~class~ ~SORCERER~))
+		WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0_ARCANE_TRICKSTER_SORC~))
+    REMOVE_MEMORIZED_SPELLS
+    REMOVE_KNOWN_SPELLS
+    ADD_KNOWN_SPELL ~SPWI106~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI112~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI114~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI114~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI118~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI118~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI110~ #0 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI110~ #0 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI206~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI206~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI212~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI215~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI215~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI217~ #1 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI217~ #1 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI303~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI303~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI312~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI307~ #2 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI307~ #2 ~WIZARD~ (5)
+    ADD_KNOWN_SPELL ~SPWI405~ #3 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI405~ #3 ~WIZARD~ (3)
+    ADD_KNOWN_SPELL ~SPWI412~ #3 ~WIZARD~
+    ADD_MEMORIZED_SPELL ~SPWI412~ #3 ~WIZARD~ (3)
+    WRITE_BYTE 0x24 36
+    WRITE_BYTE 0x26 36
+    WRITE_BYTE 0x52 18
+    WRITE_BYTE 0x54 13
+    WRITE_BYTE 0x55 9
+    WRITE_BYTE 0x56 11
+    WRITE_BYTE 0x57 13
+    WRITE_BYTE 0x58 10
+    WRITE_BYTE 0x3ee 7
+    WRITE_BYTE 0x3f0 7
+    WRITE_BYTE 0x3fe 7
+    WRITE_BYTE 0x400 7
+    WRITE_BYTE 0x40e 7
+    WRITE_BYTE 0x410 7
+    WRITE_BYTE 0x41e 5
+    WRITE_BYTE 0x420 5
+    WRITE_BYTE 0x234 9
+    WRITE_BYTE 0x235 1
+    WRITE_BYTE 0x67 0
+    WRITE_BYTE 0x69 0
+    WRITE_BYTE 0x6a 0
+		BUT_ONLY
+
+END

@@ -233,7 +233,7 @@ CLASS FEATURES:
 – May make 2 unarmed attacks per round.
 – -1 to Speed Factor per 3 levels.
 
-– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -2 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
+– Flurry of Blows: The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -5 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -2 at 13th level.
 
 – The monk's fists deal crushing damage and deal increase damage with level as follows:
   Level 1-2: 1d4
@@ -436,7 +436,6 @@ SAY NAME2 ~Fist +5~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HUMAN_1~)
 WRITE_BYTE 0x54 0
-WRITE_BYTE 0x58 7
 WRITE_BYTE 0x90 1
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#042.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HUMAN_2~)
@@ -446,7 +445,6 @@ WRITE_ASCII 0x94 ~C0MN#042~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#043.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HUMAN_1~)
 WRITE_BYTE 0x54 0
-WRITE_BYTE 0x58 7
 WRITE_ASCII 0x94 ~C0MN#043~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#044.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HUMAN_2~)
@@ -457,7 +455,6 @@ WRITE_ASCII 0x94 ~C0MN#044~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#045.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HALFORC_1~)
 WRITE_BYTE 0x54 0
-WRITE_BYTE 0x58 7
 WRITE_ASCII 0x94 ~C0MN#045~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#046.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_MALE_HALFORC_2~)
@@ -467,7 +464,6 @@ WRITE_ASCII 0x94 ~C0MN#046~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#047.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HALFORC_1~)
 WRITE_BYTE 0x54 0
-WRITE_BYTE 0x58 7
 WRITE_ASCII 0x94 ~C0MN#047~
 COPY_EXISTING ~C0MN#041.EFF~ ~OVERRIDE/C0MN#048.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~MONK_FEMALE_HALFORC_2~)
@@ -478,9 +474,7 @@ WRITE_ASCII 0x94 ~C0MN#048~
 COPY_EXISTING ~C0MN#04.SPL~ OVERRIDE
 SAY NAME1 ~Flurry of Blows~
 SAY UNIDENTIFIED_DESC ~Flurry of Blows
-The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -2 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -1 at 10th level.
-
-Upon reaching 8th level, the monk now makes an additional second attack per round while Flurry of Blows is active. At 10th level, THAC0 penalty decreases to -1.~
+The monk, while unarmed or wielding daggers, may make an additional attack at the same time as their first attack each round at the cost of a -5 penalty to THAC0. This extra attack is not subject to the attacks per round limit and may be toggled at will. THAC0 penalty decreases to -2 at 13th level.~
 
 COPY_EXISTING ~C0MN#04B.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 330 parameter1 = RESOLVE_STR_REF (~Flurry of Blows Active~) END
