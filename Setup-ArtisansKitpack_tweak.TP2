@@ -50,7 +50,7 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
 BEGIN ~Artisan's Kitpack: Mystic Fire - Allow Wands and Mage Scrolls~ DESIGNATED 3202
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3002~ ~The Mystic Fire Paladin Kit must be installed.~
 REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
-INCLUDE ~ArtisansKitpack_tweak/eeex/mystic_fire_items.tpa~
+INCLUDE ~ArtisansKitpack/eeex/mystic_fire_items.tpa~
 
 BEGIN ~Artisan's Kitpack: Trickster - Mimic Mod Kit Abilities (install this after other kits!)~ DESIGNATED 7203
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
@@ -62,4 +62,4 @@ REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
 
 INCLUDE ~ArtisansKitpack/eeex/profs_eeex.tpa~
 
-INCLUDE ~ArtisansKitpack_tweak/eeex/arcane_trickster_items.tpa~
+INCLUDE ~ArtisansKitpack/eeex/arcane_trickster_items.tpa~

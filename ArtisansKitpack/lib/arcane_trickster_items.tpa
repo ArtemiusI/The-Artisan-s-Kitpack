@@ -1,0 +1,137 @@
+ACTION_CLEAR_ARRAY weapprof_cols_at_sorc
+        
+COPY_EXISTING ~weapprof.2da~  ~override~
+  COUNT_2DA_COLS col_count
+  SET col_check = col_count - 1
+  FOR (column = 0; column < col_check; ++column) BEGIN
+    READ_2DA_ENTRY 0 column col_check name
+    PATCH_IF (("C0_ARCANE_TRICKSTER_SORC" STRING_COMPARE_CASE "%name%" = 0)) BEGIN
+      SET column += 1 // row with names has an empty entry for the first column
+      DEFINE_ASSOCIATIVE_ARRAY weapprof_cols_at_sorc BEGIN ~%column%~ => ~%column%~ END
+    END
+  END
+  PATCH_PHP_EACH weapprof_cols_at_sorc AS column => foo BEGIN
+    FOR (row = 8; row < 32; ++row) BEGIN
+      READ_2DA_ENTRY row column col_count stars
+      PATCH_IF (stars = 0) BEGIN
+        SET_2DA_ENTRY 9 column col_count 1
+        SET_2DA_ENTRY 10 column col_count 1
+        SET_2DA_ENTRY 13 column col_count 1
+        SET_2DA_ENTRY 14 column col_count 1
+        SET_2DA_ENTRY 15 column col_count 1
+        SET_2DA_ENTRY 17 column col_count 1
+        SET_2DA_ENTRY 22 column col_count 1
+        SET_2DA_ENTRY 23 column col_count 1
+        SET_2DA_ENTRY 25 column col_count 1
+        SET_2DA_ENTRY 26 column col_count 1
+        SET_2DA_ENTRY 27 column col_count 1
+        SET_2DA_ENTRY 28 column col_count 1
+        SET_2DA_ENTRY 29 column col_count 1
+        SET_2DA_ENTRY 30 column col_count 1
+        SET_2DA_ENTRY 31 column col_count 1
+      END
+    END
+  END
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~C0ATRSO.2da~ THEN BEGIN
+COPY_EXISTING ~C0ATRSO.2DA~ OVERRIDE
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#AT END
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#AT2 END
+COPY_EXISTING ~ArtisansKitpack/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#107 END
+
+END
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_SORC_THIEF_EQUIPMENT" RET value END
+
+OUTER_SET C0_SORC_THIEF_EQUIPMENT = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~)
+
+APPEND ~splprot.2da~ ~C0_SORC_THIEF_EQUIPMENT %C0_SORC_THIEF_EQUIPMENT% 1 1~ UNLESS ~C0_SORC_THIEF_EQUIPMENT %C0_SORC_THIEF_EQUIPMENT% 1 1~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_SORC_THIEF_EQUIPMENT~ BEGIN
+	    SET C0_SORC_THIEF_EQUIPMENT = %row%
+	  END
+	END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 mage_thief //reads the byte containing the fighter usability flag
+    PATCH_IF ((mage_thief BAND 0b00001000) = 0b00000000) AND ((mage_thief BAND 0b00000100) = 0b00000100) BEGIN 
+      READ_BYTE    0x20 row3
+      READ_SHORT    0x31 proficiency 
+      PATCH_IF (proficiency = 0) BEGIN
+        WRITE_BYTE    0x20 (row3 BAND 0b11111011)
+      END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_SORC_THIEF_EQUIPMENT timing = 2 power = 2 special = RESOLVE_STR_REF (~Mage~) END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#AT1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#AT1 END
+
+COPY_EXISTING ~ArtisansKitpack/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT1.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~ArtisansKitpack/eeex/profs/C0PR#CL.spl~ ~override/C0PR#AT2.SPL~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#AT1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#AT1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_SORC_THIEF_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
+
+COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#AT1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#AT1 END
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~
+COPY_EXISTING ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~ ~OVERRIDE~
+
+ACTION_FOR_EACH description IN 
+    BGCLATXT
+    CLASTEXT
+    SODCLTXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_ARCANE_TRICKSTER_SORC" BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion.~
+          SPRINT new_desc ~– Thieving Skills: Pick Pockets, Find Traps, Open Locks, Hide in Shadows, Move Silently, Detect Illusion.
+– May wear armor up to studded leather.
+– May use the following weapons: long sword, short sword, katana, scimitar, dagger, club, quarterstaff, crossbow, shortbow, dart, sling.~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
