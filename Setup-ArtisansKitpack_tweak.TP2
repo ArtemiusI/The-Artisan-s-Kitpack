@@ -60,6 +60,6 @@ BEGIN ~Artisan's Kitpack: Arcane Trickster (Sorcerer) - Enable Thief Equipment~ 
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8004~ ~The Arcane Trickster Sorcerer Kit must be installed.~
 REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
 
-INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
+INCLUDE ~ArtisansKitpack/eeex/profs_eeex.tpa~
 
 INCLUDE ~ArtisansKitpack_tweak/eeex/arcane_trickster_items.tpa~

@@ -116,8 +116,23 @@ END
 	
 // ARCHER - HIT DIE
 COPY_EXISTING ~hpclass.2da~ OVERRIDE
-REPLACE_TEXTUALLY CASE_INSENSITIVE ~ARCHER              HPWAR~ ~FERALAN              HPARCH~
-REPLACE_TEXTUALLY CASE_INSENSITIVE ~FERALAN              HPWAR~ ~FERALAN              HPARCH~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~FERALAN~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~HPARCH~
+	  END
+	END
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ARCHER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 0 cols ~FERALAN~
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~HPARCH~
+	  END
+	END
   
 // ARCHER - HLA
   COPY_EXISTING ~luabbr.2da~ ~override~
