@@ -22,15 +22,26 @@ BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (insta
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2012~ ~The Beastmaster Overhaul must be installed.~
 INCLUDE ~ArtisansKitpack/lib/beastmaster-items.tpa~
 
-BEGIN ~Artisan's Kitpack: Dreadnought - Set Dreadnought to 1 APR (install this if the Dreadnought is getting bonus APR from other mods)~ DESIGNATED 1209
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1009~ ~The Dreadnought must be installed.~
+BEGIN ~Artisan's Kitpack: Dreadnought - Set Dreadnought and Siegemaster to 1 APR (install this if the Dreadnought or Siegemaster is getting bonus APR from other mods)~ DESIGNATED 1209
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1009~ OR MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1008~) ~The Dreadnought or Siegemaster must be installed.~
 
-  COPY_EXISTING ~clswpbon.2da~ ~override~
+COPY_EXISTING ~clswpbon.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
 	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~C0_DREADNOUGHT~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols 0
+	  END
+	END
+
+COPY_EXISTING ~clswpbon.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~C0_SIEGEMASTER~ BEGIN
 	    SET patch_row = %row%
 		SET_2DA_ENTRY (%patch_row%) 1 cols 0
 	  END
@@ -49,6 +60,6 @@ BEGIN ~Artisan's Kitpack: Arcane Trickster (Sorcerer) - Enable Thief Equipment~ 
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~8004~ ~The Arcane Trickster Sorcerer Kit must be installed.~
 REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
 
-INCLUDE ~ArtisansKitpack/eeex/profs_eeex.tpa~
+INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
 
 INCLUDE ~ArtisansKitpack_tweak/eeex/arcane_trickster_items.tpa~
