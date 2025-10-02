@@ -363,6 +363,31 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	END
 
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#111 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#112 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#113 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#114 END
+
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_89% STR_VAR  match_resource = c0fig04a resource = C0PR#89 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_90% STR_VAR  match_resource = c0fig04b resource = C0PR#90 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_91% STR_VAR  match_resource = c0fig04c resource = C0PR#91 END
@@ -916,6 +941,13 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYCLUB END
         LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCLUB timing = 2 power = 3 END
       END
+      PATCH_IF (type = 5) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
+                                        ) BEGIN // if it is arrows
+        WRITE_BYTE    0x1E (row1 BAND 0b00111111) 
+        WRITE_BYTE    0x1F (row2 BAND 0b00000000)
+        WRITE_BYTE    0x20 (row3 BAND 0b10000000)
+        WRITE_BYTE    0x21 (row4 BAND 0b10111111)
+      END
 		LPF DELETE_EFFECT
 			INT_VAR
 				match_opcode = 319
@@ -931,6 +963,19 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     END
   END
 BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 thief //reads the byte containing the thief usability flag
+    PATCH_IF ((thief BAND 0b01000000) = 0b00000000) BEGIN // if it is usable by thieves
+      READ_BYTE    0x1F cthief //reads the byte containing cleric/thieves usability flag
+      READ_SHORT    0x1C type //reads the byte containing item type
+      PATCH_IF (type = 5) BEGIN // if it is arrows
+        WRITE_BYTE    0x1F (thief BAND 0b11111101)  // makes usable by cleric/thieves
+      END
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 STR_VAR resource = C0PR#CL END
