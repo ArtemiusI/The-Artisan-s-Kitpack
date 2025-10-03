@@ -199,7 +199,7 @@ The archer makes a debilitating shot targeted at their opponent's limbs and vita
  16th level: +2 bonus unmitigated missile damage on each hit.~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0ARC03.SPL~ BEGIN
-COPY ~%MOD_FOLDER%/Ranger/Archer/spells/rapidshot~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/spells/rapidshot~ ~OVERRIDE~
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Rapid Shot~) STR_VAR bam_file = C0ARC03I RET C0ARC03I = icon END
 
