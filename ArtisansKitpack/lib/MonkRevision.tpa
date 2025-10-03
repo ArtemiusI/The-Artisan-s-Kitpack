@@ -498,6 +498,54 @@ SAY NAME1 ~Stunning Blow~
 SAY UNIDENTIFIED_DESC ~Stunning Blow
 The monk sacrifices four points of THAC0 and damage for their next successful attack within 10 seconds. When struck, the target must make a Save vs. Death (-1 modifier per point of Wisdom above 14) or be stunned for three rounds.~
 
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00B.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 8 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00B END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00C.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 7 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00C END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00D.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 6 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00D END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00E.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 5 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00E END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00F.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 4 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00F END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00G.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 3 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00G END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00H.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 2 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00H END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00I.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 1 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00I END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00J.SPL~
+LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 0 END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00J END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00K.SPL~
+LPF ALTER_EFFECT_EX INT_VAR match_opcode = 0 STR_VAR parameter1_ex = ~"-1"~ END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00K END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00L.SPL~
+LPF ALTER_EFFECT_EX INT_VAR match_opcode = 0 STR_VAR parameter1_ex = ~"-2"~ END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00L END
+
+COPY_EXISTING ~C0MN#00A.SPL~ ~OVERRIDE/C0MN#00M.SPL~
+LPF ALTER_EFFECT_EX INT_VAR match_opcode = 0 STR_VAR parameter1_ex = ~"-3"~ END
+LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = C0MN#00M END
+
 COPY_EXISTING ~C0MN#01A.SPL~ ~OVERRIDE/C0MN#01B.SPL~
 LPF ALTER_EFFECT INT_VAR match_opcode = 248 STR_VAR resource = C0MN#01B END
 
