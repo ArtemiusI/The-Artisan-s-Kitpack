@@ -1,0 +1,26 @@
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0BAR#1X.SPL~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/effects/toughness~ ~override~
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Toughness~) STR_VAR bam_file = c0bari01 RET c0bari01 = icon END
+
+COPY_EXISTING ~C0BAR#1X.SPL~ ~OVERRIDE~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0bari01 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 98 special = c0bari01 END
+
+END

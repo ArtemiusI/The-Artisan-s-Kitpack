@@ -1,6 +1,10 @@
 COPY ~%MOD_FOLDER%/MonkRevision/Brawler/2das~ ~override~
 COPY ~%MOD_FOLDER%/MonkRevision/Brawler/spells~ ~override~
 
+INCLUDE ~%MOD_FOLDER%/effects/toughness.tpa~
+
+INCLUDE ~%MOD_FOLDER%/effects/fortitude.tpa~
+
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~K_MN_HO.2DA~ THEN BEGIN
 COPY ~%MOD_FOLDER%/MonkRevision/K_MN_HO~ OVERRIDE
 END
@@ -40,21 +44,24 @@ LAF ADD_KIT_EX
 
 Advantages:
 – May be of any alignment.
-– Gains +5% to slashing, piercing, crushing and missile resistance every 5 levels up to a maximum of +40% at 40th level.
 – +1 to hit and damage rolls with unarmed attacks every 4 levels.
 – +1 bonus to critical hit modifiers with unarmed attacks every 5 levels.
+– Fortitude: The Brawler is healed for one hit point each time they take damage.
+– Gains the Toughness passive ability.
+
+TOUGHNESS: The brawler gains 5% physical damage reduction. This bonus is doubled when the brawler falls below 50% maximum hit points.
+
 – May use the Brawling Stance ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 
-BRAWLING STANCE: All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration.
+BRAWLING STANCE: All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration. Additionally, the brawler is healed for two additional hit points each time they take damage.
 
-– 10th level: Gains the Rejuvenation passive effect.
-
-REJUVENATION: When the brawler falls below 25% of their maximum hit points, they rapidly regenerate for 3 hit points per second for 30 seconds. This may only occur once per eight hours.
-
+– 6th level: Toughness base physical resistance increased to 10%. The brawler regenerates 1 hit point per three seconds when below 50% maximum hit points.
 – 14th level: Gains the Crushing Blow passive effect.
 
 CRUSHING BLOW: The Brawler's critical hits reduce the target's crushing resistance by a cumulative 25% for 2 rounds and stun the target for 3 seconds.
 
+– 15th level: The brawler gains an additional attack per round whilst in Brawling Stance.
+– 16th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
 – 20th level: Gains a +4 bonus to damage with unarmed attacks.
 – Hit Die: d12
 
@@ -156,7 +163,7 @@ END
 COPY_EXISTING ~C0BRW01.SPL~ ~OVERRIDE~
 SAY NAME1 ~Brawling Stance~
 SAY UNIDENTIFIED_DESC ~Brawling Stance
-All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration. From 15th level onwards, the Brawler gains an additional attack per round.~
+All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration. Additionally, the brawler is healed for two additional hit points each time they take damage. From 15th level onwards, the Brawler gains an additional attack per round.~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
 

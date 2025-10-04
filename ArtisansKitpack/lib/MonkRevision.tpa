@@ -22,6 +22,13 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0AK#EX END // FLURRY OF BLOWS
         PRETTY_PRINT_2DA
+
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "C0_BRAWLER")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0MN#13 END // FLURRY OF BLOWS
+        PRETTY_PRINT_2DA
+      END
 	  
       BUT_ONLY
       END
@@ -50,7 +57,8 @@ ACTION_FOR_EACH description IN
           SPRINT new_brawler_1 ~– May not use Wholeness of Body.~
           SPRINT old_brawler_2 ~– Does not gain Magic Resistance.
 – Does not gain immunity to disease, slow, haste, charm, poison or non-magical weapons.~
-          SPRINT new_brawler_2 ~– Does not gain Still Mind, Purity of Body, Diamond Body, Diamond Soul or Perfect Self.~
+          SPRINT new_brawler_2 ~– Does not gain Wisdom bonuses to Armor Class.
+– Does not gain Still Mind, Purity of Body, Diamond Body, Diamond Soul or Perfect Self.~
           GET_STRREF %brawler_desc% brawler_text
           INNER_PATCH_SAVE brawler_text ~%brawler_text%~ BEGIN
             REPLACE_TEXTUALLY ~%old_brawler_1%~ ~%new_brawler_1%~

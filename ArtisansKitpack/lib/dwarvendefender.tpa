@@ -1,6 +1,8 @@
 COPY ~%MOD_FOLDER%/Fighter/DwarvenDefender/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/DwarvenDefender/spells~ ~OVERRIDE~
 
+INCLUDE ~%MOD_FOLDER%/effects/fortitude.tpa~
+
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~DWARVEN_DEFENDER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~DWARVEN DEFENDER: The Dwarven Defender is a formidable warrior that is reputed to be worth two soldiers of any other race. Trained extensively in the art of dwarven warfare, a handful of these stout fighters can render a defensive line all but unbreakable. 

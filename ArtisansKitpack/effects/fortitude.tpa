@@ -1,0 +1,5 @@
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0DWD00A.SPL~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/effects/fortitude~ ~override~
+
+END

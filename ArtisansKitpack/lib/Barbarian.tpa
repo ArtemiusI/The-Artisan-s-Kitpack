@@ -3,29 +3,12 @@ COPY ~%MOD_FOLDER%/Fighter/Barbarian/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/bams~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/SPELLS~ ~OVERRIDE~
 
+INCLUDE ~%MOD_FOLDER%/effects/toughness.tpa~
+
 APPEND ~STATE.IDS~ // STUN, PANIC, BERSERK, CHARM, FEEBLEMIND, CONFUSED
   ~0x8010202f C0_BARB_STATUS~
   UNLESS ~C0_BARB_STATUS~
   
-// ICONS
-
-DEFINE_ACTION_FUNCTION cd_new_portrait_icon
-  INT_VAR string = 0
-  STR_VAR bam_file = "****"
-  RET     icon
-  BEGIN
-
-  COPY_EXISTING ~statdesc.2da~ ~override~
-    COUNT_2DA_ROWS 3 count
-    READ_2DA_ENTRY (count - 1) 0 3 icon
-    SET icon += 1
-
-  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
-
-END
-
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Toughness~) STR_VAR bam_file = c0bari01 RET c0bari01 = icon END
-
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
 
@@ -57,10 +40,6 @@ INDOMITABLE WILL: When the barbarian is afflicted with any of the following affl
 – 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
 – Hit Die: d12~
 	
-COPY ~%MOD_FOLDER%/Fighter/Barbarian/SPELLS/C0BAR#1X.SPL~ ~OVERRIDE~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = c0bari01 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 98 special = c0bari01 END
-
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/spells/c0bar#03.eff~ ~override~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~STATE~ ~C0_BARB_STATUS~)
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/spells/c0bar#06.spl~ ~override~
