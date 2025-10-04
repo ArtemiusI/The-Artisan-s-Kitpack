@@ -1,0 +1,185 @@
+COPY_EXISTING ~MXSPLPAL.2da~ ~override~
+  SET paladin_l5_spl = 0
+  SET paladin_l6_spl = 0
+  SET paladin_l7_spl = 0
+  COUNT_2DA_COLS col_count
+  COUNT_2DA_ROWS col_count row_count
+	PATCH_IF (col_count > 5) AND (row_count > 40) BEGIN
+    READ_2DA_ENTRY 40 5 col_count pal_l5_spl
+	PATCH_IF (pal_l5_spl > 0) BEGIN
+    SET paladin_l5_spl = 1
+END
+END
+	PATCH_IF (col_count > 6) AND (row_count > 40) BEGIN
+    READ_2DA_ENTRY 40 6 col_count pal_l6_spl
+	PATCH_IF (pal_l6_spl > 0) BEGIN
+    SET paladin_l6_spl = 1
+END
+END
+	PATCH_IF (col_count > 7) AND (row_count > 40) BEGIN
+    READ_2DA_ENTRY 40 7 col_count pal_l7_spl
+	PATCH_IF (pal_l6_spl > 0) BEGIN
+    SET paladin_l7_spl = 1
+END
+END
+BUT_ONLY
+
+ACTION_IF paladin_l5_spl = 1 BEGIN
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0MF" BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~<MF_LEVEL5>~
+          SPRINT new_desc ~ Level 5: Spell Immunity, Oracle, Sunfire, Cone of Cold
+~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  
+COPY_EXISTING ~C0MF#4.SPL~ ~OVERRIDE~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF501 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF502 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF503 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF504 END
+
+ACTION_FOR_EACH mf_l5_spl IN C0MF501 C0MF502 C0MF503 C0MF504 BEGIN
+	COPY_EXISTING ~%mf_l5_spl%.spl~ ~OVERRIDE~
+	WRITE_SHORT 0x1C 2
+END
+
+COPY_EXISTING ~c0mfhl5.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 171 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 21 target = 1 timing = 9 parameter1 = 25 END
+SAY NAME1 ~Arcane Knowledge I~
+SAY NAME2 ~Arcane Knowledge I~
+SAY UNIDENTIFIED_DESC ~Arcane Knowledge
+An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +1 to all Saving Throws and +25 to Lore.~
+
+END
+
+ACTION_IF paladin_l6_spl = 1 BEGIN
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0MF" BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~<MF_LEVEL6>~
+          SPRINT new_desc ~ Level 6: Globe of Invulnerability, Protection from Magical Weapons, Improved Haste, Spell Deflection
+~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  
+COPY_EXISTING ~C0MF#4.SPL~ ~OVERRIDE~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF601 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF602 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF603 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF604 END
+	
+ACTION_FOR_EACH mf_l6_spl IN C0MF601 C0MF602 C0MF603 C0MF604 BEGIN
+	COPY_EXISTING ~%mf_l6_spl%.spl~ ~OVERRIDE~
+	WRITE_SHORT 0x1C 2
+END
+
+COPY_EXISTING ~c0mfhl6.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 171 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 42 target = 1 timing = 9 parameter1 = 1 parameter2 = 16 END
+SAY NAME1 ~Arcane Knowledge II~
+SAY NAME2 ~Arcane Knowledge II~
+SAY UNIDENTIFIED_DESC ~Arcane Knowledge II
+An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining -1 to casting time and one additional Level 5 spell slot.
+
+Requires: Arcane Knowledge I~
+
+END
+
+ACTION_IF paladin_l7_spl = 1 BEGIN
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0MF" BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~<MF_LEVEL7>~
+          SPRINT new_desc ~ Level 7: Limited Wish, Khelben's Warding Whip, Mordenkainen's Sword, Spell Turning
+~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  
+COPY_EXISTING ~C0MF#4.SPL~ ~OVERRIDE~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF701 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF702 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF703 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0MF704 END
+	
+ACTION_FOR_EACH mf_l7_spl IN C0MF701 C0MF702 C0MF703 C0MF704 BEGIN
+	COPY_EXISTING ~%mf_l7_spl%.spl~ ~OVERRIDE~
+	WRITE_SHORT 0x1C 2
+END
+
+COPY_EXISTING ~c0mfhl7.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 171 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 42 target = 1 timing = 9 parameter1 = 1 parameter2 = 32 END
+SAY NAME1 ~Arcane Knowledge III~
+SAY NAME2 ~Arcane Knowledge III~
+SAY UNIDENTIFIED_DESC ~Arcane Knowledge III
+An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +20% to spell duration and one additional Level 6 spell slot.
+
+Requires: Arcane Knowledge II~
+
+END

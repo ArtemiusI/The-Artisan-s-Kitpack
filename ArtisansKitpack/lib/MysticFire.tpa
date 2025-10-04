@@ -1,6 +1,47 @@
 COPY ~%MOD_FOLDER%/Paladin/MysticFire/2da~ ~override~
 COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells~ ~override~
 
+/*
+    READ_2DA_ENTRY 2 5 col_count war_thac0_lv2
+    READ_2DA_ENTRY 3 5 col_count war_thac0_lv3
+    READ_2DA_ENTRY 4 5 col_count war_thac0_lv4
+    READ_2DA_ENTRY 5 5 col_count war_thac0_lv5
+    READ_2DA_ENTRY 6 5 col_count war_thac0_lv6
+    READ_2DA_ENTRY 7 5 col_count war_thac0_lv7
+    READ_2DA_ENTRY 8 5 col_count war_thac0_lv8
+    READ_2DA_ENTRY 9 5 col_count war_thac0_lv9
+    READ_2DA_ENTRY 10 5 col_count war_thac0_lv10
+    READ_2DA_ENTRY 11 5 col_count war_thac0_lv11
+    READ_2DA_ENTRY 12 5 col_count war_thac0_lv12
+    READ_2DA_ENTRY 13 5 col_count war_thac0_lv13
+    READ_2DA_ENTRY 14 5 col_count war_thac0_lv14
+    READ_2DA_ENTRY 15 5 col_count war_thac0_lv15
+    READ_2DA_ENTRY 16 5 col_count war_thac0_lv16
+    READ_2DA_ENTRY 17 5 col_count war_thac0_lv17
+    READ_2DA_ENTRY 18 5 col_count war_thac0_lv18
+    READ_2DA_ENTRY 19 5 col_count war_thac0_lv19
+    READ_2DA_ENTRY 20 5 col_count war_thac0_lv20
+    READ_2DA_ENTRY 21 5 col_count war_thac0_lv21
+    READ_2DA_ENTRY 22 5 col_count war_thac0_lv22
+    READ_2DA_ENTRY 23 5 col_count war_thac0_lv23
+    READ_2DA_ENTRY 24 5 col_count war_thac0_lv24
+    READ_2DA_ENTRY 25 5 col_count war_thac0_lv25
+    READ_2DA_ENTRY 26 5 col_count war_thac0_lv26
+    READ_2DA_ENTRY 27 5 col_count war_thac0_lv27
+    READ_2DA_ENTRY 28 5 col_count war_thac0_lv28
+    READ_2DA_ENTRY 29 5 col_count war_thac0_lv29
+    READ_2DA_ENTRY 30 5 col_count war_thac0_lv30
+    READ_2DA_ENTRY 31 5 col_count war_thac0_lv31
+    READ_2DA_ENTRY 32 5 col_count war_thac0_lv32
+    READ_2DA_ENTRY 33 5 col_count war_thac0_lv33
+    READ_2DA_ENTRY 34 5 col_count war_thac0_lv34
+    READ_2DA_ENTRY 35 5 col_count war_thac0_lv35
+    READ_2DA_ENTRY 36 5 col_count war_thac0_lv36
+    READ_2DA_ENTRY 37 5 col_count war_thac0_lv37
+    READ_2DA_ENTRY 38 5 col_count war_thac0_lv38
+    READ_2DA_ENTRY 39 5 col_count war_thac0_lv39
+    READ_2DA_ENTRY 40 5 col_count war_thac0_lv40
+*/
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -42,7 +83,7 @@ Advantages:
  Level 2: Mirror Image, Web, Melf's Acid Arrow, Invisibility
  Level 3: Fireball, Lightning Bolt, Haste, Minor Spell Deflection
  Level 4: Greater Malison, Fire Shield (Red), Stoneskin, Secret Word
-
+<MF_LEVEL5><MF_LEVEL6><MF_LEVEL7>
 – May use 'Shatter Spell' ability once per day and an additional use every 6 levels thereafter.
  
 SHATTER SPELL: Knights of the Mystic Fire are able to smite spellcasters and disrupt their defensive spells as well as their ability to cast magic. The next attack made by the Mystic Fire within two rounds will dispel the target's combat protections. Additionally, if the target fails a save vs. spells at -2, they suffer 100% spell failure for two rounds.
@@ -342,3 +383,5 @@ SAY UNIDENTIFIED_DESC ~Arcane Knowledge III
 An experienced Mystic Fire Knight develops more knowledge of arcane spells closer to that of an actual wizard, gaining +20% to spell duration and the ability to cast Limited Wish, Mordenkainen's Sword, Khelben's Warding Whip and Spell Turning once per day.
 
 Requires: Arcane Knowledge II~
+
+INCLUDE ~%MOD_FOLDER%/lib/mystic_fire_spells.tpa~
