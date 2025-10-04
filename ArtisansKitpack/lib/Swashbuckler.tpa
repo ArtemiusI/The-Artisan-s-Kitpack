@@ -2,6 +2,8 @@
 COPY ~%MOD_FOLDER%/Thief/Swashbuckler/2DAs~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Thief/Swashbuckler/SPELLS~ ~OVERRIDE~
 
+INCLUDE ~ArtisansKitpack/lib/thac0.tpa~
+
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~SWASHBUCKLER~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~SWASHBUCKLER: This rogue is part acrobat, part swords<PRO_MANWOMAN>, and part wit: the epitome of charm and grace. The swashbuckler embodies the concepts of daring and panache. Favoring agility and wit over brute force, the swashbuckler excels both in combat situations and social interactions, making them a versatile character indeed.
 

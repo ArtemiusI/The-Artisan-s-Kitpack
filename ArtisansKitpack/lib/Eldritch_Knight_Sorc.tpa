@@ -1,5 +1,6 @@
 COPY ~ArtisansKitpack/spells/C0THWAR.SPL~ ~OVERRIDE~
 
+INCLUDE ~ArtisansKitpack/lib/thac0.tpa~
 INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
 
 LAF ADD_KIT_EX

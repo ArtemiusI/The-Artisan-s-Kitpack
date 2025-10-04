@@ -1,3 +1,5 @@
+INCLUDE ~ArtisansKitpack/lib/thac0.tpa~
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1

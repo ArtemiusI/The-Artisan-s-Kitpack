@@ -62,4 +62,7 @@ REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
 
 INCLUDE ~ArtisansKitpack/eeex/profs_eeex.tpa~
 
-INCLUDE ~ArtisansKitpack/eeex/arcane_trickster_items.tpa~
+INCLUDE ~ArtisansKitpack/lib/arcane_trickster_items.tpa~
+
+BEGIN ~Artisan's Kitpack: Adjust kit THAC0 progression to match tweaked THAC0 tables~ DESIGNATED 110000
+INCLUDE ~ArtisansKitpack/lib/thac0.tpa~

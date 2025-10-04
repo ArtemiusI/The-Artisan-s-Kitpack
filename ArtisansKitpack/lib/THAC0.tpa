@@ -1,0 +1,211 @@
+COPY_EXISTING ~THAC0.2da~ ~override~
+  COUNT_2DA_COLS col_count
+    READ_2DA_ENTRY 1 1 col_count war_thac0_lv1
+    READ_2DA_ENTRY 1 2 col_count war_thac0_lv2
+    READ_2DA_ENTRY 1 3 col_count war_thac0_lv3
+    READ_2DA_ENTRY 1 4 col_count war_thac0_lv4
+    READ_2DA_ENTRY 1 5 col_count war_thac0_lv5
+    READ_2DA_ENTRY 1 6 col_count war_thac0_lv6
+    READ_2DA_ENTRY 1 7 col_count war_thac0_lv7
+    READ_2DA_ENTRY 1 8 col_count war_thac0_lv8
+    READ_2DA_ENTRY 1 9 col_count war_thac0_lv9
+    READ_2DA_ENTRY 1 10 col_count war_thac0_lv10
+    READ_2DA_ENTRY 1 11 col_count war_thac0_lv11
+    READ_2DA_ENTRY 1 12 col_count war_thac0_lv12
+    READ_2DA_ENTRY 1 13 col_count war_thac0_lv13
+    READ_2DA_ENTRY 1 14 col_count war_thac0_lv14
+    READ_2DA_ENTRY 1 15 col_count war_thac0_lv15
+    READ_2DA_ENTRY 1 16 col_count war_thac0_lv16
+    READ_2DA_ENTRY 1 17 col_count war_thac0_lv17
+    READ_2DA_ENTRY 1 18 col_count war_thac0_lv18
+    READ_2DA_ENTRY 1 19 col_count war_thac0_lv19
+    READ_2DA_ENTRY 1 20 col_count war_thac0_lv20
+    READ_2DA_ENTRY 1 21 col_count war_thac0_lv21
+    READ_2DA_ENTRY 1 22 col_count war_thac0_lv22
+    READ_2DA_ENTRY 1 23 col_count war_thac0_lv23
+    READ_2DA_ENTRY 1 24 col_count war_thac0_lv24
+    READ_2DA_ENTRY 1 25 col_count war_thac0_lv25
+    READ_2DA_ENTRY 1 26 col_count war_thac0_lv26
+    READ_2DA_ENTRY 1 27 col_count war_thac0_lv27
+    READ_2DA_ENTRY 1 28 col_count war_thac0_lv28
+    READ_2DA_ENTRY 1 29 col_count war_thac0_lv29
+    READ_2DA_ENTRY 1 30 col_count war_thac0_lv30
+    READ_2DA_ENTRY 1 31 col_count war_thac0_lv31
+    READ_2DA_ENTRY 1 32 col_count war_thac0_lv32
+    READ_2DA_ENTRY 1 33 col_count war_thac0_lv33
+    READ_2DA_ENTRY 1 34 col_count war_thac0_lv34
+    READ_2DA_ENTRY 1 35 col_count war_thac0_lv35
+    READ_2DA_ENTRY 1 36 col_count war_thac0_lv36
+    READ_2DA_ENTRY 1 37 col_count war_thac0_lv37
+    READ_2DA_ENTRY 1 38 col_count war_thac0_lv38
+    READ_2DA_ENTRY 1 39 col_count war_thac0_lv39
+    READ_2DA_ENTRY 1 40 col_count war_thac0_lv40
+    READ_2DA_ENTRY 2 1 col_count prs_thac0_lv1
+    READ_2DA_ENTRY 2 2 col_count prs_thac0_lv2
+    READ_2DA_ENTRY 2 3 col_count prs_thac0_lv3
+    READ_2DA_ENTRY 2 4 col_count prs_thac0_lv4
+    READ_2DA_ENTRY 2 5 col_count prs_thac0_lv5
+    READ_2DA_ENTRY 2 6 col_count prs_thac0_lv6
+    READ_2DA_ENTRY 2 7 col_count prs_thac0_lv7
+    READ_2DA_ENTRY 2 8 col_count prs_thac0_lv8
+    READ_2DA_ENTRY 2 9 col_count prs_thac0_lv9
+    READ_2DA_ENTRY 2 10 col_count prs_thac0_lv10
+    READ_2DA_ENTRY 2 11 col_count prs_thac0_lv11
+    READ_2DA_ENTRY 2 12 col_count prs_thac0_lv12
+    READ_2DA_ENTRY 2 13 col_count prs_thac0_lv13
+    READ_2DA_ENTRY 2 14 col_count prs_thac0_lv14
+    READ_2DA_ENTRY 2 15 col_count prs_thac0_lv15
+    READ_2DA_ENTRY 2 16 col_count prs_thac0_lv16
+    READ_2DA_ENTRY 2 17 col_count prs_thac0_lv17
+    READ_2DA_ENTRY 2 18 col_count prs_thac0_lv18
+    READ_2DA_ENTRY 2 19 col_count prs_thac0_lv19
+    READ_2DA_ENTRY 2 20 col_count prs_thac0_lv20
+    READ_2DA_ENTRY 2 21 col_count prs_thac0_lv21
+    READ_2DA_ENTRY 2 22 col_count prs_thac0_lv22
+    READ_2DA_ENTRY 2 23 col_count prs_thac0_lv23
+    READ_2DA_ENTRY 2 24 col_count prs_thac0_lv24
+    READ_2DA_ENTRY 2 25 col_count prs_thac0_lv25
+    READ_2DA_ENTRY 2 26 col_count prs_thac0_lv26
+    READ_2DA_ENTRY 2 27 col_count prs_thac0_lv27
+    READ_2DA_ENTRY 2 28 col_count prs_thac0_lv28
+    READ_2DA_ENTRY 2 29 col_count prs_thac0_lv29
+    READ_2DA_ENTRY 2 30 col_count prs_thac0_lv30
+    READ_2DA_ENTRY 2 31 col_count prs_thac0_lv31
+    READ_2DA_ENTRY 2 32 col_count prs_thac0_lv32
+    READ_2DA_ENTRY 2 33 col_count prs_thac0_lv33
+    READ_2DA_ENTRY 2 34 col_count prs_thac0_lv34
+    READ_2DA_ENTRY 2 35 col_count prs_thac0_lv35
+    READ_2DA_ENTRY 2 36 col_count prs_thac0_lv36
+    READ_2DA_ENTRY 2 37 col_count prs_thac0_lv37
+    READ_2DA_ENTRY 2 38 col_count prs_thac0_lv38
+    READ_2DA_ENTRY 2 39 col_count prs_thac0_lv39
+    READ_2DA_ENTRY 2 40 col_count prs_thac0_lv40
+BUT_ONLY
+
+COPY ~ArtisansKitpack/spells/C0THAC0.spl~ ~override/C0THWAR.spl~
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 54 parameter1 = war_thac0_lv1 END
+LPF ALTER_EFFECT INT_VAR header = 1  match_opcode = 54 parameter1 = war_thac0_lv2 END
+LPF ALTER_EFFECT INT_VAR header = 2  match_opcode = 54 parameter1 = war_thac0_lv3 END
+LPF ALTER_EFFECT INT_VAR header = 3  match_opcode = 54 parameter1 = war_thac0_lv4 END
+LPF ALTER_EFFECT INT_VAR header = 4  match_opcode = 54 parameter1 = war_thac0_lv5 END
+LPF ALTER_EFFECT INT_VAR header = 5  match_opcode = 54 parameter1 = war_thac0_lv6 END
+LPF ALTER_EFFECT INT_VAR header = 6  match_opcode = 54 parameter1 = war_thac0_lv7 END
+LPF ALTER_EFFECT INT_VAR header = 7  match_opcode = 54 parameter1 = war_thac0_lv8 END
+LPF ALTER_EFFECT INT_VAR header = 8  match_opcode = 54 parameter1 = war_thac0_lv9 END
+LPF ALTER_EFFECT INT_VAR header = 9  match_opcode = 54 parameter1 = war_thac0_lv10 END
+LPF ALTER_EFFECT INT_VAR header = 10 match_opcode = 54 parameter1 = war_thac0_lv11 END
+LPF ALTER_EFFECT INT_VAR header = 11 match_opcode = 54 parameter1 = war_thac0_lv12 END
+LPF ALTER_EFFECT INT_VAR header = 12 match_opcode = 54 parameter1 = war_thac0_lv13 END
+LPF ALTER_EFFECT INT_VAR header = 13 match_opcode = 54 parameter1 = war_thac0_lv14 END
+LPF ALTER_EFFECT INT_VAR header = 14 match_opcode = 54 parameter1 = war_thac0_lv15 END
+LPF ALTER_EFFECT INT_VAR header = 15 match_opcode = 54 parameter1 = war_thac0_lv16 END
+LPF ALTER_EFFECT INT_VAR header = 16 match_opcode = 54 parameter1 = war_thac0_lv17 END
+LPF ALTER_EFFECT INT_VAR header = 17 match_opcode = 54 parameter1 = war_thac0_lv18 END
+LPF ALTER_EFFECT INT_VAR header = 18 match_opcode = 54 parameter1 = war_thac0_lv19 END
+LPF ALTER_EFFECT INT_VAR header = 19 match_opcode = 54 parameter1 = war_thac0_lv20 END
+LPF ALTER_EFFECT INT_VAR header = 20 match_opcode = 54 parameter1 = war_thac0_lv21 END
+LPF ALTER_EFFECT INT_VAR header = 21 match_opcode = 54 parameter1 = war_thac0_lv22 END
+LPF ALTER_EFFECT INT_VAR header = 22 match_opcode = 54 parameter1 = war_thac0_lv23 END
+LPF ALTER_EFFECT INT_VAR header = 23 match_opcode = 54 parameter1 = war_thac0_lv24 END
+LPF ALTER_EFFECT INT_VAR header = 24 match_opcode = 54 parameter1 = war_thac0_lv25 END
+LPF ALTER_EFFECT INT_VAR header = 25 match_opcode = 54 parameter1 = war_thac0_lv26 END
+LPF ALTER_EFFECT INT_VAR header = 26 match_opcode = 54 parameter1 = war_thac0_lv27 END
+LPF ALTER_EFFECT INT_VAR header = 27 match_opcode = 54 parameter1 = war_thac0_lv28 END
+LPF ALTER_EFFECT INT_VAR header = 28 match_opcode = 54 parameter1 = war_thac0_lv29 END
+LPF ALTER_EFFECT INT_VAR header = 29 match_opcode = 54 parameter1 = war_thac0_lv30 END
+LPF ALTER_EFFECT INT_VAR header = 30 match_opcode = 54 parameter1 = war_thac0_lv31 END
+LPF ALTER_EFFECT INT_VAR header = 31 match_opcode = 54 parameter1 = war_thac0_lv32 END
+LPF ALTER_EFFECT INT_VAR header = 32 match_opcode = 54 parameter1 = war_thac0_lv33 END
+LPF ALTER_EFFECT INT_VAR header = 33 match_opcode = 54 parameter1 = war_thac0_lv34 END
+LPF ALTER_EFFECT INT_VAR header = 34 match_opcode = 54 parameter1 = war_thac0_lv35 END
+LPF ALTER_EFFECT INT_VAR header = 35 match_opcode = 54 parameter1 = war_thac0_lv36 END
+LPF ALTER_EFFECT INT_VAR header = 36 match_opcode = 54 parameter1 = war_thac0_lv37 END
+LPF ALTER_EFFECT INT_VAR header = 37 match_opcode = 54 parameter1 = war_thac0_lv38 END
+LPF ALTER_EFFECT INT_VAR header = 38 match_opcode = 54 parameter1 = war_thac0_lv39 END
+LPF ALTER_EFFECT INT_VAR header = 39 match_opcode = 54 parameter1 = war_thac0_lv40 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 insert_point = 0 STR_VAR resource = C0THWAR END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0APR14 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0APF14 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0APR08 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0ARF08 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0APR14 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0APF14 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0APR08 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0ARF08 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 6 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 7 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 8 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 9 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 10 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 11 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 12 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 13 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 14 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 15 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 16 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 17 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 18 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 19 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 20 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 21 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 22 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 23 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 24 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 25 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 26 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 27 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 28 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 29 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 30 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 31 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 32 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 33 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 34 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 35 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 36 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 37 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 38 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 39 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+LPF ADD_SPELL_EFFECT INT_VAR header = 40 opcode = 1 parameter1 = 1 target = 1 timing = 9 END
+
+COPY ~ArtisansKitpack/spells/C0THAC0.spl~ ~override/C0THPRS.spl~
+LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 54 parameter1 = prs_thac0_lv1 END
+LPF ALTER_EFFECT INT_VAR header = 1  match_opcode = 54 parameter1 = prs_thac0_lv2 END
+LPF ALTER_EFFECT INT_VAR header = 2  match_opcode = 54 parameter1 = prs_thac0_lv3 END
+LPF ALTER_EFFECT INT_VAR header = 3  match_opcode = 54 parameter1 = prs_thac0_lv4 END
+LPF ALTER_EFFECT INT_VAR header = 4  match_opcode = 54 parameter1 = prs_thac0_lv5 END
+LPF ALTER_EFFECT INT_VAR header = 5  match_opcode = 54 parameter1 = prs_thac0_lv6 END
+LPF ALTER_EFFECT INT_VAR header = 6  match_opcode = 54 parameter1 = prs_thac0_lv7 END
+LPF ALTER_EFFECT INT_VAR header = 7  match_opcode = 54 parameter1 = prs_thac0_lv8 END
+LPF ALTER_EFFECT INT_VAR header = 8  match_opcode = 54 parameter1 = prs_thac0_lv9 END
+LPF ALTER_EFFECT INT_VAR header = 9  match_opcode = 54 parameter1 = prs_thac0_lv10 END
+LPF ALTER_EFFECT INT_VAR header = 10 match_opcode = 54 parameter1 = prs_thac0_lv11 END
+LPF ALTER_EFFECT INT_VAR header = 11 match_opcode = 54 parameter1 = prs_thac0_lv12 END
+LPF ALTER_EFFECT INT_VAR header = 12 match_opcode = 54 parameter1 = prs_thac0_lv13 END
+LPF ALTER_EFFECT INT_VAR header = 13 match_opcode = 54 parameter1 = prs_thac0_lv14 END
+LPF ALTER_EFFECT INT_VAR header = 14 match_opcode = 54 parameter1 = prs_thac0_lv15 END
+LPF ALTER_EFFECT INT_VAR header = 15 match_opcode = 54 parameter1 = prs_thac0_lv16 END
+LPF ALTER_EFFECT INT_VAR header = 16 match_opcode = 54 parameter1 = prs_thac0_lv17 END
+LPF ALTER_EFFECT INT_VAR header = 17 match_opcode = 54 parameter1 = prs_thac0_lv18 END
+LPF ALTER_EFFECT INT_VAR header = 18 match_opcode = 54 parameter1 = prs_thac0_lv19 END
+LPF ALTER_EFFECT INT_VAR header = 19 match_opcode = 54 parameter1 = prs_thac0_lv20 END
+LPF ALTER_EFFECT INT_VAR header = 20 match_opcode = 54 parameter1 = prs_thac0_lv21 END
+LPF ALTER_EFFECT INT_VAR header = 21 match_opcode = 54 parameter1 = prs_thac0_lv22 END
+LPF ALTER_EFFECT INT_VAR header = 22 match_opcode = 54 parameter1 = prs_thac0_lv23 END
+LPF ALTER_EFFECT INT_VAR header = 23 match_opcode = 54 parameter1 = prs_thac0_lv24 END
+LPF ALTER_EFFECT INT_VAR header = 24 match_opcode = 54 parameter1 = prs_thac0_lv25 END
+LPF ALTER_EFFECT INT_VAR header = 25 match_opcode = 54 parameter1 = prs_thac0_lv26 END
+LPF ALTER_EFFECT INT_VAR header = 26 match_opcode = 54 parameter1 = prs_thac0_lv27 END
+LPF ALTER_EFFECT INT_VAR header = 27 match_opcode = 54 parameter1 = prs_thac0_lv28 END
+LPF ALTER_EFFECT INT_VAR header = 28 match_opcode = 54 parameter1 = prs_thac0_lv29 END
+LPF ALTER_EFFECT INT_VAR header = 29 match_opcode = 54 parameter1 = prs_thac0_lv30 END
+LPF ALTER_EFFECT INT_VAR header = 30 match_opcode = 54 parameter1 = prs_thac0_lv31 END
+LPF ALTER_EFFECT INT_VAR header = 31 match_opcode = 54 parameter1 = prs_thac0_lv32 END
+LPF ALTER_EFFECT INT_VAR header = 32 match_opcode = 54 parameter1 = prs_thac0_lv33 END
+LPF ALTER_EFFECT INT_VAR header = 33 match_opcode = 54 parameter1 = prs_thac0_lv34 END
+LPF ALTER_EFFECT INT_VAR header = 34 match_opcode = 54 parameter1 = prs_thac0_lv35 END
+LPF ALTER_EFFECT INT_VAR header = 35 match_opcode = 54 parameter1 = prs_thac0_lv36 END
+LPF ALTER_EFFECT INT_VAR header = 36 match_opcode = 54 parameter1 = prs_thac0_lv37 END
+LPF ALTER_EFFECT INT_VAR header = 37 match_opcode = 54 parameter1 = prs_thac0_lv38 END
+LPF ALTER_EFFECT INT_VAR header = 38 match_opcode = 54 parameter1 = prs_thac0_lv39 END
+LPF ALTER_EFFECT INT_VAR header = 39 match_opcode = 54 parameter1 = prs_thac0_lv40 END
