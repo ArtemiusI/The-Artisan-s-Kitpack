@@ -123,6 +123,9 @@ LPF ALTER_EFFECT INT_VAR header = 36 match_opcode = 54 parameter1 = war_thac0_lv
 LPF ALTER_EFFECT INT_VAR header = 37 match_opcode = 54 parameter1 = war_thac0_lv38 END
 LPF ALTER_EFFECT INT_VAR header = 38 match_opcode = 54 parameter1 = war_thac0_lv39 END
 LPF ALTER_EFFECT INT_VAR header = 39 match_opcode = 54 parameter1 = war_thac0_lv40 END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 parameter1 = 203 parameter2 = 105 timing = 0 duration = 1 insert_point = 0 STR_VAR resource = C0THWAR END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 parameter1 = 209 parameter2 = 105 timing = 0 duration = 1 insert_point = 0 STR_VAR resource = C0THWAR END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 parameter1 = 207 parameter2 = 105 timing = 0 duration = 1 insert_point = 0 STR_VAR resource = C0THWAR END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 insert_point = 0 STR_VAR resource = C0THWAR END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0APR14 END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0APF14 END
