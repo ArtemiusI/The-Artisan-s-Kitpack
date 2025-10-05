@@ -21,6 +21,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       COPY_EXISTING ~%kit_clab%.2DA~ override
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0MN#04 END // FLURRY OF BLOWS
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0AK#EX END // FLURRY OF BLOWS
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 8 STR_VAR f_Entry = AP_C0MN#04Z END // FLURRY OF BLOWS
         PRETTY_PRINT_2DA
 
       PATCH_IF !(

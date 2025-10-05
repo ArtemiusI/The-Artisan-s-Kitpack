@@ -126,10 +126,6 @@ END
 COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03z.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Defensive Fighting Deactivated~) END
 
-
-COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#03e.SPL~ ~OVERRIDE~
-LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Incoming damage negated~) END
-
 COPY ~%MOD_FOLDER%/Fighter/Kensai/SPELLS/C0KN#04.SPL~ ~OVERRIDE~
   LPF ALTER_EFFECT
     INT_VAR
