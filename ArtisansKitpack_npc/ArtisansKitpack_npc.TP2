@@ -595,10 +595,6 @@ BEGIN ~Artisan's Kitpack: Red Wizard Mage Kit for Edwin~
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
 INCLUDE ~ArtisansKitpack/lib/redwizard.tpa~
 
-BEGIN ~Artisan's Kitpack: Make Montaron an Assassin~ DESIGNATED 7103
-  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
-COPY ~ArtisansKitpack/THIEF/ASSASSIN/MONTARON~ ~OVERRIDE~
-
 BEGIN ~Artisan's Kitpack: Make Imoen a Rogue Archer~ DESIGNATED 7101
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
   REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
