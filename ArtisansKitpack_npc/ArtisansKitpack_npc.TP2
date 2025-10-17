@@ -38,10 +38,12 @@ COPY_EXISTING ~KHALID7.CRE~ ~OVERRIDE~
 END
 
 BEGIN ~Arcane Archer~ DESIGNATED 1102
-SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
-REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
+SUBCOMPONENT ~Artisan's Kitpack: Make Skitia's Emily an~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
-REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Emily.tp2~ ~0~) OR (MOD_IS_INSTALLED ~SkitiaNPCs.tp2~ ~0~) ~Skitia's Emily must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~X3mily.cre~ BEGIN
+
 LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
 COPY ~Emily/creatures/X3milyAA.cre~ ~override/X3mily.cre~
   SAY NAME1 @1 //~Emily~
@@ -158,131 +160,10 @@ END
 
 LOAD_TRA ~ArtisansKitpack/tra/%s~
 
-BEGIN ~Arcane Archer / Mage~ DESIGNATED 1103
-SUBCOMPONENT ~Artisan's Kitpack: (BG:EE) Make Skitia's Emily an~
-REQUIRE_PREDICATE (GAME_IS ~BGEE EET~) ~This component must be installed on BG:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
-REQUIRE_COMPONENT ~Emily.tp2~ ~0~ ~Skitia's Emily must be installed.~
-LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
+END
 
-COPY ~Emily/creatures/X3milyAM.cre~ ~override/X3mily.cre~
-  SAY NAME1 @1 //~Emily~
-  SAY NAME2 @1 //~Emily~
-  WRITE_ASCII 0x248 ~X3mily~ #8  //override script
-  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
-  WRITE_ASCII 0x2cc ~X3mily~ #8   //pre-joining dialogue file
-  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
-  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
-  SAY BIO @2 
-  SAY MORALE @3 // ~We've got to get out of here.~
-  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
-  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
-  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
-  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
-  SAY LEADER @8 // ~Come with me.~
-  SAY TIRED @9 // ~I need to sit down, just for a bit.~
-  SAY BORED @10 // ~Some excitement would be welcome.~
-  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
-  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
-  SAY BATTLE_CRY3 @13 // ~Down you go!~
-  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
-  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
-  SAY DAMAGE @16 // ~Agh~
-  SAY DYING @17 // ~Not like this...~
-  SAY HURT @18 // ~Damn, I need some healing.~
-  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
-  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
-  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
-  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
-  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
-  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
-  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
-  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
-  SAY SELECT_COMMON4 @27 // ~Something you need?~
-  SAY SELECT_COMMON5 @28 // ~Well met.~
-  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
-  SAY SELECT_ACTION1 @30 // ~So be it.~
-  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
-  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
-  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
-  SAY SELECT_ACTION5 @34 //~Come with me.~
-  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
-  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
-  SAY CRITICAL_HIT @37 // ~Ahaha!~
-  SAY CRITICAL_MISS @38 // ~Oh bugger!~
-  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
-  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
-  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
-  SAY SET_A_TRAP @42 // ~Finished.~ 
-  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
-  SAY PICKED_POCKET @44 // ~Sorry.~ 
-  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
-  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+ACTION_IF FILE_EXISTS_IN_GAME ~X3Emi.cre~ BEGIN
 
-ACTION_IF GAME_INCLUDES ~SOD~
-THEN BEGIN
-COPY ~Emily/creatures/SoD/X32milyM.cre~ ~override/X32mily.cre~
-  SAY NAME1 ~Emily~
-  SAY NAME2 ~Emily~
-  WRITE_ASCII 0x248 ~X32mily~ #8  //override script
-  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
-  WRITE_ASCII 0x2cc ~X32mily~ #8   //pre-joining dialogue file
-  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
-  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
-  SAY BIO @2 
-  SAY MORALE @3 // ~We've got to get out of here.~
-  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
-  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
-  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
-  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
-  SAY LEADER @8 // ~Come with me.~
-  SAY TIRED @9 // ~I need to sit down, just for a bit.~
-  SAY BORED @10 // ~Some excitement would be welcome.~
-  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
-  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
-  SAY BATTLE_CRY3 @13 // ~Down you go!~
-  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
-  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
-  SAY DAMAGE @16 // ~Agh~
-  SAY DYING @17 // ~Not like this...~
-  SAY HURT @18 // ~Damn, I need some healing.~
-  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
-  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
-  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
-  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
-  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
-  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
-  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
-  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
-  SAY SELECT_COMMON4 @27 // ~Something you need?~
-  SAY SELECT_COMMON5 @28 // ~Well met.~
-  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
-  SAY SELECT_ACTION1 @30 // ~So be it.~
-  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
-  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
-  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
-  SAY SELECT_ACTION5 @34 //~Come with me.~
-  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
-  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
-  SAY CRITICAL_HIT @37 // ~Ahaha!~
-  SAY CRITICAL_MISS @38 // ~Oh bugger!~
-  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
-  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
-  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
-  SAY SET_A_TRAP @42 // ~Finished.~ 
-  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
-  SAY PICKED_POCKET @44 // ~Sorry.~ 
-  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
-  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
-END 
-
-LOAD_TRA ~ArtisansKitpack/tra/%s~
-
-BEGIN ~Arcane Archer~ DESIGNATED 1104
-SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
-REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
-REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
-REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
 LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
 
 COPY ~SkitiaNPCs/cre/X3EmiA.cre~ ~override/X3Emi.cre~
@@ -399,14 +280,132 @@ COPY ~SkitiaNPCs/cre/X3EmiA25.cre~ ~override/X3Emi25.cre~
 
 LOAD_TRA ~ArtisansKitpack/tra/%s~
 
+END
 
-BEGIN ~Arcane Archer / Mage~ DESIGNATED 1105
-SUBCOMPONENT ~Artisan's Kitpack: (BG2:EE) Make Skitia's Emily an~
-REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~This component must be installed on BG2:EE or EET.~
+BEGIN ~Arcane Archer / Mage~ DESIGNATED 1103
+SUBCOMPONENT ~Artisan's Kitpack: Make Skitia's Emily an~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1001~ ~The Arcane Archer/Mage Kit must be installed.~
-REQUIRE_COMPONENT ~SkitiaNPCs.tp2~ ~0~ ~Skitia's NPCs must be installed.~
-LOAD_TRA ~SkitiaNPCs/tra/English/setup.tra~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Emily.tp2~ ~0~) OR (MOD_IS_INSTALLED ~SkitiaNPCs.tp2~ ~0~) ~Skitia's Emily must be installed.~
 
+ACTION_IF FILE_EXISTS_IN_GAME ~X3mily.cre~ THEN BEGIN
+LOAD_TRA ~Emily/tra/English/Emil_bg1.tra~
+
+COPY ~Emily/creatures/X3milyAM.cre~ ~override/X3mily.cre~
+  SAY NAME1 @1 //~Emily~
+  SAY NAME2 @1 //~Emily~
+  WRITE_ASCII 0x248 ~X3mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X3mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~We've got to get out of here.~
+  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
+  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
+  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
+  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
+  SAY LEADER @8 // ~Come with me.~
+  SAY TIRED @9 // ~I need to sit down, just for a bit.~
+  SAY BORED @10 // ~Some excitement would be welcome.~
+  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
+  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~Agh~
+  SAY DYING @17 // ~Not like this...~
+  SAY HURT @18 // ~Damn, I need some healing.~
+  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
+  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
+  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
+  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
+  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
+  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
+  SAY SELECT_COMMON4 @27 // ~Something you need?~
+  SAY SELECT_COMMON5 @28 // ~Well met.~
+  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
+  SAY SELECT_ACTION1 @30 // ~So be it.~
+  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
+  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
+  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
+  SAY SELECT_ACTION5 @34 //~Come with me.~
+  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
+  SAY CRITICAL_HIT @37 // ~Ahaha!~
+  SAY CRITICAL_MISS @38 // ~Oh bugger!~
+  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+
+ACTION_IF GAME_INCLUDES ~SOD~
+THEN BEGIN
+COPY ~Emily/creatures/SoD/X32milyM.cre~ ~override/X32mily.cre~
+  SAY NAME1 ~Emily~
+  SAY NAME2 ~Emily~
+  WRITE_ASCII 0x248 ~X32mily~ #8  //override script
+  WRITE_ASCII 0x280 ~X3mily~ #32  //DV
+  WRITE_ASCII 0x2cc ~X32mily~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~EmilyM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~EmilyL~ #8   //medium portrait
+  SAY BIO @2 
+  SAY MORALE @3 // ~We've got to get out of here.~
+  SAY HAPPY @4 // ~It appears the tales told of your heroism are quite justified.~
+  SAY UNHAPPY_ANNOYED @5 // ~I don't approve of our direction.~
+  SAY UNHAPPY_SERIOUS @6 // ~We need to seriously consider our actions, or I will not be staying with you.~
+  SAY UNHAPPY_BREAKING_POINT @7 // ~I can't stand this any longer. My heart revolts at your lack of care of others!~
+  SAY LEADER @8 // ~Come with me.~
+  SAY TIRED @9 // ~I need to sit down, just for a bit.~
+  SAY BORED @10 // ~Some excitement would be welcome.~
+  SAY BATTLE_CRY1 @11 // ~Come on, come on!~
+  SAY BATTLE_CRY2 @12 // ~We fight, for glory!~
+  SAY BATTLE_CRY3 @13 // ~Down you go!~
+  SAY BATTLE_CRY4 @14 // ~You're in for it now!~
+  SAY BATTLE_CRY5 @15 // ~You'll not be the first to regret crossing me.~
+  SAY DAMAGE @16 // ~Agh~
+  SAY DYING @17 // ~Not like this...~
+  SAY HURT @18 // ~Damn, I need some healing.~
+  SAY AREA_FOREST @19 // ~Hmm, I should have picked up some new boots.~
+  SAY AREA_CITY @20 // ~The estate was always a bit away from towns and cities. This is so...congested.~
+  SAY AREA_DUNGEON @21 // ~Why do dungeons have to be so blasted cold? I'm freezing.~
+  SAY AREA_DAY @22 // ~It's a beautiful day, isn't it?~
+  SAY AREA_NIGHT @23 // ~All sorts of monstrous things under the moonlight. Careful steps.~
+  SAY SELECT_COMMON1 @24 // ~Yes? Is there something you need?~
+  SAY SELECT_COMMON2 @25 // ~Is there something I can do for you?~
+  SAY SELECT_COMMON3 @26 // ~Let's stay together now.~
+  SAY SELECT_COMMON4 @27 // ~Something you need?~
+  SAY SELECT_COMMON5 @28 // ~Well met.~
+  SAY SELECT_COMMON6 @29 //~You have my appreciation.~ 
+  SAY SELECT_ACTION1 @30 // ~So be it.~
+  SAY SELECT_ACTION2 @31 // ~Now this should be interesting.~
+  SAY SELECT_ACTION3 @32 // ~I'll see what I can do.~
+  SAY SELECT_ACTION4 @33 // ~Fair enough~ [AURAh]
+  SAY SELECT_ACTION5 @34 //~Come with me.~
+  SAY SELECT_ACTION6 @35 // ~Sounds fine to me.~
+  SAY SELECT_ACTION7 @36 // ~Hmm, I don't know.~
+  SAY CRITICAL_HIT @37 // ~Ahaha!~
+  SAY CRITICAL_MISS @38 // ~Oh bugger!~
+  SAY TARGET_IMMUNE @39 // ~My attack does nothing!~
+  SAY INVENTORY_FULL @40 // ~I am not a pack mule, you know. Notice I lack long ears and hooves.~
+  SAY SPELL_DISRUPTED @41 // ~No good, my spell failed!~ 
+  SAY SET_A_TRAP @42 // ~Finished.~ 
+  SAY HIDDEN_IN_SHADOWS @43 // ~Time to fade into the background, hmm?~ 
+  SAY PICKED_POCKET @44 // ~Sorry.~ 
+  SAY REACT_TO_DIE_GENERAL @47 //~You'll not get away with their death!~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
+END 
+
+LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~X3Emi.cre~ THEN BEGIN
 COPY ~SkitiaNPCs/cre/X3EmiM.cre~ ~override/X3Emi.cre~
   SAY NAME1 @522
   SAY NAME2 @522
@@ -520,6 +519,35 @@ COPY ~SkitiaNPCs/cre/X3EmiM25.cre~ ~override/X3Emi25.cre~
   WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~c0aa2~))  
 
 LOAD_TRA ~ArtisansKitpack/tra/%s~
+
+END
+
+BEGIN ~Arcane Archer (Ranger)~ DESIGNATED 1104
+SUBCOMPONENT ~Artisan's Kitpack: Make Skitia's Emily an~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2003~ ~The Arcane Archer (Ranger) Kit must be installed.~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Emily.tp2~ ~0~) OR (MOD_IS_INSTALLED ~SkitiaNPCs.tp2~ ~0~) ~Skitia's Emily must be installed.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~X3mily.cre~ THEN BEGIN
+
+COPY_EXISTING ~X3mily.cre~ ~override~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0AA_RANGER~))  
+
+ACTION_IF GAME_INCLUDES ~SOD~
+THEN BEGIN
+COPY_EXISTING ~X32mily.cre~ ~override~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0AA_RANGER~))  
+END 
+
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~X3Emi.cre~ THEN BEGIN
+
+COPY_EXISTING ~X3Emi.cre~ ~override~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0AA_RANGER~))  
+COPY_EXISTING ~X3Emi25.cre~ ~override~
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0AA_RANGER~))  
+
+END
 
 BEGIN ~Artisan's Kitpack: Rashemi Berserker Ranger Kit for Minsc~ DESIGNATED 2001
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
