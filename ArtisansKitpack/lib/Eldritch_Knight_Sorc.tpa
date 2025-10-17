@@ -303,10 +303,9 @@ COPY_EXISTING ~C0EKPM1.EFF~ ~OVERRIDE/C0EKPF6.EFF~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~ANIMATE~ ~FIGHTER_FEMALE_HALFORC~)
 WRITE_BYTE 0x90 1
 WRITE_ASCII 0x94 ~C0EKPF6~
-///////////////////////////////////////////////////////////////////////////
-// Append to SPLPROT.2DA                                                 //
-///////////////////////////////////////////////////////////////////////////
-// Weapon Profs
+
+// Update all imported files so they point in the correct direction.
+
 ACTION_FOR_EACH weapon_prof IN
       89  // BASTARDSWORD
       90  // LONGSWORD
@@ -336,7 +335,6 @@ ACTION_FOR_EACH weapon_prof IN
       APPEND ~splprot.2da~ ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%1~ UNLESS ~prof_%weapon_prof%%TAB%%weapon_prof%%TAB%-1%TAB%1~
     END
 
-// Update all imported files so they point in the correct direction.
 COPY_EXISTING ~splprot.2da~ ~override~
     COUNT_2DA_COLS cols
     READ_2DA_ENTRIES_NOW rows cols

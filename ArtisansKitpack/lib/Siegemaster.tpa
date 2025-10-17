@@ -1,6 +1,48 @@
 COPY ~%MOD_FOLDER%/Fighter/Siegemaster/2das~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/Siegemaster/spells~ ~override~
 
+OUTER_SPRINT kit_description ~SIEGEMASTER: The siegemaster is a heavily armed and armored warrior who specializes in terrifying long-ranged assaults. Wielding the largest and heaviest of ranged weapons with absolute ease, their lethal shots can penetrate even the most durable armors and heavily fortified castles. To the siegemaster, there is no such thing as an 'impenetrable defense'.
+
+Advantages:
+– +1 bonus to hit and damage rolls with ranged weapons on every 2nd level.
+– +50% bonus to missile damage dealt with arrows or bolts, which is increased to +250% if a successful attack has not been made within two rounds.
+– Gains the Armor Penetration and Heavy Draw passive effects.
+
+ARMOR PENETRATION: The siegemaster excels at breaking armor and other impenetrable defenses, dealing an additional point of unmitigated piercing damage per point of Armor Class of the target below 10. Additionally, the siegemaster's critical hits penetrate through 50% of the target's missile resistance.
+
+HEAVY DRAW: The siegemaster's missiles strike with extreme force, stunning the target for 2 seconds and knocking them away slightly. However, after each attack, the Siegemaster's movement rate is briefly slowed by 75%, which cannot be prevented by Free Action.
+
+– 10th level: May use the Longshot ability once per day.
+
+LONGSHOT: The siegemaster becomes a living artillery weapon. For the next two attacks, the siegemaster deals maximum damage, gains +10 to their ranged critical hit modifier and their attacks will no longer critically miss. Additionally, their visual range is greatly increased. However, their movement rate is reduced by 90% while Longshot is active. If an attack is not expended within two rounds, Longshot will automatically expire.
+
+– 15th level: Longshot is now active for the next three attacks.
+– 20th level: Longshot is now active for the next four attacks.
+
+Disadvantages:KIT_DISADV_1
+– May never make more than one attack per round unless Hasted.
+– May not equip any ranged weapons other than bows and crossbows.
+– May not exceed Proficiency (one slot) in weapons other than crossbows and longbows.
+– May not exceed Proficiency (one slot) in any weapon style.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Power Attack, Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -30,29 +72,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~siegemaster~)
 	
-    help          = RESOLVE_STR_REF(~SIEGEMASTER: The siegemaster is a heavily armed and armored warrior who specializes in terrifying long-ranged assaults. Wielding the largest and heaviest of ranged weapons with absolute ease, their lethal shots can penetrate even the most durable armors and heavily fortified castles. To the siegemaster, there is no such thing as an 'impenetrable defense'.
-
-Advantages:
-– +1 bonus to hit and damage rolls with ranged weapons on every 2nd level.
-– +50% bonus to missile damage dealt with arrows or bolts, which is increased to +250% if a successful attack has not been made within two rounds.
-– Gains the Armor Penetration and Heavy Draw passive effects.
-
-ARMOR PENETRATION: The siegemaster excels at breaking armor and other impenetrable defenses, dealing an additional point of unmitigated piercing damage per point of Armor Class of the target below 10. Additionally, the siegemaster's critical hits penetrate through 50% of the target's missile resistance.
-
-HEAVY DRAW: The siegemaster's missiles strike with extreme force, stunning the target for 2 seconds and knocking them away slightly. However, after each attack, the Siegemaster's movement rate is briefly slowed by 75%, which cannot be prevented by Free Action.
-
-– 10th level: May use the Longshot ability once per day.
-
-LONGSHOT: The siegemaster becomes a living artillery weapon. For the next two attacks, the siegemaster deals maximum damage, gains +10 to their ranged critical hit modifier and their attacks will no longer critically miss. Additionally, their visual range is greatly increased. However, their movement rate is reduced by 90% while Longshot is active. If an attack is not expended within two rounds, Longshot will automatically expire.
-
-– 15th level: Longshot is now active for the next three attacks.
-– 20th level: Longshot is now active for the next four attacks.
-
-Disadvantages:
-– May never make more than one attack per round unless Hasted.
-– May not exceed Proficiency (one slot) in weapons other than crossbows and longbows.
-– May not equip any ranged weapons other than bows and crossbows.
-– May not exceed Proficiency (one slot) in any weapon style.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~SIEGEMASTER: The siegemaster is a heavily armed and armored warrior who specializes in terrifying long-ranged assaults. Wielding the largest and heaviest of ranged weapons with absolute ease, their lethal shots can penetrate even the most durable armors and heavily fortified castles. To the siegemaster, there is no such thing as an 'impenetrable defense'.~)
 	
@@ -305,3 +325,4 @@ COPY_EXISTING ~C0SIEG4.SPL~ ~OVERRIDE~
 SAY NAME1 ~Longshot~
 SAY UNIDENTIFIED_DESC ~Longshot
 The siegemaster becomes a living artillery weapon. For the next two attacks, the siegemaster deals maximum damage, gains +10 to their ranged critical hit modifier and their attacks will no longer critically miss. Additionally, their visual range is greatly increased. However, they are unable to move while Longshot is active. If an attack is not expended within two rounds, Longshot will automatically expire.~
+

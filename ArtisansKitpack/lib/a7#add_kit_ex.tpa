@@ -28,7 +28,7 @@ BEGIN
     END ELSE ACTION_IF (severity = 1) BEGIN
       PRINT ~%msg%~
     END ELSE ACTION_IF (severity = 2) BEGIN
-      WARN ~WARNING: %msg%~
+      PRINT ~WARNING: %msg%~
     END ELSE ACTION_IF (severity > 2) BEGIN
       FAIL ~%msg%~
     END

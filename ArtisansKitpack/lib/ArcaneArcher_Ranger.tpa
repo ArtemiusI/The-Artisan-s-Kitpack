@@ -1,0 +1,303 @@
+
+COPY_EXISTING ~C0AA.2DA~ ~OVERRIDE/C0AARN.2DA~
+
+OUTER_SPRINT aa_ranger ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+
+Advantages:
+– +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
+– May achieve Grand Mastery (5 slots) in longbows, shortbows and crossbows.
+– May memorize a small selection of Mage spells:
+ Level 1: Magic Missile, Shield, Reflected Image
+ Level 2: Blur, Melf's Acid Arrow, Ray of Enfeeblement
+ Level 3: Flame Arrow, Protection from Normal Missiles, Melf's Minute Meteors
+RAPID_SHOT
+– Gains the Enhance Arrow ability.
+
+ENHANCE ARROW: The arcane archer passively imbues <PRO_HISHER> arrows with magic. Projectiles launched by the arcane archer are always treated as weapons of +1 enchantment and deal one extra point of magic damage, increasing by one for every five levels gained to a maximum of +5 enchantment and five magic damage at 20th level. Additional damage is affected by the target's magic resistance.
+
+– 3rd level: May use Entropic Shield once per day.
+
+ENTROPIC SHIELD: A magical field glowing with a multicolored hue appears around the arcane archer, providing immunity to normal missiles and a -2 bonus to armor class against missile weapons for 1 round per level. This bonus increases to -4 at 10th level and -6 at 17th level.
+
+– 5th level: May use Imbue Arrow ability three times per day.
+
+IMBUE ARROW: Using arcane magic, the arcane archer enchants <PRO_HISHER> next missile within one round to explode, dealing 1d6 additional fire damage for every five levels gained thereafter in an area of effect.
+
+– 9th level: May use Seeker Arrow ability once per day.
+
+SEEKER ARROW: A skilled arcane archer can enchant <PRO_HISHER> arrows to strike its target unerringly. <PRO_HISHER> next missile attack within one round is a guaranteed critical hit and deals two points of extra damage for every five levels gained thereafter.
+IMPROVED_SHOT
+– 13th level: May use Phase Arrow ability once per day.
+
+PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow within one round to become an incorporeal missile that penetrates armor, dealing 4d6 bonus magical damage and reducing the target's missile resistance by 50% as well as their armor class vs. missiles by two points every five levels gained thereafter for 1 turn.
+
+– 17th level: May use Arrow of Death ability once per day.
+
+ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe. Targets with more than 60 hit points may make a save vs. death to avoid the effect. Saving throw penalty increases by one for every five levels gained thereafter.
+
+Disadvantages:
+– Hit Die: d8
+– THAC0 penalty of 3 when wielding a melee weapon.
+– Race restricted to human, elf or half-elf.SET_TRAPS
+– May not exceed proficiency (one slot) in weapons other than longbows, shortbows and crossbows.
+– May not exceed proficiency (one slot) in any weapon style.
+– May not wear armor heavier than elven chain mail.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE aa_ranger ~%aa_ranger%~ BEGIN
+  REPLACE_TEXTUALLY EXACT_MATCH ~RAPID_SHOT~ ~
+– May use the Rapid Shot modal ability.
+
+RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
+~
+  REPLACE_TEXTUALLY EXACT_MATCH ~IMPROVED_SHOT~ ~
+– 12th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.~
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE aa_ranger ~%aa_ranger%~ BEGIN
+  REPLACE_TEXTUALLY ~RAPID_SHOT~ ~~
+  REPLACE_TEXTUALLY ~IMPROVED_SHOT~ ~~
+END
+
+END
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
+
+OUTER_PATCH_SAVE aa_ranger ~%aa_ranger%~ BEGIN
+  REPLACE_TEXTUALLY ~SET_TRAPS~ ~
+– May not Set Traps.~
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE aa_ranger ~%aa_ranger%~ BEGIN
+  REPLACE_TEXTUALLY ~SET_TRAPS~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 12
+	
+    mixed         = RESOLVE_STR_REF(~Arcane Archer~)
+	
+    lower         = RESOLVE_STR_REF(~arcane archer~)
+	
+    help          = RESOLVE_STR_REF(~%aa_ranger%~)
+	
+    briefdesc     = RESOLVE_STR_REF(~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.~)
+  STR_VAR
+    kit_name      = ~C0AA_RANGER~
+	
+    unusable      = ~0x00008000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 1 1 1 1 1 1~
+	
+    abclasrq      = ~13 15 0 14 14 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    // alignmnt      = ~0 1 1 0 1 1 0 1 1~
+	
+    // dualclas      = ~0 0 0 0 0 0~
+	
+    // luabbr        = ~FI0~
+	
+    stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0AARN.2da~
+	
+    kittable      = ~K_R_H K_R_E K_R_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    hpclass       = ~HPARCH~
+	
+    // numwslot      = ~4~
+	
+    // clascolr = ~27 136 119 21 187~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// traplimt = ~6~
+	
+    bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "C0AA_RANGER") BEGIN
+      READ_2DA_ENTRY 7 col col_count val
+      SET_2DA_ENTRY  7 col col_count 0
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~SPWI112.SPL~ ~OVERRIDE/C0AA101.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI114.SPL~ ~OVERRIDE/C0AA102.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI120.SPL~ ~OVERRIDE/C0AA103.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI201.SPL~ ~OVERRIDE/C0AA201.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI211.SPL~ ~OVERRIDE/C0AA202.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI221.SPL~ ~OVERRIDE/C0AA203.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI303.SPL~ ~OVERRIDE/C0AA301.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI311.SPL~ ~OVERRIDE/C0AA302.SPL~
+WRITE_SHORT 0X1C 2
+COPY_EXISTING ~SPWI325.SPL~ ~OVERRIDE/C0AA303.SPL~
+WRITE_SHORT 0X1C 2
+
+COPY_EXISTING ~C0AARNS.SPL~ ~OVERRIDE~
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA101 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA102 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA103 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA201 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA202 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA203 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA301 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA302 END
+ LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 2 timing = 1 STR_VAR resource = C0AA303 END
+
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~2000~ THEN BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~M_C0RAN1.lua~ THEN BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~C0AARN.2DA~ BEGIN
+COPY_EXISTING ~C0AARN.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "C0AA_RANGER") BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 100
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "C0AA_RANGER") BEGIN
+      READ_2DA_ENTRY 6 col col_count val
+      SET_2DA_ENTRY  6 col col_count 20
+      READ_2DA_ENTRY 3 col col_count val
+      SET_2DA_ENTRY  3 col col_count 20
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+END
+END
+END

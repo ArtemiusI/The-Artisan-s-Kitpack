@@ -992,6 +992,10 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be in
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
 INCLUDE ~%MOD_FOLDER%/lib/Ninja.tpa~
 
+BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
+
 BEGIN ~Artisan's Kitpack: Berserker Overhaul~ DESIGNATED 1003
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Berserker.tpa~
@@ -1035,10 +1039,6 @@ BEGIN ~Artisan's Kitpack: Dreadnought Fighter Kit~ DESIGNATED 1009
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Dreadnought.tpa~
 
-BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
-GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/lib/Fighter.tpa~
-
 BEGIN ~Artisan's Kitpack: Ranger Overhaul~ DESIGNATED 2000
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ranger.tpa~
@@ -1064,6 +1064,11 @@ INCLUDE ~%MOD_FOLDER%/lib/beastmaster.tpa~
 BEGIN ~Artisan's Kitpack: Dark Hunter Ranger Kit~ DESIGNATED 2002
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/darkhunter.tpa~
+
+BEGIN ~Artisan's Kitpack: Arcane Archer (Ranger variant)~ DESIGNATED 2003
+GROUP ~Ranger Kits~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1000~ ~The Arcane Archer Kit must be installed.~
+INCLUDE ~%MOD_FOLDER%/lib/ArcaneArcher_Ranger.tpa~
 
 BEGIN ~Artisan's Kitpack: Paladin Overhaul~ DESIGNATED 3000
 GROUP ~Paladin Kits~

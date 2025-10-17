@@ -1,33 +1,5 @@
-LAF ADD_KIT_EX
-  INT_VAR
-    // Mage	= 1
-	// Fighter = 2
-	// Cleric = 3
-	// Thief = 4
-	// Bard = 5
-	// Paladin = 6
-	// Fighter/Mage = 7
-	// Fighter/Cleric = 8
-	// Fighter/Thief = 9
-	// Fighter/Mage/Thief = 10
-	// Druid = 11
-	// Ranger = 12
-	// Mage/Thief = 13
-	// Cleric/Mage = 14
-	// Cleric/Thief = 15
-	// Fighter/Druid = 16
-	// Fighter/Mage/Cleric = 17
-	// Cleric/Ranger = 18
-	// Sorcerer = 19
-	// Monk = 20
-	// Shaman = 21
-    kit_class     = 7
-	
-    mixed         = RESOLVE_STR_REF(~Arcane Archer / Mage~)
-	
-    lower         = RESOLVE_STR_REF(~arcane archer / mage~)
-	
-    help          = RESOLVE_STR_REF(~ARCANE ARCHER/MAGE: This character can use the abilities of an Arcane Archer and a Mage, though they cannot cast spells while wearing armor.
+
+OUTER_SPRINT kit_description ~ARCANE ARCHER/MAGE: This character can use the abilities of an Arcane Archer and a Mage, though they cannot cast spells while wearing armor.
 
 ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army.
 
@@ -60,11 +32,59 @@ PHASE ARROW: An experienced arcane archer can enchant <PRO_HISHER> next arrow wi
 ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow within one round to instantly slay <PRO_HISHER> foe on a failed save vs. death. Target's saving throw penalty is increased by one for every 5 levels gained thereafter.
 
 Disadvantages:
-– THAC0 penalty of 2 when wielding a melee weapon.
-– Race restricted to elf or half–elf.
+– THAC0 penalty of 3 when wielding a melee weapon.
+– Race restricted to elf or half–elf.KIT_DISADV_1
 – May not exceed proficiency (one slot) in weapons other than longbows, shortbows and crossbows.
 – May not exceed proficiency (one slot) in any weapon style.
-– May not wear armor heavier than elven chain mail.~)
+– May not wear armor heavier than elven chain mail.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Power Attack or Expertise.
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 7
+	
+    mixed         = RESOLVE_STR_REF(~Arcane Archer / Mage~)
+	
+    lower         = RESOLVE_STR_REF(~arcane archer / mage~)
+	
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~ARCANE ARCHER/MAGE: This character can use the abilities of an Arcane Archer and a Mage, though they cannot cast spells while wearing armor.~)
   STR_VAR

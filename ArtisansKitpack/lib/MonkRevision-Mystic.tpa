@@ -326,3 +326,59 @@ WRITE_BYTE 0x1C 8
 
 COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT9.EFF~
 WRITE_BYTE 0x1C 9
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_MONK_EQUIPMENT" RET value END
+
+OUTER_SET C0_MONK_EQUIPMENT = IDS_OF_SYMBOL (~STATS~ ~C0_MONK_EQUIPMENT~)
+
+APPEND ~splprot.2da~ ~C0_MONK_EQUIPMENT %C0_MONK_EQUIPMENT% 1 1~ UNLESS ~C0_MONK_EQUIPMENT %C0_MONK_EQUIPMENT% 1 1~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_MONK_EQUIPMENT~ BEGIN
+	    SET C0_MONK_EQUIPMENT = %row%
+	  END
+	END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+    PATCH_IF ((row4 BAND 0b01100000) = 0b01000000) AND ((row3 BAND 0b01110100) = 0b01110100) AND ((row2 BAND 0b00001000) = 0b00001000) AND ((row1 BAND 0b11000000) = 0b11000000) BEGIN 
+        WRITE_BYTE    0x1E (row1 BAND 0b01111111)
+        WRITE_BYTE    0x1F (row2 BAND 0b11111110)
+        WRITE_BYTE    0x20 (row3 BAND 0b11111011)
+        LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_MONK_EQUIPMENT END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_MONK_EQUIPMENT timing = 2 power = 2 END
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
+    READ_BYTE    0x273 class
+	 PATCH_IF (class = 1) OR (class = 19) BEGIN
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#MO1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#MO1 END
+   END
+BUT_ONLY
+
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#MO1.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_MONK_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#MO1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#MO1 END
+
+COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~
+COPY_EXISTING ~weidu_external/backup/%MOD_FOLDER%/temp~ ~OVERRIDE~
+
+COPY_EXISTING ~C0MN#TH.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = C0PR#MO1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_MONK_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0PR#MO1 END

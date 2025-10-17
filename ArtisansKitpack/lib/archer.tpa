@@ -2,6 +2,8 @@ COPY ~%MOD_FOLDER%/Ranger/Archer/2DA~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Ranger/Archer/spells~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Ranger/Archer/bmp~ ~OVERRIDE~
 
+COPY ~%MOD_FOLDER%/2DAs/HPARCH.2da~ ~OVERRIDE~
+
 APPEND ~splprot.2da~ ~C0_KIT_CHECK_NOT 152 -1 5~ UNLESS ~C0_KIT_CHECK_NOT~
 COPY_EXISTING ~splprot.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns

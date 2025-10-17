@@ -80,7 +80,7 @@ Advantages:
 – The Mystic Fire's spells are cast as though <PRO_HESHE> were a cleric of the same level.
 – May memorize a small selection of Mage spells:
  Level 1: Magic Missile, Shocking Grasp, Shield, Find Familiar
- Level 2: Mirror Image, Web, Melf's Acid Arrow, Invisibility
+ Level 2: Mirror Image, Web, Agannazar's Scorcher, Invisibility
  Level 3: Fireball, Lightning Bolt, Haste, Minor Spell Deflection
  Level 4: Greater Malison, Fire Shield (Red), Stoneskin, Secret Word
 <MF_LEVEL5><MF_LEVEL6><MF_LEVEL7>
@@ -235,7 +235,7 @@ COPY_EXISTING ~SPWI123.SPL~ ~OVERRIDE/C0MF104.SPL~
 WRITE_SHORT 0X1C 2
 COPY_EXISTING ~SPWI206.SPL~ ~OVERRIDE/C0MF201.SPL~
 WRITE_SHORT 0X1C 2
-COPY_EXISTING ~SPWI211.SPL~ ~OVERRIDE/C0MF202.SPL~
+COPY_EXISTING ~SPWI217.SPL~ ~OVERRIDE/C0MF202.SPL~
 WRITE_SHORT 0X1C 2
 COPY_EXISTING ~SPWI212.SPL~ ~OVERRIDE/C0MF203.SPL~
 WRITE_SHORT 0X1C 2

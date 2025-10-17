@@ -2,36 +2,7 @@ COPY ~%MOD_FOLDER%/Fighter/Dreadnought/2das~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/Dreadnought/bams~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/Dreadnought/spells~ ~override~
 
-LAF ADD_KIT_EX
-  INT_VAR
-    // Mage	= 1
-	// Fighter = 2
-	// Cleric = 3
-	// Thief = 4
-	// Bard = 5
-	// Paladin = 6
-	// Fighter/Mage = 7
-	// Fighter/Cleric = 8
-	// Fighter/Thief = 9
-	// Fighter/Mage/Thief = 10
-	// Druid = 11
-	// Ranger = 12
-	// Mage/Thief = 13
-	// Cleric/Mage = 14
-	// Cleric/Thief = 15
-	// Fighter/Druid = 16
-	// Fighter/Mage/Cleric = 17
-	// Cleric/Ranger = 18
-	// Sorcerer = 19
-	// Monk = 20
-	// Shaman = 21
-    kit_class     = 2
-	
-    mixed         = RESOLVE_STR_REF(~Dreadnought~)
-	
-    lower         = RESOLVE_STR_REF(~dreadnought~)
-	
-    help          = RESOLVE_STR_REF(~DREADNOUGHT: The dreadnought is a truly fearsome warrior that eschews finesse in favor of power and stamina, specializing in placing the entirety of their weight into their attacks, capable of felling even the strongest of opponents in a single blow. Despite their ferocity, however, only a fool would mistake the dreadnought's fighting style as simple brute force—rather, learning how to use their strength to its full potential and inflict the most damage possible is a difficult technique that few others can master.
+OUTER_SPRINT kit_description ~DREADNOUGHT: The dreadnought is a truly fearsome warrior that eschews finesse in favor of power and stamina, specializing in placing the entirety of their weight into their attacks, capable of felling even the strongest of opponents in a single blow. Despite their ferocity, however, only a fool would mistake the dreadnought's fighting style as simple brute force—rather, learning how to use their strength to its full potential and inflict the most damage possible is a difficult technique that few others can master.
 
 Advantages:
 – Gains a +1 bonus to Strength.
@@ -79,7 +50,56 @@ Disadvantages:
 – -2 penalty to Armor Class.
 – May not dual-class.
 – May not use ranged weapons and incurs a -10 penalty to THAC0 when wielding a melee/ranged weapon in ranged mode.
-– May not be proficient in Sword and Shield or Two-Weapon Style.~)
+– May not be proficient in Sword and Shield or Two-Weapon Style.KIT_DISADV_1~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 2
+	
+    mixed         = RESOLVE_STR_REF(~Dreadnought~)
+	
+    lower         = RESOLVE_STR_REF(~dreadnought~)
+	
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~DREADNOUGHT: The dreadnought is a truly fearsome warrior that eschews finesse in favor of power and stamina, specializing in placing the entirety of their weight into their attacks, capable of felling even the strongest of opponents in a single blow. Despite their ferocity, however, only a fool would mistake the dreadnought's fighting style as simple brute force—rather, learning how to use their strength to its full potential and inflict the most damage possible is a difficult technique that few others can master.~)
 	
@@ -465,3 +485,16 @@ SAY UNIDENTIFIED_DESC ~The dreadnought gains a +5 bonus to their melee critical 
 COPY_EXISTING ~C0DREDH2.SPL~ OVERRIDE
 SAY NAME1 ~Juggernaut~
 SAY UNIDENTIFIED_DESC ~The dreadnought becomes a sheer engine of destruction while using All-Out Offense, instantly killing enemies who fall below 60 current hit points with their melee attacks. Additionally, their penalties while All-Out Offense is active is halved to -3 to Armor Class and -25% to resistances. Furthermore, the dreadnought becomes permanently immune to fatigue.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
+
+COPY_EXISTING ~C0DREADN.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+	END

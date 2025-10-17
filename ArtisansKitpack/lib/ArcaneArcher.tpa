@@ -2,36 +2,9 @@
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/2das~ ~override~
 COPY ~%MOD_FOLDER%/Fighter/ArcaneArcher/spells~ ~override~
 
-LAF ADD_KIT_EX
-  INT_VAR
-    // Mage	= 1
-	// Fighter = 2
-	// Cleric = 3
-	// Thief = 4
-	// Bard = 5
-	// Paladin = 6
-	// Fighter/Mage = 7
-	// Fighter/Cleric = 8
-	// Fighter/Thief = 9
-	// Fighter/Mage/Thief = 10
-	// Druid = 11
-	// Ranger = 12
-	// Mage/Thief = 13
-	// Cleric/Mage = 14
-	// Cleric/Thief = 15
-	// Fighter/Druid = 16
-	// Fighter/Mage/Cleric = 17
-	// Cleric/Ranger = 18
-	// Sorcerer = 19
-	// Monk = 20
-	// Shaman = 21
-    kit_class     = 2
-	
-    mixed         = RESOLVE_STR_REF(~Arcane Archer~)
-	
-    lower         = RESOLVE_STR_REF(~arcane archer~)
-	
-    help          = RESOLVE_STR_REF(~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
+COPY ~%MOD_FOLDER%/2DAs/HPARCH.2da~ ~OVERRIDE~
+
+OUTER_SPRINT kit_description ~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.
 
 Advantages:
 – +1 to hit with any missile weapon at level 1 and every 5 levels thereafter.
@@ -61,12 +34,60 @@ ARROW OF DEATH: A master arcane archer can enchant <PRO_HISHER> next arrow withi
 
 Disadvantages:
 – Hit Die: d8
-– THAC0 penalty of 2 when wielding a melee weapon.
-– Race restricted to human, elf or half-elf.
+– THAC0 penalty of 3 when wielding a melee weapon.
+– Race restricted to human, elf or half-elf.KIT_DISADV_1
 – May not exceed proficiency (one slot) in weapons other than longbows, shortbows and crossbows.
 – May not exceed proficiency (one slot) in any weapon style.
-– May not wear armor heavier than elven chain mail.~)
+– May not wear armor heavier than elven chain mail.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Power Attack or Expertise.
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 2
 	
+    mixed         = RESOLVE_STR_REF(~Arcane Archer~)
+	
+    lower         = RESOLVE_STR_REF(~arcane archer~)
+	
+    help          = RESOLVE_STR_REF(~%kit_description%~)
+
     briefdesc     = RESOLVE_STR_REF(~ARCANE ARCHER: Master of the elven warbands, the arcane archer is a warrior skilled in using magic to supplement their combat prowess. Beyond the woods, arcane archers gain renown throughout entire kingdoms for their supernatural accuracy with a bow and their ability to imbue their arrows with magic. In a group, they can strike fear into an entire enemy army. While human arcane archers are rare due to elvenkind withholding their secret techniques, they are not unheard of.~)
   STR_VAR
     kit_name      = ~C0AA~
@@ -126,7 +147,7 @@ Disadvantages:
 	
     // clswpbon      = ~1 0 2~
 	
-    hpclass       = ~HPPRS~
+    hpclass       = ~HPARCH~
 	
     // numwslot      = ~4~
 	
@@ -259,65 +280,33 @@ SAY NAME1 ~Arrow of Death~
  SAY UNIDENTIFIED_DESC ~Arrow of Death
 A master arcane archer can enchant <PRO_HISHER> next arrow to instantly slay <PRO_HISHER> foe on a failed save vs. death. Target's saving throw penalty is increased by one for every 5 levels gained thereafter.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan06.itm~ BEGIN
-  COPY_EXISTING chan06.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan12.itm~ BEGIN
-  COPY_EXISTING chan12.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE    0x1E row1
+      READ_BYTE    0x1F row2
+      READ_BYTE    0x20 row3
+      READ_BYTE    0x21 row4
+      READ_BYTE    0x2d kit3
+    PATCH_IF ((row3 BAND 0b01100000) = 0b00000000) BEGIN // if it is usable by thieves and rangers
+      READ_SHORT    0x1C type //reads the byte containing item type
+	  READ_SHORT    0x22 appearance //reads the byte containing item appearance
+      PATCH_IF (type = 2) AND (appearance = 16691) BEGIN // if it is chain mail
+       WRITE_BYTE    0x2d (kit3 BAND 0b01111111)
+      END
     END
-    END
+  END
+BUT_ONLY_IF_IT_CHANGES
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan13.itm~ BEGIN
-  COPY_EXISTING chan13.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan14.itm~ BEGIN
-  COPY_EXISTING chan14.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
+COPY_EXISTING ~C0AA.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan16.itm~ BEGIN
-  COPY_EXISTING chan16.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~chan19.itm~ BEGIN
-  COPY_EXISTING chan19.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~elfchan.itm~ BEGIN
-  COPY_EXISTING elfchan.itm override
-    WRITE_BYTE 0x2d (THIS & 80)
-    PATCH_IF ((BYTE_AT 0x20) & 32) = 32 BEGIN  // if unusable by rangers
-      SPRINT text_update archer
-      LPM update_item_descriptions
-    END
-    END
+	END

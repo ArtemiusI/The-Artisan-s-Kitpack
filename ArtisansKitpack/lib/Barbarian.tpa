@@ -9,8 +9,7 @@ APPEND ~STATE.IDS~ // STUN, PANIC, BERSERK, CHARM, FEEBLEMIND, CONFUSED
   ~0x8010202f C0_BARB_STATUS~
   UNLESS ~C0_BARB_STATUS~
   
-LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
-STRING_SET_EVALUATE kit_strref ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
+OUTER_SPRINT kit_description ~BARBARIAN: A Barbarian can be an excellent warrior. While not as disciplined or as skilled as a Fighter, the Barbarian can willingly throw <PRO_HIMHER>self into a berserker rage, becoming a tougher and stronger opponent.
 
 CLASS FEATURES:
 
@@ -27,19 +26,49 @@ TOUGHNESS: The barbarian gains 5% physical damage reduction. This bonus is doubl
 – May use the Rage ability once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 
 RAGE: The enraged status lasts for 5 rounds and provides a +4 bonus to Strength and Constitution and a +2 bonus to Saving Throws vs. Spell. However, the barbarian incurs a -2 penalty to Armor Class. Additionally, activating Rage restores any drained levels from the barbarian and protects them from subsequent level drain effects for the duration. When the rage expires, the barbarian becomes fatigued and suffers a -2 penalty to Strength, Dexterity, Armor Class and Movement Rate for 5 rounds. The barbarian cannot use Rage until this duration is over.
-
+KIT_SKILL_1
 – 8th level: Gains the Indomitable Will passive ability.
 
 INDOMITABLE WILL: When the barbarian is afflicted with any of the following afflictions: berserk, charm, hold, fear, stun, sleep, feeblemind, confusion, <PRO_HESHE> has a 20% (+2% per level gained) chance each round to break free of their affliction.
 
 – 10th level: Rage bonuses to Strength and Constitution increased to +6.
-– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
+– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.KIT_SKILL_2
 – 18th level: The barbarian no longer suffers fatigue penalties after Rage.
 – 20th level: Toughness base physical resistance increased to 15%. Regeneration rate increased to 1 hit point per second.
 – 22nd level: Deathless Frenzy: The barbarian becomes unable to die for one round after Rage.
 – 24th level: Rage bonuses to Strength and Constitution increased to +8. Saving Throws vs. Spell bonus increased to +4.
 – Hit Die: d12~
-	
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_SKILL_1~ ~
+– 5th level: May use the Power Attack modal ability.
+
+POWER ATTACK: The Barbarian forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Barbarian must have 17 or greater Strength to activate this ability.
+
+– 6th level: May use the Rapid Shot modal ability.
+
+RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4 penalty to hit.
+~
+  REPLACE_TEXTUALLY ~KIT_SKILL_2~ ~
+– 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_SKILL_1~ ~~
+  REPLACE_TEXTUALLY ~KIT_SKILL_2~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BARBARIAN~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
+
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/spells/c0bar#03.eff~ ~override~
 WRITE_SHORT 0x1c IDS_OF_SYMBOL (~STATE~ ~C0_BARB_STATUS~)
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/spells/c0bar#06.spl~ ~override~
@@ -64,3 +93,17 @@ COPY ~%MOD_FOLDER%/Fighter/Barbarian/SPELLS/SPCL152a.SPL~ ~OVERRIDE~
   
 COPY ~%MOD_FOLDER%/Fighter/Barbarian/SPELLS/C0BAR#05.SPL~ ~OVERRIDE~
 SAY NAME1 ~Indomitable Will~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
+
+COPY_EXISTING ~CLABFI03.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+	END

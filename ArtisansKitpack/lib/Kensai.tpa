@@ -38,8 +38,7 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 	
-LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~KENSAI~ RET kit_strref END
-STRING_SET_EVALUATE kit_strref ~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
+OUTER_SPRINT kit_description ~KENSAI: This class's name, which means "sword saint" in the common tongue, refers to a warrior who has been specially trained to be one with their weapon. The kensai is deadly, fast, and trained to fight without the protection of armor. (Note: Despite its common name, a Kensai may use any melee weapon with which they are proficient.)
 
 Advantages:
 – Base Armor Class of 8.
@@ -69,11 +68,31 @@ PERFECT DEFENSE: When Defensive Fighting is active, the Kensai becomes immune to
 
 PERFECT OFFENSE: The Kensai will no longer critically miss on an attack roll of 1.
 
-Disadvantages:
+Disadvantages:KIT_DISADV_1
 – May not use any armor, helmets, gauntlets, bracers or shields.
 – May not use missile weapons.
 – Does not gain access to the Hardiness, Resist Magic or War Cry high level abilities.
 – Alignment restricted to any non-chaotic.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~KENSAI~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
 
 COPY ~%MOD_FOLDER%/Fighter/Kensai/2da/clabfi04.2da~ ~override~
 
@@ -173,3 +192,17 @@ SAY NAME1 ~Devastating Critical~
 SAY UNIDENTIFIED_DESC ~The Kensai's critical hits kill the target instantly on a failed Saving Throw vs. Death. Creatures with 8 or lower HD die with no save.
 
 Requires: Second Wind~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
+
+COPY_EXISTING ~CLABFI04.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
+   // LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+   // LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+   // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+	END

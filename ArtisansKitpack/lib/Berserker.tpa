@@ -14,8 +14,7 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 
-LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BERSERKER~ RET kit_strref END
-STRING_SET_EVALUATE kit_strref ~BERSERKER: This is a warrior who is in tune with <PRO_HISHER> animalistic side and, during combat, can achieve an ecstatic state of mind that will enable <PRO_HIMHER> to fight longer, harder, and more savagely than any person has a right to. Berserkers tend to be barbarian-like in nature, but not always. Sometimes it is a conscious choice that a warrior in training makes. Regardless, opponents on the battlefield will be unsettled when they see the savage and inhuman elements of the Berserker's personality. This class is common amongst dwarves, known to them as the Battlerager.
+OUTER_SPRINT kit_description ~BERSERKER: This is a warrior who is in tune with <PRO_HISHER> animalistic side and, during combat, can achieve an ecstatic state of mind that will enable <PRO_HIMHER> to fight longer, harder, and more savagely than any person has a right to. Berserkers tend to be barbarian-like in nature, but not always. Sometimes it is a conscious choice that a warrior in training makes. Regardless, opponents on the battlefield will be unsettled when they see the savage and inhuman elements of the Berserker's personality. This class is common amongst dwarves, known to them as the Battlerager.
 
 Advantages:
 – Immunity to fear, morale failure and involuntary berserk effects.
@@ -44,9 +43,29 @@ RECKLESS FRENZY: The berserker deliberately injures <HIMHER>self, instantly redu
 
 Disadvantages:
 – Becomes winded for five rounds after using Enrage, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls. Additionally, the berserker is unable to Enrage or gain the benefits of In Extremis while winded.
-– May not Specialize in ranged weapons.
+– May not Specialize in ranged weapons.KIT_DISADV_1
 – Alignment restricted to any non-lawful.~
-	
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Expertise or Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BERSERKER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
+
 // ICONS
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
@@ -223,3 +242,16 @@ COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#H1.SPL~ ~OVERRIDE~
 SAY NAME1 ~Extend Rage~
 SAY UNIDENTIFIED_DESC ~Extend Rage
 The berserker's proficiency in their wild fighting style allows them to maintain the effects of their rage for longer, permanently extending the maximum total duration of Enrage to 20 rounds.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
+
+COPY_EXISTING ~CLABFI02.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+  // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+	END

@@ -1,5 +1,43 @@
 COPY_EXISTING ~clabfi06.2da~ ~override~
 
+OUTER_SPRINT kit_description ~VANGUARD: The vanguard is a frontline warrior trained to fight in the middle of enemy lines. Tough and durable, a vanguard is a reliable defender capable of holding the line and enduring blows that would fell a lesser man.
+
+Advantages:
+– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
+
+DEFENSIVE STANCE: For 1 turn, the Vanguard gains +50% resistance to all forms of physical damage, a +2 bonus to Saving Throws, and a 50% movement rate penalty.
+
+– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
+– Hit Die: d12
+
+Disadvantages:KIT_DISADV_1
+– May not exceed High Mastery (four slots) in single-handed melee weapons.
+– May not exceed Specialization (two slots) in any other weapon.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Improved Power Attack and Improved Expertise.
+– May not use Rapid Shot.
+– Does not gain Specialization in all weapons at 16th level.
+– Does not gain Improved Initiative.~
+
+END
+
+END ELSE BEGIN
+
+COPY_EXISTING ~CLABFI06.2DA~ OVERRIDE
+REPLACE_TEXTUALLY ~GA_C0DWD01~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0DWD02~ ~****     ~
+REPLACE_TEXTUALLY ~GA_C0FIG03~ ~****     ~
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -29,19 +67,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~vanguard~)
 	
-    help          = RESOLVE_STR_REF(~VANGUARD: The vanguard is a frontline warrior trained to fight in the middle of enemy lines. Tough and durable, a vanguard is a reliable defender capable of holding the line and enduring blows that would fell a lesser man.
-
-Advantages:
-– May use Defensive Stance once per day. Gains one use at level 1, one use at level 4, and an additional use every 4 levels thereafter.
-
-DEFENSIVE STANCE: For 1 turn, the Vanguard gains +50% resistance to all forms of physical damage, a +2 bonus to Saving Throws, and a 50% movement rate penalty.
-
-– Gains 5% resistance to crushing, slashing, piercing, and missile damage every 5 levels to a maximum of 20% at level 20.
-– Hit Die: d12
-
-Disadvantages:
-– May not exceed High Mastery (four slots) in single-handed melee weapons.
-– May not exceed Specialization (two slots) in any other weapon.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~VANGUARD: The vanguard is a frontline warrior trained to fight in the middle of enemy lines. Tough and durable, a vanguard is a reliable defender capable of holding the line and enduring blows that would fell a lesser man.~)
 	

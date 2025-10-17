@@ -362,7 +362,8 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 
-COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#XX.spl~ ~override/C0PR#XX.SPL~
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#89 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#90 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#91 END
@@ -692,29 +693,6 @@ COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#107.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#107 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSLING~) parameter1 = 1 parameter2 = 1 END
 
-ACTION_FOR_EACH base_clab IN clabba01 clabdr01 clabfi01 clabmo01 clabpa01 clabpr01 clabrn01 clabth01 BEGIN
-COPY_EXISTING ~%base_clab%.2DA~ OVERRIDE
-  // Borrowed from Rogue Rebalancing
-        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#CL END
-  PRETTY_PRINT_2DA
-END
-
-COPY_EXISTING ~KITLIST.2DA~ ~override~
-  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
-  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
-  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
-  
-    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
-      INNER_ACTION BEGIN
-      COPY_EXISTING ~%kit_clab%.2DA~ override
-        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#CL END
-        PRETTY_PRINT_2DA
-      END
-  END
-END
-
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ THEN BEGIN
 COPY_EXISTING ~clabpr02.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#C1 END
@@ -988,4 +966,35 @@ COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/ArtisansKitpack/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/ArtisansKitpack/temp~ ~OVERRIDE~
 
+ACTION_FOR_EACH baldur_script IN baldur bdbaldur baldur25 BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%baldur_script%.bcs~ BEGIN
+EXTEND_TOP ~%baldur_script%.bcs~ ~%MOD_FOLDER%/eeex/script/proficiencies_script.baf~
+END
+END
+
+END
+
+ACTION_FOR_EACH base_clab IN clabba01 clabdr01 clabfi01 clabmo01 clabpa01 clabpr01 clabrn01 clabth01 BEGIN
+COPY_EXISTING ~%base_clab%.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  REPLACE_TEXTUALLY ~AP_C0PR#CL~ ~****      ~
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#CL END
+  PRETTY_PRINT_2DA
+END
+
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+        REPLACE_TEXTUALLY ~AP_C0PR#CL~ ~****      ~
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#CL END
+        PRETTY_PRINT_2DA
+      END
+  END
 END

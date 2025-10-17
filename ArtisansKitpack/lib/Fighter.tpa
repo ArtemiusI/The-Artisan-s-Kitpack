@@ -32,10 +32,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       // Add new abilities to all Fighter kits
       COPY_EXISTING ~%kit_clab%.2DA~ override
       PATCH_IF !(
-				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER")
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // (IMPROVED) POWER ATTACK
         PRETTY_PRINT_2DA
@@ -43,11 +40,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       PATCH_IF !(
 				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
+				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // (IMPROVED) EXPERTISE
         PRETTY_PRINT_2DA
@@ -55,10 +48,7 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
       PATCH_IF !(
 				("%kit_label%" STRING_EQUAL_CASE "BERSERKER") OR
 				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
-				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
 		LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
@@ -69,21 +59,14 @@ COPY_EXISTING ~KITLIST.2DA~ ~override~
 				("%kit_label%" STRING_EQUAL_CASE "WIZARDSLAYER") OR
 				("%kit_label%" STRING_EQUAL_CASE "KENSAI") OR
 				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0AA") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
+				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 5 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
         PRETTY_PRINT_2DA
       END
       PATCH_IF !(
 				("%kit_label%" STRING_EQUAL_CASE "BARBARIAN") OR
-				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0VNGD") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_SIEGEMASTER") OR
-				("%kit_label%" STRING_EQUAL_CASE "C0_DREADNOUGHT")
+				("%kit_label%" STRING_EQUAL_CASE "DWARVEN_DEFENDER")
 														 ) BEGIN
         LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
         PRETTY_PRINT_2DA
@@ -176,84 +159,7 @@ ACTION_FOR_EACH description IN
             STRING_SET_EVALUATE ~%dwarvendefender_desc%~ ~%dwarvendefender_text%~
           END
         END
-//VANGUARD
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0VNGD" BEGIN
-          READ_2DA_ENTRY index 4 col_count vanguard_desc
-          SPRINT old_vanguard ~Disadvantages:~
-          SPRINT new_vanguard ~Disadvantages:
-– May not use Improved Power Attack and Improved Expertise.
-– May not use Rapid Shot.
-– Does not gain Specialization in all weapons at 16th level.
-– Does not gain Improved Initiative.~
-          GET_STRREF %vanguard_desc% vanguard_text
-          INNER_PATCH_SAVE vanguard_text ~%vanguard_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_vanguard%~ ~%new_vanguard%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%vanguard_desc%~ ~%vanguard_text%~
-          END
-        END
-//ARCANE ARCHER
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0AA" BEGIN
-          READ_2DA_ENTRY index 4 col_count arcane_archer_desc
-          SPRINT old_arcane_archer ~Disadvantages:~
-          SPRINT new_arcane_archer ~Disadvantages:
-– May not use Power Attack or Expertise.
-– Does not gain Specialization in all weapons at 16th level.~
-          GET_STRREF %arcane_archer_desc% arcane_archer_text
-          INNER_PATCH_SAVE arcane_archer_text ~%arcane_archer_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_arcane_archer%~ ~%new_arcane_archer%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%arcane_archer_desc%~ ~%arcane_archer_text%~
-          END
-        END
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0AA2" BEGIN
-          READ_2DA_ENTRY index 4 col_count arcane_archer_desc
-          SPRINT old_arcane_archer ~Disadvantages:~
-          SPRINT new_arcane_archer ~Disadvantages:
-– May not use Power Attack or Expertise.
-– Does not gain Specialization in all weapons at 16th level.~
-          GET_STRREF %arcane_archer_desc% arcane_archer_text
-          INNER_PATCH_SAVE arcane_archer_text ~%arcane_archer_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_arcane_archer%~ ~%new_arcane_archer%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%arcane_archer_desc%~ ~%arcane_archer_text%~
-          END
-        END
-//SIEGEMASTER
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_SIEGEMASTER" BEGIN
-          READ_2DA_ENTRY index 4 col_count siegemaster_desc
-          SPRINT old_siegemaster ~Disadvantages:~
-          SPRINT new_siegemaster ~Disadvantages:
-– May not use Power Attack, Expertise or Rapid Shot.
-– Does not gain Specialization in all weapons at 16th level.
-– Does not gain Improved Initiative.~
-          GET_STRREF %siegemaster_desc% siegemaster_text
-          INNER_PATCH_SAVE siegemaster_text ~%siegemaster_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_siegemaster%~ ~%new_siegemaster%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%siegemaster_desc%~ ~%siegemaster_text%~
-          END
-        END
-//DREADNOUGHT
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0_DREADNOUGHT" BEGIN
-          READ_2DA_ENTRY index 4 col_count dreadnought_desc
-          SPRINT old_dreadnought ~Disadvantages:~
-          SPRINT new_dreadnought ~Disadvantages:
-– May not use Expertise or Rapid Shot.
-– Does not gain Specialization in all weapons at 16th level.
-– Does not gain Improved Initiative.~
-          GET_STRREF %dreadnought_desc% dreadnought_text
-          INNER_PATCH_SAVE dreadnought_text ~%dreadnought_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_dreadnought%~ ~%new_dreadnought%~
-          END
-          INNER_ACTION BEGIN
-            STRING_SET_EVALUATE ~%dreadnought_desc%~ ~%dreadnought_text%~
-          END
-        END
+
 //BARBARIAN
         PATCH_IF "%row_name%" STRING_EQUAL_CASE "BARBARIAN" BEGIN
           READ_2DA_ENTRY index 4 col_count barbarian_desc
@@ -269,20 +175,7 @@ RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4
 – 11th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15 and 19.
 – 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
 – 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.~
-          SPRINT old_barbarian_1 ~– 8th level: Gains the Indomitable Will passive ability.~
-          SPRINT new_barbarian_1 ~– 5th level: May use the Power Attack modal ability.
 
-POWER ATTACK: The Barbarian forgoes accuracy for heavier, more damaging blows, sacrificing 3 points of melee THAC0 to increase their melee damage by 3. The Barbarian must have 17 or greater Strength to activate this ability.
-
-– 6th level: May use the Rapid Shot modal ability.
-
-RAPID SHOT: The Barbarian may make an additional ranged attack per round at a -4 penalty to hit.
-
-– 8th level: Gains the Indomitable Will passive ability.~
-          SPRINT old_barbarian_2 ~– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.~
-          SPRINT new_barbarian_2 ~– 11th level: Toughness base physical resistance increased to 10%. The barbarian regenerates 1 hit point per three seconds when below 50% maximum hit points.
-– 12th level: Improved Rapid Shot: The Barbarian’s penalty to hit while Rapid Shot is active is reduced to -2.
-– 14th level: May use Improved Power Attack, which provide 6 points to the original ability's bonuses and penalties.~
           GET_STRREF %barbarian_desc% barbarian_text
           INNER_PATCH_SAVE barbarian_text ~%barbarian_text%~ BEGIN
             REPLACE_TEXTUALLY ~%old_barbarian%~ ~%new_barbarian%~
