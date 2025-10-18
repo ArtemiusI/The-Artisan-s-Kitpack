@@ -1,192 +1,43 @@
-
-ACTION_FOR_EACH druid_spells IN
-SPPR105
-SPPR110
-SPPR115
-SPPR202
-SPPR204
-SPPR206
-SPPR207
-SPPR215
-SPPR218
-SPPR219
-SPPR302
-SPPR305
-SPPR319
-SPPR322
-SPPR324
-SPPR325
-SPPR326
-SPPR327
-SPPR402
-SPPR410
-SPPR418
-SPPR419
-SPPR420
-SPPR425
-SPPR426
-SPPR427
-SPPR428
-SPPR501
-SPPR506
-SPPR516
-SPPR517
-SPPR519
-SPPR522
-SPPR602
-SPPR605
-SPPR606
-SPPR610
-SPPR614
-SPPR617
-SPPR620
-SPPR702
-SPPR704
-SPPR705
-SPPR707
-SPPR717
-SPPR720
-SPPR724
-SPPR736
-SPPR737
-SPPR742
-BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref= EVAL ~%druid_spells%~ class_include = ~{'SHAMAN', 'DRUID_ALL', 'RANGER_ALL',}~ kit_exclude=~{'C0_FAVORED_SOUL', }~ END
+ACTION_FOR_EACH hlapriest IN SPPR724 SPPR729 BEGIN
+    COPY_EXISTING ~%hlapriest%.spl~ ~override~
+        READ_BYTE    0x21 row4
+        WRITE_BYTE    0x21 (row4 BAND 0b00111111)
 END
+ 
+ OUTER_SET spell_count = 0
+ OUTER_SPRINT $cleric_spell(~%spell_count%~) ~cleric~
+ COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-9][0-9].spl~ ~override~
+      READ_BYTE    0x1c spelltype
+      READ_BYTE    0x25 spellschool
+      READ_BYTE    0x21 row4
+    PATCH_IF ((row4 BAND 0b10000000) = 0b10000000) AND (spelltype = 2) AND !(spellschool = 0) AND ((row4 BAND 0b10000000) = 0b10000000) BEGIN // if it is a cleric spell
+    SPRINT $cleric_spell(~%spell_count%~) ~%SOURCE_RES%~
+	SET ++spell_count
+    END
+BUT_ONLY
 
-ACTION_FOR_EACH cleric_spells IN
-SPPR102
-SPPR106
-SPPR107
-SPPR108
-SPPR109
-SPPR201
-SPPR203
-SPPR208
-SPPR211
-SPPR213
-SPPR214
-SPPR220
-SPPR301
-SPPR304
-SPPR307
-SPPR308
-SPPR316
-SPPR321
-SPPR403
-SPPR405
-SPPR408
-SPPR411
-SPPR412
-SPPR417
-SPPR421
-SPPR424
-SPPR429
-SPPR503
-SPPR504
-SPPR507
-SPPR509
-SPPR510
-SPPR511
-SPPR512
-SPPR513
-SPPR515
-SPPR518
-SPPR521
-SPPR601
-SPPR603
-SPPR609
-SPPR612
-SPPR703
-SPPR706
-SPPR707
-SPPR708
-SPPR712
-SPPR713
-SPPR718
-SPPR719
-BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref=EVAL ~%cleric_spells%~ class_include = ~{'CLERIC_ALL', 'PALADIN', }~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-END
+ ACTION_PHP_EACH cleric_spell AS num => cleric BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%cleric%.spl~ BEGIN
+	PRINT ~%cleric% is a cleric spell~
+LAF ADD_CLASS_SPELL STR_VAR resref=EVAL ~%cleric%~ class_include = ~{'CLERIC_ALL', 'PALADIN', }~ kit_include=~{'C0_FAVORED_SOUL', }~ END
+  END
+ END
 
-ACTION_FOR_EACH cleric_spells_good IN
-SPPR313
-SPPR331
-SPPR520
-SPPR616
-SPPR710
-SPPR735
-BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref= EVAL ~%cleric_spells_good%~ class_include = ~{'CLERIC_ALL', 'PALADIN', }~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_EVIL', }~ END
-END
+OUTER_SET spell_count = 0
+ OUTER_SPRINT $druid_spell(~%spell_count%~) ~druid~
+ COPY_EXISTING_REGEXP GLOB ~SPPR[1-7][0-9][0-9].spl~ ~override~
+      READ_BYTE    0x1c spelltype
+      READ_BYTE    0x25 spellschool
+      READ_BYTE    0x21 row4
+    PATCH_IF (spelltype = 2) AND !(spellschool = 0) AND ((row4 BAND 0b01000000) = 0b01000000) BEGIN // if it is a druid spell
+    SPRINT $druid_spell(~%spell_count%~) ~%SOURCE_RES%~
+	SET ++spell_count
+    END
+BUT_ONLY
 
-ACTION_FOR_EACH cleric_spells_evil IN
-SPPR114
-SPPR314
-SPPR320
-SPPR323
-SPPR330
-SPPR423
-SPPR523
-SPPR619
-SPPR715
-SPPR734
-SPPR739
-BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref=EVAL ~%cleric_spells_evil%~ class_include = ~{'CLERIC_ALL', 'PALADIN', }~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-END
-
-ACTION_FOR_EACH cleric_spells_chaotic IN
-SPPR422
-BEGIN
-LAF ADD_CLASS_SPELL STR_VAR resref=EVAL ~%cleric_spells_chaotic%~ class_include = ~{'CLERIC_ALL', 'PALADIN', }~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_LAWFUL', }~ END
-END
-
-/*
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR102~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR106~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR109~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR114~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR201~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR203~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR208~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR211~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR212~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR213~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR214~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR216~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR220~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR301~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR303~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR304~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR307~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR308~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR310~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR311~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR312~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR313~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_EVIL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR314~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR316~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR317~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR320~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR321~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR323~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR330~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR331~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_EVIL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR403~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR404~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR405~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR406~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR408~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR411~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR412~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR414~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR416~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR417~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR421~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR422~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_LAWFUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR423~ kit_include=~{'C0_FAVORED_SOUL', }~ alignment_exclude = ~{'MASK_GOOD', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR424~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR429~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-LAF ADD_CLASS_SPELL STR_VAR resref=~SPPR503~ kit_include=~{'C0_FAVORED_SOUL', }~ END
-*/
+ ACTION_PHP_EACH druid_spell AS num => druid BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%druid%.spl~ BEGIN
+	PRINT ~%druid% is a druid spell~
+    LAF ADD_CLASS_SPELL STR_VAR resref= EVAL ~%druid%~ class_include = ~{'SHAMAN', 'DRUID_ALL', 'RANGER_ALL',}~ kit_exclude=~{'C0_FAVORED_SOUL', }~ END
+  END
+ END
