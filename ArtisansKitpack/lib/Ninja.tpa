@@ -37,13 +37,13 @@ CLASS FEATURES:
 – May not wear any armor.
 – May only use weapons available to the Thief class.
 – May achieve Specialization (two slots) in any fighting style and allocate three slots in Two-Weapon Style.
-– May distribute 20 points per level (30 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Move Silently, Hide In Shadows, Detect Illusion
+– May distribute 20 points per level (30 at level 1) in thieving abilities: Open Locks, Pick Pockets, Find Traps, Move Silently, Hide In Shadows, Detect Illusion, Set Traps
 – Moves 2 points faster than other characters. Movement rate further improves by 1 every 5 levels.
 – May make 2 unarmed attacks per round.
 – May backstab for increased damage:
-  Level 1-6: x2
-  Level 7-12: x3
-  Level 13+: x4
+  Level 1-8: x2
+  Level 9-16: x3
+  Level 17+: x4
 – The ninja's fists deal crushing damage and deal increase damage with level as follows:
   Level 1-2: 1d4
   Level 3-4: 1d6
@@ -57,9 +57,15 @@ CLASS FEATURES:
 – Receives a +1 bonus to all Saving Throws. An additional +1 is gained at 5th level and every 5 levels thereafter.
 – The ninja gains a +1 bonus to base Armor Class per point of Wisdom above 12. They gain an additional +1 to AC at 5th level and every 5 levels thereafter.
 – Deflect Missiles: The ninja receives a +1 bonus to AC vs. missile attacks every 3 levels.
-– May use the Smoke Bomb and Poison Weapon abilities once per day. Gains one use at level 1 and an additional use every 6 levels thereafter.
+– May use the Smoke Bomb, Set Snare and Poison Weapon abilities once per day. Gains one use at level 1 and an additional use every 6 levels thereafter.
 
-SMOKE BOMB: Creates a Smoke Cloud at the targeted location, blinding and halving the movement rate of all creatures within the area for as long as they remain within the cloud. The ninja is immune to the blindness effect of their own Smoke Cloud and are invisible so long as they remain within it. The cloud lasts for 2 rounds + 1 round per 6 levels.
+SMOKE BOMB: Creates a Smoke Cloud at the targeted location, blinding and halving the movement rate of all creatures within the area for as long as they remain within the cloud. The ninja is immune to the blindness effect of their own Smoke Cloud and are invisible and able to backstab from any direction so long as they remain within it. The cloud lasts for 2 rounds + 1 round per 6 levels.
+
+SET SNARE: Set a trap in the chosen location when no hostile creatures are in sight. Traps grow more powerful with the Thief's level and can only be triggered by enemies.
+  1st level: Deals 2d8+5 missile damage.
+  11th level: Deals 2d8+5 missile damage and additionally deals 2d6 poison damage per round for the next 3 rounds.
+  16th level: Deals 3d8+5 missile damage and 4d8+2 fire damage.
+  21st level: Deals 3d8+5 missile damage and 20 poison damage with no save; slays target if a Save vs. Death with a +4 bonus is failed.
 
 POISON WEAPON: The ninja is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
   1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
@@ -77,7 +83,7 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
 
 – 15th level: Inner Eye: The ninja becomes immune to critical hits while unarmed.
 – 18th level: The ninja moves at twice their movement rate whilst within their Smoke Cloud.
-– 22nd level: The ninja gains a x1 additional bonus to their Backstab multiplier, increased to x2 whilst within their Smoke Cloud.
+– 22nd level: The ninja gains a x1 additional bonus to their Backstab multiplier whilst within their Smoke Cloud.
 
 – Hit Die: d6~)
 	
@@ -150,17 +156,17 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
 	
 	// clasthac = ~0~
 	
-	thiefscl = ~100 100 100 100 100 100 0 0~
+	thiefscl = ~100 100 100 100 100 100 100 0~
 	
-	backstab = ~2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	backstab = ~2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
 	
-	sneakatt = ~2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	sneakatt = ~2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
 	
 	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
 	
 	thiefskl = ~30 20~
 	
-	// traplimt = ~6~
+	traplimt = ~6~
 	
     // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
   RET
