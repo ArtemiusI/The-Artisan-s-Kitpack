@@ -1051,7 +1051,7 @@ BEGIN ~Artisan's Kitpack: Stalker Overhaul~ DESIGNATED 2011
 GROUP ~Ranger Kits~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
-INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
+INCLUDE ~%MOD_FOLDER%/effects/analyze.tpa~
 END
 
 INCLUDE ~%MOD_FOLDER%/lib/stalker.tpa~
@@ -1132,7 +1132,7 @@ BEGIN ~Artisan's Kitpack: Assassin Overhaul~ DESIGNATED 7004
 GROUP ~Thief Kits~
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
-INCLUDE ~%MOD_FOLDER%/lib/analyze.tpa~
+INCLUDE ~%MOD_FOLDER%/effects/analyze.tpa~
 END
 
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
