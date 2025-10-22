@@ -234,26 +234,26 @@ COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK.SPL~
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 duration = 1 STR_VAR resource = C0PR#EK1 END
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 0 parameter2 = 1 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END// BASTARD SW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END// LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END// SHORT SWOR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#93 END// 2H SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#94 END// KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#95 END // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#97 END // HAMMER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#99 END // HALBERD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#100 END  // FLAIL
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#101 END // MACE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#104 END  // LBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#107 END // SLING
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END// BASTARD SW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END// LONG SWORD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#91 END// SHORT SWOR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#92 END// AXE
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#93 END// 2H SWORD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#94 END// KATANA
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#95 END // SCIMITAR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#96 END //DAGGER
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#97 END // HAMMER
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#115 END  // CLUB
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END // SPEAR
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#99 END // HALBERD
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#100 END  // FLAIL
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#101 END // MACE
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#102 END // STAFF
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#103 END // XBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#104 END  // LBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#105 END // SBOW
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#106 END // DART
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 target = 1 timing = 4 duration = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#107 END // SLING
 
 COPY_EXISTING ~C0EK3.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#EK END
