@@ -140,6 +140,44 @@ COPY_EXISTING ~clswpbon.2da~ ~override~
 	  END
 	END
 
+BEGIN ~Artisan's Kitpack: Samurai - Add important effects to mod-added items installed after the kit~ DESIGNATED 1110
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~1010~ ~The Samurai Fighter Kit must be installed.~
+REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
+
+COPY_EXISTING ~splprot.2da~ ~override~
+    COUNT_2DA_COLS cols
+    READ_2DA_ENTRIES_NOW rows cols
+    FOR (row = 1; row < rows; ++row) BEGIN
+      READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+      
+      PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_DUAL_WIELDING~ BEGIN 
+        SET C0_DUAL_WIELDING = %row%
+    END
+    END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x18 twohanded
+    PATCH_IF ((twohanded BAND 0b00000010) = 0b00000000) BEGIN 
+      READ_SHORT    0x22 appearance 
+      PATCH_IF (appearance = 22593) OR (appearance = 19523) OR (appearance = 17476) OR (appearance = 12358) OR (appearance = 12614) OR (appearance = 12870) OR (appearance = 13126) OR (appearance = 19526) OR (appearance = 21318) OR (appearance = 12627) OR (appearance = 13139) OR (appearance = 12877) OR (appearance = 17229) OR (appearance = 21325) OR (appearance = 12371) OR (appearance = 17235) OR (appearance = 21331) OR (appearance = 18519) BEGIN
+        LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = C0SAM03X END
+        LPF DELETE_EFFECT INT_VAR match_opcode = 401 match_special = IDS_OF_SYMBOL (~STATS~ ~C0_DUAL_WIELDING~) END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 326 target = 1 parameter1 = 2 parameter2 = C0_DUAL_WIELDING timing = 2 STR_VAR resource = C0SAM03X END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 401 target = 1 parameter1 = 1 parameter2 = 0 timing = 2 special = IDS_OF_SYMBOL (~STATS~ ~C0_DUAL_WIELDING~) END
+    	END
+  END
+    READ_BYTE    0x18 twohanded
+    PATCH_IF ((twohanded BAND 0b00000010) = 0b00000010) BEGIN 
+        LPF DELETE_EFFECT INT_VAR match_opcode = 318 STR_VAR match_resource = C0SAM03A END
+        LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = C0SAM03X END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 318 target = 1 parameter1 = 0 parameter2 = 0 timing = 2 STR_VAR resource = C0SAM03A END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 timing = 2 STR_VAR resource = C0SAM03X END
+      END
+  END
+BUT_ONLY
+
+
 BEGIN ~Artisan's Kitpack: Mystic Fire - Allow Wands and Mage Scrolls~ DESIGNATED 3202
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~3002~ ~The Mystic Fire Paladin Kit must be installed.~
 REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
