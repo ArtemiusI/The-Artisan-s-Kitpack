@@ -85,10 +85,14 @@ END
 	  parameter2 = c0cav02i
 END
 
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0CAV03.SPL~ BEGIN
+
+COPY ~%MOD_FOLDER%/spells/challenge~ ~override~
+
 COPY_EXISTING ~C0CAV03.spl~ ~override~
 SAY NAME1 ~Challenge!~
 SAY UNIDENTIFIED_DESC ~Challenge
-The cavalier marks a targeted creature with a Challenge, reducing both the target's and the cavalier's own Armor Class by 10 for the next three rounds. The cavalier deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
+The user marks a targeted creature with a Challenge, reducing both the target's and the user's own Armor Class by 10 for the next three rounds. The user deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
   1st-11th level: 2d10 damage
   12th-19th level: 4d10 damage
   20th+ level: 6d10 damage~
@@ -96,4 +100,6 @@ The cavalier marks a targeted creature with a Challenge, reducing both the targe
     INT_VAR
       match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (~Challenged~)
+END
+
 END

@@ -1039,6 +1039,13 @@ BEGIN ~Artisan's Kitpack: Dreadnought Fighter Kit~ DESIGNATED 1009
 GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Dreadnought.tpa~
 
+BEGIN ~Artisan's Kitpack: Samurai Fighter Kit~ DESIGNATED 1010
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+GROUP ~Fighter Kits~
+INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
+
+INCLUDE ~%MOD_FOLDER%/lib/Samurai.tpa~
+
 BEGIN ~Artisan's Kitpack: Ranger Overhaul~ DESIGNATED 2000
 GROUP ~Ranger Kits~
 INCLUDE ~%MOD_FOLDER%/lib/ranger.tpa~

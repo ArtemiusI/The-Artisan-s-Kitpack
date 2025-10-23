@@ -1,0 +1,32 @@
+IF
+    Kit(Player1,C0_SAMURAI)
+    ReputationLT(Player1,6)
+    Alignment(Player1,LAWFUL_GOOD)
+THEN
+    RESPONSE #100
+        ChangeAlignment(Player1,CHAOTIC_GOOD)  
+        ActionOverride(Player1,DisplayString(Myself,~Disgraced: Class changed to Ronin~))
+        ActionOverride(Player1,AddKit(C0_RONIN))
+END
+
+IF
+    Kit(Player1,C0_SAMURAI)
+    ReputationLT(Player1,6)
+    Alignment(Player1,LAWFUL_NEUTRAL)
+THEN
+    RESPONSE #100
+        ChangeAlignment(Player1,CHAOTIC_NEUTRAL)  
+        ActionOverride(Player1,DisplayString(Myself,~Disgraced: Class changed to Ronin~))
+        ActionOverride(Player1,AddKit(C0_RONIN))
+END
+
+IF
+    Kit(Player1,C0_SAMURAI)
+    ReputationLT(Player1,6)
+    Alignment(Player1,LAWFUL_EVIL)
+THEN
+    RESPONSE #100
+        ChangeAlignment(Player1,CHAOTIC_EVIL)  
+        ActionOverride(Player1,DisplayString(Myself,~Disgraced: Class changed to Ronin~))
+        ActionOverride(Player1,AddKit(C0_RONIN))
+END

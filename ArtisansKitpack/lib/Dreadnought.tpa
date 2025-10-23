@@ -50,7 +50,7 @@ Disadvantages:
 – -2 penalty to Armor Class.
 – May not dual-class.
 – May not use ranged weapons and incurs a -10 penalty to THAC0 when wielding a melee/ranged weapon in ranged mode.
-– May not be proficient in Sword and Shield or Two-Weapon Style.KIT_DISADV_1~
+– May not attain proficiency in Sword and Shield or Two-Weapon Style.KIT_DISADV_1~
 
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 

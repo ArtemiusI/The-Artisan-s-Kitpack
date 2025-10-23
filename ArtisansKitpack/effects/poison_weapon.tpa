@@ -1,0 +1,14 @@
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0AS#P1.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/effects/poison_weapon~ ~override~
+
+COPY_EXISTING ~c0as#p1.spl~ ~override~
+SAY NAME1 ~Poison Weapon~
+SAY UNIDENTIFIED_DESC ~Poison Weapon
+The user is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage every round and reduces the target's Constitution by one point every round for at least five rounds. After five rounds have passed, the target must make a Saving Throw vs. Death or become poisoned for another five rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+1st level: Target suffers two poison damage and loses one point of Constitution every round. No save modifier.
+6th level: Target suffers four poison damage and loses one point of Constitution every round. Save modifier of -1.
+11th level: Target suffers six poison damage and loses two points of Constitution every round. Save modifier of -2.
+16th level: Target suffers eight poison damage and loses two points of Constitution every round. Save modifier of -3.
+21st level: Target suffers ten poison damage and loses three points of Constitution every round. Save modifier of -4.~
+COPY_EXISTING ~c0as#p01.spl~ ~override/spcl423.spl~
+END

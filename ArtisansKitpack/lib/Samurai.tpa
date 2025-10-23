@@ -1,0 +1,498 @@
+COPY ~%MOD_FOLDER%/Fighter/Samurai/2DAs~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Samurai/BAMS~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Fighter/Samurai/spells~ ~OVERRIDE~
+
+INCLUDE ~%MOD_FOLDER%/effects/poison_weapon.tpa~
+
+OUTER_SPRINT kit_description_1 ~SAMURAI: A samurai is first and foremost a warrior, one who lives and dies by his sword. In doing so, the samurai gains honor and experience, increasing in power and importance in the world. However, bushido (the code of the samurai) is hard and unrelenting. A samurai must be willing to accept his own death at any moment.
+
+Advantages:
+– Immunity to Backstabs, Fear and Morale Failure.
+– Gains the Bushido passive effect.
+
+BUSHIDO: The samurai gains a +3 bonus to THAC0, damage, Armor Class and Saving Throws while no allies are within a 15-ft. range of them, with the aforementioned bonuses doubled if the samurai is outnumbered (more than one enemy within a 15-ft. range of them).
+
+– May use the Challenge ability once per day. Gains an additional use every 8th level.
+
+CHALLENGE: The samurai marks a targeted creature with a Challenge, reducing both the target's and the samurai's own Armor Class by 10 for the next three rounds. The samurai deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
+  1st-11th level: 1d6 damage
+  12th-19th level: 2d6 damage
+  20th+ level: 4d6 damage
+
+– 9th level: May use Iaijutsu.
+
+IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.
+
+– 14th level: May use Great Kiai once per day.
+
+GREAT KIAI: The ronin lets out a great shout, gaining maximum damage to all attacks made within the next round. All enemies nearby suffer a massive penalty to morale and must make an additional Saving Throw vs. Paralyzation at -4 or become completely unable to move or take any action for one round and suffering a -10 penalty to Armor Class.
+
+Disadvantages:
+– May only be of Lawful alignment.
+– If the samurai's Reputation falls below 6, they become a Ronin, permanently shifting their alignment to chaotic and losing the benefits of Bushido and usage of Challenge. However, they gain different advantages in return as well as the ability to dual-class to Thief.KIT_DISADV_1
+– May not dual-class to Thief unless they become a Ronin.
+– May not wear armor heavier than splint mail.
+– May not attain proficiency in any weapon other than katanas, wakizashis and longbows.
+– May not attain proficiency in Sword and Shield style.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description_1 ~%kit_description_1%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description_1 ~%kit_description_1%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 2
+	
+    mixed         = RESOLVE_STR_REF(~Samurai~)
+	
+    lower         = RESOLVE_STR_REF(~samurai~)
+	
+    help          = RESOLVE_STR_REF(~%kit_description_1%~)
+	
+    briefdesc     = RESOLVE_STR_REF(~SAMURAI: A samurai is first and foremost a warrior, one who lives and dies by his sword. In doing so, the samurai gains honor and experience, increasing in power and importance in the world. However, bushido (the code of the samurai) is hard and unrelenting. A samurai must be willing to accept his own death at any moment.~)
+	
+	// fallen = 0
+
+	fallen_notice = RESOLVE_STR_REF (~Dishonored: Class changed to Ronin~)
+	
+  STR_VAR
+    kit_name      = ~C0_SAMURAI~
+	
+    unusable      = ~0x40000000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                         T   S           F   Q             S S
+	//                                         W   C           L   U             W I
+	//                                 B L S   O   I   W       A   A             O N
+	//                                 A O H   H   M   A       I   R C   S       R G
+	//                 L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//                 _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~0 0 0 0 0 0 0 0 0 0 0 0 0 5 5 0 0 0 0 0 0 0 0 0 5 0 0 0 2 0 2 3~
+	
+    abclasrq      = ~13 0 13 14 13 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//                 L L L N N N C C C
+	//                 G N E G N E G N E
+    alignmnt      = ~1 1 1 0 0 0 0 0 0~
+	
+    dualclas      = ~0 1 1 0 1 0~
+	
+    //luabbr        = ~C0SAM~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0SAMURA.2da~
+	
+  //  kittable      = ~K_F_H K_F_E K_F_HE K_F_G K_F_HL K_F_HO~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+  //  hpclass       = ~HPBARB~
+	
+    // numwslot      = ~4~
+	
+    // clascolr = ~27 136 119 21 187~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+//////////////////////////////
+/////       RONIN        /////
+//////////////////////////////
+
+OUTER_SPRINT kit_description_2 ~RONIN: The ronin is a disgraced samurai who has betrayed their code of honor. While they have abandoned their former ways and lost access to some of their original techniques, their swordsmanship is no less deadly, and their newfound lack of principles has given them the willingness to learn and take advantage of unique tactics of their own.
+
+Advantages:
+– Immunity to Backstabs, Fear and Morale Failure.
+– Gains the Pragmatism passive effect.
+
+PRAGMATISM: The ronin's melee attacks deal four points of unmitigated piercing damage to targets who are asleep, panicked, stunned, charmed, poisoned, slowed, blinded, diseased, feebleminded or confused, or if the ronin is attacking while invisible.
+
+– May use the Poison Weapon ability once per day starting at level 1 and gaining one extra use every six levels thereafter.
+
+POISON WEAPON: The ronin is capable of coating <PRO_HISHER> weapon for the next eight hours with a slow-acting but extremely potent poison. This poison deals damage and reduces the target's Constitution immediately and every following round for at least four rounds. After four rounds have passed, the target must make a Saving Throw vs. Death or remain poisoned for another four rounds. Therefore, the poison has the potential to last indefinitely as long as the target does not make a successful Saving Throw. The target may not die of Constitution loss caused by the poison.
+  1st level: Target suffers two poison damage and loses one point of Constitution. No save modifier.
+  6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
+  11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
+  16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
+
+– 9th level: May use Iaijutsu.
+
+IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.
+
+– 14th level: May use Great Kiai once per day.
+
+GREAT KIAI: The ronin lets out a great shout, gaining maximum damage to all attacks made within the next round. All enemies nearby suffer a massive penalty to morale for one turn and must make an additional Saving Throw vs. Paralyzation at -4 or become completely unable to move or take any action for one round and suffering a -10 penalty to Armor Class.
+
+Disadvantages:
+– May only be of Chaotic alignment.KIT_DISADV_1
+– May not wear armor heavier than splint mail.
+– May not achieve Mastery in any weapon other than katanas, wakizashis and longbows.
+– May not become proficient in Sword and Shield style.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description_2 ~%kit_description_2%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– Does not gain Specialization in all weapons at 16th level.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description_2 ~%kit_description_2%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 2
+	
+    mixed         = RESOLVE_STR_REF(~Ronin~)
+	
+    lower         = RESOLVE_STR_REF(~ronin~)
+	
+    help          = RESOLVE_STR_REF(~%kit_description_2%~)
+	
+    briefdesc     = RESOLVE_STR_REF(~RONIN: The ronin is a disgraced samurai who has betrayed their code of honor. While they have abandoned their former ways and lost access to some of their original techniques, their newfound lack of principles has given them the willingness to learn and take advantage of unique tactics of their own.~)
+	
+	visible = 0
+	
+  STR_VAR
+    kit_name      = ~C0_RONIN~
+	
+    unusable      = ~0x40000000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                         T   S           F   Q             S S
+	//                                         W   C           L   U             W I
+	//                                 B L S   O   I   W       A   A             O N
+	//                                 A O H   H   M   A       I   R C   S       R G
+	//                 L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//                 _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    weapprof      = ~2 2 2 2 2 2 2 2 2 2 2 2 2 5 5 2 2 2 2 2 2 2 2 2 5 2 2 2 2 0 2 3~
+	
+    abclasrq      = ~13 0 13 14 13 0~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//                 L L L N N N C C C
+	//                 G N E G N E G N E
+    alignmnt      = ~0 0 0 0 0 0 1 1 1~
+	
+    dualclas      = ~0 1 1 1 1 0~
+	
+    //luabbr        = ~C0SAM~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0RONIN.2da~
+	
+    // kittable      = ~~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+  //  hpclass       = ~HPBARB~
+	
+    // numwslot      = ~4~
+	
+    // clascolr = ~27 136 119 21 187~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// sneakatt = ~2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+COMPILE ~%MOD_FOLDER%/Fighter/Samurai/dialogue/samurai_dialog.d~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_reputation.baf~
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_regain.baf~
+END
+
+ACTION_IF GAME_IS ~BG2EE EET~ THEN BEGIN
+EXTEND_TOP ~AR1304.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_regain.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_reputation.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_reputation.baf~
+END
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Bushido~) STR_VAR bam_file = C0SAMI01 RET C0SAMI01 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Bushido (Outnumbered)~) STR_VAR bam_file = C0SAMI02 RET C0SAMI02 = icon END
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02P.PRO~ ~C0 Samurai Bushido~
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02B.PRO~ ~C0 Samurai Bushido2~
+COPY_EXISTING ~C0SAM02B.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SAM02P
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+		match_opcode = 142
+		parameter2 = C0SAMI01
+END
+COPY_EXISTING ~C0SAM02D.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SAM02B
+END
+COPY_EXISTING ~C0SAM02E.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+		match_opcode = 240
+		parameter2 = C0SAMI01
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+		match_opcode = 142
+		parameter2 = C0SAMI02
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0CAV03.SPL~ BEGIN
+
+COPY ~%MOD_FOLDER%/spells/challenge~ ~override~
+
+COPY_EXISTING ~C0CAV03.spl~ ~override~
+SAY NAME1 ~Challenge!~
+SAY UNIDENTIFIED_DESC ~Challenge
+The user marks a targeted creature with a Challenge, reducing both the target's and the user's own Armor Class by 10 for the next three rounds. The user deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
+  1st-11th level: 2d10 damage
+  12th-19th level: 4d10 damage
+  20th+ level: 6d10 damage~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (~Challenged~)
+END
+
+END
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_DUAL_WIELDING" RET value END
+
+OUTER_SET C0_DUAL_WIELDING = IDS_OF_SYMBOL (~STATS~ ~C0_DUAL_WIELDING~)
+
+APPEND ~splprot.2da~ ~C0_DUAL_WIELDING%TAB%%C0_DUAL_WIELDING%%TAB%-1%TAB%1~ UNLESS ~C0_DUAL_WIELDING~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_DUAL_WIELDING~ BEGIN
+	    SET C0_DUAL_WIELDING = %row%
+	  END
+	END
+
+
+COPY_EXISTING ~C0SAM03A.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+		match_opcode = 318
+		parameter1 = 2
+		parameter2 = C0_DUAL_WIELDING
+END
+
+COPY_EXISTING ~C0SAM03D.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+		match_opcode = 139
+		parameter1 = RESOLVE_STR_REF (~Iaijutsu Strike~)
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x18 twohanded
+    PATCH_IF ((twohanded BAND 0b00000010) = 0b00000000) BEGIN 
+      READ_SHORT    0x22 appearance 
+      PATCH_IF (appearance = 22593) OR (appearance = 19523) OR (appearance = 17476) OR (appearance = 12358) OR (appearance = 12614) OR (appearance = 12870) OR (appearance = 13126) OR (appearance = 19526) OR (appearance = 21318) OR (appearance = 12627) OR (appearance = 13139) OR (appearance = 12877) OR (appearance = 17229) OR (appearance = 21325) OR (appearance = 12371) OR (appearance = 17235) OR (appearance = 21331) OR (appearance = 18519) BEGIN
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 326 target = 1 parameter1 = 2 parameter2 = C0_DUAL_WIELDING timing = 2 STR_VAR resource = C0SAM03X END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 401 target = 1 parameter1 = 1 parameter2 = 0 timing = 2 special = IDS_OF_SYMBOL (~STATS~ ~C0_DUAL_WIELDING~) END
+    	END
+  END
+    READ_BYTE    0x18 twohanded
+    PATCH_IF ((twohanded BAND 0b00000010) = 0b00000010) BEGIN 
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 318 target = 1 parameter1 = 0 parameter2 = 0 timing = 2 STR_VAR resource = C0SAM03A END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 timing = 2 STR_VAR resource = C0SAM03X END
+      END
+  END
+BUT_ONLY
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
+
+COPY_EXISTING ~CLABFI04.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+   // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+	END
+
+COPY_EXISTING ~C0SAM04.SPL~ ~OVERRIDE~
+SAY NAME1 ~Great Kiai~
+SAY UNIDENTIFIED_DESC ~Great Kiai
+The samurai lets out a great shout, gaining maximum damage to all attacks made within the next round. All enemies nearby suffer a massive penalty to morale for one turn and must make an additional Saving Throw vs. Paralyzation at -4 or become completely unable to move or take any action for one round and suffering a -10 penalty to Armor Class.~

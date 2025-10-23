@@ -1,0 +1,12 @@
+IF
+    Kit(Player1,C0_RONIN)
+    Class(Player1,FIGHTER)
+    ReputationGT(Player1,5)
+    Global("KeepPlot","GLOBAL",14)
+    GlobalLT("KPRevolt","GLOBAL",-2)
+    Global("C0SamuraiRegainKit","GLOBAL",0)
+THEN
+    RESPONSE #100
+    SetGlobal("C0SamuraiRegainKit","GLOBAL",1)
+    ActionOverride(Player1,StartDialogOverride("player1",Player1))
+END
