@@ -416,6 +416,7 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Bushido (Outnumbered)
 
 ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02P.PRO~ ~C0 Samurai Bushido~
 ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02B.PRO~ ~C0 Samurai Bushido2~
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02X.PRO~ ~C0 Samurai Bushido3~
 COPY_EXISTING ~C0SAM02B.spl~ ~override~
   LPF ALTER_SPELL_HEADER
 	INT_VAR
@@ -437,10 +438,16 @@ COPY_EXISTING ~C0SAM02E.spl~ ~override~
 		match_opcode = 240
 		parameter2 = C0SAMI01
 END
+COPY_EXISTING ~C0SAM02F.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 		match_opcode = 142
 		parameter2 = C0SAMI02
+END
+COPY_EXISTING ~C0SAM02X.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0SAM02X
 END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0CAV03.SPL~ BEGIN
