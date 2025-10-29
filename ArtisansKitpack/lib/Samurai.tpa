@@ -2,6 +2,8 @@ COPY ~%MOD_FOLDER%/Fighter/Samurai/2DAs~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Samurai/BAMS~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Samurai/spells~ ~OVERRIDE~
 
+INCLUDE ~%MOD_FOLDER%/effects/poison_weapon.tpa~
+
 OUTER_SPRINT kit_description_1 ~SAMURAI: A samurai is first and foremost a warrior, one who lives and dies by his sword. In doing so, the samurai gains honor and experience, increasing in power and importance in the world. However, bushido (the code of the samurai) is hard and unrelenting. A samurai must be willing to accept his own death at any moment.
 
 Advantages:
