@@ -68,7 +68,7 @@ ACTION_FOR_EACH description IN
 – May use Mage wands and scrolls.~
           GET_STRREF %kit_desc% desc_text
           INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
-            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+            REPLACE_TEXTUALLY EXACT_MATCH ~%old_desc%~ ~%new_desc%~
           END
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
