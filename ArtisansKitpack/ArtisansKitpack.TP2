@@ -1040,9 +1040,7 @@ GROUP ~Fighter Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Dreadnought.tpa~
 
 BEGIN ~Artisan's Kitpack: Samurai Fighter Kit~ DESIGNATED 1010
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
 GROUP ~Fighter Kits~
-INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
 
 INCLUDE ~%MOD_FOLDER%/lib/Samurai.tpa~
 
@@ -1173,12 +1171,6 @@ BEGIN ~Artisan's Kitpack: Favored Soul (EEex only, under Shaman in chargen)~ DES
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
 GROUP ~Other~
 
-ACTION_IF !FILE_EXISTS_IN_GAME ~C0PR#CL~ BEGIN
-
 INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
-
-  END ELSE BEGIN
-
-  END
 
 INCLUDE ~%MOD_FOLDER%/lib/FavoredSoul.tpa~

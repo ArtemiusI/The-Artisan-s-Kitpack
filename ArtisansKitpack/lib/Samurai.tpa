@@ -2,8 +2,6 @@ COPY ~%MOD_FOLDER%/Fighter/Samurai/2DAs~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Samurai/BAMS~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Fighter/Samurai/spells~ ~OVERRIDE~
 
-INCLUDE ~%MOD_FOLDER%/effects/poison_weapon.tpa~
-
 OUTER_SPRINT kit_description_1 ~SAMURAI: A samurai is first and foremost a warrior, one who lives and dies by his sword. In doing so, the samurai gains honor and experience, increasing in power and importance in the world. However, bushido (the code of the samurai) is hard and unrelenting. A samurai must be willing to accept his own death at any moment.
 
 Advantages:
@@ -17,11 +15,7 @@ BUSHIDO: The samurai gains a +3 bonus to THAC0, damage, Armor Class and Saving T
 CHALLENGE: The samurai marks a targeted creature with a Challenge, reducing both the target's and the samurai's own Armor Class by 10 for the next three rounds. The samurai deals additional unmitigated magic damage to the Challenged target. Additionally, the Challenged target can be seen within the fog of war and cannot turn invisible for the duration.
   1st-11th level: 1d6 damage
   12th-19th level: 2d6 damage
-  20th+ level: 4d6 damage
-
-– 9th level: May use Iaijutsu.
-
-IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.
+  20th+ level: 4d6 damageIAIJUTSU_DESCRIPTION
 
 – 14th level: May use Great Kiai once per day.
 
@@ -34,6 +28,26 @@ Disadvantages:
 – May not wear armor heavier than splint mail.
 – May not attain proficiency in any weapon other than katanas, wakizashis and longbows.
 – May not attain proficiency in Sword and Shield style.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description_1 ~%kit_description_1%~ BEGIN
+  REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~
+
+– 9th level: May use Iaijutsu.
+
+IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description_1 ~%kit_description_1%~ BEGIN
+  REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~~
+END
+
+END
+
 
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 
@@ -150,7 +164,7 @@ LAF ADD_KIT_EX
 	
     // numwslot      = ~4~
 	
-    // clascolr = ~27 136 119 21 187~
+     clascolr = ~145 47 141 5 21~
 	
 	// clasiskl = ~0 0 0 0 0 0 0~
 	
@@ -192,11 +206,7 @@ POISON WEAPON: The ronin is capable of coating <PRO_HISHER> weapon for the next 
   6th level: Target suffers four poison damage and loses one point of Constitution. Save modifier of -1.
   11th level: Target suffers six poison damage and loses two points of Constitution. Save modifier of -2.
   16th level: Target suffers eight poison damage and loses two points of Constitution. Save modifier of -3.
-  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.
-
-– 9th level: May use Iaijutsu.
-
-IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.
+  21st level: Target suffers ten poison damage and loses three points of Constitution. Save modifier of -4.IAIJUTSU_DESCRIPTION
 
 – 14th level: May use Great Kiai once per day.
 
@@ -207,6 +217,25 @@ Disadvantages:
 – May not wear armor heavier than splint mail.
 – May not achieve Mastery in any weapon other than katanas, wakizashis and longbows.
 – May not become proficient in Sword and Shield style.~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description_2 ~%kit_description_2%~ BEGIN
+  REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~
+
+– 9th level: May use Iaijutsu.
+
+IAIJUTSU: When wielding a one-handed sword, the samurai gains an additional half attack per round, and their first attack at the start of every second round has a speed factor of 0 and is a guaranteed critical hit with a +4 bonus to minimum damage rolls. The samurai loses these bonuses if they wield a two-handed weapon, a ranged weapon, or anything in the offhand.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description_2 ~%kit_description_2%~ BEGIN
+  REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~~
+END
+
+END
 
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ THEN BEGIN
 
@@ -344,7 +373,9 @@ LAF ADD_KIT_EX
     kit_id
 END
 
+ACTION_IF GAME_IS ~BG2EE EET~ THEN BEGIN
 COMPILE ~%MOD_FOLDER%/Fighter/Samurai/dialogue/samurai_dialog.d~
+END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
 EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/Fighter/Samurai/scripts/samurai_reputation.baf~
@@ -429,6 +460,10 @@ END
 
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+
+INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
+
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_DUAL_WIELDING" RET value END
 
 OUTER_SET C0_DUAL_WIELDING = IDS_OF_SYMBOL (~STATS~ ~C0_DUAL_WIELDING~)
@@ -478,9 +513,31 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   END
 BUT_ONLY
 
+COPY_EXISTING ~C0SAMURA.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = AP_C0SAM03 END // IAIJUTSU
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~C0RONIN.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 9 STR_VAR f_Entry = AP_C0SAM03 END // IAIJUTSU
+  PRETTY_PRINT_2DA
+
+	END
+
 ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~1100~ BEGIN
 
-COPY_EXISTING ~CLABFI04.2DA~ OVERRIDE
+COPY_EXISTING ~C0SAMURA.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 6 STR_VAR f_Entry = GA_C0ARC03 END // RAPID SHOT
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 12 STR_VAR f_Entry = AP_C0ARC03Z END
+   // LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = AP_C0FIG04 END // SPECIALIZATION
+   LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0FIG03 END // IMPROVED INITIATIVE
+  PRETTY_PRINT_2DA
+
+COPY_EXISTING ~C0RONIN.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing
    LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG01 END // POWER ATTACK
    LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 5 STR_VAR f_Entry = GA_C0FIG02 END // EXPERTISE
