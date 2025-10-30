@@ -10,7 +10,12 @@ Advantages:
 – Immunity to Backstabs, Fear and Morale Failure.
 – Gains the Bushido passive effect.
 
-BUSHIDO: The samurai gains a +3 bonus to THAC0, damage, Armor Class and Saving Throws while no allies are within a 15-ft. range of them, with the aforementioned bonuses doubled if the samurai is outnumbered (more than one enemy within a 15-ft. range of them).
+BUSHIDO: When there is no ally within a 15-ft. range of the samurai, they gain a persistent +2 bonus to melee THAC0 and damage, Armor Class and Saving Throws while there is an enemy of equal or higher level within a 15-ft. range of them. The samurai gains a bonus against enemies of greater than a specific level regardless of their own:
+  Enemy is level 12+: +2 bonus
+  Enemy is level 21+: +3 bonus
+  Enemy is level 30+: +4 bonus
+  Enemy is level 40+: +5 bonus
+This bonus is non-cumulative—the highest possible bonus (e.g. a level 30 enemy) will take precedence over others.
 
 – May use the Challenge ability once per day. Gains an additional use every 8th level.
 
@@ -412,12 +417,10 @@ DEFINE_ACTION_FUNCTION cd_new_portrait_icon
 END
 
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Bushido~) STR_VAR bam_file = C0SAMI01 RET C0SAMI01 = icon END
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Bushido (Outnumbered)~) STR_VAR bam_file = C0SAMI02 RET C0SAMI02 = icon END
 
 ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02P.PRO~ ~C0 Samurai Bushido~
-ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02B.PRO~ ~C0 Samurai Bushido2~
-ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02X.PRO~ ~C0 Samurai Bushido3~
-COPY_EXISTING ~C0SAM02B.spl~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/Fighter/Samurai/pro/C0SAM02X.PRO~ ~C0 Samurai Bushido2~
+COPY_EXISTING ~C0SAM02A.spl~ ~override~
   LPF ALTER_SPELL_HEADER
 	INT_VAR
 		projectile = C0SAM02P
@@ -427,27 +430,21 @@ END
 		match_opcode = 142
 		parameter2 = C0SAMI01
 END
-COPY_EXISTING ~C0SAM02D.spl~ ~override~
+COPY_EXISTING ~C0SAM02X.spl~ ~override~
   LPF ALTER_SPELL_HEADER
 	INT_VAR
-		projectile = C0SAM02B
+		projectile = C0SAM02X
 END
-COPY_EXISTING ~C0SAM02E.spl~ ~override~
+COPY_EXISTING ~C0SAM02Y.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 		match_opcode = 240
 		parameter2 = C0SAMI01
 END
-COPY_EXISTING ~C0SAM02F.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
-		match_opcode = 142
-		parameter2 = C0SAMI02
-END
-COPY_EXISTING ~C0SAM02X.spl~ ~override~
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-		projectile = C0SAM02X
+		match_opcode = 169
+		parameter2 = C0SAMI01
 END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0CAV03.SPL~ BEGIN
