@@ -87,6 +87,30 @@ COPY_EXISTING ~numwslot.2da~ ~override~
 COPY ~%MOD_FOLDER%/lua/m_c0pal2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 END
 
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREP.PRO~ ~C0 Instant Area Allies~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREE.PRO~ ~C0 Instant Area Enemies~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREL.PRO~ ~C0 Instant Area Enemies Large~
+
+COPY_EXISTING ~C0INQ01A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREP
+END
+
+COPY_EXISTING ~C0INQ01B.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREE
+END
+
+COPY_EXISTING ~C0INQ02A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREL
+END
+
 COPY_EXISTING ~C0INQ03a.SPL~ OVERRIDE
  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Dispel Effects~) END
 

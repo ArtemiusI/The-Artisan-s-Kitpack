@@ -317,3 +317,11 @@ COPY ~%MOD_FOLDER%/lua/m_c0pal3.lua~      ~override~ // Lua file read by EEex, p
   END
 
 END
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREP.PRO~ ~C0 Instant Area Allies~
+
+COPY_EXISTING ~C0ILMI2A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREP
+END

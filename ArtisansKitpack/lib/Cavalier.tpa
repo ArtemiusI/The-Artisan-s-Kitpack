@@ -61,6 +61,14 @@ COPY_EXISTING ~C0CAV01.spl~ ~override~
         parameter2 = c0cav01i
       END
 
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREP.PRO~ ~C0 Instant Area Allies~
+
+COPY_EXISTING ~C0CAV01A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREP
+END
+
 COPY_EXISTING ~C0CAV02.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR

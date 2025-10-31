@@ -63,3 +63,11 @@ COPY_EXISTING ~C0UHU02.spl~ ~override~
 SAY NAME1 ~Smite Undead~
 SAY UNIDENTIFIED_DESC ~Smite Undead
 The undead hunter's next successful attack on an undead creature forces them to make a save vs. death or be destroyed. If the save is made, the target takes 1d6 + 1d6 additional damage per 3 levels of the undead hunter instead.~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREP.PRO~ ~C0 Instant Area Allies~
+
+COPY_EXISTING ~c0uhu01a.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREP
+END
