@@ -1,7 +1,9 @@
 ACTION_FOR_EACH hlapriest IN SPPR724 SPPR729 BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%hlapriest%.spl~ THEN BEGIN 
     COPY_EXISTING ~%hlapriest%.spl~ ~override~
         READ_BYTE    0x21 row4
         WRITE_BYTE    0x21 (row4 BAND 0b00111111)
+        END
 END
  
  OUTER_SET spell_count = 0
