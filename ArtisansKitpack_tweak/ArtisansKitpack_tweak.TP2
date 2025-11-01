@@ -307,3 +307,7 @@ ACTION_FOR_EACH description IN
       BUT_ONLY
     END
   END
+
+  
+BEGIN ~Artisan's Kitpack: Favored Soul - Patch Cleric-exclusive spells from mods~ DESIGNATED 300010
+INCLUDE ~%MOD_FOLDER%/lib/FavoredSoul_spells.tpa~
