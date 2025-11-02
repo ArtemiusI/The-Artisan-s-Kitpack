@@ -236,7 +236,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = C0BER#6J END
   
 COPY_EXISTING ~LUFI0.2da~ ~override/LUC0BER.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
-LPF patch_add_hla STR_VAR ability = ~AP_C0BER#H1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0BERS1~ ability = ~AP_C0BER#H1~ num_allowed = 1 END	
 
 COPY ~%MOD_FOLDER%/Fighter/Berserker/SPELLS/C0BER#H1.SPL~ ~OVERRIDE~
 SAY NAME1 ~Extend Rage~

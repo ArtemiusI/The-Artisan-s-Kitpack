@@ -163,7 +163,7 @@ REPLACE_TEXTUALLY CASE_INSENSITIVE ~STALKER              HPWAR~ ~STALKER        
 
 COPY_EXISTING ~LURA0.2da~ ~override/LUC0RA2.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL916~ num_allowed = 1 END
+LPF patch_add_hla STR_VAR 2da_row = ~C0RA2~ ability = ~GA_SPCL916~ num_allowed = 1 END
 	
 // VALYGAR
 

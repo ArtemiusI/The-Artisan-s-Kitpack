@@ -81,9 +81,9 @@ COPY_EXISTING ~LUTH0.2da~ ~override/LUC0AS.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL910~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL911~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL912~ END
-LPF patch_add_hla STR_VAR ability = ~GA_C0ASHLA1~ num_allowed = 16 END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0ASHLA2~ num_allowed = 1 prerequisite = ~GA_C0ASHLA1~ END	
-LPF patch_add_hla STR_VAR ability = ~GA_C0ASHLA3~ num_allowed = 1 prerequisite = ~AP_C0ASHLA2~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0ASSAS1~ ability = ~GA_C0ASHLA1~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0ASSAS2~ ability = ~AP_C0ASHLA2~ num_allowed = 1 prerequisite = ~GA_C0ASHLA1~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0ASSAS3~ ability = ~GA_C0ASHLA3~ num_allowed = 1 prerequisite = ~AP_C0ASHLA2~ END	
 
 COPY_EXISTING ~clasiskl.2da~ ~override~
 SET_2DA_ENTRY 6 36 1 ~10~

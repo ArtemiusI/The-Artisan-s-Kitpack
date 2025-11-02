@@ -150,7 +150,7 @@ COPY_EXISTING ~hpclass.2da~ OVERRIDE
 
 COPY_EXISTING ~LURA0.2da~ ~override/LUC0RA1.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
-LPF patch_add_hla STR_VAR ability = ~GA_C0ARCH01~ num_allowed = 20 END
+LPF patch_add_hla STR_VAR 2da_row = ~C0ARCH1~ ability = ~GA_C0ARCH01~ num_allowed = 20 END
 	
 // ARCHER - PROFICIENCIES
 ACTION_CLEAR_ARRAY weapprof_cols_archer

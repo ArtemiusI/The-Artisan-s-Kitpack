@@ -154,22 +154,22 @@ Disadvantages:
 END
 
 COPY_EXISTING ~LUTH0.2da~ ~override/LUC0TRIC.2DA~
-LPF patch_add_hla STR_VAR ability = ~AP_C0TR#H1~ num_allowed = 1 excluded_by = ~AP_C0TR#H2~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0TR#H2~ num_allowed = 1 excluded_by = ~AP_C0TR#H1~ END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL900~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL902~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL904~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL906~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL905~ num_allowed = 1 prerequisite = ~GA_SPCL906~ END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL908~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL907~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL921~ num_allowed = 1 prerequisite = ~GA_SPCL915~ END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL922~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL936~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL937~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL938~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL940~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL941~ num_allowed = 1 prerequisite = ~GA_SPCL940~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC1~ ability = ~AP_C0TR#H1~ num_allowed = 1 excluded_by = ~AP_C0TR#H2~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC2~ ability = ~AP_C0TR#H2~ num_allowed = 1 excluded_by = ~AP_C0TR#H1~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC3~ ability = ~GA_SPCL900~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC4~ ability = ~GA_SPCL902~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC5~ ability = ~GA_SPCL904~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC6~ ability = ~GA_SPCL906~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC7~ ability = ~GA_SPCL905~ num_allowed = 1 prerequisite = ~GA_SPCL906~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC8~ ability = ~GA_SPCL908~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC9~ ability = ~GA_SPCL907~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC10~ ability = ~GA_SPCL921~ num_allowed = 1 prerequisite = ~GA_SPCL915~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC11~ ability = ~GA_SPCL922~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC12~ ability = ~GA_SPCL936~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC13~ ability = ~GA_SPCL937~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC14~ ability = ~GA_SPCL938~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC15~ ability = ~GA_SPCL940~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0TRIC16~ ability = ~GA_SPCL941~ num_allowed = 1 prerequisite = ~GA_SPCL940~ END	
 
 ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
 

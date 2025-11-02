@@ -383,8 +383,8 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = (IDS_OF_SYMBOL (~animate
 COPY_EXISTING ~LUDR0.2da~ ~override/LUC0HIVE.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR723~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR724~ END
-LPF patch_add_hla STR_VAR ability = ~AP_C0HIVEH1~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~GA_C0HIVEH2~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0HIVE1~ ability = ~AP_C0HIVEH1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0HIVE2~ ability = ~GA_C0HIVEH2~ num_allowed = 1 END	
 
 COPY ~%MOD_FOLDER%/Druid/Hivemaster/spells/C0HIVEH1.spl~ ~override~
 SAY NAME1 ~Insect Shroud~

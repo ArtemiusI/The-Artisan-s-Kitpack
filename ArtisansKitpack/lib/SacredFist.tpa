@@ -191,9 +191,9 @@ WRITE_LONG 0x1c RESOLVE_STR_REF (~Sacred Fist / Thief~)
 WRITE_LONG 0x48 15
 
 COPY_EXISTING ~LUCL0.2da~ ~override/LUC0SFF.2DA~
-LPF patch_add_hla STR_VAR ability = ~C0MN#H07~ num_allowed = 16 END	
-LPF patch_add_hla STR_VAR ability = ~C0MN#H05~ num_allowed = 16 END	
-LPF patch_add_hla STR_VAR ability = ~C0MN#H15~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0SFF1~ ability = ~C0MN#H07~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0SFF2~ ability = ~C0MN#H05~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0SFF3~ ability = ~C0MN#H15~ num_allowed = 1 END	
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0

@@ -145,9 +145,9 @@ COPY_EXISTING ~LUTH0.2da~ ~override/LUC0MKIL.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL910~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL911~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL912~ END
-LPF patch_add_hla STR_VAR ability = ~AP_C0MK#008~ num_allowed = 3 END	
-LPF patch_add_hla STR_VAR ability = ~GA_C0MK#010~ num_allowed = 1 prerequisite = ~GA_C0MK#008~ END	
-LPF patch_add_hla STR_VAR ability = ~GA_SPCL904~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MKIL1~ ability = ~AP_C0MK#008~ num_allowed = 3 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MKIL2~ ability = ~GA_C0MK#010~ num_allowed = 1 prerequisite = ~GA_C0MK#008~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MKIL3~ ability = ~GA_SPCL904~ num_allowed = 16 END	
 
 COPY_EXISTING ~C0MK#002.spl~ ~override~
 	LPF ALTER_EFFECT

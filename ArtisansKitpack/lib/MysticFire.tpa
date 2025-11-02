@@ -205,13 +205,13 @@ LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL903~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL909~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL923~ END
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL1~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL2~ num_allowed = 1 prerequisite = ~AP_C0MFHL1~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL3~ num_allowed = 1 prerequisite = ~AP_C0MFHL2~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL4~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL5~ num_allowed = 1 prerequisite = ~AP_C0MFHL4~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL6~ num_allowed = 1 prerequisite = ~AP_C0MFHL5~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0MFHL7~ num_allowed = 1 prerequisite = ~AP_C0MFHL6~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF1~ ability = ~AP_C0MFHL1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF2~ ability = ~AP_C0MFHL2~ num_allowed = 1 prerequisite = ~AP_C0MFHL1~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF3~ ability = ~AP_C0MFHL3~ num_allowed = 1 prerequisite = ~AP_C0MFHL2~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF4~ ability = ~AP_C0MFHL4~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF5~ ability = ~AP_C0MFHL5~ num_allowed = 1 prerequisite = ~AP_C0MFHL4~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF6~ ability = ~AP_C0MFHL6~ num_allowed = 1 prerequisite = ~AP_C0MFHL5~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0MF7~ ability = ~AP_C0MFHL7~ num_allowed = 1 prerequisite = ~AP_C0MFHL6~ END	
 
 COPY_EXISTING ~SPWI112.SPL~ ~OVERRIDE/C0MF101.SPL~
 WRITE_SHORT 0X1C 2

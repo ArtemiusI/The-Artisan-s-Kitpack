@@ -108,10 +108,10 @@ LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL904~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL905~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL907~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL908~ END
-LPF patch_add_hla STR_VAR ability = ~AP_C0KN#07~ num_allowed = 1 prerequisite = ~GA_SPCL906~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0KN#08~ num_allowed = 1 END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0KN#09~ num_allowed = 1 prerequisite = ~AP_C0KN#08~ END	
-LPF patch_add_hla STR_VAR ability = ~AP_C0KN#10~ num_allowed = 1 prerequisite = ~AP_C0KN#09~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0KN1~ ability = ~AP_C0KN#07~ num_allowed = 1 prerequisite = ~GA_SPCL906~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0KN2~ ability = ~AP_C0KN#08~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0KN3~ ability = ~AP_C0KN#09~ num_allowed = 1 prerequisite = ~AP_C0KN#08~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0KN4~ ability = ~AP_C0KN#10~ num_allowed = 1 prerequisite = ~AP_C0KN#09~ END	
 
 COPY_EXISTING ~SPCL144.SPL~ ~OVERRIDE~
 SAY NAME1 ~Ki Focus~

@@ -164,9 +164,9 @@ COPY_EXISTING ~LUMA0.2da~ ~override/LUC0EFM.2DA~
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL928~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL929~ END
 LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL930~ END
-LPF patch_add_hla STR_VAR ability = ~C0MN#H07~ num_allowed = 16 END	
-LPF patch_add_hla STR_VAR ability = ~C0MN#H05~ num_allowed = 16 END	
-LPF patch_add_hla STR_VAR ability = ~C0MN#H15~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0EFM1~ ability = ~C0MN#H07~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0EFM2~ ability = ~C0MN#H05~ num_allowed = 16 END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0EFM3~ ability = ~C0MN#H15~ num_allowed = 1 END	
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
