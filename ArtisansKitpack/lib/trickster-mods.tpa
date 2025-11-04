@@ -53,6 +53,16 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = c0uhu02 END
 SAY NAME1 ~Mimic: Smite Undead~
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~C0DMM02.spl~ THEN BEGIN
+COPY_EXISTING  ~C0TR#37A.SPL~ ~OVERRIDE~
+LPF ALTER_SPELL_HEADER STR_VAR icon = C0DMM02B END
+SAY NAME1 ~Mimic: Chilling Palm~
+COPY_EXISTING ~C0TR#37Z-2.SPL~ ~OVERRIDE/C0TR#37Z.SPL~
+SAY NAME1 ~Chilling Palm~
+SAY UNIDENTIFIED_DESC ~Chilling Palm
+The Dark Moon Monk channels unearthly energy into their unarmed attacks, granting their fists an additional 1d4 cold damage (+1 per point of Wisdom above 14) for 1 round per 5 levels.~
+END
+
 ACTION_IF FILE_EXISTS_IN_GAME ~C0SSM01.spl~ THEN BEGIN
 COPY_EXISTING  ~C0TR#30A.SPL~ ~OVERRIDE/c0tr#38A.SPL~
 LPF ALTER_SPELL_HEADER STR_VAR icon = C0SSM01B END
