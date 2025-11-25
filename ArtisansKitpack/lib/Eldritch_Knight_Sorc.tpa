@@ -201,11 +201,14 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     READ_BYTE    0x20 mage //reads the byte containing the fighter usability flag
     PATCH_IF ((fighter BAND 0b00001000) = 0b00000000) AND ((mage BAND 0b00000100) = 0b00000100) BEGIN 
       READ_BYTE    0x20 row3
+      READ_SHORT    0x1c itemtype 
       READ_SHORT    0x31 proficiency 
       PATCH_IF (proficiency = 0) BEGIN
         WRITE_BYTE    0x20 (row3 BAND 0b11111011)
       END
+      PATCH_IF !((itemtype = 31) OR (itemtype = 5) OR (itemtype = 14))  BEGIN
         LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_ELDRITCH_KNIGHT_EQUIPMENT timing = 2 power = 2 special = RESOLVE_STR_REF (~Mage~) STR_VAR resource = C0EKARM_ END
+      END
     END
   END
 BUT_ONLY
@@ -217,6 +220,11 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
    LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
    END
 BUT_ONLY
+
+COPY_EXISTING ~C0PR#CL.SPL~ ~override~
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 parameter1 = 0 parameter2 = 0 target = 1 timing = 0 duration = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 parameter1 = 1 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 parameter1 = 19 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#EK1 END
 
 COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#EK1.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_ELDRITCH_KNIGHT_EQUIPMENT~) parameter1 = 1 parameter2 = 1 END
