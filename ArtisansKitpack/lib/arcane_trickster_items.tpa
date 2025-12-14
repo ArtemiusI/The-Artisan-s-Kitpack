@@ -78,7 +78,6 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
       PATCH_IF (proficiency = 0) BEGIN
         WRITE_BYTE    0x20 (row3 BAND 0b11111011)
       END
-        LPF DELETE_EFFECT INT_VAR match_opcode = 319 STR_VAR match_resource = C0EKARM_ END
         LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_SORC_THIEF_EQUIPMENT timing = 2 power = 2 special = RESOLVE_STR_REF (~Mage~) END
     END
   END
