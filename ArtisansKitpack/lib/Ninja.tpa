@@ -158,9 +158,9 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
 	
 	thiefscl = ~100 100 100 100 100 100 100 0~
 	
-	backstab = ~2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+	// backstab = ~2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
 	
-	sneakatt = ~2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+	// sneakatt = ~2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
 	
 	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
 	
@@ -173,6 +173,10 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
     kit_id
 END
 
+// backstab
+APPEND ~backstab.2da~ ~C0_NINJA 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+APPEND ~sneakatt.2da~ ~C0_NINJA 2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+APPEND ~crippstr.2da~ ~C0_NINJA 2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
 
 ADD_PROJECTILE ~%MOD_FOLDER%/MonkRevision/Ninja/pro/C0NINJP1.PRO~
 COPY_EXISTING ~C0NINJP1.PRO~ ~OVERRIDE/C0NINJP2.PRO~
