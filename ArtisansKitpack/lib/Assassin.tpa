@@ -182,189 +182,23 @@ ACTION_FOR_EACH file IN backstab crippstr sneakatt BEGIN
 
 END
 
-COPY_EXISTING ~backstab.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 1 cols 2
-		SET_2DA_ENTRY (%patch_row%) 2 cols 3
-		SET_2DA_ENTRY (%patch_row%) 3 cols 3
-		SET_2DA_ENTRY (%patch_row%) 4 cols 3
-		SET_2DA_ENTRY (%patch_row%) 5 cols 3
-		SET_2DA_ENTRY (%patch_row%) 6 cols 4
-		SET_2DA_ENTRY (%patch_row%) 7 cols 4
-		SET_2DA_ENTRY (%patch_row%) 8 cols 4
-		SET_2DA_ENTRY (%patch_row%) 9 cols 4
-		SET_2DA_ENTRY (%patch_row%) 10 cols 5
-		SET_2DA_ENTRY (%patch_row%) 11 cols 5
-		SET_2DA_ENTRY (%patch_row%) 12 cols 5
-		SET_2DA_ENTRY (%patch_row%) 13 cols 5
-		SET_2DA_ENTRY (%patch_row%) 14 cols 6
-		SET_2DA_ENTRY (%patch_row%) 15 cols 6
-		SET_2DA_ENTRY (%patch_row%) 16 cols 6
-		SET_2DA_ENTRY (%patch_row%) 17 cols 6
-		SET_2DA_ENTRY (%patch_row%) 18 cols 7
-		SET_2DA_ENTRY (%patch_row%) 19 cols 7
-		SET_2DA_ENTRY (%patch_row%) 20 cols 7
-		SET_2DA_ENTRY (%patch_row%) 21 cols 7
-		SET_2DA_ENTRY (%patch_row%) 22 cols 7
-		SET_2DA_ENTRY (%patch_row%) 23 cols 7
-		SET_2DA_ENTRY (%patch_row%) 24 cols 7
-		SET_2DA_ENTRY (%patch_row%) 25 cols 7
-		SET_2DA_ENTRY (%patch_row%) 26 cols 7
-		SET_2DA_ENTRY (%patch_row%) 27 cols 7
-		SET_2DA_ENTRY (%patch_row%) 28 cols 7
-		SET_2DA_ENTRY (%patch_row%) 29 cols 7
-		SET_2DA_ENTRY (%patch_row%) 30 cols 7
-		SET_2DA_ENTRY (%patch_row%) 31 cols 7
-		SET_2DA_ENTRY (%patch_row%) 32 cols 7
-		SET_2DA_ENTRY (%patch_row%) 33 cols 7
-		SET_2DA_ENTRY (%patch_row%) 34 cols 7
-		SET_2DA_ENTRY (%patch_row%) 35 cols 7
-		SET_2DA_ENTRY (%patch_row%) 36 cols 7
-		SET_2DA_ENTRY (%patch_row%) 37 cols 7
-		SET_2DA_ENTRY (%patch_row%) 38 cols 7
-		SET_2DA_ENTRY (%patch_row%) 39 cols 7
-		SET_2DA_ENTRY (%patch_row%) 40 cols 7
-		SET_2DA_ENTRY (%patch_row%) 41 cols 7
-		SET_2DA_ENTRY (%patch_row%) 42 cols 7
-		SET_2DA_ENTRY (%patch_row%) 43 cols 7
-		SET_2DA_ENTRY (%patch_row%) 44 cols 7
-		SET_2DA_ENTRY (%patch_row%) 45 cols 7
-		SET_2DA_ENTRY (%patch_row%) 46 cols 7
-		SET_2DA_ENTRY (%patch_row%) 47 cols 7
-		SET_2DA_ENTRY (%patch_row%) 48 cols 7
-		SET_2DA_ENTRY (%patch_row%) 49 cols 7
-		SET_2DA_ENTRY (%patch_row%) 50 cols 7
-		SET_2DA_ENTRY (%patch_row%) 51 cols 7
-	  END
-	END
+// backstab
+
+COPY_EXISTING ~BACKSTAB.2da~ ~override~
+  REPLACE_EVALUATE ~ASSASIN \([- %TAB%0-9]+\)~ BEGIN
+    SPRINT data ~%MATCH1%~
+  END ~ASSASSIN 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
+
+COPY_EXISTING ~sneakatt.2da~ ~override~
+  REPLACE_EVALUATE ~ASSASIN \([- %TAB%0-9]+\)~ BEGIN
+    SPRINT data ~%MATCH1%~
+  END ~ASSASSIN 0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 1111 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26~
 
 COPY_EXISTING ~crippstr.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 1 cols 0
-		SET_2DA_ENTRY (%patch_row%) 2 cols 1
-		SET_2DA_ENTRY (%patch_row%) 3 cols 1
-		SET_2DA_ENTRY (%patch_row%) 4 cols 2
-		SET_2DA_ENTRY (%patch_row%) 5 cols 2
-		SET_2DA_ENTRY (%patch_row%) 6 cols 3
-		SET_2DA_ENTRY (%patch_row%) 7 cols 3
-		SET_2DA_ENTRY (%patch_row%) 8 cols 4
-		SET_2DA_ENTRY (%patch_row%) 9 cols 4
-		SET_2DA_ENTRY (%patch_row%) 10 cols 5
-		SET_2DA_ENTRY (%patch_row%) 11 cols 5
-		SET_2DA_ENTRY (%patch_row%) 12 cols 6
-		SET_2DA_ENTRY (%patch_row%) 13 cols 6
-		SET_2DA_ENTRY (%patch_row%) 14 cols 7
-		SET_2DA_ENTRY (%patch_row%) 15 cols 7
-		SET_2DA_ENTRY (%patch_row%) 16 cols 8
-		SET_2DA_ENTRY (%patch_row%) 17 cols 8
-		SET_2DA_ENTRY (%patch_row%) 18 cols 9
-		SET_2DA_ENTRY (%patch_row%) 19 cols 9
-		SET_2DA_ENTRY (%patch_row%) 20 cols 10
-		SET_2DA_ENTRY (%patch_row%) 21 cols 10
-		SET_2DA_ENTRY (%patch_row%) 22 cols 11
-		SET_2DA_ENTRY (%patch_row%) 23 cols 11
-		SET_2DA_ENTRY (%patch_row%) 24 cols 12
-		SET_2DA_ENTRY (%patch_row%) 25 cols 12
-		SET_2DA_ENTRY (%patch_row%) 26 cols 13
-		SET_2DA_ENTRY (%patch_row%) 27 cols 13
-		SET_2DA_ENTRY (%patch_row%) 28 cols 14
-		SET_2DA_ENTRY (%patch_row%) 29 cols 14
-		SET_2DA_ENTRY (%patch_row%) 30 cols 15
-		SET_2DA_ENTRY (%patch_row%) 31 cols 15
-		SET_2DA_ENTRY (%patch_row%) 32 cols 16
-		SET_2DA_ENTRY (%patch_row%) 33 cols 16
-		SET_2DA_ENTRY (%patch_row%) 34 cols 17
-		SET_2DA_ENTRY (%patch_row%) 35 cols 17
-		SET_2DA_ENTRY (%patch_row%) 36 cols 18
-		SET_2DA_ENTRY (%patch_row%) 37 cols 18
-		SET_2DA_ENTRY (%patch_row%) 38 cols 19
-		SET_2DA_ENTRY (%patch_row%) 39 cols 19
-		SET_2DA_ENTRY (%patch_row%) 40 cols 20
-		SET_2DA_ENTRY (%patch_row%) 41 cols 20
-		SET_2DA_ENTRY (%patch_row%) 42 cols 21
-		SET_2DA_ENTRY (%patch_row%) 43 cols 21
-		SET_2DA_ENTRY (%patch_row%) 44 cols 22
-		SET_2DA_ENTRY (%patch_row%) 45 cols 22
-		SET_2DA_ENTRY (%patch_row%) 46 cols 23
-		SET_2DA_ENTRY (%patch_row%) 47 cols 23
-		SET_2DA_ENTRY (%patch_row%) 48 cols 24
-		SET_2DA_ENTRY (%patch_row%) 49 cols 24
-		SET_2DA_ENTRY (%patch_row%) 50 cols 25
-		SET_2DA_ENTRY (%patch_row%) 51 cols 25
-	  END
-	END
-	
-COPY_EXISTING ~crippstr.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~ASSASIN~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 1 cols 1
-		SET_2DA_ENTRY (%patch_row%) 2 cols 2
-		SET_2DA_ENTRY (%patch_row%) 3 cols 2
-		SET_2DA_ENTRY (%patch_row%) 4 cols 3
-		SET_2DA_ENTRY (%patch_row%) 5 cols 3
-		SET_2DA_ENTRY (%patch_row%) 6 cols 4
-		SET_2DA_ENTRY (%patch_row%) 7 cols 4
-		SET_2DA_ENTRY (%patch_row%) 8 cols 5
-		SET_2DA_ENTRY (%patch_row%) 9 cols 5
-		SET_2DA_ENTRY (%patch_row%) 10 cols 6
-		SET_2DA_ENTRY (%patch_row%) 11 cols 6
-		SET_2DA_ENTRY (%patch_row%) 12 cols 7
-		SET_2DA_ENTRY (%patch_row%) 13 cols 7
-		SET_2DA_ENTRY (%patch_row%) 14 cols 8
-		SET_2DA_ENTRY (%patch_row%) 15 cols 8
-		SET_2DA_ENTRY (%patch_row%) 16 cols 9
-		SET_2DA_ENTRY (%patch_row%) 17 cols 9
-		SET_2DA_ENTRY (%patch_row%) 18 cols 10
-		SET_2DA_ENTRY (%patch_row%) 19 cols 10
-		SET_2DA_ENTRY (%patch_row%) 20 cols 11
-		SET_2DA_ENTRY (%patch_row%) 21 cols 11
-		SET_2DA_ENTRY (%patch_row%) 22 cols 12
-		SET_2DA_ENTRY (%patch_row%) 23 cols 12
-		SET_2DA_ENTRY (%patch_row%) 24 cols 13
-		SET_2DA_ENTRY (%patch_row%) 25 cols 13
-		SET_2DA_ENTRY (%patch_row%) 26 cols 14
-		SET_2DA_ENTRY (%patch_row%) 27 cols 14
-		SET_2DA_ENTRY (%patch_row%) 28 cols 15
-		SET_2DA_ENTRY (%patch_row%) 29 cols 15
-		SET_2DA_ENTRY (%patch_row%) 30 cols 16
-		SET_2DA_ENTRY (%patch_row%) 31 cols 16
-		SET_2DA_ENTRY (%patch_row%) 32 cols 17
-		SET_2DA_ENTRY (%patch_row%) 33 cols 17
-		SET_2DA_ENTRY (%patch_row%) 34 cols 18
-		SET_2DA_ENTRY (%patch_row%) 35 cols 18
-		SET_2DA_ENTRY (%patch_row%) 36 cols 19
-		SET_2DA_ENTRY (%patch_row%) 37 cols 19
-		SET_2DA_ENTRY (%patch_row%) 38 cols 20
-		SET_2DA_ENTRY (%patch_row%) 39 cols 20
-		SET_2DA_ENTRY (%patch_row%) 40 cols 21
-		SET_2DA_ENTRY (%patch_row%) 41 cols 21
-		SET_2DA_ENTRY (%patch_row%) 42 cols 22
-		SET_2DA_ENTRY (%patch_row%) 43 cols 22
-		SET_2DA_ENTRY (%patch_row%) 44 cols 23
-		SET_2DA_ENTRY (%patch_row%) 45 cols 23
-		SET_2DA_ENTRY (%patch_row%) 46 cols 24
-		SET_2DA_ENTRY (%patch_row%) 47 cols 24
-		SET_2DA_ENTRY (%patch_row%) 48 cols 25
-		SET_2DA_ENTRY (%patch_row%) 49 cols 25
-		SET_2DA_ENTRY (%patch_row%) 50 cols 26
-		SET_2DA_ENTRY (%patch_row%) 51 cols 26
-	  END
-	END
-	
+  REPLACE_EVALUATE ~ASSASIN \([- %TAB%0-9]+\)~ BEGIN
+    SPRINT data ~%MATCH1%~
+  END ~ASSASSIN 0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 1111 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26~
+
 ACTION_IF FILE_EXISTS_IN_GAME ~clabth02.2da~ THEN BEGIN
 COPY ~%MOD_FOLDER%/Thief/Assassin/2da/clabth02.2da~ ~override~
 END
