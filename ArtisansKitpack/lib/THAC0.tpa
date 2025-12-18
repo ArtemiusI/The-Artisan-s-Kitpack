@@ -135,7 +135,6 @@ LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0APF14 END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0APR08 END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0ARF08 END
-LPF ADD_SPELL_EFFECT INT_VAR header = 6 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
 LPF ADD_SPELL_EFFECT INT_VAR header = 7 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
 LPF ADD_SPELL_EFFECT INT_VAR header = 8 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
 LPF ADD_SPELL_EFFECT INT_VAR header = 9 opcode = 1 parameter1 = 6 target = 1 timing = 9 END
