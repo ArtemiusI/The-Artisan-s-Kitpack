@@ -311,3 +311,6 @@ ACTION_FOR_EACH description IN
   
 BEGIN ~Artisan's Kitpack: Favored Soul - Patch Cleric-exclusive spells from mods~ DESIGNATED 300010
 INCLUDE ~ArtisansKitpack/lib/FavoredSoul_spells.tpa~
+
+BEGIN ~Artisan's Kitpack: Update EEex-based Weapon Usability Changes~ DESIGNATED 1010000
+INCLUDE ~ArtisansKitpack/lib/profs_eeex_patch.tpa~

@@ -1,0 +1,164 @@
+// CLASS PROFICIENCY CHECKS
+
+COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+  LPF DELETE_EFFECT INT_VAR match_special = 99999 END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	WEAPPROF_CLASS	BEGIN
+	~MAGE~		=>	4
+	~FIGHTER~		=>	5
+	~CLERIC~		=>	6
+  ~THIEF~ => 7
+  ~BARD~ => 8
+  ~PALADIN~ => 9
+  ~DRUID~ => 10
+  ~RANGER~ => 11
+  ~FIGHTER_MAGE~ => 12
+  ~FIGHTER_CLERIC~ => 13
+  ~FIGHTER_THIEF~ => 14
+  ~FIGHTER_MAGE_THIEF~ => 15
+  ~MAGE_THIEF~ => 16
+  ~CLERIC_MAGE~ => 17
+  ~CLERIC_THIEF~ => 18
+  ~FIGHTER_DRUID~ => 19
+  ~FIGHTER_MAGE_CLERIC~ => 20
+  ~CLERIC_RANGER~ => 21
+  ~MONK~ => 51
+  ~SHAMAN~ => 60
+END
+ACTION_PHP_EACH WEAPPROF_CLASS AS class => class_number BEGIN
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	WEAPPROF_WEAPONTYPE	BEGIN
+	~BASTARDSWORD~		          =>	8
+	~LONGSWORD~		              =>	9
+	~SHORTSWORD~	              =>	10
+	~AXE~	                      =>	11
+	~TWOHANDEDSWORD~	          =>	12
+	~KATANA~	                  =>	13
+	~SCIMITARWAKISASHININJATO~  =>	14
+	~DAGGER~	                  =>	15
+	~WARHAMMER~                 =>	16
+	~CLUB~	                    =>	17
+	~SPEAR~	                    =>	18
+	~HALBERD~	                  =>	19
+	~FLAILMORNINGSTAR~	        =>	20
+	~MACE~	                    =>	21
+	~QUARTERSTAFF~	            =>	22
+	~CROSSBOW~	                =>	23
+	~LONGBOW~	                  =>	24
+	~SHORTBOW~	                =>	25
+	~DART~	                    =>	26
+	~SLING~	                    =>	27
+END
+ACTION_PHP_EACH WEAPPROF_WEAPONTYPE AS weapon => weapon_number BEGIN
+COPY_EXISTING ~weapprof.2da~  ~override~
+  COUNT_2DA_COLS col_count
+    READ_2DA_ENTRY ~%weapon_number%~ ~%class_number%~ col_count ~%weapon%_%class%~
+      PATCH_IF (EVAL ~%weapon%_%class%~ > 0) BEGIN
+        SET EVAL ~%weapon%_%class%_1~ = 1
+      END ELSE BEGIN
+        SET EVAL ~%weapon%_%class%_1~ = 0
+      END
+      
+END
+
+ACTION_IF (EVAL ~BASTARDSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#89 END
+END
+ 
+ACTION_IF (EVAL ~LONGSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#90 END
+END
+ 
+ACTION_IF (EVAL ~SHORTSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#91 END
+END
+ 
+ACTION_IF (EVAL ~AXE_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#92 END
+END
+ 
+ACTION_IF (EVAL ~TWOHANDEDSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#93 END
+END
+ 
+ACTION_IF (EVAL ~KATANA_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#94 END
+END
+ 
+ACTION_IF (EVAL ~SCIMITARWAKISASHININJATO_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#95 END
+END
+ 
+ACTION_IF (EVAL ~DAGGER_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#96 END
+END
+ 
+ACTION_IF (EVAL ~WARHAMMER_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#97 END
+END
+ 
+ACTION_IF (EVAL ~CLUB_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#115 END
+END
+ 
+ACTION_IF (EVAL ~SPEAR_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#98 END
+END
+ 
+ACTION_IF (EVAL ~HALBERD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#99 END
+END
+ 
+ACTION_IF (EVAL ~FLAILMORNINGSTAR_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#100 END
+END
+ 
+ACTION_IF (EVAL ~MACE_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#101 END
+END
+ 
+ACTION_IF (EVAL ~QUARTERSTAFF_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#102 END
+END
+ 
+ACTION_IF (EVAL ~CROSSBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#103 END
+END
+ 
+ACTION_IF (EVAL ~LONGBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#104 END
+END
+ 
+ACTION_IF (EVAL ~SHORTBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#105 END
+END
+ 
+ACTION_IF (EVAL ~DART_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#106 END
+END
+ 
+ACTION_IF (EVAL ~SLING_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#107 END
+END
+ 
+END
