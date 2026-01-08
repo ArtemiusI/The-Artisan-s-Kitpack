@@ -299,7 +299,7 @@ COPY_EXISTING ~C0ilms6b.spl~ ~override~
 	  parameter1 = RESOLVE_STR_REF (~Incoming damage negated by Tribulations~)
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 OUTER_SET martyr_ids = IDS_OF_SYMBOL (~kit~ ~C0ILM~)
   

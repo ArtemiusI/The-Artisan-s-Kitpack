@@ -210,7 +210,7 @@ The divine champion channels a portion of their deity’s power, gaining a +4 bo
 
 COPY ~%MOD_FOLDER%/Paladin/DivineChampion/c0dc04.spl~ ~override~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY_EXISTING ~numwslot.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns

@@ -188,7 +188,7 @@ The Wizard Slayer expends some of their anti-magical energy to perform a charged
 
 The effects of Spellslayer Strike bypass all weapon protections, even if the attack itself is negated.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY_EXISTING ~C0WSL01.spl~ ~override~
 SAY UNIDENTIFIED_DESC ~Spellslayer Strike

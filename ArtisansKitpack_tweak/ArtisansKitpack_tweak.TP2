@@ -22,6 +22,63 @@ BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (insta
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2012~ ~The Beastmaster Overhaul must be installed.~
 INCLUDE ~ArtisansKitpack/lib/beastmaster-items.tpa~
 
+BEGIN ~Artisan's Kitpack: Dark Hunter - Allow Disarm Traps and Open Locks~ DESIGNATED 20101
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2002~ ~The Dark Hunter must be installed.~
+REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
+REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
+
+COPY_EXISTING ~C0DHUNT.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0DH#005 END // Set Traps
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+COPY_EXISTING ~thiefscl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "C0DHUNT") BEGIN
+      READ_2DA_ENTRY 2 col col_count val
+      SET_2DA_ENTRY  2 col col_count 100
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+  
+COPY_EXISTING ~clasiskl.2da~ ~override~
+  REPLACE_TEXTUALLY ~^\([ %TAB%]*MAGE\)~ ~CD_DELETE_ME \1~ // adding column to header column
+  COUNT_2DA_COLS col_count
+  FOR (col = 1 ; col < col_count ; ++col) BEGIN
+    READ_2DA_ENTRY 0 col col_count kit
+    PATCH_IF ("%kit%" STRING_EQUAL_CASE "C0DHUNT") BEGIN
+      READ_2DA_ENTRY 2 col col_count val
+      SET_2DA_ENTRY  2 col col_count 20
+      SET col = col_count // kill loop
+    END
+  END  
+  REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
+  PRETTY_PRINT_2DA
+  BUT_ONLY
+
+OUTER_SET darkhunter_ids = IDS_OF_SYMBOL (~kit~ ~C0DHUNT~)
+  
+COPY ~ArtisansKitpack/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%darkhunter_ids%~~~~~ //"
+  END
+
+
 BEGIN ~Artisan's Kitpack: Cavalier - Rename Kit to Chevalier~ DESIGNATED 3210
 
 ACTION_FOR_EACH description IN 

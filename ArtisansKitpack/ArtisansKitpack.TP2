@@ -211,7 +211,7 @@ BEGIN ~Artisan's Kitpack: Eldritch Knight (Fighter / Mage Kit)~ DESIGNATED 20000
 GROUP ~Multi-Class Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Eldritch_Knight.tpa~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 INCLUDE ~ArtisansKitpack/lib/Eldritch_Knight_Sorc.tpa~
 
@@ -967,7 +967,7 @@ INCLUDE ~%MOD_FOLDER%/lib/DragonDisciple.tpa~
 
 BEGIN ~Artisan's Kitpack: Arcane Trickster Sorcerer Kit—EEEx required~ DESIGNATED 8004
 GROUP ~Sorcerer Kits~
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) ~This component requires EEEx.~ //EEX required!
 INCLUDE ~%MOD_FOLDER%/lib/Arcane_Trickster_Sorc.tpa~
 
 BEGIN ~Artisan's Kitpack: Brawler Kit~ DESIGNATED 10002
@@ -981,13 +981,13 @@ INCLUDE ~%MOD_FOLDER%/lib/MonkRevision.tpa~
 BEGIN ~Artisan's Kitpack: Sacred Fist (Cleric) and Enlightened Fist (Sorcerer) Kits—EEEx required~ DESIGNATED 10003
 GROUP ~Monk Kits~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) ~This component requires EEEx.~ //EEX required!
 INCLUDE ~%MOD_FOLDER%/lib/MonkRevision-Mystic.tpa~
 
 BEGIN ~Artisan's Kitpack: Ninja "Class" (Monk Kit)—EEEx required~ DESIGNATED 10004
 GROUP ~Monk Kits~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~10001~ ~Monk Revisions must be installed.~
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) ~This component requires EEEx.~ //EEX required!
 INCLUDE ~%MOD_FOLDER%/lib/Ninja.tpa~
 
 BEGIN ~Artisan's Kitpack: Fighter Overhaul~ DESIGNATED 1100
@@ -1166,7 +1166,7 @@ GROUP ~Shaman Kits~
 INCLUDE ~%MOD_FOLDER%/lib/WarShaman.tpa~
 
 BEGIN ~Artisan's Kitpack: Favored Soul (EEex only, under Shaman in chargen)~ DESIGNATED 30001
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ ~This component requires EEEx.~ //EEX required!
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) ~This component requires EEEx.~ //EEX required!
 GROUP ~Other~
 
 INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~

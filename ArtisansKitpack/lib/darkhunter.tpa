@@ -245,26 +245,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~M_C0RAN1.lua~ THEN BEGIN
 ACTION_IF FILE_EXISTS_IN_GAME ~C0DHUNT.2DA~ BEGIN
 COPY_EXISTING ~C0DHUNT.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
-  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0RNG02 END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG01 END // Set Traps
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0RNG02 END // Set Traps
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 f_Increment = 1 STR_VAR f_Entry = AP_C0DH#005 END // Set Traps
   PRETTY_PRINT_2DA
 BUT_ONLY
 
@@ -278,6 +261,8 @@ COPY_EXISTING ~thiefscl.2da~ ~override~
       SET_2DA_ENTRY  6 col col_count 100
       READ_2DA_ENTRY 3 col col_count val
       SET_2DA_ENTRY  3 col col_count 100
+      READ_2DA_ENTRY 2 col col_count val
+      SET_2DA_ENTRY  2 col col_count 100
       SET col = col_count // kill loop
     END
   END  
@@ -295,13 +280,53 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
       SET_2DA_ENTRY  6 col col_count 20
       READ_2DA_ENTRY 3 col col_count val
       SET_2DA_ENTRY  3 col col_count 20
+      READ_2DA_ENTRY 2 col col_count val
+      SET_2DA_ENTRY  2 col col_count 20
       SET col = col_count // kill loop
     END
   END  
   REPLACE_TEXTUALLY ~CD_DELETE_ME ~ ~~ // removing it
   PRETTY_PRINT_2DA
   BUT_ONLY
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+OUTER_SET darkhunter_ids = IDS_OF_SYMBOL (~kit~ ~C0DHUNT~)
   
+COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%darkhunter_ids%~~~~~ //"
+  END
+
+END
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+OUTER_SET darkhunter_ids = IDS_OF_SYMBOL (~kit~ ~C0DHUNT~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0ran2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%darkhunter_ids%~~~~~ //"
+  END
+
+END
+
 END
 END
 END

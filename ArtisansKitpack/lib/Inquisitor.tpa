@@ -65,7 +65,7 @@ The inquisitor's next successful attack inflicts a 100% chance of spell failure 
 
 The effects of Smite Magic bypass all weapon protections, even if the attack itself is negated.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY_EXISTING ~C0INQ03.spl~ ~override~
 SAY UNIDENTIFIED_DESC ~Smite Magic

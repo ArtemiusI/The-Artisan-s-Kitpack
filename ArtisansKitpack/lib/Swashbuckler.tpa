@@ -143,7 +143,7 @@ SAY UNIDENTIFIED_DESC ~The swashbuckler is capable of landing precise strikes to
 '
 This skill qualifies as learning the Power Attack ability in terms of other prerequisites.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY ~%MOD_FOLDER%/lua/m_c0thf2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 

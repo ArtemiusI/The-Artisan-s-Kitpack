@@ -301,7 +301,7 @@ COPY ~%MOD_FOLDER%/Paladin/MysticFire/spells/c0mf01a.spl~ ~override~
 			parameter1 = RESOLVE_STR_REF (~Miscast Magic~)
 		END
  
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY_EXISTING ~c0mf01.spl~ ~override~
 SAY UNIDENTIFIED_DESC ~Shatter Spell

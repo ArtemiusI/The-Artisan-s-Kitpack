@@ -36,7 +36,7 @@ Disadvantages:
 – May not attain proficiency in any weapon other than katanas, wakizashis and longbows.
 – May not attain proficiency in Sword and Shield style.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 OUTER_PATCH_SAVE kit_description_1 ~%kit_description_1%~ BEGIN
   REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~
@@ -225,7 +225,7 @@ Disadvantages:
 – May not achieve Mastery in any weapon other than katanas, wakizashis and longbows.
 – May not become proficient in Sword and Shield style.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 OUTER_PATCH_SAVE kit_description_2 ~%kit_description_2%~ BEGIN
   REPLACE_TEXTUALLY ~IAIJUTSU_DESCRIPTION~ ~
@@ -466,7 +466,7 @@ END
 
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 INCLUDE ~%MOD_FOLDER%/eeex/profs_eeex.tpa~
 

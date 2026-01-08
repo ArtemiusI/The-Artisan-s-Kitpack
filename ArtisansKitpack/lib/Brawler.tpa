@@ -165,7 +165,7 @@ SAY NAME1 ~Brawling Stance~
 SAY UNIDENTIFIED_DESC ~Brawling Stance
 All successful attacks made by the brawler within the next 2 rounds deal maximum damage, but their Armor Class is penalized by 4 for the same duration. Additionally, the brawler is healed for two additional hit points each time they take damage. From 15th level onwards, the Brawler gains an additional attack per round.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY ~%MOD_FOLDER%/lua/m_c0mon1.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 

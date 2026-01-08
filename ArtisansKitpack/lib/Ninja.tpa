@@ -225,7 +225,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Elite
 COPY_EXISTING ~C0NINJ3.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Master Ninja~) END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 

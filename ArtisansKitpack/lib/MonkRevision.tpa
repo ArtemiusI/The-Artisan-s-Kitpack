@@ -1156,7 +1156,7 @@ END
 
 //// DARK MOON MONK SPELLCASTING
 
-ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 
 COPY ~%MOD_FOLDER%/lua/m_c0dmm1.lua~      ~override~
