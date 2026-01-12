@@ -312,44 +312,6 @@ WRITE_BYTE 0x54 8
 WRITE_BYTE 0x58 0
 WRITE_ASCII 0x94 ~C0MN#04!~
 
-COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 1 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT1 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 2 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT2 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 3 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT3 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 4 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT4 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 5 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 6 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT6 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 7 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT7 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 8 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT8 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 288 match_parameter1 = 9 opcode = 183 parameter2 = 28 silent = 1 STR_VAR resource = C0FISTT9 END
-  END
-BUT_ONLY_IF_IT_CHANGES
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT2.EFF~
-WRITE_BYTE 0x1C 2
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT3.EFF~
-WRITE_BYTE 0x1C 3
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT4.EFF~
-WRITE_BYTE 0x1C 4
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT5.EFF~
-WRITE_BYTE 0x1C 5
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT6.EFF~
-WRITE_BYTE 0x1C 6
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT7.EFF~
-WRITE_BYTE 0x1C 7
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT8.EFF~
-WRITE_BYTE 0x1C 8
-
-COPY_EXISTING ~C0FISTT1.EFF~ ~OVERRIDE/C0FISTT9.EFF~
-WRITE_BYTE 0x1C 9
-
 COPY_EXISTING ~FIST.ITM~ ~OVERRIDE~
 LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 power = 100 timing = 2 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_SACRED_FIST~) parameter2 = 9 STR_VAR resource = C0MN#FS END
 LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 power = 100 timing = 2 parameter1 = IDS_OF_SYMBOL (~KIT~ ~C0_ENLIGHTENED_FIST~) parameter2 = 9 STR_VAR resource = C0MN#FS END
