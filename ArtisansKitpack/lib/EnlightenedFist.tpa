@@ -65,7 +65,6 @@ WHOLENESS OF BODY: The Enlightened Fist instantly heals themself for three hit p
 
 – 14th level: Diamond Soul: The Enlightened Fist gains base 10% + 2% Magic Resistance per level up to a maximum of 50% at 20th level.
 – 18th level: Inner Eye: The Enlightened Fist becomes immune to critical hits while unarmed.
-– Hit Die: d6
 
 Disadvantages:
 – May cast one fewer spell per level per day.
@@ -132,7 +131,7 @@ Disadvantages:
 	
     // clswpbon      = ~1 0 2~
 	
-    hpclass       = ~HPROG~
+    // hpclass       = ~HPROG~
 	
     numwslot      = ~3~
 	
