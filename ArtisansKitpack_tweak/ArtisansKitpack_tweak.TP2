@@ -22,7 +22,7 @@ BEGIN ~Artisan's Kitpack: Beastmaster - Modify Restrictions for Mod Items (insta
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2012~ ~The Beastmaster Overhaul must be installed.~
 INCLUDE ~ArtisansKitpack/lib/beastmaster-items.tpa~
 
-BEGIN ~Artisan's Kitpack: Dark Hunter - Allow Disarm Traps and Open Locks~ DESIGNATED 20101
+BEGIN ~Artisan's Kitpack: Dark Hunter - Allow Disarm Traps and Open Locks~ DESIGNATED 20021
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2002~ ~The Dark Hunter must be installed.~
 REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~2000~ ~The Ranger Overhaul must be installed.~
 REQUIRE_COMPONENT ~EEEX/EEEX.TP2~ ~0~ ~EEex must be installed.~
