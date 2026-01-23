@@ -29,7 +29,7 @@ BEGIN
     END ELSE ACTION_IF (severity = 1) BEGIN
       PRINT ~%msg%~
     END ELSE ACTION_IF (severity = 2) BEGIN
-      WARN ~WARNING: %msg%~
+      PRINT ~WARNING: %msg%~
     END ELSE ACTION_IF (severity > 2) BEGIN
       FAIL ~%msg%~
     END
@@ -623,7 +623,7 @@ BEGIN
     LAF a7#add_kit_ex#dec_to_hex STR_VAR dec_number = EVAL ~%number%~ prefix = ~~ RET hex = hex_number END
   END ELSE BEGIN
     // invalid format
-    WARN ~Not a number [%number%]~
+    PRINT ~Not a number [%number%]~
   END
 
   // formatting result

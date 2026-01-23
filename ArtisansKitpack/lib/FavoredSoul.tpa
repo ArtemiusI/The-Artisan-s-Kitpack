@@ -93,7 +93,7 @@ CLASS FEATURES:
 	
     dualclas      = ~0 0 0 0 0 0~
 	
-    luabbr        = ~CL0~
+    luabbr        = ~LUC0FAV~
 	
     stweap        = ~CHAN09 * HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -778,3 +778,12 @@ EXTEND_TOP ~AR0902.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul_ar0902.ba
 EXTEND_TOP ~AR0904.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul_ar0904.baf~
 
   END
+  
+COPY_EXISTING ~SPWI923.SPL~ ~OVERRIDE/C0FS#H1.SPL~
+WRITE_SHORT 0x1C 4
+COPY_EXISTING ~SPWI924.SPL~ ~OVERRIDE/C0FS#H2.SPL~
+WRITE_SHORT 0x1C 4
+
+COPY_EXISTING ~LUCL0.2da~ ~override/LUC0INVB.2DA~
+LPF patch_add_hla STR_VAR 2da_row = ~C0INVB1~ ability = ~GA_C0FS#H1~ num_allowed = 1 excluded_by = ~GA_C0FS#H2~ alignment_restrict = ~ALL_EVIL~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0INVB1~ ability = ~GA_C0FS#H2~ num_allowed = 1 excluded_by = ~GA_C0FS#H1~ alignment_restrict = ~ALL_GOOD~ END

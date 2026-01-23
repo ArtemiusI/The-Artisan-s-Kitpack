@@ -87,7 +87,7 @@ Disadvantages:
 	
     // dualclas      = ~0 1 1 1 1 0~
 	
-    luabbr        = ~TH1~
+    luabbr        = ~C0ADV~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -162,6 +162,10 @@ COPY_EXISTING C0ARC03.SPL OVERRIDE
 SAY NAME1 ~Rapid Shot~
 SAY UNIDENTIFIED_DESC ~Rapid Shot
 The user may make an additional ranged attack per round at a -4 penalty to hit. From 12th level onwards, the penalty is reduced to -2.~
+
+COPY_EXISTING ~LUTH0.2da~ ~override/LUC0ADV.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL916~ END
+LPF patch_add_hla STR_VAR 2da_row = ~C0ADV~ ability = ~GA_SPCL900~ num_allowed = 16 END	
 
 COPY_EXISTING C0ARC03b.SPL OVERRIDE
 LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Rapid Shot Active~) END

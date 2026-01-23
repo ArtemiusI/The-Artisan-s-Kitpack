@@ -33,7 +33,6 @@ LAF ADD_KIT_EX
     help          = RESOLVE_STR_REF(~ELDRITCH KNIGHT: Studying the martial and arcane arts to equal degree, the eldritch knight is a versatile combatant who can cast fireball on their foes or charge them with sword drawn. The eldritch knight takes pride in their ability to use the right technique for the job: spells against physically tough foes and force of arms against spellcasting enemies. Eldritch knights split their time between physical training to become better soldiers and arcane study to learn more powerful spells. They tend to be driven individuals, because simultaneously perfecting their spellcasting and combat prowess requires immense time and effort.
 
 Advantages:
-– +2 to Armor Class.
 – May Master (three slots) any melee weapon.
 – Armored Caster: The Eldritch Knight may cast spells while wearing up to studded leather.
 – Combat Casting: The Eldritch Knight is skilled at casting spells in the midst of combat. If there is an enemy within 5-ft. of the Eldritch Knight, they gain an increased casting speed of 2.

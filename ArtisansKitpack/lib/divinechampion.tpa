@@ -88,7 +88,7 @@ Disadvantages:
 	
     // dualclas      = ~0 1 1 1 1 0~
 	
-    // luabbr        = ~FI0~
+    luabbr        = ~C0DC~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -238,3 +238,8 @@ COPY ~%MOD_FOLDER%/lua/m_c0dc1.lua~      ~override~ // Lua file read by EEex, pr
     string = EVAL ~~~~~%divine_champion_ids%~~~~~ //"
   END
 END
+
+COPY_EXISTING ~LUPA0.2da~ ~override/LUC0DC.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPCL923~ END
+LPF patch_add_hla STR_VAR 2da_row = ~C0DC1~ ability = ~GA_SPCL923~ excluded_by = ~GA_SPCL935~ alignment_restrict = ~ALL_EVIL~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0DC2~ ability = ~GA_SPCL935~ excluded_by = ~GA_SPCL923~ alignment_restrict = ~ALL_GOOD~ END	
