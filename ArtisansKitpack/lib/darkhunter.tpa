@@ -293,7 +293,7 @@ ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 OUTER_SET darkhunter_ids = IDS_OF_SYMBOL (~kit~ ~C0DHUNT~)
   
-COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+COPY ~%MOD_FOLDER%/lua/m_c0ran2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
 ///////////////////////////////////////////////////////////////////////////
 // Update lua file                                                       //
 ///////////////////////////////////////////////////////////////////////////

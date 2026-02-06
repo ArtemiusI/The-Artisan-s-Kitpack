@@ -88,7 +88,9 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
 – Hit Die: d6~)
 	
     briefdesc     = RESOLVE_STR_REF(~NINJA: The ninja is a stealthy, acrobatic warrior who moves through the shadows to strike down their unwary foes. Trained in the use of weapons, martial arts, and thievery, ninjas originate from the eastern lands and serve as loyal enforcers of their clans, serving as warriors, assassins and spies.~)
+
   STR_VAR
+  
     kit_name      = ~C0_NINJA~
 	
     unusable      = ~0x00004000~
@@ -173,6 +175,21 @@ EMPTY BODY: The ninja gains the ability to fade from sight, granting them partia
     kit_id
 END
 
+OUTER_SET ninja_ids = IDS_OF_SYMBOL (~kit~ ~C0_NINJA~)
+  
+COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+///////////////////////////////////////////////////////////////////////////
+// Update lua file                                                       //
+///////////////////////////////////////////////////////////////////////////
+  LPF REPLACE_MULTILINE
+    INT_VAR
+    strict = 1
+    verbose = 0
+    STR_VAR
+    pattern = ~~~~~0x4000~~~~~
+    string = EVAL ~~~~~%ninja_ids%~~~~~ //"
+  END
+
 // backstab
 APPEND ~backstab.2da~ ~C0_NINJA 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
 APPEND ~sneakatt.2da~ ~C0_NINJA 2 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7~
@@ -225,26 +242,6 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Elite
 COPY_EXISTING ~C0NINJ3.SPL~ ~OVERRIDE~
 LPF ALTER_EFFECT INT_VAR match_opcode = 290 parameter1 = RESOLVE_STR_REF (~Master Ninja~) END
 
-ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
-
-COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
-
-OUTER_SET ninja_ids = IDS_OF_SYMBOL (~kit~ ~C0_NINJA~)
-  
-COPY ~%MOD_FOLDER%/lua/m_c0mon2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
-///////////////////////////////////////////////////////////////////////////
-// Update lua file                                                       //
-///////////////////////////////////////////////////////////////////////////
-  LPF REPLACE_MULTILINE
-    INT_VAR
-    strict = 1
-    verbose = 0
-    STR_VAR
-    pattern = ~~~~~0x4000~~~~~
-    string = EVAL ~~~~~%ninja_ids%~~~~~ //"
-  END
-
-END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
@@ -266,3 +263,4 @@ ACTION_IF GAME_IS ~BG2EE EET~ BEGIN
 COMPILE ~ArtisansKitpack/strongholds/ninja.d~
 
   END
+  
