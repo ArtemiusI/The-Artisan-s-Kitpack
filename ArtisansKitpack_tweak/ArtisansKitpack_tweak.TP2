@@ -95,11 +95,9 @@ ACTION_FOR_EACH description IN
           READ_2DA_ENTRY index 3 col_count kit_lower
           READ_2DA_ENTRY index 4 col_count kit_desc
           READ_2DA_ENTRY index 5 col_count kit_mixed
-          READ_2DA_ENTRY index 9 col_count fallen_notice
           GET_STRREF %kit_lower% lower_text
           GET_STRREF %kit_desc% desc_text
           GET_STRREF %kit_mixed% mixed_text
-          GET_STRREF %fallen_notice% fallen_text
           INNER_PATCH_SAVE lower_text ~%lower_text%~ BEGIN
             REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~CAVALIER~ ~CHEVALIER~
             REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~Cavalier~ ~Chevalier~
@@ -124,6 +122,9 @@ ACTION_FOR_EACH description IN
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%kit_mixed%~ ~%mixed_text%~
           END
+        PATCH_IF (col_count > 9) BEGIN
+          READ_2DA_ENTRY index 9 col_count fallen_notice
+          GET_STRREF %fallen_notice% fallen_text
           INNER_PATCH_SAVE fallen_text ~%fallen_text%~ BEGIN
             REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~CAVALIER~ ~CHEVALIER~
             REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~Cavalier~ ~Chevalier~
@@ -131,6 +132,7 @@ ACTION_FOR_EACH description IN
           END
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%fallen_notice%~ ~%fallen_text%~
+          END
           END
 		END
 		
@@ -156,6 +158,44 @@ ACTION_FOR_EACH description IN
           END
           INNER_ACTION BEGIN
             STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+          INNER_PATCH_SAVE mixed_text ~%mixed_text%~ BEGIN
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~CAVALIER~ ~CHEVALIER~
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~Cavalier~ ~Chevalier~
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~cavalier~ ~chevalier~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_mixed%~ ~%mixed_text%~
+          END
+		END
+		
+      END
+      BUT_ONLY
+    END
+  END
+  
+ACTION_FOR_EACH description IN 
+    KITLIST
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 1 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "CAVALIER" BEGIN
+          READ_2DA_ENTRY index 2 col_count kit_lower
+          READ_2DA_ENTRY index 3 col_count kit_mixed
+          GET_STRREF %kit_lower% lower_text
+          GET_STRREF %kit_mixed% mixed_text
+          INNER_PATCH_SAVE lower_text ~%lower_text%~ BEGIN
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~CAVALIER~ ~CHEVALIER~
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~Cavalier~ ~Chevalier~
+            REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~cavalier~ ~chevalier~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_lower%~ ~%lower_text%~
           END
           INNER_PATCH_SAVE mixed_text ~%mixed_text%~ BEGIN
             REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~CAVALIER~ ~CHEVALIER~
