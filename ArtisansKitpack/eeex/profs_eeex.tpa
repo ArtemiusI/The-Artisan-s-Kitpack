@@ -365,6 +365,26 @@ COPY_EXISTING ~splprot.2da~ ~override~
 // CLASS PROFICIENCY CHECKS
 
 COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#89 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#90 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#91 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#92 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#93 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#94 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#95 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#96 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#97 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#98 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#99 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#100 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#101 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#102 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#103 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#104 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#105 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#106 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#107 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#115 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY	WEAPPROF_CLASS	BEGIN
 	~MAGE~		=>	4
@@ -854,12 +874,12 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 STR_VAR resource = C0PR#CL END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 0 timing = 9 STR_VAR resource = C0PR#CL END
 
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#CL END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 0 timing = 4 duration = 1 STR_VAR resource = C0PR#CL END
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/ArtisansKitpack/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/ArtisansKitpack/temp~ ~OVERRIDE~
