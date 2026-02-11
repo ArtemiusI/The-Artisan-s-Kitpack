@@ -1,20 +1,59 @@
 IF
-  OR(13)
-  HasItem("C0MFIST1",LastSummonerOf(Myself))
-  HasItem("C0MFIST2",LastSummonerOf(Myself))
-  HasItem("C0MFIST3",LastSummonerOf(Myself))
-  HasItem("C0MFIST4",LastSummonerOf(Myself))
-  HasItem("C0MFIST5",LastSummonerOf(Myself))
-  HasItem("C0MFIST6",LastSummonerOf(Myself))
-  HasItem("C0MFIST7",LastSummonerOf(Myself))
-  HasItem("C0MFIST8",LastSummonerOf(Myself))
-  HasItem("C0MFIST9",LastSummonerOf(Myself))
-  HasItem("C0MFISTA",LastSummonerOf(Myself))
-  HasItem("C0MFISTB",LastSummonerOf(Myself))
-  HasItem("C0MFISTC",LastSummonerOf(Myself))
-  HasItem("C0MFISTD",LastSummonerOf(Myself))
+  OnCreation()
+  OR(2)
+  Kit(Player1,C0_SACRED_FIST)
+  Kit(Player1,C0_ENLIGHTENED_FIST)
 THEN
   RESPONSE #100
-	ActionOverride(LastSummonerOf(Myself),SelectWeaponAbility(SLOT_FIST,1))
-	DestroySelf()
+	ActionOverride(Player1,SelectWeaponAbility(SLOT_FIST,1))
+END
+
+IF
+  OnCreation()
+  OR(2)
+  Kit(Player2,C0_SACRED_FIST)
+  Kit(Player2,C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(Player2,SelectWeaponAbility(SLOT_FIST,1))
+END
+
+IF
+  OnCreation()
+  OR(2)
+  Kit(Player3,C0_SACRED_FIST)
+  Kit(Player3,C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(Player3,SelectWeaponAbility(SLOT_FIST,1))
+END
+
+IF
+  OnCreation()
+  OR(2)
+  Kit(Player4,C0_SACRED_FIST)
+  Kit(Player4,C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(Player4,SelectWeaponAbility(SLOT_FIST,1))
+END
+
+IF
+  OnCreation()
+  OR(2)
+  Kit(Player5,C0_SACRED_FIST)
+  Kit(Player5,C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(Player5,SelectWeaponAbility(SLOT_FIST,1))
+END
+
+IF
+  OnCreation()
+  OR(2)
+  Kit(Player6,C0_SACRED_FIST)
+  Kit(Player6,C0_ENLIGHTENED_FIST)
+THEN
+  RESPONSE #100
+	ActionOverride(Player6,SelectWeaponAbility(SLOT_FIST,1))
 END
