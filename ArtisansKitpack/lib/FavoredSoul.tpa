@@ -179,8 +179,8 @@ Shaman~) END
 BUT_ONLY
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#FS1 END
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 1 timing = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 0 timing = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 0 timing = 1 STR_VAR resource = C0PR#FS1 END
 
 COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#FS1.SPL~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~IS_FAVORED_SOUL~) parameter1 = 1 parameter2 = 1 END
@@ -188,8 +188,8 @@ COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#FS1.SPL~
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 11 parameter2 = 105 target = 0 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 parameter1 = 21 parameter2 = 105 target = 0 timing = 4 duration = 1 STR_VAR resource = C0PR#FS1 END
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/%MOD_FOLDER%/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/%MOD_FOLDER%/temp~ ~OVERRIDE~
@@ -779,12 +779,10 @@ EXTEND_TOP ~AR0904.BCS~ ~%MOD_FOLDER%/strongholds/scripts/favored_soul_ar0904.ba
 
   END
   
-ACTION_IF FILE_EXISTS_IN_GAME ~SPWI923.SPL~ THEN BEGIN
 COPY_EXISTING ~SPWI923.SPL~ ~OVERRIDE/C0FS#H1.SPL~
 WRITE_SHORT 0x1C 4
 COPY_EXISTING ~SPWI924.SPL~ ~OVERRIDE/C0FS#H2.SPL~
 WRITE_SHORT 0x1C 4
-END
 
 COPY_EXISTING ~LUCL0.2da~ ~override/LUC0INVB.2DA~
 LPF patch_add_hla STR_VAR 2da_row = ~C0INVB1~ ability = ~GA_C0FS#H1~ num_allowed = 1 excluded_by = ~GA_C0FS#H2~ alignment_restrict = ~ALL_EVIL~ END	
