@@ -16,7 +16,9 @@ BEGIN
         END
       END
       BUT_ONLY
-COPY_EXISTING ~clastext.2da~ ~override~
+ACTION_FOR_EACH CLASSTEXT IN BGCLATXT CLASTEXT SODCLTXT BEGIN
+	ACTION_IF (FILE_EXISTS_IN_GAME ~%CLASSTEXT%.2da~) BEGIN
+  COPY_EXISTING ~%CLASSTEXT%.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
@@ -26,32 +28,9 @@ COPY_EXISTING ~clastext.2da~ ~override~
 		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
 	  END
 	END
-      BUT_ONLY
-ACTION_IF FILE_EXISTS ~SODCLTXT.2DA~ THEN BEGIN
-COPY_EXISTING ~sodcltxt.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~%kit_name%~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
-	  END
+  BUT_ONLY
 	END
-      BUT_ONLY
 	END
-ACTION_IF FILE_EXISTS ~bgclatxt.2DA~ THEN BEGIN
-COPY_EXISTING ~bgclatxt.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~%kit_name%~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 4 cols kit_strref
-	  END
-	END
-      BUT_ONLY
-	END
+	
   END
 END
