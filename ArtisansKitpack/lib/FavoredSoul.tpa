@@ -786,6 +786,6 @@ COPY_EXISTING ~SPWI924.SPL~ ~OVERRIDE/C0FS#H2.SPL~
 WRITE_SHORT 0x1C 4
 END
 
-COPY_EXISTING ~LUCL0.2da~ ~override/LUC0INVB.2DA~
-LPF patch_add_hla STR_VAR 2da_row = ~C0INVB1~ ability = ~GA_C0FS#H1~ num_allowed = 1 excluded_by = ~GA_C0FS#H2~ alignment_restrict = ~ALL_EVIL~ END	
-LPF patch_add_hla STR_VAR 2da_row = ~C0INVB1~ ability = ~GA_C0FS#H2~ num_allowed = 1 excluded_by = ~GA_C0FS#H1~ alignment_restrict = ~ALL_GOOD~ END
+COPY_EXISTING ~LUCL0.2da~ ~override/LUC0FAV.2DA~
+LPF patch_add_hla STR_VAR 2da_row = ~C0FAV1~ ability = ~GA_C0FS#H1~ num_allowed = 1 excluded_by = ~GA_C0FS#H2~ alignment_restrict = ~ALL_EVIL~ END	
+LPF patch_add_hla STR_VAR 2da_row = ~C0FAV2~ ability = ~GA_C0FS#H2~ num_allowed = 1 excluded_by = ~GA_C0FS#H1~ alignment_restrict = ~ALL_GOOD~ END
