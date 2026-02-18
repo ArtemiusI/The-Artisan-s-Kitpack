@@ -623,7 +623,12 @@ BEGIN ~Artisan's Kitpack: Red Wizard Mage Kit for Edwin~
 REQUIRE_PREDICATE (GAME_IS ~BGEE BG2EE EET~) ~This mod must be installed on BG:EE, BG2EE or EET.~
 INCLUDE ~ArtisansKitpack/lib/redwizard.tpa~
 
-BEGIN ~Artisan's Kitpack: Make Imoen a Rogue Archer~ DESIGNATED 7101
+BEGIN ~Skip~ DESIGNATED 99999
+SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7001~) OR (MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7003~) ~~
+
+BEGIN ~Rogue Archer~ DESIGNATED 7101
+SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
   REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7001~ ~The Rogue Archer Kit must be installed.~
     COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
@@ -636,7 +641,8 @@ BEGIN ~Artisan's Kitpack: Make Imoen a Rogue Archer~ DESIGNATED 7101
       END
       BUT_ONLY
 
-BEGIN ~Artisan's Kitpack: Make Imoen a Trickster~ DESIGNATED 7102
+BEGIN ~Trickster~ DESIGNATED 7102
+SUBCOMPONENT ~Artisan's Kitpack: Make Imoen a~
   REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~This component must be installed on BG:EE, BG2:EE or EET.~
   REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~7003~ ~The Trickster Kit must be installed.~
     COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
