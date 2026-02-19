@@ -1240,3 +1240,14 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nalia8.cre~ THEN BEGIN
 		BUT_ONLY
 
 END
+
+BEGIN ~Bardic Wonders: Give Garrick the Troubadour Kit~ DESIGNATED 99001
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+REQUIRE_PREDICATE MOD_IS_INSTALLED ~Setup-BardicWonders.tp2~ ~1008~ ~The Troubadour Kit from Bardic Wonders must be installed.~
+    COPY_EXISTING_REGEXP GLOB ~.+\.CRE~ ~override~
+      READ_ASCII DEATHVAR "dv" (32) NULL
+      PATCH_IF (~%dv%~ STR_EQ ~GARRICK~) BEGIN
+		  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~C0TRB~))
+      	// do things here
+      END
+      BUT_ONLY
