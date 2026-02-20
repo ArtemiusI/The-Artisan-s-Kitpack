@@ -2,5 +2,5 @@ IF
     OnCreation()
 THEN
     RESPONSE #100
-        ActionOverride(Player1,ApplySpellRES("C0PR#XX",Myself))
+        ApplySpellRES("C0PR#XX",Player1)
 END

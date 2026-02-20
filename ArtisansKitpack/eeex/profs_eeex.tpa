@@ -119,6 +119,56 @@ COPY_EXISTING ~splprot.2da~ ~override~
     END
     END
 
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#111 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#112 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#113 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 STR_VAR resource = C0PR#114 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_89% STR_VAR  match_resource = c0fig04a resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_90% STR_VAR  match_resource = c0fig04b resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_91% STR_VAR  match_resource = c0fig04c resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_92% STR_VAR  match_resource = c0fig04d resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_93% STR_VAR  match_resource = c0fig04e resource = C0PR#93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_94% STR_VAR  match_resource = c0fig04f resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_95% STR_VAR  match_resource = c0fig04g resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_96% STR_VAR  match_resource = c0fig04h resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_97% STR_VAR  match_resource = c0fig04i resource = C0PR#97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_98% STR_VAR  match_resource = c0fig04j resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_99% STR_VAR  match_resource = c0fig04k resource = C0PR#99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_100% STR_VAR match_resource = c0fig04l resource = C0PR#100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_101% STR_VAR match_resource = c0fig04m resource = C0PR#101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_102% STR_VAR match_resource = c0fig04n resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_103% STR_VAR match_resource = c0fig04o resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_104% STR_VAR match_resource = c0fig04p resource = C0PR#104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_105% STR_VAR match_resource = c0fig04q resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_106% STR_VAR match_resource = c0fig04r resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_107% STR_VAR match_resource = c0fig04s resource = C0PR#107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_115% STR_VAR match_resource = c0fig04t resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_111% STR_VAR match_resource = c0fig04U resource = C0PR#111 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_112% STR_VAR match_resource = c0fig04V resource = C0PR#112 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_113% STR_VAR match_resource = c0fig04W resource = C0PR#113 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = %prof_gt_114% STR_VAR match_resource = c0fig04X resource = C0PR#114 END
+
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYBASTARDSWORD" RET value END
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYLONGSWORD" RET value END
 LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_PROFICIENCYSHORTSWORD" RET value END
@@ -363,342 +413,238 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	END
 
 COPY ~%MOD_FOLDER%/eeex/profs/C0PR#XX.spl~ ~override/C0PR#XX.SPL~
-COPY ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#CL.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#107 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#111 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#112 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#113 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 STR_VAR resource = C0PR#114 END
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#X1.spl~ ~override/C0PR#X1.SPL~
+COPY ~%MOD_FOLDER%/eeex/profs/C0PR#X2.spl~ ~override/C0PR#X2.SPL~
+COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+  LPF DELETE_EFFECT INT_VAR match_special = 99999 END
 
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_89% STR_VAR  match_resource = c0fig04a resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_90% STR_VAR  match_resource = c0fig04b resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_91% STR_VAR  match_resource = c0fig04c resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_92% STR_VAR  match_resource = c0fig04d resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_93% STR_VAR  match_resource = c0fig04e resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_94% STR_VAR  match_resource = c0fig04f resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_95% STR_VAR  match_resource = c0fig04g resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_96% STR_VAR  match_resource = c0fig04h resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_97% STR_VAR  match_resource = c0fig04i resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_98% STR_VAR  match_resource = c0fig04j resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_99% STR_VAR  match_resource = c0fig04k resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_100% STR_VAR match_resource = c0fig04l resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_101% STR_VAR match_resource = c0fig04m resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_102% STR_VAR match_resource = c0fig04n resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_103% STR_VAR match_resource = c0fig04o resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_104% STR_VAR match_resource = c0fig04p resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_105% STR_VAR match_resource = c0fig04q resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_106% STR_VAR match_resource = c0fig04r resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_107% STR_VAR match_resource = c0fig04s resource = C0PR#107 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_115% STR_VAR match_resource = c0fig04t resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_111% STR_VAR match_resource = c0fig04U resource = C0PR#111 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_112% STR_VAR match_resource = c0fig04V resource = C0PR#112 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_113% STR_VAR match_resource = c0fig04W resource = C0PR#113 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = %prof_gt_114% STR_VAR match_resource = c0fig04X resource = C0PR#114 END
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	WEAPPROF_CLASS	BEGIN
+	~MAGE~		=>	4
+	~FIGHTER~		=>	5
+	~CLERIC~		=>	6
+  ~THIEF~ => 7
+  ~BARD~ => 8
+  ~PALADIN~ => 9
+  ~DRUID~ => 10
+  ~RANGER~ => 11
+  ~FIGHTER_MAGE~ => 12
+  ~FIGHTER_CLERIC~ => 13
+  ~FIGHTER_THIEF~ => 14
+  ~FIGHTER_MAGE_THIEF~ => 15
+  ~MAGE_THIEF~ => 16
+  ~CLERIC_MAGE~ => 17
+  ~CLERIC_THIEF~ => 18
+  ~FIGHTER_DRUID~ => 19
+  ~FIGHTER_MAGE_CLERIC~ => 20
+  ~CLERIC_RANGER~ => 21
+  ~MONK~ => 51
+  ~SHAMAN~ => 60
+END
+ACTION_PHP_EACH WEAPPROF_CLASS AS class => class_number BEGIN
 
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#89 END// BASTARD SW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#90 END// LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#91 END// SHORT SWOR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#93 END// 2H SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#94 END// KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#95 END // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#97 END // HAMMER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#99 END // HALBERD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#100 END  // FLAIL
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#101 END // MACE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#104 END  // LBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	WEAPPROF_WEAPONTYPE	BEGIN
+	~BASTARDSWORD~		          =>	8
+	~LONGSWORD~		              =>	9
+	~SHORTSWORD~	              =>	10
+	~AXE~	                      =>	11
+	~TWOHANDEDSWORD~	          =>	12
+	~KATANA~	                  =>	13
+	~SCIMITARWAKISASHININJATO~  =>	14
+	~DAGGER~	                  =>	15
+	~WARHAMMER~                 =>	16
+	~CLUB~	                    =>	17
+	~SPEAR~	                    =>	18
+	~HALBERD~	                  =>	19
+	~FLAILMORNINGSTAR~	        =>	20
+	~MACE~	                    =>	21
+	~QUARTERSTAFF~	            =>	22
+	~CROSSBOW~	                =>	23
+	~LONGBOW~	                  =>	24
+	~SHORTBOW~	                =>	25
+	~DART~	                    =>	26
+	~SLING~	                    =>	27
+END
+ACTION_PHP_EACH WEAPPROF_WEAPONTYPE AS weapon => weapon_number BEGIN
+COPY_EXISTING ~weapprof.2da~  ~override~
+  COUNT_2DA_COLS col_count
+    READ_2DA_ENTRY ~%weapon_number%~ ~%class_number%~ col_count ~%weapon%_%class%~
+      PATCH_IF (EVAL ~%weapon%_%class%~ > 0) BEGIN
+        SET EVAL ~%weapon%_%class%_1~ = 1
+      END ELSE BEGIN
+        SET EVAL ~%weapon%_%class%_1~ = 0
+      END
+      
+END
 
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~RANGER~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~PALADIN~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~BARD~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~CLERIC_ALL~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~DRUID_ALL~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE~) parameter2 = 105 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE~) parameter2 = 105 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE~) parameter2 = 105 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE~) parameter2 = 105 STR_VAR resource = C0PR#107 END
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#90 END // LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#91 END // SHORT SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#94 END // KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#95 END  // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#96 END  //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~THIEF~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SORCERER~) parameter2 = 105 STR_VAR resource = C0PR#96 END // DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SORCERER~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SORCERER~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SORCERER~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#90 END // LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#91 END // SHORT SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#94 END // KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#95 END  // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#96 END  //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MONK~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-    
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~SHAMAN~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-    
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#89 END// BASTARD SW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#90 END// LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#91 END// SHORT SWOR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#93 END// 2H SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#94 END// KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#95 END // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#97 END // HAMMER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#99 END // HALBERD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#100 END  // FLAIL
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#101 END // MACE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#104 END  // LBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#89 END// BASTARD SW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#90 END// LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#91 END// SHORT SWOR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#93 END// 2H SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#94 END// KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#95 END // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#97 END // HAMMER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#99 END // HALBERD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#100 END  // FLAIL
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#101 END // MACE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#104 END  // LBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#89 END// BASTARD SW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#90 END// LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#91 END// SHORT SWOR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#92 END// AXE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#93 END// 2H SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#94 END// KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#95 END // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#96 END //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#97 END // HAMMER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#98 END // SPEAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#99 END // HALBERD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#100 END  // FLAIL
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#101 END // MACE
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#104 END  // LBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~FIGHTER_MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
-
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#90 END // LONG SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#91 END // SHORT SWORD
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#94 END // KATANA
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#95 END  // SCIMITAR
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#96 END  //DAGGER
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#115 END  // CLUB
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#102 END // STAFF
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#103 END // XBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#105 END // SBOW
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#106 END // DART
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~MAGE_THIEF~) parameter2 = 105 STR_VAR resource = C0PR#107 END // SLING
+ACTION_IF (EVAL ~BASTARDSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#89 END
+END
+ 
+ACTION_IF (EVAL ~LONGSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#90 END
+END
+ 
+ACTION_IF (EVAL ~SHORTSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#91 END
+END
+ 
+ACTION_IF (EVAL ~AXE_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#92 END
+END
+ 
+ACTION_IF (EVAL ~TWOHANDEDSWORD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#93 END
+END
+ 
+ACTION_IF (EVAL ~KATANA_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#94 END
+END
+ 
+ACTION_IF (EVAL ~SCIMITARWAKISASHININJATO_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#95 END
+END
+ 
+ACTION_IF (EVAL ~DAGGER_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#96 END
+END
+ 
+ACTION_IF (EVAL ~WARHAMMER_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#97 END
+END
+ 
+ACTION_IF (EVAL ~CLUB_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#115 END
+END
+ 
+ACTION_IF (EVAL ~SPEAR_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#98 END
+END
+ 
+ACTION_IF (EVAL ~HALBERD_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#99 END
+END
+ 
+ACTION_IF (EVAL ~FLAILMORNINGSTAR_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#100 END
+END
+ 
+ACTION_IF (EVAL ~MACE_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#101 END
+END
+ 
+ACTION_IF (EVAL ~QUARTERSTAFF_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#102 END
+END
+ 
+ACTION_IF (EVAL ~CROSSBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#103 END
+END
+ 
+ACTION_IF (EVAL ~LONGBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#104 END
+END
+ 
+ACTION_IF (EVAL ~SHORTBOW_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#105 END
+END
+ 
+ACTION_IF (EVAL ~DART_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#106 END
+END
+ 
+ACTION_IF (EVAL ~SLING_%class%_1~ = 1) THEN BEGIN
+  COPY_EXISTING ~C0PR#CL.SPL~ ~OVERRIDE~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = IDS_OF_SYMBOL (~CLASS~ ~%class%~) parameter2 = 105 special = 99999 STR_VAR resource = EVAL C0PR#107 END
+END
+ 
+END
 
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#89.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYBASTARDSWORD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYBASTARDSWORD~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#90.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGSWORD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGSWORD~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#91.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#91 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTSWORD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#91 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTSWORD~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#92.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYAXE~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYAXE~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#93.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#93 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYTWOHANDEDSWORD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#93 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYTWOHANDEDSWORD~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#94.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#94 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYKATANA~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#94 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYKATANA~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#95.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#95 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSCIMITARWAKISASHININJATO~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#95 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSCIMITARWAKISASHININJATO~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#96.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#96 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDAGGER~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#96 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDAGGER~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#97.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#97 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYWARHAMMER~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#97 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYWARHAMMER~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#115.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#115 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCLUB~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#115 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCLUB~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#98.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSPEAR~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSPEAR~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#99.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#99 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYHALBERD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#99 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYHALBERD~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#100.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#100 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYFLAILMORNINGSTAR~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#100 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYFLAILMORNINGSTAR~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#101.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#101 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYMACE~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#101 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYMACE~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#102.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#102 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYQUARTERSTAFF~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#102 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYQUARTERSTAFF~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#103.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#103 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCROSSBOW~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#103 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYCROSSBOW~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#104.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#104 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGBOW~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#104 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYLONGBOW~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#105.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#105 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTBOW~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#105 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSHORTBOW~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#106.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#106 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDART~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#106 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYDART~) parameter1 = 1 parameter2 = 1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#107.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = C0PR#107 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSLING~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = C0PR#107 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 2 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_PROFICIENCYSLING~) parameter1 = 1 parameter2 = 1 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ THEN BEGIN
 COPY_EXISTING ~clabpr02.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#C1 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#C1.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = 1 parameter2 = 98 timing = 9 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#98 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 2 parameter1 = 1 parameter2 = 98 timing = 9 END
 
 END
 
@@ -706,8 +652,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ THEN BEGIN
 COPY_EXISTING ~clabpr03.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#C2 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#C2.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = 1 parameter2 = 89 timing = 9 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#89 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 2 parameter1 = 1 parameter2 = 89 timing = 9 END
 
 END
 
@@ -715,8 +661,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~OHTYR.2da~ THEN BEGIN
 COPY_EXISTING ~OHTYR.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#C3 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#C3.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = 1 parameter2 = 90 timing = 9 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#90 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 2 parameter1 = 1 parameter2 = 90 timing = 9 END
     
 END
 
@@ -724,8 +670,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~OHTEMPUS.2da~ THEN BEGIN
 COPY_EXISTING ~OHTEMPUS.2DA~ OVERRIDE
   LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0PR#C4 END
 COPY_EXISTING ~%MOD_FOLDER%/eeex/profs/C0PR#CL.spl~ ~override/C0PR#C4.SPL~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#92 END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = 1 parameter2 = 92 timing = 9 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = C0PR#92 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 2 parameter1 = 1 parameter2 = 92 timing = 9 END
     
 END
 
@@ -746,7 +692,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYBASTARDSWORD END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYBASTARDSWORD timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYBASTARDSWORD timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 90) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                       ) BEGIN // longsword
@@ -755,7 +701,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYLONGSWORD END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGSWORD timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGSWORD timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 91) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                       ) BEGIN // short sword
@@ -764,7 +710,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSHORTSWORD END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTSWORD timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTSWORD timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 92) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // axe
@@ -773,7 +719,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYAXE END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYAXE timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYAXE timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 93) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // two handed sword
@@ -782,7 +728,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYTWOHANDEDSWORD END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYTWOHANDEDSWORD timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYTWOHANDEDSWORD timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 94) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // katana
@@ -791,7 +737,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYKATANA END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYKATANA timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYKATANA timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 95) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // scimitar
@@ -800,7 +746,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYSCIMITARWAKISASHININJATO timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 96) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b00100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // dagger
@@ -809,7 +755,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYDAGGER END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDAGGER timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYDAGGER timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 97) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // warhammer
@@ -818,7 +764,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYWARHAMMER END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYWARHAMMER timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYWARHAMMER timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 98) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b01000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // spear
@@ -827,7 +773,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSPEAR END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSPEAR timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYSPEAR timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 99) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // halberd
@@ -836,7 +782,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYHALBERD END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYHALBERD timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYHALBERD timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 100) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // flail
@@ -845,7 +791,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYFLAILMORNINGSTAR timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 101) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // mace
@@ -854,7 +800,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYMACE END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYMACE timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYMACE timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 102) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // staff
@@ -863,7 +809,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYQUARTERSTAFF END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYQUARTERSTAFF timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYQUARTERSTAFF timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 103) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // crossbow
@@ -872,7 +818,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYCROSSBOW END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCROSSBOW timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYCROSSBOW timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 104) AND (((row1 BAND 0b00000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b00110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // longbow
@@ -881,7 +827,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYLONGBOW END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGBOW timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYLONGBOW timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 105) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // shortbow
@@ -890,7 +836,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSHORTBOW END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTBOW timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYSHORTBOW timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 106) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // dart
@@ -899,7 +845,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYDART END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYDART timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYDART timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 107) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110100) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // sling
@@ -908,7 +854,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYSLING END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYSLING timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYSLING timing = 2 power = 3 END
       END
       PATCH_IF (proficiency = 115) AND (((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // club
@@ -917,7 +863,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
         WRITE_BYTE    0x20 (row3 BAND 0b10000000)
         WRITE_BYTE    0x21 (row4 BAND 0b10111111)
         LPF DELETE_EFFECT INT_VAR match_opcode = 319 match_parameter2 = C0_PROFICIENCYCLUB END
-        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_PROFICIENCYCLUB timing = 2 power = 3 END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 2 parameter1 = 0 parameter2 = C0_PROFICIENCYCLUB timing = 2 power = 3 END
       END
       PATCH_IF (type = 5) AND (((row1 BAND 0b01000000) = 0b00000000) AND ((row2 BAND 0b00001000) = 0b00000000) AND ((row3 BAND 0b01110000) = 0b00000000) AND ((row4 BAND 0b00000000) = 0b00000000) AND !(((row1 BAND 0b11000000) = 0b00000000) AND ((row2 BAND 0b11111111) = 0b00000000) AND ((row3 BAND 0b01111111) = 0b00000000) AND ((row4 BAND 0b01100000) = 0b00000000))
                                         ) BEGIN // if it is arrows
@@ -958,12 +904,12 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
 BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~ 
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 1 timing = 9 STR_VAR resource = C0PR#CL END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 2 timing = 9 STR_VAR resource = C0PR#CL END
 
 COPY_EXISTING ~CHARBASE.CRE~ ~OVERRIDE/CHARBASE1.CRE~
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~OVERRIDE~
-   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 1 timing = 4 duration = 1 STR_VAR resource = C0PR#CL END
+   LPF ADD_CRE_EFFECT INT_VAR opcode = 326 power = 100 parameter1 = 0 parameter2 = 0 target = 2 timing = 4 duration = 1 STR_VAR resource = C0PR#CL END
 
 COPY_EXISTING ~CHARBASE1.CRE~ ~weidu_external/backup/ArtisansKitpack/temp/CHARBASE.CRE~
 COPY_EXISTING ~weidu_external/backup/ArtisansKitpack/temp~ ~OVERRIDE~
