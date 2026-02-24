@@ -186,7 +186,7 @@ INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/EnlightenedFist.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/SacredFist.tpa~
 
-EXTEND_TOP ~dplayer3.baf~ ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~
+EXTEND_TOP ~dplayer3.bcs~ ~%MOD_FOLDER%/MonkRevision/MysticFists/script/c0mn#fi.baf~
 
 COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
