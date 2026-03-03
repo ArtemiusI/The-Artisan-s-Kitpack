@@ -2,6 +2,45 @@
 COPY ~%MOD_FOLDER%/Thief/Adventurer~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Thief/Adventurer/spells~ ~OVERRIDE~
 
+OUTER_SPRINT kit_description ~ROGUE ARCHER: Many rogues choose the use of ranged weapons out of pragmatism, choosing to approach combat from a safe distance. Rogue Archers are experienced enough with such weapons to become a match for any warrior from a distance, taking down their foes with deadly missiles without ever needing to put themselves within threat range.
+
+Advantages:
+– +1 to hit and damage rolls with any missile weapon at level 1 and every 3 levels thereafter.
+– May achieve Mastery (3 slots) in any missile weapon.
+– May use the Rapid Shot modal ability.
+
+RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
+
+– May use the Called Shot ability once per day. Gains one use at level 4 and an additional use every 4 levels thereafter.
+
+CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Rogue Archer:
+ 4th level: -1 penalty to target's THAC0.
+ 8th level: -1 penalty to target's Saving Throws vs. Spell.
+ 12th level: -1 penalty to the target's Strength score.
+ 16th level: +2 bonus to damage roll.
+ 
+– 14th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
+– 18th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
+
+Disadvantages:
+– May not use Backstab ability.KIT_DISADV_1~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -31,28 +70,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~rogue archer~)
 	
-    help          = RESOLVE_STR_REF(~ROGUE ARCHER: Many rogues choose the use of ranged weapons out of pragmatism, choosing to approach combat from a safe distance. Rogue Archers are experienced enough with such weapons to become a match for any warrior from a distance, taking down their foes with deadly missiles without ever needing to put themselves within threat range.
-
-Advantages:
-– +1 to hit and damage rolls with any missile weapon at level 1 and every 3 levels thereafter.
-– May achieve Mastery (3 slots) in any missile weapon.
-– May use the Rapid Shot modal ability.
-
-RAPID SHOT: The archer may make an additional attack per round at a -4 penalty to hit.
-
-– May use the Called Shot ability once per day. Gains one use at level 4 and an additional use every 4 levels thereafter.
-
-CALLED SHOT: All successful ranged attacks within the next 10 seconds have the following cumulative effects besides normal damage, according to the level of the Rogue Archer:
- 4th level: -1 penalty to target's THAC0.
- 8th level: -1 penalty to target's Saving Throws vs. Spell.
- 12th level: -1 penalty to the target's Strength score.
- 16th level: +2 bonus to damage roll.
- 
-– 14th level: Improved Rapid Shot: The archer’s penalty to hit while Rapid Shot is active is reduced to -2.
-– 18th level: Sniper: The archer's ranged attacks while stealthed or invisible are guaranteed critical hits.
-
-Disadvantages:
-– May not use Backstab ability.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~ROGUE ARCHER: Many rogues choose the use of ranged weapons out of pragmatism, choosing to approach combat from a safe distance. Rogue Archers are experienced enough with such weapons to become a match for any warrior from a distance, taking down their foes with deadly missiles without ever needing to put themselves within threat range.~)
   STR_VAR
@@ -175,4 +193,23 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = C0ARC03I END
 COPY_EXISTING C0ARC03z.SPL OVERRIDE
 LPF ALTER_EFFECT INT_VAR header = 0 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Rapid Shot Inactive~) END
 LPF ALTER_EFFECT INT_VAR header = 1 match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Improved Rapid Shot Inactive~) END
+END
+
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+COPY_EXISTING ~C0ADVENT.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TH-A2 END // EPIC PRECISION
+  PRETTY_PRINT_2DA
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~C0ADVENT.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
 END

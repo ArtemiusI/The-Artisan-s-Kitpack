@@ -4,8 +4,7 @@ COPY ~%MOD_FOLDER%/Thief/Swashbuckler/SPELLS~ ~OVERRIDE~
 
 INCLUDE ~ArtisansKitpack/lib/thac0.tpa~
 
-LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~SWASHBUCKLER~ RET kit_strref END
-STRING_SET_EVALUATE kit_strref ~SWASHBUCKLER: This rogue is part acrobat, part swords<PRO_MANWOMAN>, and part wit: the epitome of charm and grace. The swashbuckler embodies the concepts of daring and panache. Favoring agility and wit over brute force, the swashbuckler excels both in combat situations and social interactions, making them a versatile character indeed.
+OUTER_SPRINT kit_description ~SWASHBUCKLER: This rogue is part acrobat, part swords<PRO_MANWOMAN>, and part wit: the epitome of charm and grace. The swashbuckler embodies the concepts of daring and panache. Favoring agility and wit over brute force, the swashbuckler excels both in combat situations and social interactions, making them a versatile character indeed.
 
 Advantages:
 – Luck of Heroes: +1 bonus to Saving Throws and all attack and skill rolls.
@@ -33,11 +32,32 @@ INSIGHTFUL STRIKE: The swashbuckler is capable of making finesse attacks that st
 – 18th level: Luck of Heroes bonus increases to +3.
 – 20th level: Gains an additional bonus half attack per round while wielding a melee weapon.
 
-Disadvantages:
+Disadvantages:KIT_DISADV_1
 – May only distribute 15 skill points per level among thieving skills.
 – May not use Backstab ability.
 – May not use Stealth ability.
 – May not use Set Traps ability.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not Use Magic Devices.
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~SWASHBUCKLER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
 	
   COPY_EXISTING ~luabbr.2da~ ~override~
 	COUNT_2DA_COLS cols // amount of columns
@@ -146,5 +166,18 @@ This skill qualifies as learning the Power Attack ability in terms of other prer
 ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
 
 COPY ~%MOD_FOLDER%/lua/m_c0thf2.lua~      ~override~ // Lua file read by EEex, provided by Bubbs and further edited by myself
+
+END
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~CLABTH04.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E2 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
 
 END

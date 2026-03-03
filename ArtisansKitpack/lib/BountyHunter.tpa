@@ -1,0 +1,131 @@
+
+COPY ~%MOD_FOLDER%/Thief/BountyHunter/2DAs~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Thief/BountyHunter/SPELLS~ ~OVERRIDE~
+
+OUTER_SPRINT kit_description ~BOUNTY HUNTER: This is a hunter of men, skilled in tracking their quarry and bringing them back alive—whether for lawful authorities or underworld masters. Bounty Hunters are specially trained at their task and make fearsome opponents. They have honed their trap-making abilities well beyond that of the average Thief.
+
+Advantages:
+– +2 to hit and damage against humanoids.
+– +15% bonus to Set Traps.
+– May use the Analyze ability at will.
+
+ANALYZE: With this ability, the user carefully observes the target and identifies their strengths and weaknesses, revealing their Hit Die, THAC0, Saving Throws, Magic Resistance, Damage Resistance and vulnerability to Poison and Backstabs. This ability may be used an unlimited number of times.
+
+– May use the Poison Weapon (Weakening) ability once per day. Gains an additional use every 5th level.
+
+POISON WEAPON: The bounty hunter is capable of coating <PRO_HISHER> weapon for the next eight hours with a non-lethal but devitalizing poison. This poison deals damage, inflicts Slow, and reduces the target's Saving Throw vs. Breath immediately and every following round for a number of rounds increasing with the bounty hunter's level. The penalty to Save vs. Breath inflicted by this poison lasts for five turns.
+  1st level: Target suffers two non-lethal damage and loses one point of Save vs. Breath each round for 2 rounds.
+  6th level: Target suffers four non-lethal damage and loses one point of Save vs. Breath each round for 3 rounds.
+  11th level: Target suffers six non-lethal damage and loses one point of Save vs. Breath each round for 4 rounds.
+  16th level: Target suffers eight non-lethal damage and loses one point of Save vs. Breath each round for 5 rounds.
+  21st level: Target suffers ten non-lethal damage and loses one point of Save vs. Breath each round for 6 rounds.
+
+– May use the Set Special Snare ability once per day in addition to the normal Thief's Set Snare. Gains one use at level 1 and an additional use every 5th level.
+
+SET SPECIAL SNARE: Set a trap in the chosen location when no hostile creatures are in sight. The Bounty Hunter's Special Snare, unlike regular traps, unleashes an alchemical cloud that, while dealing no damage, inflicts debilitating effects upon enemies within a 15-ft. radius. The Bounty Hunter and their allies are unaffected by the cloud thanks to the benefit of preliminary antidotes.
+  1st level: Targets suffer a -2 penalty to Armor Class and THAC0 for one turn. If a Save vs. Breath is failed, targets are dazed (-10 penalty to AC and unable to act, but effects are removed when attacked) for one turn.
+  11th level: Targets suffer a -2 penalty to Armor Class, THAC0 and Saving Throws for one turn. Knocks all targets unconscious for one round, increased to one turn if a Save vs. Breath is failed.
+  16th level: Targets suffer a -2 penalty to Armor Class, THAC0, damage and Saving Throws for one turn. Stuns all targets for one round, increased to five rounds if a Save vs. Breath is failed.
+  21st level: Targets suffer a -3 penalty to Armor Class, THAC0, damage and Saving Throws for one turn. Stuns all targets for one round, increased to five rounds as well as permanently Blinding them if a Save vs. Breath is failed.
+
+- From 12th level onwards, may use the Set Manhunter Snare ability once per day.
+
+SET MANHUNTER SNARE: The Manhunter is a powerful trap intended for crippling and tracking marks. This trap deals 10d10+20 missile damage and paralyzes the target on a failed Save vs. Death (-1 modifier penalty per 8 levels), or else greatly reduces the victim's movement rate, as well as causing them to bleed uncontrollably, dealing an additional 24 damage over 4 rounds. Additionally, the target is revealed for the bleed duration, remaining visible outside of allies' vision range and are unable to enter stealth or become invisible. The Manhunter's secondary effects do not apply against undead, elementals and non-corporeal beings.
+
+Disadvantages:KIT_DISADV_1
+– -1 to backstab multiplier compared to an unkitted Thief. Backstab multiplier does not increase past x3:
+  Level 1-4: x1 (no multiplier)
+  Level 5-8: x2
+  Level 9-12: x3
+– May only distribute 20 skill points per level among thieving skills.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~BOUNTY_HUNTER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
+	
+// PROFICIENCIES
+
+COPY_EXISTING ~BACKSTAB.2da~ ~override~
+  REPLACE_EVALUATE ~BOUNTY_HUNTER \([- %TAB%0-9]+\)~ BEGIN
+    SPRINT data ~%MATCH1%~
+  END ~BOUNTY_HUNTER 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
+
+  COPY_EXISTING ~thiefskl.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BOUNTY_HUNTER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 2 cols 20
+	  END
+	END
+
+COPY_EXISTING ~C0BH-1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Poison Weapon (Weakening)~
+SAY UNIDENTIFIED_DESC ~Poison Weapon (Weakening)
+The bounty hunter is capable of coating <PRO_HISHER> weapon for the next eight hours with a non-lethal but devitalizing poison. This poison deals damage, inflicts Slow, and reduces the target's Saving Throw vs. Breath immediately and every following round for a number of rounds increasing with the bounty hunter's level. The penalty to Save vs. Breath inflicted by this poison lasts for five turns.
+  1st level: Target suffers two non-lethal damage and loses one point of Save vs. Breath each round for 2 rounds.
+  6th level: Target suffers four non-lethal damage and loses one point of Save vs. Breath each round for 3 rounds.
+  11th level: Target suffers six non-lethal damage and loses one point of Save vs. Breath each round for 4 rounds.
+  16th level: Target suffers eight non-lethal damage and loses one point of Save vs. Breath each round for 5 rounds.
+  21st level: Target suffers ten non-lethal damage and loses one point of Save vs. Breath each round for 6 rounds.~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Thief\BountyHunter\spells/C0BH-TR.PRO~
+ADD_PROJECTILE ~%MOD_FOLDER%/Thief\BountyHunter\spells/C0BH-T2.PRO~
+COPY_EXISTING ~C0BH-TR.PRO~ ~OVERRIDE~
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~C0BH-T2~)) + 1
+
+COPY_EXISTING ~C0BH-T1.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 match_parameter1 = 1 parameter1 = RESOLVE_STR_REF (~Dazed~) END
+
+COPY_EXISTING ~SPCL414.SPL~ ~OVERRIDE~
+LPF ALTER_SPELL_HEADER INT_VAR header = 1 projectile = C0BH-TR END
+SAY NAME1 ~Set Special Snare~
+SAY UNIDENTIFIED_DESC ~Set Special Snare
+Set a trap in the chosen location when no hostile creatures are in sight. The Bounty Hunter's Special Snare, unlike regular traps, unleashes an alchemical cloud that, while dealing no damage, inflicts debilitating effects upon enemies within a 15-ft. radius. The Bounty Hunter and their allies are unaffected by the cloud thanks to the benefit of preliminary antidotes.
+  1st level: Targets suffer a -2 penalty to Armor Class and THAC0 for one turn. If a Save vs. Breath is failed, targets are dazed (-10 penalty to AC and unable to act, but effects are removed when attacked) for one turn.
+  11th level: Targets suffer a -2 penalty to Armor Class, THAC0 and Saving Throws for one turn. Knocks all targets unconscious for one round, increased to one turn if a Save vs. Breath is failed.
+  16th level: Targets suffer a -2 penalty to Armor Class, THAC0, damage and Saving Throws for one turn. Stuns all targets for one round, increased to five rounds if a Save vs. Breath is failed.
+  21st level: Targets suffer a -3 penalty to Armor Class, THAC0, damage and Saving Throws for one turn. Stuns all targets for one round, increased to five rounds as well as permanently Blinding them if a Save vs. Breath is failed.~
+COPY_EXISTING ~SPCL415.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 match_parameter1 = 0 parameter1 = RESOLVE_STR_REF (~Weakened~) END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0DH#002.SPL~ THEN BEGIN
+COPY ~%MOD_FOLDER%/Thief/BountyHunter/SPELLS/manhunter_snare~ ~OVERRIDE~
+
+COPY_EXISTING ~C0DH#002.SPL~ ~OVERRIDE~
+SAY NAME1 ~Set Manhunter Snare~
+SAY UNIDENTIFIED_DESC ~Set Manhunter Snare
+The Manhunter is a powerful trap intended for crippling and tracking marks. This trap deals 10d10+20 missile damage and paralyzes the target on a failed Save vs. Death (-1 modifier penalty per 8 levels), or else greatly reduces the victim's movement rate, as well as causing them to bleed uncontrollably, dealing an additional 24 damage over 4 rounds. Additionally, the target is revealed for the bleed duration, remaining visible outside of allies' vision range and are unable to enter stealth or become invisible. The Manhunter's secondary effects do not apply against undead, elementals and non-corporeal beings.~
+
+END
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~CLABTH03.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
+END

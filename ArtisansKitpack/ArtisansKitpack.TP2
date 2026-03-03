@@ -1131,6 +1131,11 @@ BEGIN ~Artisan's Kitpack: Hivemaster Druid Kit~ DESIGNATED 5002
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Hivemaster.tpa~
 
+BEGIN ~Artisan's Kitpack: Thief Overhaul~ DESIGNATED 7000
+GROUP ~Thief Kits~
+
+INCLUDE ~%MOD_FOLDER%/lib/Thief.tpa~
+
 BEGIN ~Artisan's Kitpack: Assassin Overhaul~ DESIGNATED 7004
 GROUP ~Thief Kits~
 
@@ -1140,10 +1145,24 @@ END
 
 INCLUDE ~%MOD_FOLDER%/lib/Assassin.tpa~
 
+BEGIN ~Artisan's Kitpack: Bounty Hunter Overhaul~ DESIGNATED 7007
+GROUP ~Thief Kits~
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~C0A_A01.SPL~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/effects/analyze.tpa~
+END
+
+INCLUDE ~%MOD_FOLDER%/lib/BountyHunter.tpa~
+
 BEGIN ~Artisan's Kitpack: Swashbuckler Overhaul~ DESIGNATED 7006
 GROUP ~Thief Kits~
 
 INCLUDE ~%MOD_FOLDER%/lib/Swashbuckler.tpa~
+
+BEGIN ~Artisan's Kitpack: Shadowdancer Overhaul~ DESIGNATED 7008
+GROUP ~Thief Kits~
+
+INCLUDE ~%MOD_FOLDER%/lib/Shadowdancer.tpa~
 
 BEGIN ~Artisan's Kitpack: Rogue Archer Thief Kit~ DESIGNATED 7001
 GROUP ~Thief Kits~

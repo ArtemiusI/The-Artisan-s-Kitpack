@@ -1,0 +1,626 @@
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,4)
+    LevelLT(Myself,4)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,4,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,5)
+    LevelLT(Myself,5)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,5,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,6)
+    LevelLT(Myself,6)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,6,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,7)
+    LevelLT(Myself,7)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,7,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,8)
+    LevelLT(Myself,8)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,8,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,9)
+    LevelLT(Myself,9)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,9,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,10)
+    LevelLT(Myself,10)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,10,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,11)
+    LevelLT(Myself,11)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,11,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,12)
+    LevelLT(Myself,12)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,12,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,13)
+    LevelLT(Myself,13)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,13,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,14)
+    LevelLT(Myself,14)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,14,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,15)
+    LevelLT(Myself,15)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,15,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,16)
+    LevelLT(Myself,16)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,16,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,17)
+    LevelLT(Myself,17)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,17,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,18)
+    LevelLT(Myself,18)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,18,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,19)
+    LevelLT(Myself,19)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,19,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,20)
+    LevelLT(Myself,20)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,20,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,21)
+    LevelLT(Myself,21)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,21,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,22)
+    LevelLT(Myself,22)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,22,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,23)
+    LevelLT(Myself,23)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,23,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,24)
+    LevelLT(Myself,24)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,24,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,25)
+    LevelLT(Myself,25)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,25,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,26)
+    LevelLT(Myself,26)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,26,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,27)
+    LevelLT(Myself,27)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,27,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,28)
+    LevelLT(Myself,28)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,28,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,29)
+    LevelLT(Myself,29)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,29,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,30)
+    LevelLT(Myself,30)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,30,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,31)
+    LevelLT(Myself,31)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,31,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,32)
+    LevelLT(Myself,32)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,32,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,33)
+    LevelLT(Myself,33)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,33,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,34)
+    LevelLT(Myself,34)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,34,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,35)
+    LevelLT(Myself,35)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,35,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,36)
+    LevelLT(Myself,36)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,36,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,37)
+    LevelLT(Myself,37)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,37,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,38)
+    LevelLT(Myself,38)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,38,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,39)
+    LevelLT(Myself,39)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,39,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,40)
+    LevelLT(Myself,40)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,40,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,41)
+    LevelLT(Myself,41)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,41,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,42)
+    LevelLT(Myself,42)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,42,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,43)
+    LevelLT(Myself,43)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,43,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,44)
+    LevelLT(Myself,44)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,44,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,45)
+    LevelLT(Myself,45)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,45,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,46)
+    LevelLT(Myself,46)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,46,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,47)
+    LevelLT(Myself,47)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,47,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,48)
+    LevelLT(Myself,48)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,48,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,49)
+    LevelLT(Myself,49)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,49,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),ROGUE,50)
+    LevelLT(Myself,50)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,50,SET)
+	AddKit(SHADOWDANCER)
+	ReallyForceSpellRES("C0SD-A1B",Myself)
+	ReallyForceSpellRES("C0SD-A1C",Myself)
+END
+
+IF
+	ActionListEmpty()
+    Allegiance(Myself,GOODCUTOFF)
+    !Detect(NearestEnemyOf(Myself))
+    !StateCheck(Myself,STATE_INVISIBLE)
+    !StateCheck(Myself,STATE_BLIND)
+    !GlobalTimerNotExpired("OH_HIDE","LOCALS")
+THEN
+  RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobalTimer("OH_HIDE","LOCALS",ONE_ROUND)
+        DisplayStringHead(Myself,~*attempts to hide in shadows*~)
+        Hide()
+        SetInterrupt(TRUE)
+END

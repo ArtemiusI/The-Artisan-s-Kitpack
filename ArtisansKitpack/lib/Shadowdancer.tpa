@@ -1,0 +1,154 @@
+
+COPY ~%MOD_FOLDER%/Thief/Shadowdancer/2DAs~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Thief/Shadowdancer/SPELLS~ ~OVERRIDE~
+
+OUTER_SPRINT kit_description ~SHADOWDANCER: Operating in the border between light and darkness, Shadowdancers are nimble artists of deception. They are mysterious and unknown, never completely trusted but always inducing wonder when met. Shadowdancers can harness the power of magic to increase their stealth abilities. Enigmatic and dangerous, these uniquely skilled Thieves are able to blend seamlessly into the shadows in ways that a normal Thief cannot, striking without warning—sometimes with supernatural speed. Despite their link with shadows and trickery, shadowdancers are as often good as evil.
+
+Advantages:
+– +15% bonus to Hide In Shadows and Move Silently.
+– Hide In Plain Sight: A Shadowdancer may hide in shadows even while being observed so long as they have not been attacked within the last round.
+– May cast Shadowstep once per day. Gains one use at level 1 and an additional use every 5th level.
+
+SHADOWSTEP: Step into the Shadow Plane and move for 7 seconds while others are frozen in time. The Shadowdancer cannot attack or cast spells while in the Shadow Plane.
+
+– 2nd level: Gains permanent Infravision.
+– 3rd level: May cast Summon Shadow once per day.
+
+SUMMON SHADOW: The Shadowdancer may summon a creature from the Plane of Shadow to assist them in combat for two turns. The shadow possesses the abilities of a Shadowdancer and increases in power as the summoner gains in Shadowdancer levels.
+
+– 5th level: May cast Shadow Daze once per day. Gains an additional use every 10th level.
+
+SHADOW DAZE: The Shadowdancer inflicts an illusory daze (-10 penalty to AC and unable to act, but effects are removed when attacked) upon the target for five rounds on a failed Save vs. Spells at -3.
+
+– 10th level: May cast Shadow Evade three times per day.
+
+SHADOW EVADE: The Shadowdancer may conceal themselves in shadow. For the next three rounds, the Shadowdancer is only partially visible and may not be targeted by spells unless by creatures that can see through invisibility. As long as they are in the partially visible state, they gain a +5% bonus to physical resistances and a +1 bonus to Armor Class. These bonuses increase by the base amount at levels 15, 20 and 25.
+
+– 10th level: Gains Defensive Roll.
+
+DEFENSIVE ROLL: When the Shadowdancer takes damage that would be lethal to them, they instead survive with one hit point, immediately turning invisible while being protected from all damage for the next round. This does not protect them from instant death effects or death by means other than damage. This effect may only occur once per eight hours.
+
+– 12th level: The Shadowdancer becomes immune to backstab.
+– 15th level: Gains Slippery Mind.
+
+SLIPPERY MIND: When the Shadowdancer is affected by a mind-affecting spell or effect, they may make a Saving Throw vs. Spells at -4 for every round that they are under the effect to immediately be freed of it.
+
+– 20th level: The Shadowdancer may Hide in Plain Sight even after being attacked.
+
+Disadvantages:KIT_DISADV_1
+– -1 to backstab multiplier compared to an unkitted Thief. Backstab multiplier does not increase past x3:
+  Level 1-4: x1 (no multiplier)
+  Level 5-8: x2
+  Level 9-12: x3
+– May only distribute 15 skill points per level among thieving skills.
+– May not use the Set Snare ability.
+
+Prime Requisites For Dual-Classing: Strength, Dexterity, Charisma~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~SHADOWDANCER~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
+	
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Defensive Roll~) STR_VAR bam_file = C0SD-3I RET C0SD-3I = icon END
+
+// PROFICIENCIES
+
+COPY_EXISTING ~BACKSTAB.2da~ ~override~
+  REPLACE_EVALUATE ~SHADOWDANCER \([- %TAB%0-9]+\)~ BEGIN
+    SPRINT data ~%MATCH1%~
+  END ~SHADOWDANCER 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3~
+
+  COPY_EXISTING ~thiefskl.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~SHADOWDANCER~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols 40
+		SET_2DA_ENTRY (%patch_row%) 2 cols 15
+	  END
+	END
+  
+COPY_EXISTING ~C0SD-3A.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0SD-3I
+      END
+
+COPY_EXISTING ~C0SD-3C.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Defensive Roll made to avoid lethal damage~) END
+
+COPY_EXISTING ~C0SD-5A.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Slippery Mind made to break enchantment~) END
+
+COPY_EXISTING ~C0SD-A1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Summon Shadow~
+SAY UNIDENTIFIED_DESC ~Summon Shadow
+The Shadowdancer may summon a creature from the Plane of Shadow to assist them in combat for two turns. The shadow possesses the abilities of a Shadowdancer and increases in power as the summoner gains in Shadowdancer levels.~
+
+COMPILE ~%MOD_FOLDER%/Thief/Shadowdancer/scripts/C0SD-A1A.BAF~
+
+COPY_EXISTING ~C0SD-A1C.CRE~ ~OVERRIDE~
+SAY NAME1 ~Shadow~
+SAY NAME2 ~Shadow~
+  WRITE_ASCII SCRIPT_OVERRIDE ~C0SD-A1A~ #8 // override
+  WRITE_ASCII DEATHVAR ~C0SD-A1A~ #8 // death variable
+
+COPY_EXISTING ~C0SD-A2.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Dazed~) END
+SAY NAME1 ~Shadow Daze~
+SAY UNIDENTIFIED_DESC ~Shadow Daze
+The Shadowdancer inflicts an illusory daze (-10 penalty to AC and unable to act, but effects are removed when attacked) upon the target for five rounds on a failed Save vs. Spells at -3.~
+
+COPY_EXISTING ~C0SD-A3.SPL~ ~OVERRIDE~
+SAY NAME1 ~Shadow Evade~
+SAY UNIDENTIFIED_DESC ~Shadow Evade
+The Shadowdancer may conceal themselves in shadow. For the next three rounds, the Shadowdancer is only partially visible and may not be targeted by spells unless by creatures that can see through invisibility. As long as they are in the partially visible state, they gain a +5% bonus to physical resistances and a +1 bonus to Armor Class. These bonuses increase by the base amount at levels 15, 20 and 25.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~CLABTH05.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
+END

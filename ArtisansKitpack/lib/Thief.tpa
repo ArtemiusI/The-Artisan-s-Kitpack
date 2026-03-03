@@ -1,0 +1,378 @@
+COPY ~%MOD_FOLDER%/Thief/spells~ ~OVERRIDE~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABTH01.2DA~ BEGIN
+COPY_EXISTING ~CLABTH01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = GA_C0TH-A1 END // CRIPPLING STRIKE
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TH-A2 END // EPIC PRECISION
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+///////////////////////////////////////////////////////////////////////////
+// Set Abilities for all Fighter Kits                                    //
+// This allows all previously installed fighter kits to receive the      //
+// benefits of your overhaul                                             //
+///////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+  PATCH_IF (%kit_class% = 4) BEGIN
+    // Set New Fighter Abilities
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      // Add new abilities to all Fighter kits
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+      PATCH_IF (
+				("%kit_label%" STRING_EQUAL_CASE "ASSASIN") OR 
+				("%kit_label%" STRING_EQUAL_CASE "ASSASSIN")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 16 STR_VAR f_Entry = GA_C0TH-A1 END // CRIPPLING STRIKE
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TH-A2 END // EPIC PRECISION
+        PRETTY_PRINT_2DA
+      END
+      PATCH_IF (
+				("%kit_label%" STRING_EQUAL_CASE "C0ADVENT")
+														 ) BEGIN
+        LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0TH-A2 END // EPIC PRECISION
+        PRETTY_PRINT_2DA
+      END
+      
+      BUT_ONLY
+      END
+    END
+  END
+  END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRIES_NOW ~rog_clastext~ 10
+        READ_2DA_ENTRY index 0 col_count row_name
+        READ_2DA_ENTRY index 1 col_count class_id
+
+      PATCH_IF (
+				("%row_name%" STRING_EQUAL_CASE "THIEF")
+														 ) BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_kitdesc ~– Hit Die: d6~
+          SPRINT new_kitdesc_1 ~– 16th level: May use Crippling Strike as a modal ability.
+          
+CRIPPLING STRIKE: The thief may, at the cost of reducing their backstab multiplier by 2, inflict a crippling strike on their target when backstabbing. If the target fails a Save vs. Death at -3, they suffer a -4 penalty to damage and may not make critical hits for the next round.~
+          SPRINT new_kitdesc_2 ~– 20th level: Gains Epic Precision.
+          
+EPIC PRECISION: Upon entering stealth or invisibility, the thief's next attack rolls for maximum damage with an additional +4 modifier. The thief does not regain this modifier until the next time they re-enter stealth.~
+
+          GET_STRREF %kit_desc% kit_text
+          INNER_PATCH_SAVE kit_text ~%kit_text%~ BEGIN
+            REPLACE_TEXTUALLY ~
+%new_kitdesc_1%~ ~~
+            REPLACE_TEXTUALLY ~
+%new_kitdesc_2%~ ~~
+            REPLACE_TEXTUALLY ~%old_kitdesc%~ ~
+%new_kitdesc_1%
+
+%new_kitdesc_2%
+
+%old_kitdesc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%kit_text%~
+          END
+        END
+
+      END
+  BUT_ONLY
+    END
+      
+  END
+  END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRIES_NOW ~rog_clastext~ 10
+        READ_2DA_ENTRY index 0 col_count row_name
+        READ_2DA_ENTRY index 1 col_count class_id
+
+  PATCH_IF (%class_id% = 4) BEGIN
+    // Set New Fighter Abilities
+      PATCH_IF !(
+				("%row_name%" STRING_EQUAL_CASE "ASSASIN") OR 
+				("%row_name%" STRING_EQUAL_CASE "ASSASSIN") OR
+				("%row_name%" STRING_EQUAL_CASE "C0ADVENT")
+														 ) BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_kitdesc ~Disadvantages:~
+          SPRINT new_kitdesc ~– Does not gain Epic Precision.~
+          GET_STRREF %kit_desc% kit_text
+          INNER_PATCH_SAVE kit_text ~%kit_text%~ BEGIN
+            REPLACE_TEXTUALLY ~
+%new_kitdesc%~ ~~
+            REPLACE_TEXTUALLY ~%old_kitdesc%~ ~%old_kitdesc%
+%new_kitdesc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%kit_text%~
+          END
+
+      PATCH_IF !(
+				("%row_name%" STRING_EQUAL_CASE "ASSASIN") OR 
+				("%row_name%" STRING_EQUAL_CASE "ASSASSIN")
+														 ) BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_kitdesc ~Disadvantages:~
+          SPRINT new_kitdesc ~– May not use Crippling Strike.~
+          GET_STRREF %kit_desc% kit_text
+          INNER_PATCH_SAVE kit_text ~%kit_text%~ BEGIN
+            REPLACE_TEXTUALLY ~
+%new_kitdesc%~ ~~
+            REPLACE_TEXTUALLY ~%old_kitdesc%~ ~%old_kitdesc%
+%new_kitdesc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%kit_text%~
+          END
+
+  END
+        END
+
+  END
+  END
+
+  BUT_ONLY
+  
+  END
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRIES_NOW ~rog_clastext~ 10
+        READ_2DA_ENTRY index 0 col_count row_name
+        READ_2DA_ENTRY index 1 col_count class_id
+
+      PATCH_IF (
+				("%row_name%" STRING_EQUAL_CASE "SWASHBUCKLER")
+														 ) BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_kitdesc ~Disadvantages:~
+          SPRINT new_kitdesc ~– May not Use Magic Devices.~
+          GET_STRREF %kit_desc% kit_text
+          INNER_PATCH_SAVE kit_text ~%kit_text%~ BEGIN
+            REPLACE_TEXTUALLY ~
+%new_kitdesc%~ ~~
+            REPLACE_TEXTUALLY ~%old_kitdesc%~ ~%old_kitdesc%
+%new_kitdesc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%kit_text%~
+          END
+        END
+
+      END
+  BUT_ONLY
+    END
+      
+  END
+  END
+
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Crippling Strike~) STR_VAR bam_file = C0TH-A1I RET C0TH-A1I = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Epic Precision~) STR_VAR bam_file = C0TH-A2I RET C0TH-A2I = icon END
+
+COPY_EXISTING ~C0TH-A1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Crippling Strike~
+SAY UNIDENTIFIED_DESC ~Crippling Strike
+The thief may, at the cost of reducing their backstab multiplier by 2, inflict a crippling strike on their target when backstabbing. If the target fails a Save vs. Death at -3, they suffer a -4 penalty to damage and may not make critical hits for the next round.~
+COPY_EXISTING ~C0TH-A1A.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 330 parameter1 = RESOLVE_STR_REF (~Crippling Strike Active~) END
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0TH-A1I
+      END
+COPY_EXISTING ~C0TH-A1B.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 330 parameter1 = RESOLVE_STR_REF (~Crippling Strike Inactive~) END
+COPY_EXISTING ~C0TH-A1C.SPL~ ~OVERRIDE~
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Crippling Strike Applied~) END
+COPY_EXISTING ~C0TH-A2C.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0TH-A2I
+      END
+
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+///////////////////////////////////////////////////////////////////////////
+// Update Kit Descriptions                                               //
+///////////////////////////////////////////////////////////////////////////
+ACTION_FOR_EACH description IN 
+    clastext  
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRIES_NOW ~rog_clastext~ 10
+        READ_2DA_ENTRY index 0 col_count row_name
+        READ_2DA_ENTRY index 1 col_count class_id
+
+      PATCH_IF (
+				("%row_name%" STRING_EQUAL_CASE "THIEF")
+														 ) BEGIN
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_kitdesc ~– May backstab~
+          SPRINT new_kitdesc_1 ~– Use Magic Device: A thief may use magical wands and scrolls exclusive to Mages if they possess a minimum Intelligence of 17.~
+
+          GET_STRREF %kit_desc% kit_text
+          INNER_PATCH_SAVE kit_text ~%kit_text%~ BEGIN
+            REPLACE_TEXTUALLY ~
+%new_kitdesc_1%~ ~~
+            REPLACE_TEXTUALLY ~%old_kitdesc%~ ~%new_kitdesc_1%
+%old_kitdesc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%kit_text%~
+          END
+        END
+
+      END
+  BUT_ONLY
+    END
+      
+  END
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "C0_THIEF_UMD" RET value END
+
+OUTER_SET C0_THIEF_UMD = IDS_OF_SYMBOL (~STATS~ ~C0_THIEF_UMD~)
+
+APPEND ~splprot.2da~ ~C0_THIEF_UMD %C0_THIEF_UMD% 1 1~ UNLESS ~C0_THIEF_UMD~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~C0_THIEF_UMD~ BEGIN
+	    SET C0_THIEF_UMD = %row%
+	  END
+	END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x20 mage //reads the byte containing the fighter usability flag
+    PATCH_IF ((mage BAND 0b00000100) = 0b00000000) AND ((mage BAND 0b01000000) = 0b01000000) BEGIN 
+      READ_BYTE    0x20 row3
+      READ_SHORT    0x1C itemtype 
+      PATCH_IF (itemtype = 35) OR (itemtype = 11) BEGIN
+        WRITE_BYTE    0x20 (row3 BAND 0b10111111)
+      END
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = C0_THIEF_UMD timing = 2 power = 2 special = RESOLVE_STR_REF (~Thief~) END
+    END
+  END
+BUT_ONLY
+
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABTH01.2DA~ BEGIN
+COPY_EXISTING ~CLABTH01.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+COPY ~%MOD_FOLDER%/Thief/spells/EEex~ ~OVERRIDE~
+
+COPY_EXISTING ~C0TH-E1B.spl~ ~override~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_THIEF_UMD~) parameter1 = 0 parameter2 = 1 END
+
+COPY_EXISTING ~C0TH-E1C.spl~ ~override~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_THIEF_UMD~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~C0TH-E1C.spl~ ~override/C0TH-E2.SPL~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~C0_THIEF_UMD~) parameter1 = 1 parameter2 = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 timing = 9 STR_VAR resource = C0TH-E1 END
+
+///////////////////////////////////////////////////////////////////////////
+// Set Abilities for all Fighter Kits                                    //
+// This allows all previously installed fighter kits to receive the      //
+// benefits of your overhaul                                             //
+///////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~KITLIST.2DA~ ~override~
+  READ_2DA_ENTRIES_NOW ~fig_kitlist~ 10
+  FOR (row = 1; row < fig_kitlist; row += 1) BEGIN
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 5 kit_clab
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 1 kit_label
+  READ_2DA_ENTRY_FORMER ~fig_kitlist~ row 8 kit_class
+  
+  PATCH_IF (%kit_class% = 4) BEGIN
+    // Set New Fighter Abilities
+    PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
+      INNER_ACTION BEGIN
+      // Add new abilities to all Fighter kits
+      COPY_EXISTING ~%kit_clab%.2DA~ override
+      PATCH_IF !(
+				("%kit_label%" STRING_EQUAL_CASE "SWASHBUCKLER")
+														 ) BEGIN
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+        PRETTY_PRINT_2DA
+      END
+
+      PATCH_IF (
+				("%kit_label%" STRING_EQUAL_CASE "SWASHBUCKLER")
+														 ) BEGIN
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E2 END // USE MAGIC DEVICE
+        PRETTY_PRINT_2DA
+      END
+      
+      END
+      END
+    END
+  END
+      BUT_ONLY
+  END
+
+
+END

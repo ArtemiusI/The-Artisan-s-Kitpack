@@ -1,6 +1,46 @@
 COPY ~%MOD_FOLDER%/Thief/Magekiller/2da~ ~override~
 COPY ~%MOD_FOLDER%/Thief/Magekiller/spells~ ~override~
 
+OUTER_SPRINT kit_description ~MAGEKILLER: In regions where magic is feared and persecuted, the skills of those capable of hunting and eliminating magic-users are highly sought after. The Magekiller is a rogue who specializes in tracking, stealth and antimagic, becoming highly skilled at recognizing and countering magic of all kinds.
+
+Advantages:
+– +25% bonus to Detect Illusions.
+– +2 bonus to Saving Throws vs. Spells. Gains an additional +1 per 10 levels.
+– The Magekiller's backstabs have a chance to remove magical effects from their target as per a Dispel Magic spell.
+– The Magekiller's antimagic abilities have a casting time of 1, and are treated as abilities without a spell level or school, thus not being subjected to protections that are determined by them.
+– May cast Breach as an innate ability once per day. Gains an extra use at 10th and 15th level.
+– 8th level: May cast Spell Immunity as an innate ability once per day.
+– 12th level: May cast Globe of Invulnerability as an innate ability once per day.
+– 16th level: May cast Spell Turning as an innate ability once per day.
+– 20th level: May cast Pierce Shield as an innate ability once per day.
+
+Disadvantages:
+– -1 to backstab multiplier compared to an unkitted Thief:
+  Level 1-4: x1 (no multiplier)
+  Level 5-8: x2
+  Level 9-12: x3
+  Level 13+: x4KIT_DISADV_1
+– May only distribute 15 skill points per level among thieving skills.
+– May not dual-class to Mage.
+– May not use the Set Snare ability.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -30,28 +70,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~magekiller~)
 	
-    help          = RESOLVE_STR_REF(~MAGEKILLER: In regions where magic is feared and persecuted, the skills of those capable of hunting and eliminating magic-users are highly sought after. The Magekiller is a rogue who specializes in tracking, stealth and antimagic, becoming highly skilled at recognizing and countering magic of all kinds.
-
-Advantages:
-– +25% bonus to Detect Illusions.
-– +2 bonus to Saving Throws vs. Spells. Gains an additional +1 per 10 levels.
-– The Magekiller's backstabs have a chance to remove magical effects from their target as per a Dispel Magic spell.
-– The Magekiller's antimagic abilities have a casting time of 1, and are treated as abilities without a spell level or school, thus not being subjected to protections that are determined by them.
-– May cast Breach as an innate ability once per day. Gains an extra use at 10th and 15th level.
-– 8th level: May cast Spell Immunity as an innate ability once per day.
-– 12th level: May cast Globe of Invulnerability as an innate ability once per day.
-– 16th level: May cast Spell Turning as an innate ability once per day.
-– 20th level: May cast Pierce Shield as an innate ability once per day.
-
-Disadvantages:
-– -1 to backstab multiplier compared to an unkitted Thief:
-  Level 1-4: x1 (no multiplier)
-  Level 5-8: x2
-  Level 9-12: x3
-  Level 13+: x4
-– May only distribute 15 skill points per level among thieving skills.
-– May not dual-class to Mage.
-– May not use the Set Snare ability.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~MAGEKILLER: In regions where magic is feared and persecuted, the skills of those capable of hunting and eliminating magic-users are highly sought after. The Magekiller is a rogue who specializes in tracking, stealth and antimagic, becoming highly skilled at recognizing and countering magic of all kinds.~)
 	
@@ -267,3 +286,16 @@ The Magekiller, upon touching an arcane magic-user, imprisons them in an extradi
 This ability may only be chosen once.
 
 Requires: Spellstrike~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~C0MKILL.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
+END

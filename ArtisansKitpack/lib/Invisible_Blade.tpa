@@ -1,6 +1,50 @@
 COPY ~%MOD_FOLDER%/Thief/InvisibleBlade/2da~ ~override~
 COPY ~%MOD_FOLDER%/Thief/InvisibleBlade/spells~ ~override~
 
+OUTER_SPRINT kit_description ~INVISIBLE BLADE: Invisible Blades are deadly fighters who prefer to use daggers and related weapons in combat. Their training and techniques with these weapons make them just as lethal as any well-armed fighter. Invisible Blades enjoy cultivating misconceptions about the level of danger they present, and they relish any chance to demonstrate that the most unimposing weapons can be the most lethal.
+
+Advantages:
+– May achieve Grandmastery (five slots) in Daggers.
+– May achieve Mastery (three slots) in Two-Weapon Style.
+– +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level up to a maximum of +11 at 20th level.
+– Unfettered Defense: The Invisible Blade's base Armor Class improves by 1 per point of Intelligence above 12.
+– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus piercing damage on the initial hit and unmitigated damage for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
+  1st-4th: 2 damage per round, 2 rounds
+  5th-8th: 3 damage per round, 4 rounds
+  9th-12th: 4 damage per round, 8 rounds
+  12th-16th: 6 damage per round, 8 rounds
+  17th+: 8 damage per round, 10 rounds
+  Targets without blood are immune to Bleeding Wound, though they take regular backstab damage.
+  
+– May use the Feint modal ability.
+
+FEINT: The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is active, the Invisible Blade halves their attacks per round for that round to make their melee attacks force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Only one Feint attempt may be made on each individual target per round. Feint has no effect on non-intelligent creatures such as golems and slimes.
+  
+– 12th level: Feint Mastery: The Invisible Blade's first attack each round while Feinting is always counted as a backstab, applying an additional Bleeding Wound stack.
+
+Disadvantages:
+– Backstab modifier does not improve beyond x2.KIT_DISADV_1
+– May not wear any armor.
+– May only distribute 15 skill points per level among thieving skills.
+– May not use the Set Snare ability.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 // INTELLIGENCE
 APPEND ~splprot.2da~ ~C0HTINT%TAB%38%TAB%-1%TAB%1~ UNLESS ~C0HTINT~
 COPY_EXISTING ~splprot.2da~ ~override~
@@ -42,32 +86,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~invisible blade~)
 	
-    help          = RESOLVE_STR_REF(~INVISIBLE BLADE: Invisible Blades are deadly fighters who prefer to use daggers and related weapons in combat. Their training and techniques with these weapons make them just as lethal as any well-armed fighter. Invisible Blades enjoy cultivating misconceptions about the level of danger they present, and they relish any chance to demonstrate that the most unimposing weapons can be the most lethal.
-
-Advantages:
-– May achieve Grandmastery (five slots) in Daggers.
-– May achieve Mastery (three slots) in Two-Weapon Style.
-– +1 bonus to hit while wielding a dagger. Gains an additional +1 at every even-numbered level up to a maximum of +11 at 20th level.
-– Unfettered Defense: The Invisible Blade's base Armor Class improves by 1 per point of Intelligence above 12.
-– Bleeding Wound: The Invisible Blade's backstabs while using a dagger cause their targets to bleed out, dealing bonus piercing damage on the initial hit and unmitigated damage for several rounds thereafter. The attack must have dealt damage for Bleeding Wound to apply. This damage is cumulative on the same target.
-  1st-4th: 2 damage per round, 2 rounds
-  5th-8th: 3 damage per round, 4 rounds
-  9th-12th: 4 damage per round, 8 rounds
-  12th-16th: 6 damage per round, 8 rounds
-  17th+: 8 damage per round, 10 rounds
-  Targets without blood are immune to Bleeding Wound, though they take regular backstab damage.
-  
-– May use the Feint modal ability.
-
-FEINT: The Invisible Blade makes a deceptive maneuver in an attempt to make their opponent lower their guard, striking them when they are vulnerable. When Feint is active, the Invisible Blade halves their attacks per round for that round to make their melee attacks force the target to make a Save vs. Breath at +4 (modifier decreases by 1 per 3 levels) or have their Dexterity halved for one round and Bleeding Wound applied on them. Only one Feint attempt may be made on each individual target per round. Feint has no effect on non-intelligent creatures such as golems and slimes.
-  
-– 12th level: Feint Mastery: The Invisible Blade's first attack each round while Feinting is always counted as a backstab, applying an additional Bleeding Wound stack.
-
-Disadvantages:
-– Backstab modifier does not improve beyond x2.
-– May not wear any armor.
-– May only distribute 15 skill points per level among thieving skills.
-– May not use the Set Snare ability.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~INVISIBLE BLADE: Invisible Blades are deadly fighters who prefer to use daggers and related weapons in combat. Their training and techniques with these weapons make them just as lethal as any well-armed fighter. Invisible Blades enjoy cultivating misconceptions about the level of danger they present, and they relish any chance to demonstrate that the most unimposing weapons can be the most lethal.~)
 	
@@ -279,3 +298,16 @@ COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
     END
   END
 BUT_ONLY
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~C0INVBL.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
+END

@@ -3,6 +3,55 @@ COPY ~%MOD_FOLDER%/Thief/Trickster/2da~ OVERRIDE
 COPY ~%MOD_FOLDER%/Thief/Trickster/bam~ OVERRIDE
 COPY ~%MOD_FOLDER%/Thief/Trickster/spells~ OVERRIDE
 
+OUTER_SPRINT kit_description ~TRICKSTER: Perhaps the most complex and most difficult type of rogue to define, tricksters have few abilities to truly call their own. Rather than develop their skills through formal training, tricksters make use of their cleverness and strong memory to master the skills of other classes at a near-instant rate and use them as though with many years of practice—a talent often deridingly described as one part wit and two parts luck. Therefore, no two tricksters are truly alike. As a jack-of-all-trades, the trickster differs from the bard in that their skills are learned spontaneously rather through study. While versatile and quick to adapt, their lack of true specialization makes them slower to develop.
+
+Advantages:
+– Luck: +1 bonus to Saving Throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills.
+– Opportunist: The Trickster's critical hits reduce the target's Armor Class, THAC0 and damage by 1 for one round.
+– May use the Trickery ability once per day. Gains an extra use every 3 levels.
+
+TRICKERY: The Trickster uses masterful sleight of hand and quick movement to instantly replace themselves with a life-sized replica of themselves for one round, becoming invisible in the process. The trickster's next attack is an automatic critical hit. The deception is so great that illusion-dispelling magicks and even creatures that see through invisibility are fooled and will not attack the trickster while the replica is standing.
+
+– May use the Mimicry ability.
+
+MIMICRY: Whether through careful examination, learning through use, or natural talent, tricksters are able to imitate the skills of almost any profession and adapt them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit. If dual-classed, the trickster retains use of their learned abilities while their class is inactive.
+
+– 5th level: Gains one use of Mimicry.
+– 8th level: Opportunist penalties increased to 2.
+– 10th level: Passive Luck bonus is doubled. Gains one use of Mimicry.
+– 15th level: Opportunist penalties increased to 3. Gains one use of Mimicry.
+– 20th level: Passive Luck bonus is tripled. Gains one use of Mimicry.
+– 25th level: Gains one use of Mimicry.
+– 30th level: Opportunist penalties increased to 4. Gains one use of Mimicry.
+– 35th level: Gains one use of Mimicry.
+– 40th level: Passive Luck bonus is quadrupled. Gains one use of Mimicry.
+
+Disadvantages:
+– Backstab progression is significantly weaker than a normal Thief's:
+  Level 1-8: x2
+  Level 9+: x3
+– May not be of Lawful alignment.KIT_DISADV_1
+– Overconfidence: -1 penalty to Armor Class.
+– May only distribute 20 skill points per level among thieving skills.
+– Only receives 90% of all experience earned as a trickster.~
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~
+– May not use Crippling Strike.
+– Does not gain Epic Precision.~
+
+END
+
+END ELSE BEGIN
+
+OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+  REPLACE_TEXTUALLY ~KIT_DISADV_1~ ~~
+END
+
+END
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -32,37 +81,7 @@ LAF ADD_KIT_EX
 	
     lower         = RESOLVE_STR_REF(~trickster~)
 	
-    help          = RESOLVE_STR_REF(~TRICKSTER: Perhaps the most complex and most difficult type of rogue to define, tricksters have few abilities to truly call their own. Rather than develop their skills through formal training, tricksters make use of their cleverness and strong memory to master the skills of other classes at a near-instant rate and use them as though with many years of practice—a talent often deridingly described as one part wit and two parts luck. Therefore, no two tricksters are truly alike. As a jack-of-all-trades, the trickster differs from the bard in that their skills are learned spontaneously rather through study. While versatile and quick to adapt, their lack of true specialization makes them slower to develop.
-
-Advantages:
-– Luck: +1 bonus to Saving Throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills.
-– Opportunist: The Trickster's critical hits reduce the target's Armor Class, THAC0 and damage by 1 for one round.
-– May use the Trickery ability once per day. Gains an extra use every 3 levels.
-
-TRICKERY: The Trickster uses masterful sleight of hand and quick movement to instantly replace themselves with a life-sized replica of themselves for one round, becoming invisible in the process. The trickster's next attack is an automatic critical hit. The deception is so great that illusion-dispelling magicks and even creatures that see through invisibility are fooled and will not attack the trickster while the replica is standing.
-
-– May use the Mimicry ability.
-
-MIMICRY: Whether through careful examination, learning through use, or natural talent, tricksters are able to imitate the skills of almost any profession and adapt them as their own. When used, this ability may be permanently exchanged for one ability or passive effect of another kit. If dual-classed, the trickster retains use of their learned abilities while their class is inactive.
-
-– 5th level: Gains one use of Mimicry.
-– 8th level: Opportunist penalties increased to 2.
-– 10th level: Passive Luck bonus is doubled. Gains one use of Mimicry.
-– 15th level: Opportunist penalties increased to 3. Gains one use of Mimicry.
-– 20th level: Passive Luck bonus is tripled. Gains one use of Mimicry.
-– 25th level: Gains one use of Mimicry.
-– 30th level: Opportunist penalties increased to 4. Gains one use of Mimicry.
-– 35th level: Gains one use of Mimicry.
-– 40th level: Passive Luck bonus is quadrupled. Gains one use of Mimicry.
-
-Disadvantages:
-– Backstab progression is significantly weaker than a normal Thief's:
-  Level 1-8: x2
-  Level 9+: x3
-– May not be of Lawful alignment.
-– Overconfidence: -1 penalty to Armor Class.
-– May only distribute 20 skill points per level among thieving skills.
-– Only receives 90% of all experience earned as a trickster.~)
+    help          = RESOLVE_STR_REF(~%kit_description%~)
 	
     briefdesc     = RESOLVE_STR_REF(~TRICKSTER: Perhaps the most complex and most difficult type of rogue to define, tricksters have few abilities to truly call their own. Rather than develop their skills through formal training, tricksters make use of their cleverness and strong memory to master the skills of other classes at a near-instant rate and use them as though with many years of practice—a talent often deridingly described as one part wit and two parts luck. Therefore, no two tricksters are truly alike. As a jack-of-all-trades, the trickster differs from the bard in that their skills are learned spontaneously rather through study. While versatile and quick to adapt, their lack of true specialization makes them slower to develop.~)
 	
@@ -586,3 +605,16 @@ WRITE_LONG 0x48 4
 COPY ~%MOD_FOLDER%/SPELLS/C0KTNAME.EFF~ ~OVERRIDE/C0TR#NM2.EFF~
 WRITE_LONG 0x1c RESOLVE_STR_REF (~Mage / Trickster~)
 WRITE_LONG 0x48 13
+
+ACTION_IF MOD_IS_INSTALLED ~Setup-ArtisansKitpack.tp2~ ~7000~ THEN BEGIN
+
+ACTION_IF (MOD_IS_INSTALLED ~EEEX/EEEX.TP2~ ~0~) THEN BEGIN
+
+COPY_EXISTING ~C0TRICKS.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+      LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = AP_C0TH-E1 END // USE MAGIC DEVICE
+  PRETTY_PRINT_2DA
+
+END
+
+END
