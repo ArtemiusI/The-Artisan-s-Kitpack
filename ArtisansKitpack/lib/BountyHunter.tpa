@@ -33,7 +33,7 @@ SET SPECIAL SNARE: Set a trap in the chosen location when no hostile creatures a
 SET MANHUNTER SNARE: The Manhunter is a powerful trap intended for crippling and tracking marks. This trap deals 10d10+20 missile damage and paralyzes the target on a failed Save vs. Death (-1 modifier penalty per 8 levels), or else greatly reduces the victim's movement rate, as well as causing them to bleed uncontrollably, dealing an additional 24 damage over 4 rounds. Additionally, the target is revealed for the bleed duration, remaining visible outside of allies' vision range and are unable to enter stealth or become invisible. The Manhunter's secondary effects do not apply against undead, elementals and non-corporeal beings.
 
 Disadvantages:KIT_DISADV_1
-– -1 to backstab multiplier compared to an unkitted Thief. Backstab multiplier does not increase past x3:
+– Backstab progression is significantly weaker than a normal Thief's:
   Level 1-4: x1 (no multiplier)
   Level 5-8: x2
   Level 9-12: x3
