@@ -1123,6 +1123,10 @@ REQUIRE_COMPONENT ~Setup-ArtisansKitpack.tp2~ ~5100~ ~The Shapeshifter Kit must 
 OUTER_SET werewolf_npc_sprite = 1
 INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter-sprite.tpa~
 
+BEGIN ~Artisan's Kitpack: Avenger Overhaul~ DESIGNATED 5200
+GROUP ~Druid Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Avenger.tpa~
+
 BEGIN ~Artisan's Kitpack: Elementalist Druid Kit~ DESIGNATED 5001
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/Elementalist.tpa~
