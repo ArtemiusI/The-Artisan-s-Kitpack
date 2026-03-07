@@ -28,12 +28,12 @@ SPIRIT'S PROTECTION: The totemic druid may command their spirit animal to bestow
 – 10th level: Spirit's Protection heals the target for 50% of their maximum hit points.
 – 12th level: Spirit's Protection removes negative mind-affecting effects from the target and grants them protection from similar effects for the duration.
 – 14th level: Totemic Guardian bonuses increase to +20%/+3 for their respective effects.
-– 14th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack while applying Spirit's Protection on them.
+– 14th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal expends its energy to do so. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack while applying Spirit's Protection on them.
 – 15th level: Totemic Guardian bonuses increase to +25%/+4 for their respective effects. Spirit's Protection heals the target for 100% of their maximum hit points.
 
 Disadvantages:
 – Cannot use shapeshift.
-– If the totemic druid's spirit animal is defeated in battle or uses its energies to protect its summoner from death, it will be unable to manifest unless a full turn passes and the battle is still ongoing. If this occurs, the totemic druid suffers a -2 penalty to casting speed and a 25% chance to miscast spells for one turn.~
+– If the totemic druid's spirit animal is defeated in battle or uses its energies to revive an ally or protect its summoner from death, it will be unable to manifest unless a full turn passes and the battle is still ongoing. If this occurs, the totemic druid suffers a -2 penalty to casting speed and a 25% chance to miscast spells for one turn.~
 
 LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~TOTEMIC_DRUID~ RET kit_strref END
 STRING_SET_EVALUATE kit_strref ~%kit_description%~
