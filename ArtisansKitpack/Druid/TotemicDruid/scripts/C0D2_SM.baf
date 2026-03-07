@@ -1,0 +1,748 @@
+IF
+    HPLT(Myself,1)
+THEN
+    RESPONSE #100
+        ApplySpellRES("C0D2_SPX",LastSummonerOf(Myself))
+		CreateVisualEffectObject("SPFLESHS",Myself)
+		DestroySelf()
+END
+
+IF
+	HPGT(Myself,0)
+	Global("C0D2_SP1","LOCALS",1)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_SP0",LastSummonerOf(Myself))
+	CreateVisualEffectObject("SPFLESHS",Myself)
+	DestroySelf()
+END
+
+IF
+	!InMyArea(LastSummonerOf(Myself))
+THEN
+RESPONSE #100
+	CreateVisualEffectObject("SPFLESHS",Myself)
+	DestroySelf()
+END
+
+IF
+	!See([ENEMY])
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	CreateVisualEffectObject("SPFLESHS",Myself)
+	DestroySelf()
+END
+
+IF
+	Global("C0D2_SMM","GLOBAL",0)
+	!TriggerOverride(LastSummonerOf(Myself),Global("C0D2_1A","LOCALS",1))
+THEN
+RESPONSE #100
+	CreateVisualEffectObject("SPFLESHS",Myself)
+	DestroySelf()
+END
+
+IF
+    TriggerOverride(LastSummonerOf(Myself),Global("C0D2_H1","LOCALS",1))
+	!Global("UpgradeHLA1","LOCALS",1)
+THEN
+    RESPONSE #100
+		SetGlobal("UpgradeHLA1","LOCALS",1)
+        ApplySpellRES("C0D2_H1A",Myself)
+		Continue()
+END
+
+IF
+    TriggerOverride(LastSummonerOf(Myself),Global("C0D2_H2","LOCALS",1))
+	!Global("UpgradeHLA2","LOCALS",1)
+THEN
+    RESPONSE #100
+		SetGlobal("UpgradeHLA2","LOCALS",1)
+        ApplySpellRES("C0D2_H2A",Myself)
+		Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,1)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,2)
+    LevelLT(Myself,2)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,2,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,3)
+    LevelLT(Myself,3)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,4,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,4)
+    LevelLT(Myself,4)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,4,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,5)
+    LevelLT(Myself,5)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,5,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,6)
+    LevelLT(Myself,6)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,6,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,7)
+    LevelLT(Myself,7)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,7,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,8)
+    LevelLT(Myself,8)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,8,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,9)
+    LevelLT(Myself,9)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,9,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,10)
+    LevelLT(Myself,10)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,10,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,11)
+    LevelLT(Myself,11)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,11,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,12)
+    LevelLT(Myself,12)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,12,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,13)
+    LevelLT(Myself,13)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,13,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,14)
+    LevelLT(Myself,14)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,14,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,15)
+    LevelLT(Myself,15)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,15,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,16)
+    LevelLT(Myself,16)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,16,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,17)
+    LevelLT(Myself,17)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,17,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,18)
+    LevelLT(Myself,18)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,18,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,19)
+    LevelLT(Myself,19)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,19,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,20)
+    LevelLT(Myself,20)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,20,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,21)
+    LevelLT(Myself,21)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,21,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,22)
+    LevelLT(Myself,22)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,22,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,23)
+    LevelLT(Myself,23)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,23,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,24)
+    LevelLT(Myself,24)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,24,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,25)
+    LevelLT(Myself,25)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,25,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,26)
+    LevelLT(Myself,26)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,26,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,27)
+    LevelLT(Myself,27)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,27,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,28)
+    LevelLT(Myself,28)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,28,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,29)
+    LevelLT(Myself,29)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,29,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,30)
+    LevelLT(Myself,30)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,30,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,31)
+    LevelLT(Myself,31)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,31,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,32)
+    LevelLT(Myself,32)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,32,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,33)
+    LevelLT(Myself,33)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,33,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,34)
+    LevelLT(Myself,34)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,34,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,35)
+    LevelLT(Myself,35)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,35,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,36)
+    LevelLT(Myself,36)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,36,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,37)
+    LevelLT(Myself,37)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,37,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,38)
+    LevelLT(Myself,38)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,38,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,39)
+    LevelLT(Myself,39)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,39,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,40)
+    LevelLT(Myself,40)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,40,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,41)
+    LevelLT(Myself,41)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,41,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,42)
+    LevelLT(Myself,42)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,42,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,43)
+    LevelLT(Myself,43)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,43,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,44)
+    LevelLT(Myself,44)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,44,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,45)
+    LevelLT(Myself,45)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,45,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,46)
+    LevelLT(Myself,46)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,46,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,47)
+    LevelLT(Myself,47)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,47,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,48)
+    LevelLT(Myself,48)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,48,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,49)
+    LevelLT(Myself,49)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,49,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	!Global("Upgrade","LOCALS",1)
+	ClassLevel(LastSummonerOf(Myself),PRIEST,50)
+    LevelLT(Myself,50)
+THEN
+RESPONSE #100
+	SetGlobal("Upgrade","LOCALS",1)
+	ChangeStat(Myself,LEVEL,50,SET)
+	ReallyForceSpellRES("C0D2_SA1",Myself)
+	ReallyForceSpellRES("C0D2_SA2",Myself)
+	Continue()
+END
+
+IF
+	HaveSpellRES("C0D2_SP1")
+	TriggerOverride(LastSummonerOf(Myself),Global("C0D2_1A","LOCALS",1))
+THEN
+RESPONSE #100
+	ReallyForceSpellRES("C0D2_SP1",LastSummonerOf(Myself))
+	Kill(Myself)
+END
+
+IF
+	HaveSpellRES("C0D2_SP2")
+	TriggerOverride(LastSummonerOf(Myself),Global("C0D2_1A","LOCALS",1))
+THEN
+RESPONSE #100
+	ReallyForceSpellRES("C0D2_SP2",LastSummonerOf(Myself))
+	Kill(Myself)
+END
+
+IF
+	HaveSpellRES("C0D2_SP3")
+	TriggerOverride(LastSummonerOf(Myself),Global("C0D2_1A","LOCALS",1))
+THEN
+RESPONSE #100
+	ReallyForceSpellRES("C0D2_SP3",LastSummonerOf(Myself))
+	Kill(Myself)
+END
+
+IF
+	HaveSpellRES("C0D2_SP4")
+	TriggerOverride(LastSummonerOf(Myself),Global("C0D2_1A","LOCALS",1))
+THEN
+RESPONSE #100
+	ReallyForceSpellRES("C0D2_SP4",LastSummonerOf(Myself))
+	Kill(Myself)
+END

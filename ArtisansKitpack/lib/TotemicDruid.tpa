@@ -1,0 +1,333 @@
+
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/2DAs~ ~OVERRIDE~
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/SPELLS~ ~OVERRIDE~
+
+OUTER_SPRINT kit_description ~TOTEMIC DRUID: This Druid closely identifies with a particular animal, an animal that <PRO_HESHE> feels represents <PRO_HISHER> spirit. This grants <PRO_HIMHER> a special connection to the animal kingdom, and <PRO_HESHE> is able to call upon their spirits to aid <PRO_HIMHER>.
+
+Advantages:
+– May use the Totemic Guardian special ability.
+
+TOTEMIC GUARDIAN: The totemic druid is persistently guarded by an animal spirit. The spirit manifests when the totemic druid enters battle and remains until the battle ends. The spirit animal can be controlled, increases in power as the summoner gains in druid levels. The totemic druid may select a spirit animal to be guarded by once per day, with each providing different bonuses to all druids, shamans, rangers and barbarians within a 15-ft. radius of them.
+  BEAR'S ENDURANCE: The summoner gains a +10% bonus to physical resistances and a +1 bonus to Saving Throws vs. Death.
+  WOLF'S TENACITY: The summoner gains a +10% bonus to all damage dealt, with an additional +1 bonus to melee damage.
+  LION'S COURAGE: The summoner gains a +1 bonus to THAC0, Morale and Saving Throw vs. Spells.
+  SNAKE'S SWIFTNESS: The summoner gains a +1 bonus to Armor Class, Movement Rate and Saving Throws vs. Breath.
+
+– 5th level: May use the Spirit's Protection ability while a spirit animal is present. This ability is cast from the spirit animal's special abilities rather than the summoner's own.
+
+SPIRIT'S PROTECTION: The totemic druid may command their spirit animal to bestow their power upon a targeted creature for one turn. The spirit animal disappears for the duration and grants their bonuses to the target regardless of their class. Once the effect expires, the spirit animal manifests at the summoner's side once more.
+
+– 8th level: Totemic Guardian bonuses increase to +15%/+2 for their respective effects.
+– 10th level: Spirit's Protection heals the target for 50% of their maximum hit points.
+– 12th level: Spirit's Protection removes negative mind-affecting effects from the target and grants them protection from similar effects for the duration.
+– 14th level: Totemic Guardian bonuses increase to +20%/+3 for their respective effects.
+– 14th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack while applying Spirit's Protection on them.
+– 15th level: Totemic Guardian bonuses increase to +25%/+4 for their respective effects. Spirit's Protection heals the target for 100% of their maximum hit points.
+
+Disadvantages:
+– Cannot use shapeshift.
+– If the totemic druid's spirit animal is defeated in battle or uses its energies to protect its summoner from death, it will be unable to manifest unless a full turn passes and the battle is still ongoing. If this occurs, the totemic druid suffers a -2 penalty to casting speed and a 25% chance to miscast spells for one turn.~
+
+LAF ~GET_KIT_STRREF~ STR_VAR kit_name = ~TOTEMIC_DRUID~ RET kit_strref END
+STRING_SET_EVALUATE kit_strref ~%kit_description%~
+
+// ICONS
+
+DEFINE_ACTION_FUNCTION cd_new_portrait_icon
+  INT_VAR string = 0
+  STR_VAR bam_file = "****"
+  RET     icon
+  BEGIN
+
+  COPY_EXISTING ~statdesc.2da~ ~override~
+    COUNT_2DA_ROWS 3 count
+    READ_2DA_ENTRY (count - 1) 0 3 icon
+    SET icon += 1
+
+  APPEND ~statdesc.2da~ ~%icon% %string% %bam_file%~ UNLESS ~%bam_file%~
+
+END
+
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Spirit: Bear~) STR_VAR bam_file = C0D2_I1 RET C0D2_I1 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Spirit: Wolf~) STR_VAR bam_file = C0D2_I2 RET C0D2_I2 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Spirit: Lion~) STR_VAR bam_file = C0D2_I3 RET C0D2_I3 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Spirit: Snake~) STR_VAR bam_file = C0D2_I4 RET C0D2_I4 = icon END
+
+ADD_PROJECTILE ~%MOD_FOLDER%/Druid/TotemicDruid/projectile/C0D2_P1.PRO~ ~C0 Totemic Projectile One Target~
+
+ADD_PROJECTILE ~%MOD_FOLDER%/spells/C0INAREP.PRO~ ~C0 Instant Area Allies~
+
+COPY_EXISTING ~C0D2_A1A.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0D2_P1
+END
+
+COPY_EXISTING ~C0D2_SA3.SPL~ OVERRIDE
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+		projectile = C0INAREP
+END
+
+COPY_EXISTING ~C0D2_A0.SPL~ ~OVERRIDE~
+SAY NAME1 ~Totemic Guardian~
+SAY UNIDENTIFIED_DESC ~The totemic druid is persistently guarded by an animal spirit, which manifests when an enemy is within range of the totemic druid and remains until the battle ends. The spirit animal can be controlled, increases in power as the summoner gains in druid levels, and provides the totemic druid with persistent bonuses unless the spirit is destroyed in battle. The totemic druid may select a spirit animal to be guarded by once per day, with each providing different bonuses.
+  BEAR'S ENDURANCE: The summoner gains a +10% bonus to physical resistances and a +1 bonus to Saving Throws vs. Death.
+  WOLF'S TENACITY: The summoner gains a +10% bonus to all damage dealt, with an additional +1 bonus to melee damage.
+  LION'S COURAGE: The summoner gains a +1 bonus to THAC0, Morale and Saving Throw vs. Spells.
+  SNAKE'S SWIFTNESS: The summoner gains a +1 bonus to Armor Class, Movement Rate and Saving Throws vs. Breath.~
+
+COPY_EXISTING ~C0D2_A0A.SPL~ ~OVERRIDE/C0D2_A0B.SPL~
+LPF ALTER_SPELL_HEADER STR_VAR icon = SPIRITW END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A0A resource = C0D2_A0B END
+COPY_EXISTING ~C0D2_A1A.SPL~ ~OVERRIDE/C0D2_A1B.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2B END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_2 END
+COPY_EXISTING ~C0D2_A2A.SPL~ ~OVERRIDE/C0D2_A2B.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_S1 resource = C0D2_S2 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2B END
+
+COPY_EXISTING ~C0D2_A0A.SPL~ ~OVERRIDE/C0D2_A0C.SPL~
+LPF ALTER_SPELL_HEADER STR_VAR icon = SPIRITL END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A0A resource = C0D2_A0C END
+COPY_EXISTING ~C0D2_A1A.SPL~ ~OVERRIDE/C0D2_A1C.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2C END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_3 END
+COPY_EXISTING ~C0D2_A2A.SPL~ ~OVERRIDE/C0D2_A2C.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_S1 resource = C0D2_S3 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2C END
+
+COPY_EXISTING ~C0D2_A0A.SPL~ ~OVERRIDE/C0D2_A0D.SPL~
+LPF ALTER_SPELL_HEADER STR_VAR icon = SPIRITS END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A0A resource = C0D2_A0D END
+COPY_EXISTING ~C0D2_A1A.SPL~ ~OVERRIDE/C0D2_A1D.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2D END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_4 END
+COPY_EXISTING ~C0D2_A2A.SPL~ ~OVERRIDE/C0D2_A2D.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_S1 resource = C0D2_S4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_A2A resource = C0D2_A2D END
+
+COPY_EXISTING ~C0D2_SA3.SPL~ ~OVERRIDE/C0D2_SB3.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SB4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA5 resource = C0D2_SB5 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA6 resource = C0D2_SB6 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA7 resource = C0D2_SB7 END
+
+COPY_EXISTING ~C0D2_SA3.SPL~ ~OVERRIDE/C0D2_SC3.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SC4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA5 resource = C0D2_SC5 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA6 resource = C0D2_SC6 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA7 resource = C0D2_SC7 END
+
+COPY_EXISTING ~C0D2_SA3.SPL~ ~OVERRIDE/C0D2_SD3.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SD4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA5 resource = C0D2_SD5 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA6 resource = C0D2_SD6 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA7 resource = C0D2_SD7 END
+
+COPY_EXISTING ~C0D2_SA4.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I1
+      END
+COPY_EXISTING ~C0D2_SB4.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I2
+      END
+COPY_EXISTING ~C0D2_SC4.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I3
+      END
+COPY_EXISTING ~C0D2_SD4.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I4
+      END
+
+COPY_EXISTING ~C0D2_1.SPL~ ~OVERRIDE~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I1
+      END
+      
+COPY_EXISTING ~C0D2_1.SPL~ ~OVERRIDE/C0D2_2.SPL~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I2
+      END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_2 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1Z resource = C0D2_2Z END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1A resource = C0D2_2A END
+COPY_EXISTING ~C0D2_1.SPL~ ~OVERRIDE/C0D2_3.SPL~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I3
+      END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_3 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1Z resource = C0D2_3Z END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1A resource = C0D2_3A END
+COPY_EXISTING ~C0D2_1.SPL~ ~OVERRIDE/C0D2_4.SPL~
+    LPF ALTER_EFFECT
+      INT_VAR
+	    match_opcode = 142
+        parameter2 = C0D2_I4
+      END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1 resource = C0D2_4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1Z resource = C0D2_4Z END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_1A resource = C0D2_4A END
+
+COPY_EXISTING ~C0D2_1A.EFF~ ~OVERRIDE/C0D2_1B.EFF~
+WRITE_ASCII 0x30 ~C0D2_1B~
+COPY_EXISTING ~C0D2_1A.EFF~ ~OVERRIDE/C0D2_1C.EFF~
+WRITE_ASCII 0x30 ~C0D2_1C~
+COPY_EXISTING ~C0D2_1A.EFF~ ~OVERRIDE/C0D2_1D.EFF~
+WRITE_ASCII 0x30 ~C0D2_1D~
+COPY_EXISTING ~C0D2_A0A.EFF~ ~OVERRIDE/C0D2_A0B.EFF~
+WRITE_ASCII 0x30 ~C0D2_A1B~
+COPY_EXISTING ~C0D2_A0A.EFF~ ~OVERRIDE/C0D2_A0C.EFF~
+WRITE_ASCII 0x30 ~C0D2_A1C~
+COPY_EXISTING ~C0D2_A0A.EFF~ ~OVERRIDE/C0D2_A0D.EFF~
+WRITE_ASCII 0x30 ~C0D2_A1D~
+COPY_EXISTING ~C0D2_S1.EFF~ ~OVERRIDE/C0D2_S2.EFF~
+WRITE_ASCII 0x30 ~C0D2_S2~
+COPY_EXISTING ~C0D2_S1.EFF~ ~OVERRIDE/C0D2_S3.EFF~
+WRITE_ASCII 0x30 ~C0D2_S3~
+COPY_EXISTING ~C0D2_S1.EFF~ ~OVERRIDE/C0D2_S4.EFF~
+WRITE_ASCII 0x30 ~C0D2_S4~
+COPY_EXISTING ~C0D2_SA3.EFF~ ~OVERRIDE/C0D2_SB3.EFF~
+WRITE_ASCII 0x30 ~C0D2_SB3~
+COPY_EXISTING ~C0D2_SA3.EFF~ ~OVERRIDE/C0D2_SC3.EFF~
+WRITE_ASCII 0x30 ~C0D2_SC3~
+COPY_EXISTING ~C0D2_SA3.EFF~ ~OVERRIDE/C0D2_SD3.EFF~
+WRITE_ASCII 0x30 ~C0D2_SD3~
+COPY_EXISTING ~C0D2_SA4.EFF~ ~OVERRIDE/C0D2_SB4.EFF~
+WRITE_ASCII 0x30 ~C0D2_SB4~
+COPY_EXISTING ~C0D2_SA5.EFF~ ~OVERRIDE/C0D2_SB5.EFF~
+WRITE_ASCII 0x30 ~C0D2_SB4~
+COPY_EXISTING ~C0D2_SA6.EFF~ ~OVERRIDE/C0D2_SB6.EFF~
+WRITE_ASCII 0x30 ~C0D2_SB4~
+COPY_EXISTING ~C0D2_SA7.EFF~ ~OVERRIDE/C0D2_SB7.EFF~
+WRITE_ASCII 0x30 ~C0D2_SB4~
+COPY_EXISTING ~C0D2_SA4.EFF~ ~OVERRIDE/C0D2_SC4.EFF~
+WRITE_ASCII 0x30 ~C0D2_SC4~
+COPY_EXISTING ~C0D2_SA5.EFF~ ~OVERRIDE/C0D2_SC5.EFF~
+WRITE_ASCII 0x30 ~C0D2_SC4~
+COPY_EXISTING ~C0D2_SA6.EFF~ ~OVERRIDE/C0D2_SC6.EFF~
+WRITE_ASCII 0x30 ~C0D2_SC4~
+COPY_EXISTING ~C0D2_SA7.EFF~ ~OVERRIDE/C0D2_SC7.EFF~
+WRITE_ASCII 0x30 ~C0D2_SC4~
+COPY_EXISTING ~C0D2_SA4.EFF~ ~OVERRIDE/C0D2_SD4.EFF~
+WRITE_ASCII 0x30 ~C0D2_SD4~
+COPY_EXISTING ~C0D2_SA5.EFF~ ~OVERRIDE/C0D2_SD5.EFF~
+WRITE_ASCII 0x30 ~C0D2_SD4~
+COPY_EXISTING ~C0D2_SA6.EFF~ ~OVERRIDE/C0D2_SD6.EFF~
+WRITE_ASCII 0x30 ~C0D2_SD4~
+COPY_EXISTING ~C0D2_SA7.EFF~ ~OVERRIDE/C0D2_SD7.EFF~
+WRITE_ASCII 0x30 ~C0D2_SD4~
+
+COPY_EXISTING ~C0D2_SP1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Spirit's Protection~
+SAY UNIDENTIFIED_DESC ~The totemic druid may command their spirit animal to bestow their power upon a targeted creature for one turn. The spirit animal disappears for the duration and grants their bonuses to the target regardless of their class. Once the effect expires, the spirit animal manifests at the summoner's side once more.
+
+10th level: Spirit's Protection heals the ally for 50% of their maximum hit points.
+
+12th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack and heal them for 30% of their maximum hit points.
+
+14th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack and heal them for 30% of their maximum hit points.~
+
+COPY_EXISTING ~C0D2_SP1.SPL~ ~OVERRIDE/C0D2_SP2.SPL~
+LPF ALTER_EFFECT STR_VAR match_opcode = 318 match_resource = C0D2_SP1 resource = C0D2_SP2 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SB4 END
+COPY_EXISTING ~C0D2_SP1.SPL~ ~OVERRIDE/C0D2_SP3.SPL~
+LPF ALTER_EFFECT STR_VAR match_opcode = 318 match_resource = C0D2_SP1 resource = C0D2_SP3 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SC4 END
+COPY_EXISTING ~C0D2_SP1.SPL~ ~OVERRIDE/C0D2_SP4.SPL~
+LPF ALTER_EFFECT STR_VAR match_opcode = 318 match_resource = C0D2_SP1 resource = C0D2_SP4 END
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SD4 END
+
+COPY_EXISTING ~C0D2_1Z.SPL~ ~OVERRIDE~
+SAY NAME1 ~Command: Spirit's Protection~
+SAY UNIDENTIFIED_DESC ~This ability allows the Totemic Druid to directly bestow their spirit animal's blessings upon the targeted ally. It may only be used out of combat, when the spirit animal has not manifested.
+
+The totemic druid may command their spirit animal to bestow their power upon a targeted creature for one turn. The spirit animal disappears for the duration and grants their bonuses to the target regardless of their class. Once the effect expires, the spirit animal manifests at the summoner's side once more.
+
+10th level: Spirit's Protection heals the ally for 50% of their maximum hit points.
+
+12th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack and heal them for 30% of their maximum hit points.
+
+14th level: Spirit's Protection may now be cast on dead allies, restoring them to life and then providing their usual bonuses. However, the spirit animal will be unable to manifest itself again until eight hours have passed. Additionally, so long as the totemic druid is being guarded by a spirit, they are protected from instant death effects as per a Death Ward spell. If they would take lethal damage while under this protection, the spirit animal expends its energies to protect them from the attack and heal them for 30% of their maximum hit points.~
+
+COPY_EXISTING ~C0D2_1Z.SPL~ ~OVERRIDE/C0D2_2Z.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SB4 END
+COPY_EXISTING ~C0D2_1Z.SPL~ ~OVERRIDE/C0D2_3Z.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SC4 END
+COPY_EXISTING ~C0D2_1Z.SPL~ ~OVERRIDE/C0D2_4Z.SPL~
+LPF ALTER_EFFECT STR_VAR match_resource = C0D2_SA4 resource = C0D2_SD4 END
+
+COPY_EXISTING ~C0D2_SPX.SPL~ OVERRIDE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (~Totemic spirit slain—casting speed penalty and spell failure~) END
+
+ACTION_FOR_EACH baldur_script IN baldur bdbaldur baldur25 BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%baldur_script%.bcs~ BEGIN
+EXTEND_TOP ~%baldur_script%.bcs~ ~%MOD_FOLDER%/Druid/TotemicDruid/scripts/baldur.baf~
+END
+END
+
+COMPILE ~%MOD_FOLDER%/Druid/TotemicDruid/scripts/C0D2_SM.BAF~
+
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/creatures/C0D2_S1.cre~ ~OVERRIDE~
+SAY NAME1 ~Spirit Bear~
+SAY NAME2 ~Spirit Bear~
+  WRITE_ASCII SCRIPT_OVERRIDE ~C0D2_SM~ #8 // override
+  WRITE_ASCII DEATHVAR ~C0D2_SM~ #8 // death variable
+
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/creatures/C0D2_S2.cre~ ~OVERRIDE~
+SAY NAME1 ~Spirit Wolf~
+SAY NAME2 ~Spirit Wolf~
+  WRITE_ASCII SCRIPT_OVERRIDE ~C0D2_SM~ #8 // override
+  WRITE_ASCII DEATHVAR ~C0D2_SM~ #8 // death variable
+
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/creatures/C0D2_S3.cre~ ~OVERRIDE~
+SAY NAME1 ~Spirit Lion~
+SAY NAME2 ~Spirit Lion~
+  WRITE_ASCII SCRIPT_OVERRIDE ~C0D2_SM~ #8 // override
+  WRITE_ASCII DEATHVAR ~C0D2_SM~ #8 // death variable
+
+COPY ~%MOD_FOLDER%/Druid/TotemicDruid/creatures/C0D2_S4.cre~ ~OVERRIDE~
+SAY NAME1 ~Spirit Snake~
+SAY NAME2 ~Spirit Snake~
+  WRITE_ASCII SCRIPT_OVERRIDE ~C0D2_SM~ #8 // override
+  WRITE_ASCII DEATHVAR ~C0D2_SM~ #8 // death variable
+
+COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~text~ // read column value
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~TOTEMIC_DRUID~ BEGIN
+	    SET patch_row = %row%
+		SET_2DA_ENTRY (%patch_row%) 1 cols ~C0D2_~
+	  END
+	END
+COPY_EXISTING ~LUDR0.2da~ ~override/LUC0D2_.2DA~
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR731~ END
+LPF patch_remove_hla STR_VAR remove_ability = ~GA_SPPR732~ END
+LPF patch_add_hla STR_VAR 2da_row = ~LUC0D2_1~ ability = ~AP_C0D2_H1~ num_allowed = 1 END	
+LPF patch_add_hla STR_VAR 2da_row = ~LUC0D2_2~ ability = ~AP_C0D2_H2~ num_allowed = 1 END	
+
+COPY_EXISTING ~C0D2_H1.SPL~ ~OVERRIDE~
+SAY NAME1 ~Empower Spirit: Might~
+SAY UNIDENTIFIED_DESC ~After selecting this ability, the totemic druid's spirit animal gains the ability to use the abilities Greater Whirlwind, Power Attack and Critical Strike once per manifestation.~
+
+COPY_EXISTING ~C0D2_H2.SPL~ ~OVERRIDE~
+SAY NAME1 ~Empower Spirit: Fortitude~
+SAY UNIDENTIFIED_DESC ~After selecting this ability, the totemic druid's spirit animal gains the ability to use the abilities Hardiness, Resist Magic and Greater Evasion once per manifestation.~

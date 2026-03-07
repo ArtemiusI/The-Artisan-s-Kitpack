@@ -1,0 +1,55 @@
+IF
+	Global("C0D2_SMM","GLOBAL",1)
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player1,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player2,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player3,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player4,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player5,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
+
+IF
+	TriggerOverride(Player6,Global("C0D2_SMM","LOCALS",1))
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	ApplySpellRES("C0D2_AXX",Player1)
+END
