@@ -183,8 +183,8 @@ END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Power Attack~) STR_VAR bam_file = C0FIG01I RET C0FIG01I = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Improved Power Attack~) STR_VAR bam_file = C0FIG01J RET C0FIG01J = icon END
 
-COPY ~%MOD_FOLDER%/Fighter/2da/c0fig01a.2da~ ~OVERRIDE~
-COPY ~%MOD_FOLDER%/Fighter/2da/c0fig01b.2da~ ~OVERRIDE~
+COPY ~ArtisansKitpack/Fighter/2da/c0fig01a.2da~ ~OVERRIDE~
+COPY ~ArtisansKitpack/Fighter/2da/c0fig01b.2da~ ~OVERRIDE~
 
 COPY_EXISTING ~C0FIG01X.SPL~ OVERRIDE
 LPF ALTER_EFFECT INT_VAR match_opcode = 139 opcode = 330 parameter1 = RESOLVE_STR_REF (~Power Attack—Inadequate Strength~) END
