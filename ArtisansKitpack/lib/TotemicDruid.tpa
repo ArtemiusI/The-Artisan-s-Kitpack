@@ -2,6 +2,13 @@
 COPY ~%MOD_FOLDER%/Druid/TotemicDruid/2DAs~ ~OVERRIDE~
 COPY ~%MOD_FOLDER%/Druid/TotemicDruid/SPELLS~ ~OVERRIDE~
 
+ACTION_IF FILE_EXISTS_IN_GAME ~CLABDR02.2DA~ BEGIN
+COPY_EXISTING ~CLABDR02.2DA~ ~OVERRIDE~
+  REPLACE_TEXTUALLY ~GA_SPCL621~ ~****      ~
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 1 STR_VAR f_Entry = GA_C0D2_A0 END
+  PRETTY_PRINT_2DA
+END
+
 OUTER_SPRINT kit_description ~TOTEMIC DRUID: This Druid closely identifies with a particular animal, an animal that <PRO_HESHE> feels represents <PRO_HISHER> spirit. This grants <PRO_HIMHER> a special connection to the animal kingdom, and <PRO_HESHE> is able to call upon their spirits to aid <PRO_HIMHER>.
 
 Advantages:
