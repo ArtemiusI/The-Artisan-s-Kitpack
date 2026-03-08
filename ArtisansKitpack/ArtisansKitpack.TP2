@@ -1109,6 +1109,10 @@ BEGIN ~Artisan's Kitpack: Totemic Druid Overhaul~ DESIGNATED 5300
 GROUP ~Druid Kits~
 INCLUDE ~%MOD_FOLDER%/lib/TotemicDruid.tpa~
 
+BEGIN ~Artisan's Kitpack: Shapeshifter Overhaul~ DESIGNATED 5100
+GROUP ~Druid Kits~
+INCLUDE ~%MOD_FOLDER%/lib/Shapeshifter.tpa~
+
 BEGIN ~Shapeshifter Form Only~ DESIGNATED 5110
 SUBCOMPONENT ~Artisan's Kitpack: Shapeshifter Overhaul – Custom Werewolf Sprite~
 GROUP ~Druid Kits~
