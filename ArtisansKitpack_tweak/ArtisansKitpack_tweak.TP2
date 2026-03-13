@@ -410,4 +410,5 @@ BEGIN ~Artisan's Kitpack: Favored Soul - Patch Cleric-exclusive spells from mods
 INCLUDE ~ArtisansKitpack/lib/FavoredSoul_spells.tpa~
 
 BEGIN ~Artisan's Kitpack: Update EEex-based Weapon Usability Changes~ DESIGNATED 1010000
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~C0PR#CL.SPL~) ~No EEex-based proficiency changes, component is unneeded~
 INCLUDE ~ArtisansKitpack/lib/profs_eeex_patch.tpa~
